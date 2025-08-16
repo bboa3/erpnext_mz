@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-ERPNext Mozambique Modules
+ERPNext Mozambique Modules (Clean Skeleton)
 
-This package contains all the modules for Mozambique compliance:
-- accounting: Chart of accounts, VAT templates, tax calculations
-- hr_payroll: INSS, IRPS, benefits in kind, leave policies
-- tax_compliance: SAF-T generation, AT integration, validations
-- reporting: Fiscal reports, compliance dashboard
+Only the tax_compliance.saf_t_generator module remains available
+as a reference implementation. Other modules have been removed
+for a clean restart.
 """
 
 __all__ = [
-    "accounting",
-    "hr_payroll",
     "tax_compliance",
 ]

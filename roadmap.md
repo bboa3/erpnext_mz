@@ -1,111 +1,107 @@
-ERPNext Mozambique Compliance Roadmap (2025) — Checkable Checklist
-> From zero to a fully built, tax‑compliant, multi‑tenant ERPNext SaaS for Mozambique.  
+# ERPNext Mozambique Compliance Roadmap (2025) — Checkable Checklist
+> From zero to a fully built, tax-compliant, multi-tenant ERPNext SaaS for Mozambique.
 
 ## Phase 1 — Planning & Infrastructure
-- [X] Form the core team (Frappe/ERPNext devs, fiscal expert, AWS DevOps, support).
-- [X] Define scope: Accounting, Sales, Inventory, Purchase, HR/Payroll, Projects, CRM.
-- [X] Choose AWS architecture (EC2/ECS, RDS MariaDB, S3 files, CloudFront optional).
-- [X] Define environments: **dev**, **staging**, **prod**.
-- [X] Security baseline: HTTPS (ACM/Let’s Encrypt), WAF, IAM least privilege, VPC subnets.
-- [X] Backups: S3 with cross‑region replication; daily + weekly retention plan.
-- [X] Monitoring: CloudWatch metrics/alarms; ERPNext health endpoint; log retention.
-- [X] DR plan: RTO/RPO targets, restore rehearsal scheduled quarterly.
+* [x] Team, scope, environments, security, backups, monitoring, DR.
+  **Acceptance:** AWS account hardening + runbook exists; restore drill scheduled.
+* [x] **Docker foundations (multi-service compose)** (🧩 CODE ops)
+  * Mount `./apps` and `sites/` into all frappe services; add healthchecks.
+  * Bake Node 18 + Yarn inside images or post-install step for asset builds.
+    **Acceptance:** `bench build` works in `backend`; app code persists across restarts.
+* [x] **S3 buckets** for files/backups with **Object Lock/WORM** for compliance (ops).
+  **Acceptance:** lifecycle + cross-region replication configured; retention policy documented (10 years).
 
 ## Phase 2 — Core ERPNext Installation
-- [X] Provision Ubuntu LTS instance(s) for **dev/staging/prod**.
-- [X] Install system deps (Python, Node.js, Yarn, Redis, wkhtmltopdf).
-- [X] Install MariaDB and harden (bind‑address, strong root, utf8mb4).
-- [X] Install Bench CLI and ERPNext apps.
-- [X] Create first site and enable ERPNext
-- [X] Production setup (Supervisor + Nginx).
-- [X] Enable multi‑tenancy: create one site per tenant.
-- [X] setup pt-MZ language pack.
-- [X] Email setup (SMTP), timezone, currency (MZN), fiscal year.
+* [x] Install ERPNext; create **dev/staging/prod** sites; enable DNS multi-tenant. (🖱️ UI + 🧩 CODE ops)
+* [x] Language: **pt-MZ** (start from pt-BR CSV → adapt to pt-MZ) (🖱️ UI import).
+  **Acceptance:** site shows PT; common labels localized to Moz context.
+* [x] Email (SMTP), timezone **Africa/Maputo**, currency **MZN**, **fiscal year** (confirm with accountant; not fixed in report).
+  **Note:** Fiscal year start/end **not specified in the report** → verify with AT/contador.
 
 ## Phase 3 — Mozambique Localization (Accounting & Tax)
-- [ ] Load Mozambique **Chart of Accounts** aligned to IFRS.
-- [ ] VAT templates:
-  - [ ] VAT 16% (standard).
-  - [ ] VAT 5% (reduced: health/education).
-  - [ ] VAT 0% (exports/exempt with legal note).
-- [ ] Configure **Tax Categories** and link to Items/Customers as needed.
-- [ ] Withholding/retentions (if applicable for your sector).
-- [ ] Custom fields:
-  - [ ] Customer/Supplier **NUIT** (validate length/format).
-  - [ ] Invoice **Fiscal Series** and **Sequential Number**.
-  - [ ] **AT Certification Number** (to print on invoices).
-- [ ] Print Formats:
-  - [ ] Add **QR Code** with key fiscal data.
-  - [ ] Show sequence, series, certification text.
-  - [ ] Multi‑language labels (PT primary).
-- [ ] Multi‑currency rules (if needed).
+* [ ] **IFRS Chart of Accounts** (🖱️ UI or import template).
+  **Acceptance:** COA ready; GL/BS/P\&L run clean.
+* [ ] **VAT setup** (🖱️ UI)
+  * Templates: **IVA 16%**, **IVA 5%** (setores reduzidos), **IVA 0%** (export/isentos + menção legal).
+  * **Tax Categories** and per-item/per-customer mappings where needed.
+    **Acceptance:** Tax applied correctly on SO/SI/PI; reports reconcile.
+* [ ] **Custom Fields** (🖱️ UI then export fixtures 🧩 CODE)
+  * Customer/Supplier **NUIT**; Company **AT Certification Nº**; SI fields for hash/QR as needed.
+    **Acceptance:** Fields visible and required where specified.
+* [ ] **Sequential numbering** (Naming Series) (🖱️ UI).
+  **Acceptance:** “FT-YYYY-####” issues sequentially; no duplicates.
+* [ ] **Print Formats (fiscal)** (🖱️ UI)
+  * Show NUIT (empresa/cliente), série+nº, **Nº**, **QR** payload.
+    **Acceptance:** Printed PDF shows all fiscal elements.
+* [ ] **Withholdings/retentions** if applicable (🖱️ UI).
+  **Acceptance:** Correct net values and reports.
 
 ## Phase 4 — HR & Payroll Compliance
-- [ ] Salary components and structures:
-  - [ ] **INSS**: Employer 4%, Employee 3%.
-  - [ ] **IRPS** progressive: 10%, 15%, 20%, 25%, 32%.
-- [ ] Benefits in kind:
-  - [ ] Add fields for vehicle, housing, insurance, etc.
-  - [ ] Ensure valuation in **MZN** and inclusion in **gross**.
-- [ ] Leave policies per law:
-  - [ ] Maternity 90 days (60 paid by INSS).
-  - [ ] Paternity 7 days.
-  - [ ] Annual leave (12 days 1º ano; 30 dias após 1 ano).
-- [ ] Payroll calendar, journals, and posting rules verified.
-- [ ] Payroll reports: monthly INSS & IRPS summaries validated.
+* [ ] **INSS**: Empregador 4%, Empregado 3% (🖱️ UI components/structures).
+  **Acceptance:** Payslips compute correct INSS.
+* [ ] **IRPS progressive** 10/15/20/25/32% (🖱️ UI tables; verify latest tables with contabilista)
+  **Acceptance:** Payslips compute correct IRPS.
+* [ ] **Benefits in kind** (vehicle, housing, insurance…) (🖱️ UI fields;)
+  **Acceptance:** Valuation in **MZN**; included in gross and SAF-T mapping.
+* [ ] **Leave policies** (maternity/paternity/annual) (🖱️ UI)
+  **Acceptance:** Policies match law; balances accrue correctly.
 
 ## Phase 5 — Custom App: `erpnext_mz` (Compliance Logic)
-- [ ] Create app skeleton and install on all sites:
-  - [ ] `bench new-app erpnext_mz`
-  - [ ] `bench --site <site> install-app erpnext_mz`
-- [ ] **SAF‑T XML (Vendas & Folha)** generators:
-  - [ ] Implement XML schemas + unit tests.
-  - [ ] Export, validate, and archive monthly files.
-- [ ] **Checksum/Hash** routines for invoices (anti‑tampering).
-- [ ] **AT Integration** (when API available):
-  - [ ] Server **hooks**: on submit Sales Invoice ⇒ transmit payload to AT.
-  - [ ] Retry & error queue; status dashboard.
-- [ ] **Validations**:
-  - [ ] NUIT format client‑side check.
-  - [ ] SAF‑T variance rule (Vendas vs Folha) **≤ 3%** — block if exceeded.
-- [ ] **Print formats** packaged in app (QR, certification no., legal mentions).
-- [ ] Settings doctype for AT endpoints/keys and toggles.
+* [ ] App skeleton installed on all sites; fixtures enabled (🧩 CODE).
+  **Acceptance:** `bench --site <site> list-apps` shows `erpnext_mz`.
+* [ ] **Integrity / Checksums (anti-tamper)** (🧩 CODE hook or Server Script)
+  * `Sales Invoice.on_submit` → compute **SHA-256** over key fields + **chain to previous**.
+    **Acceptance:** `mz_hash` and `mz_prev_hash` filled; chain consistent across invoices.
+* [ ] **SAF-T (Vendas & Folha) XML generator** (🧩 CODE Doctype + scheduler)
+  * Implement schemas; validate; archive monthly file to S3 (WORM).
+  * **Variance rule**: folha vs vendas **≤ 3%**; flag/block if exceeded.
+    **Acceptance:** XML passes schema; monthly job produces files; variance job enforces rule.
+* [ ] **AT Integration** (when API/format available) (🧩 CODE)
+  * Post-submit hook transmits invoice/folha to AT or exports for **e-Declaração**.
+  * Retry, error queue, status dashboard.
+    **Acceptance:** Success/failure statuses tracked; re-tries; audit log. 
+* [ ] **NUIT validation** (🖱️ UI Client Script or 🧩 CODE)
+  **Acceptance:** Invalid NUIT blocked in form.
+* [ ] **Workspace (single branded home)** “Mozambique ERP” (🖱️ UI then fixtures 🧩 CODE)
+  **Acceptance:** Users land on your curated workspace; ERPNext defaults hidden.
 
 ## Phase 6 — Data Integrity, Archiving & Backups
-- [ ] Immutable numbering: lock posted invoices; cancellation via credit note only.
-- [ ] Signed audit trail for critical DocTypes (Sales Invoice, Payroll Entry).
-- [ ] Monthly SAF‑T/JSON snapshots shipped to S3 (WORM bucket/Glacier).
-- [ ] Retention policy: 10 years for fiscal docs.
-- [ ] Scheduled restore drills (semi‑annual).
+* [ ] **Immutable numbering & cancel policy** (🖱️ UI + 🧩 CODE guard)
+  **Acceptance:** Posted invoices cannot be edited; only credit notes reverse.
+* [ ] **Signed audit trail** for critical DocTypes (🧩 CODE: logging hash + metadata)
+  **Acceptance:** Tamper-evident logs exist for SI/Payroll Entry.
+* [ ] **Monthly archives to S3** (SAF-T, hash chain, audit logs) with **10-year retention** (ops).
+  **Acceptance:** Glacier/locking verified; restore drill passes.
 
 ## Phase 7 — Certification with AT
-- [ ] Prepare dossier: architecture, security, data flows, sample invoices, SAF‑T files.
-- [ ] Stand‑alone **staging** tenant for certification tests.
-- [ ] Iterate per AT feedback until pass.
-- [ ] Receive **AT Certification ID** and record it in system settings.
-- [ ] Update invoice print format to display certification ID.
+* [ ] Dossier (arch, security, flows, sample invoices, SAF-T) (🧩 CODE + docs).
+* [ ] Staging tenant for certification; iterate until pass.
+* [ ] **Record AT Certification ID** and show on invoice print (🖱️ UI).
+  **Acceptance:** ID displayed on all fiscal prints.
 
-## Phase 8 — SaaS Readiness (Multi‑Tenant Ops)
-- [ ] Automated site provisioning:
-  - [ ] Script: `bench new-site` + install apps + seed defaults.
-  - [ ] Domain mapping and SSL.
-- [ ] Subscription & billing integration (Stripe/MPesa/Bank — as applicable).
-- [ ] Tenant isolation checks (db/files separation, S3 prefixes).
-- [ ] CI/CD (GitHub Actions/GitLab):
-  - [ ] Lint + tests (unit + Cypress for UI if used).
-  - [ ] Build artifacts and deploy with `bench migrate` per site.
-  - [ ] Blue/green or canary strategy for app updates.
-- [ ] Observability:
-  - [ ] App metrics (requests, queue, workers), Celery/RQ health.
-  - [ ] Error tracking (Sentry).
-- [ ] Cost controls (rightsizing, auto‑scaling policies, storage lifecycle).
+## Phase 8 — SaaS Readiness (Multi-Tenant Ops)
+* [ ] **Automated site provisioning** (🧩 CODE ops)
+  * Script: `bench new-site` + install apps.
+    **Acceptance:** New tenant ready in <5 min, isolated DB/files.
+* [ ] **Billing** (Stripe/MPesa/Bank) (🧩 CODE)
+  **Acceptance:** Subscriptions created; usage tracked.
+* [ ] **CI/CD** (tests, build, migrate per site) (🧩 CODE)
+  **Acceptance:** Pipeline green; canary/blue-green works.
+* [ ] **Observability** (metrics/alerts/logs) (ops)
+  **Acceptance:** Alarms on queues, workers, request latency.
 
-## Phase 9 — Go‑Live & Continuous Compliance
-- [ ] Onboard first tenants; import opening balances and master data.
-- [ ] User training (Accounting, Sales, HR/Payroll, Reporting).
-- [ ] Monthly operations checklist:
-  - [ ] Transmit invoices to AT / verify acknowledgements.
-  - [ ] Close payroll; verify **≤ 3%** variance vs sales.
-  - [ ] Generate and archive SAF‑T (Vendas & Folha); submit to portal if needed.
-- [ ] Update rules when VAT/IRPS/INSS tables change.
-- [ ] Quarterly review: restore test, security review, costs, and performance.
+## Phase 9 — Go-Live & Continuous Compliance
+* [ ] Tenant onboarding; opening balances, master data.
+* [ ] Training (Accounting, Sales, HR/Payroll).
+* [ ] **Monthly ops checklist** (🖱️ UI + 🧩 CODE jobs):
+  * Transmit invoices to AT / verify ACK.
+  * Close payroll; **≤ 3%** variance vs sales.
+  * Generate & archive **SAF-T (Vendas & Folha)**; submit to portal if required.
+* [ ] Update VAT/IRPS/INSS tables when government changes (UI).
+* [ ] Quarterly: restore test, security review, cost/perf tuning.
+
+---
+
+## Quick “who does what” cheat-sheet
+**Do in the UI (🖱️):** VAT templates 16/5/0; Tax Categories; COA/IFRS; Naming Series; Custom Fields (NUIT, AT Cert Nº); fiscal Print Formats (with QR); Payroll components (INSS/IRPS); Leave policies; Workspaces.
+**Write in code (🧩):** Hash chain on SI; SAF-T XML + scheduler; AT API client + post-submit hooks; NUIT validator (client/server); signed audit logs; fixtures (to persist UI work); after\_migrate guard; provisioning scripts.

@@ -20,30 +20,11 @@ def test_imports():
         import erpnext_mz
         
         # Test modules
-        print("✓ Testing accounting module...")
-        from erpnext_mz.modules.accounting import chart_of_accounts, vat_templates
-        
-        print("✓ Testing HR & Payroll module...")
-        from erpnext_mz.modules.hr_payroll import inss_irps, benefits_in_kind
-        
-        print("✓ Testing Tax Compliance module...")
-        from erpnext_mz.modules.tax_compliance import saf_t_generator, at_integration
+        print("✓ Testing Tax Compliance module (SAF-T only)...")
+        from erpnext_mz.modules.tax_compliance import saf_t_generator
         
         # Test utilities
-        print("✓ Testing permissions...")
-        from erpnext_mz import permissions
-        
-        print("✓ Testing overrides...")
-        from erpnext_mz import overrides
-        
-        print("✓ Testing tasks...")
-        from erpnext_mz import tasks
-        
-        print("✓ Testing API...")
-        from erpnext_mz.api.v1 import saf_t_export, at_integration
-        
-        print("✓ Testing setup...")
-        from erpnext_mz import setup
+        # Clean skeleton: no permissions/overrides/tasks/api/setup modules
         
         print("\n🎉 All imports successful! App structure is correct.")
         return True

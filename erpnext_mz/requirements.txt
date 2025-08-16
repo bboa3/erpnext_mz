@@ -4,10 +4,7 @@
 # frappe>=15.0.0
 # erpnext>=15.0.0
 
-# Additional dependencies for Mozambique compliance
-requests>=2.31.0
-lxml>=4.9.0
-xmltodict>=0.13.0
+# No additional dependencies in clean skeleton
 
 # Development dependencies (optional)
 # pytest>=7.0.0

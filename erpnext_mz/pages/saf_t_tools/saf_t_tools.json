@@ -1,8 +1,0 @@
-{
-  "doctype": "Page",
-  "name": "saf-t-tools",
-  "module": "ERPNext Mozambique",
-  "title": "SAF-T Tools",
-  "standard": 1,
-  "content": "<div class=\"container\"><h2>SAF-T Tools</h2><p>Use Command Palette: bench execute erpnext_mz.modules.tax_compliance.saf_t_generator.generate_monthly_saf_t</p></div>"
-}

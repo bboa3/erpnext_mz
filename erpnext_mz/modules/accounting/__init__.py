@@ -1,15 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Accounting Module for Mozambique Compliance
-
-This module handles:
-- Chart of Accounts (IFRS aligned)
-- VAT templates and calculations
-- Tax categories and rules
-- Fiscal reporting
+Accounting module removed in clean skeleton.
 """
 
-__all__ = [
-    "chart_of_accounts",
-    "vat_templates",
-]
+__all__: list[str] = []

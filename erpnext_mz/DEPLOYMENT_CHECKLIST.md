@@ -1,8 +1,8 @@
-# 🔍 ERPNext Mozambique App - Troubleshooting & Verification Checklist
+# 🔍 ERPNext Mozambique App - Troubleshooting & Verification Checklist (Clean Skeleton)
 
 ## 🎯 **Purpose of This Document**
 
-This document is for **troubleshooting and verification** after deployment. It's **NOT** for initial deployment - use [README.md](README.md) for that.
+This document is for **troubleshooting and verification** after deployment. In the clean skeleton, most feature checks are intentionally N/A.
 
 ---
 
@@ -20,20 +20,20 @@ This document is for **troubleshooting and verification** after deployment. It's
 ### **✅ App Installation Verification**
 - [ ] App appears in `bench list-apps`
 - [ ] No import errors in console
-- [ ] Custom fields visible in forms
-- [ ] Print formats available for selection
+- [ ] Custom fields visible in forms (N/A in clean skeleton)
+- [ ] Print formats available for selection (N/A in clean skeleton)
 
-### **✅ Mozambique Compliance Setup**
+### **✅ Mozambique Compliance Setup** (N/A in clean skeleton)
 - [ ] Chart of Accounts created (IFRS structure)
 - [ ] VAT templates created (16%, 5%, 0%)
 - [ ] HR components created (INSS, IRPS)
 - [ ] Custom fields created (NUIT, fiscal, AT)
 
 ### **✅ Functionality Testing**
-- [ ] SAF-T generation works
-- [ ] VAT calculations correct
-- [ ] HR & Payroll components functional
-- [ ] API endpoints responding
+- [ ] SAF-T generation works (manual invocation only)
+- [ ] VAT calculations correct (N/A)
+- [ ] HR & Payroll components functional (N/A)
+- [ ] API endpoints responding (N/A)
 
 ---
 
@@ -56,7 +56,7 @@ docker compose exec backend ls -la /home/frappe/frappe-bench/apps/erpnext_mz/
 - Check app directory permissions
 - Verify app structure is correct
 
-### **Issue 2: Custom Fields Not Showing**
+### **Issue 2: Custom Fields Not Showing** (N/A)
 ```bash
 # Check custom fields exist
 docker compose exec backend bench --site your-site.com console -c "
@@ -114,7 +114,7 @@ except Exception as e:
 ### **Pre-Go-Live Verification**
 - [ ] All verification tests pass
 - [ ] No console errors in browser
-- [ ] All API endpoints responding
+- [ ] All API endpoints responding (N/A)
 - [ ] Performance acceptable
 - [ ] Backup procedures in place
 
@@ -128,7 +128,7 @@ except Exception as e:
 - [ ] Log monitoring configured
 - [ ] Error alerting set up
 - [ ] Performance monitoring active
-- [ ] Compliance reporting scheduled
+- [ ] Compliance reporting scheduled (N/A)
 
 ---
 
@@ -149,9 +149,9 @@ docker compose restart backend
 ```
 
 ### **Partial Rollback Options**
-- Remove specific custom fields
-- Disable specific features
-- Rollback specific configurations
+- Remove specific custom fields (N/A)
+- Disable specific features (N/A)
+- Rollback specific configurations (N/A)
 
 ---
 
@@ -175,7 +175,7 @@ docker compose restart backend
 
 - **[README.md](README.md)** - Start here for deployment
 - **[QUICK_START.md](QUICK_START.md)** - Fast deployment guide
-- **[DOCKER_DEPLOYMENT_GUIDE.md](DOCKER_DEPLOYMENT_GUIDE.md)** - Detailed deployment steps
+- **[DOCKER_DEPLOYMENT_GUIDE.md](DOCKER_DEPLOYMENT_GUIDE.md)** - Minimal deployment notes
 
 ---
 
@@ -186,40 +186,23 @@ docker compose restart backend
 # Check if app is installed
 bench --site your-site.com list-apps | grep erpnext_mz
 
-# Check custom fields
-bench --site your-site.com console
-frappe.get_all("Custom Field", filters={"app": "erpnext_mz"})
-
-# Check print formats
-frappe.get_all("Print Format", filters={"app": "erpnext_mz"})
+# Custom fields and print formats are not included in the clean skeleton
 ```
 
 ## Post-Deployment Configuration
 
-### 1. Company Settings
+### 1. Company Settings (optional)
 - [ ] Set company country to "Mozambique"
 - [ ] Set company currency to "MZN"
-- [ ] Add company NUIT number
-- [ ] Add AT certification number (if available)
 
-### 2. AT Integration Setup (Optional)
-- [ ] Configure AT API endpoint
-- [ ] Add AT API key
-- [ ] Enable AT integration
-- [ ] Test invoice transmission
+### 2. AT Integration Setup (N/A)
 
-### 3. User Permissions
-- [ ] Ensure users have proper roles
-- [ ] Test custom field access
-- [ ] Verify print format access
+### 3. User Permissions (N/A)
 
 ## Testing Checklist
 
 ### 1. Basic Functionality
 - [ ] App loads without errors
-- [ ] Custom fields appear in forms
-- [ ] Print formats work correctly
-- [ ] Chart of accounts created
 
 ### 2. SAF-T Generation
 - [ ] Generate test SAF-T files
@@ -227,25 +210,16 @@ frappe.get_all("Print Format", filters={"app": "erpnext_mz"})
 - [ ] Check file saving
 - [ ] Validate checksums
 
-### 3. HR & Payroll
-- [ ] INSS calculations work
-- [ ] IRPS calculations work
-- [ ] Benefits in kind setup
-- [ ] Salary components created
+### 3. HR & Payroll (N/A)
 
-### 4. API Endpoints
-- [ ] SAF-T generation API
-- [ ] AT integration API
-- [ ] Proper error responses
-- [ ] Authentication working
+### 4. API Endpoints (N/A)
 
 ## Troubleshooting
 
 ### Common Issues
 1. **Import Errors**: Check all module imports
-2. **Custom Fields Not Showing**: Clear browser cache
-3. **File Permission Errors**: Check site file permissions
-4. **Database Errors**: Verify database connectivity
+2. **File Permission Errors**: Check site file permissions
+3. **Database Errors**: Verify database connectivity
 
 ### Debug Commands
 ```bash
@@ -264,29 +238,18 @@ import erpnext_mz
 
 ### If Issues Occur
 1. **Uninstall app**: `bench --site your-site.com uninstall-app erpnext_mz`
-2. **Remove custom fields**: Delete via ERPNext admin
-3. **Restore from backup**: If database changes were made
-4. **Check logs**: Identify root cause before re-deployment
+2. **Restore from backup**: If database changes were made
+3. **Check logs**: Identify root cause before re-deployment
 
 ## Success Criteria
 
 ### Deployment Success
 - [ ] App installs without errors
-- [ ] All custom fields created successfully
-- [ ] Chart of accounts setup complete
-- [ ] VAT templates created
-- [ ] HR components working
-- [ ] SAF-T generation functional
+- [ ] SAF-T generator imports and can be called manually
 - [ ] No console errors in browser
-- [ ] All API endpoints responding
 
-### Compliance Ready
-- [ ] Mozambique Chart of Accounts active
-- [ ] VAT rates configured (16%, 5%, 0%)
-- [ ] INSS/IRPS calculations working
-- [ ] SAF-T XML generation working
-- [ ] Custom fields for NUIT and fiscal data
-- [ ] Print formats with fiscal information
+### Compliance Ready (future work)
+- [ ] SAF-T XML generation working (when wired)
 
 ---
 
