@@ -1,0 +1,58 @@
+{
+  "doctype": "DocType",
+  "name": "AT Settings",
+  "module": "ERPNext Mozambique",
+  "custom": 0,
+  "istable": 0,
+  "editable_grid": 0,
+  "quick_entry": 0,
+  "read_only": 0,
+  "allow_rename": 0,
+  "autoname": "field:company",
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "enabled",
+      "label": "Enable Integration",
+      "fieldtype": "Check",
+      "default": "0"
+    },
+    {
+      "fieldname": "auto_submit",
+      "label": "Auto-submit Monthly SAF-T",
+      "fieldtype": "Check",
+      "default": "0"
+    },
+    {
+      "fieldname": "api_section",
+      "fieldtype": "Section Break",
+      "label": "API"
+    },
+    {
+      "fieldname": "api_endpoint",
+      "label": "API Endpoint",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "api_key",
+      "label": "API Key",
+      "fieldtype": "Password"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    }
+  ]
+}
