@@ -46,7 +46,6 @@ COMPOSE_FILE=""
 ADMIN_PASSWORD=""
 SITE_NAME=""
 DB_ROOT_PASSWORD=""
-ALL_SITES=false
 
 print_help() {
     cat <<'USAGE'
@@ -61,7 +60,6 @@ Options:
       --install-hrms       Install HRMS app (optional) and add to selected sites
       --admin-password PWD Set Administrator password for the selected sites (default: admin)
       --db-root-password P  MariaDB root password used for site creation (fallbacks to container env or 'admin')
-      --all-sites           Target all existing sites (overrides --site if none provided)
   -h, --help               Show this help
 
 Examples:
@@ -92,10 +90,6 @@ while [[ $# -gt 0 ]]; do
             if [[ $# -lt 2 ]]; then print_error "Missing value for --admin-password"; exit 1; fi
             ADMIN_PASSWORD="$2"
             shift 2
-            ;;
-        --all-sites)
-            ALL_SITES=true
-            shift
             ;;
         --no-host-sync)
             NO_HOST_SYNC=true
@@ -191,19 +185,8 @@ fi
 print_status "Step 3: Determining target site(s)..."
 
 if [[ -z "$SELECTED_SITES" ]]; then
-    if $ALL_SITES; then
-        SELECTED_SITES=$(dc exec -T backend bash -lc "bench list-sites | sed '/^$/d'" 2>/dev/null | tr -d '\r' || true)
-        if [[ -z "$SELECTED_SITES" ]]; then
-            SELECTED_SITES=$(dc exec -T backend bash -lc "find /home/frappe/frappe-bench/sites -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | grep -v '^assets$' | sed '/^$/d'" 2>/dev/null | tr -d '\r' || true)
-        fi
-        if [[ -z "$SELECTED_SITES" ]]; then
-            print_error "No sites found. Use --site <site-name> to create one."
-            exit 1
-        fi
-    else
-        print_error "No site specified. Use --site <site-name> or --all-sites."
-        exit 1
-    fi
+    print_error "No site specified. Use --site <site-name> to create/configure a site."
+    exit 1
 fi
 
 # Discover existing sites to decide on creation
@@ -389,12 +372,8 @@ done
 print_status "Step 9: Applying site System Settings and running setup script..."
 for site in $SELECTED_SITES; do
     print_status "Running setup for all companies on $site..."
-    # Apply captured System Settings to site via SQL (robust across bench/kwargs parsing)
-    print_status "Applying System Settings (number format, precisions, default currency) on $site..."
-    dc exec -T backend bash -lc 'cat > /tmp/_mz_settings.sql << "SQL"\nINSERT INTO tabSingles (doctype, field, value) VALUES\n ("System Settings","number_format","#.###,##"),\n ("System Settings","float_precision","2"),\n ("System Settings","currency_precision","2"),\n ("Global Defaults","default_currency","MZN")\nON DUPLICATE KEY UPDATE value=VALUES(value);\nSQL\nbench --site '"$site"' mariadb -Ns < /tmp/_mz_settings.sql' || true
-    # Clear caches to ensure immediate effect in UI
-    dc exec -T backend bench --site "$site" clear-cache >/dev/null 2>&1 || true
-    dc exec -T backend bench --site "$site" clear-website-cache >/dev/null 2>&1 || true
+    # Apply captured System Settings to site (safe if function not present)
+    dc exec -T backend bench --site "$site" execute erpnext_mz.setup.apply_site_system_settings >/dev/null 2>&1 || true
     if dc exec -T backend bench --site "$site" execute erpnext_mz.setup.setup_all_companies; then
         print_success "✅ Setup executed on $site"
     else

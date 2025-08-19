@@ -8,11 +8,12 @@ This script sets up all Mozambique compliance features:
 - Custom fields
 """
 
-import os
 import frappe
 from frappe import _
 
-DEFAULT_SYSTEM_SETTINGS = {
+# Default site-level settings captured from your UI
+# These will be applied during deployment via deploy_docker.sh
+SYSTEM_SETTINGS_DEFAULTS = {
 	"number_format": "#.###,##",
 	"float_precision": 2,
 	"currency_precision": 2,
@@ -547,80 +548,33 @@ def after_migrate():
     ensure_hr_workspaces()
 
 @frappe.whitelist()
-def apply_site_system_settings(number_format=None, float_precision=None, currency_precision=None, default_currency=None, override: bool = False):
+def apply_site_system_settings():
 	"""Apply site-level System Settings and Global Defaults.
 
-	If values are not provided, attempts to read from environment variables:
-	- MZ_NUMBER_FORMAT
-	- MZ_FLOAT_PRECISION
-	- MZ_CURRENCY_PRECISION
-	- MZ_DEFAULT_CURRENCY
-
-	By default, will NOT override non-empty existing values unless override=True.
+	Idempotent and safe across versions. Values come from
+	SYSTEM_SETTINGS_DEFAULTS captured from your current UI.
 	"""
-
-	def _env(name: str):
-		val = os.environ.get(name)
-		return val if val not in (None, "") else None
-
-	def _is_empty(val) -> bool:
-		return val is None or (isinstance(val, str) and val.strip() == "")
-
 	try:
-		if number_format is None:
-			number_format = _env("MZ_NUMBER_FORMAT")
-		if float_precision is None:
-			float_precision = _env("MZ_FLOAT_PRECISION")
-		if currency_precision is None:
-			currency_precision = _env("MZ_CURRENCY_PRECISION")
-		if default_currency is None:
-			default_currency = _env("MZ_DEFAULT_CURRENCY")
-
-		# Fallback to app defaults if still not provided via args or env
-		if number_format is None:
-			number_format = DEFAULT_SYSTEM_SETTINGS.get("number_format")
-		if float_precision is None:
-			float_precision = DEFAULT_SYSTEM_SETTINGS.get("float_precision")
-		if currency_precision is None:
-			currency_precision = DEFAULT_SYSTEM_SETTINGS.get("currency_precision")
-		if default_currency is None:
-			default_currency = DEFAULT_SYSTEM_SETTINGS.get("default_currency")
-
-		# Coerce numeric types when provided
-		for key in ("float_precision", "currency_precision"):
-			val = locals()[key]
-			if val is not None:
+		defaults = SYSTEM_SETTINGS_DEFAULTS
+		# Update singles via db.set_single_value for reliability
+		for field in ("number_format", "float_precision", "currency_precision"):
+			value = defaults.get(field)
+			if value is not None:
 				try:
-					locals()[key] = int(val)
+					frappe.db.set_single_value("System Settings", field, value)
 				except Exception:
 					pass
-
-		applied = {}
-		# System Settings
-		if number_format is not None:
-			current = frappe.db.get_single_value("System Settings", "number_format")
-			if override or _is_empty(current):
-				frappe.db.set_single_value("System Settings", "number_format", number_format)
-				applied["number_format"] = number_format
-		if float_precision is not None:
-			current = frappe.db.get_single_value("System Settings", "float_precision")
-			if override or _is_empty(current):
-				frappe.db.set_single_value("System Settings", "float_precision", float_precision)
-				applied["float_precision"] = float_precision
-		if currency_precision is not None:
-			current = frappe.db.get_single_value("System Settings", "currency_precision")
-			if override or _is_empty(current):
-				frappe.db.set_single_value("System Settings", "currency_precision", currency_precision)
-				applied["currency_precision"] = currency_precision
-		# Global Defaults
-		if default_currency is not None:
-			current = frappe.db.get_single_value("Global Defaults", "default_currency")
-			if override or _is_empty(current):
-				frappe.db.set_single_value("Global Defaults", "default_currency", default_currency)
-				applied["default_currency"] = default_currency
-
+		# Global Defaults: default currency
+		if defaults.get("default_currency"):
+			try:
+				frappe.db.set_single_value("Global Defaults", "default_currency", defaults["default_currency"])
+			except Exception:
+				pass
 		frappe.db.commit()
-		return {"applied": True, "applied_fields": applied}
+		return {
+			"applied": True,
+			"settings": defaults,
+		}
 	except Exception as e:
 		frappe.log_error(f"apply_site_system_settings failed: {str(e)}")
 		return {"applied": False, "error": str(e)}
