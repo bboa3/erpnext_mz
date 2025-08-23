@@ -1,0 +1,9 @@
+/* Navbar */
+:root {
+  --brand-color: #02664D;
+}
+
+.btn-primary {
+  background: var(--brand-color);
+  border-color: var(--brand-color);
+}

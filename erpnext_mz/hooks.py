@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Hooks for ERPNext Mozambique Custom App
-
-This file defines all the integration points between the custom app
-and ERPNext core functionality.
-"""
-
 # App configuration
 app_name = "erpnext_mz"
 app_title = "ERPNext Moçambique"
@@ -22,100 +14,266 @@ Esta aplicação fornece funcionalidades específicas para Moçambique em confor
 - Validações de conformidade e relatórios
 """
 app_email = "contacto@mozeconomia.co.mz"
-app_license = "MIT"
+app_license = "mit"
 app_version = "1.0.0"
-# DocType Registrations
-doctype_js = {
-    "Customer": "public/js/nuit_validation.js",
-    "Supplier": "public/js/nuit_validation.js",
-    "Company": "public/js/nuit_validation.js",
-}
+app_icon = "octicon octicon-globe"
+app_color = "#02664D"
 
+# Apps
+# ------------------
 
-# Install/Migrate hooks
-after_install = "erpnext_mz.setup.after_install"
-after_migrate = "erpnext_mz.setup.after_migrate"
+# required_apps = []
 
-# No fixtures are required; setup.py creates custom fields and print formats idempotently.
-
-# DocType events
-doc_events = {
-    "Sales Invoice": {
-        "on_submit": "erpnext_mz.modules.tax_compliance.at_integration.transmit_to_at",
-        "on_cancel": "erpnext_mz.modules.tax_compliance.at_integration.handle_cancellation",
-    },
-    "Customer": {
-        "validate": "erpnext_mz.modules.tax_compliance.fiscal.validate_nuit",
-    },
-    "Supplier": {
-        "validate": "erpnext_mz.modules.tax_compliance.fiscal.validate_nuit",
-    },
-    "Company": {
-        "validate": "erpnext_mz.modules.tax_compliance.fiscal.validate_nuit",
-    },
-}
-
-# Ensure the HR module group exists on the Desk. Some stacks show a modal error if missing.
-desk_sidebar = [
-    {
-        "module": "HR",
-        "hidden": 0,
-    }
+# Each item in the list will be shown as an app in the apps page
+add_to_apps_screen = [
+	{
+		"name": "erpnext_mz",
+		"logo": "/assets/erpnext_mz/images/logo180.png",
+		"title": "ERPNext MZ",
+		"route": "/app/home"
+#		"has_permission": "erpnext_mz.api.permission.has_app_permission"
+	}
 ]
 
-# Custom fields will be created via setup.py
-# This is the correct way to handle custom fields in Frappe
+fixtures = [
+  {"dt": "Custom Field", "filters": [
+    ["name", "in", ["customer_nuit", "supplier_nuit","company_nuit","employee_nuit", "lead_nuit", "sales_invoice_mz_invoice_note", "purchase_invoice_mz_invoice_note"]]
+  ]},
+  {"dt": "Property Setter", "filters": [
+    ["doc_type", "in", ["Sales Invoice", "Purchase Invoice", "Customer", "Supplier", "Company", "Employee", "Lead", "Sales Order", "Purchase Order", "Delivery Note", "Quotation", "Sales Invoice", "Purchase Invoice", "Customer", "Supplier", "Company", "Employee", "Lead", "Sales Order", "Purchase Order", "Delivery Note", "Quotation"]]
+  ]},
+  {"dt": "Print Format", "filters": [["module", "=", "ERPNext MZ"]]},
+  {"dt": "Workspace", "filters": [["module", "=", "ERPNext MZ"]]},
+  {"dt": "Client Script", "filters": [["module", "=", "ERPNext MZ"]]},
+  {"dt": "Tax Category", "filters": [["title", "in", ["IVA 16%", "IVA 5%", "Isento/0%"]]]},
+  {"dt": "Tax Template", "filters": [["title", "in", ["IVA 16%", "IVA 5%", "Isento/0%"]]]},
+  {"dt": "Module Def", "filters": [["module", "=", "ERPNext MZ"]]},
+]
 
-# Sem formatos de impressão personalizados; usar definições padrão via UI
+website_context = {
+    "favicon": "/assets/erpnext_mz/images/favicon.ico",
+    "brand_html": "ERPNext MZ",
+}
 
-# Server scripts will be created via setup.py
-# This is the correct way to handle server scripts in Frappe
+# Includes in <head>
+# ------------------
+
+# include js, css files in header of desk.html
+app_include_css = "/assets/erpnext_mz/css/erpnext_mz.css"
+# app_include_js = "/assets/erpnext_mz/js/erpnext_mz.js"
+
+# include js, css files in header of web template
+web_include_css = "/assets/erpnext_mz/css/erpnext_mz.css"
+# web_include_js = "/assets/erpnext_mz/js/erpnext_mz.js"
+
+# include custom scss in every website theme (without file extension ".scss")
+# website_theme_scss = "erpnext_mz/public/scss/website"
+
+# include js, css files in header of web form
+# webform_include_js = {"doctype": "public/js/doctype.js"}
+# webform_include_css = {"doctype": "public/css/doctype.css"}
+
+# include js in page
+# page_js = {"page" : "public/js/file.js"}
+
+# include js in doctype views
+# doctype_js = {"doctype" : "public/js/doctype.js"}
+# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+# doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
+# doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
+
+# Svg Icons
+# ------------------
+# include app icons in desk
+# app_include_icons = "erpnext_mz/public/icons.svg"
+
+# Home Pages
+# ----------
+
+# application home page (will override Website Settings)
+# home_page = "login"
+
+# website user home page (by Role)
+# role_home_page = {
+# 	"Role": "home_page"
+# }
+
+# Generators
+# ----------
+
+# automatically create page for each record of this doctype
+# website_generators = ["Web Page"]
+
+# Jinja
+# ----------
+
+# add methods and filters to jinja environment
+# jinja = {
+# 	"methods": "erpnext_mz.utils.jinja_methods",
+# 	"filters": "erpnext_mz.utils.jinja_filters"
+# }
+
+# Installation
+# ------------
+
+# before_install = "erpnext_mz.install.before_install"
+after_install = "erpnext_mz.install.after_install"
+after_migrate = "erpnext_mz.install.after_migrate"
+
+# Uninstallation
+# ------------
+
+# before_uninstall = "erpnext_mz.uninstall.before_uninstall"
+# after_uninstall = "erpnext_mz.uninstall.after_uninstall"
+
+# Integration Setup
+# ------------------
+# To set up dependencies/integrations with other apps
+# Name of the app being installed is passed as an argument
+
+# before_app_install = "erpnext_mz.utils.before_app_install"
+# after_app_install = "erpnext_mz.utils.after_app_install"
+
+# Integration Cleanup
+# -------------------
+# To clean up dependencies/integrations with other apps
+# Name of the app being uninstalled is passed as an argument
+
+# before_app_uninstall = "erpnext_mz.utils.before_app_uninstall"
+# after_app_uninstall = "erpnext_mz.utils.after_app_uninstall"
+
+# Desk Notifications
+# ------------------
+# See frappe.core.notifications.get_notification_config
+
+# notification_config = "erpnext_mz.notifications.get_notification_config"
 
 # Permissions
-has_permission = {
-    "Sales Invoice": "erpnext_mz.permissions.has_sales_invoice_permission",
-    "Payroll Entry": "erpnext_mz.permissions.has_payroll_permission"
-}
+# -----------
+# Permissions evaluated in scripted ways
 
-# Avoid overriding global whitelisted methods like frappe.client.get_list to prevent
-# unintended recursion and side-effects across the UI.
+# permission_query_conditions = {
+# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
+# }
+#
+# has_permission = {
+# 	"Event": "frappe.desk.doctype.event.event.has_permission",
+# }
 
-# Scheduled tasks
-scheduler_events = {
-    "cron": {
-        # Daily compliance at 01:15
-        "15 1 * * *": [
-            "erpnext_mz.tasks.daily_compliance_check"
-        ],
-        # SAF-T generation at 02:15 on day 1 of month
-        "15 2 1 * *": [
-            "erpnext_mz.tasks.monthly_saf_t_generation"
-        ],
-    }
-}
+# DocType Class
+# ---------------
+# Override standard doctype classes
 
-# API modules expose their own whitelisted methods; no hook registration required.
+# override_doctype_class = {
+# 	"ToDo": "custom_app.overrides.CustomToDo"
+# }
 
-# Show on the app selection screen
-add_to_apps_screen = [
-    {
-        "name": "erpnext_mz",
-        "logo": "/assets/erpnext/images/erpnext-logo.svg",
-        "title": "ERPNext Mozambique",
-        "route": "/app/erpnext-mozambique",
-    }
-]
+# Document Events
+# ---------------
+# Hook on document methods and events
 
-# Provide minimal Desk module map to avoid missing module popups
-modules = {
-    "HR": {
-        "color": "blue",
-        "icon": "octicon octicon-organization",
-        "label": "HR",
-    },
-    "HR and Payroll": {
-        "color": "blue",
-        "icon": "octicon octicon-organization",
-        "label": "HR and Payroll",
-    },
-}
+# doc_events = {
+# 	"*": {
+# 		"on_update": "method",
+# 		"on_cancel": "method",
+# 		"on_trash": "method"
+# 	}
+# }
+
+# Scheduled Tasks
+# ---------------
+
+# scheduler_events = {
+# 	"all": [
+# 		"erpnext_mz.tasks.all"
+# 	],
+# 	"daily": [
+# 		"erpnext_mz.tasks.daily"
+# 	],
+# 	"hourly": [
+# 		"erpnext_mz.tasks.hourly"
+# 	],
+# 	"weekly": [
+# 		"erpnext_mz.tasks.weekly"
+# 	],
+# 	"monthly": [
+# 		"erpnext_mz.tasks.monthly"
+# 	],
+# }
+
+# Testing
+# -------
+
+# before_tests = "erpnext_mz.install.before_tests"
+
+# Overriding Methods
+# ------------------------------
+#
+# override_whitelisted_methods = {
+# 	"frappe.desk.doctype.event.event.get_events": "erpnext_mz.event.get_events"
+# }
+#
+# each overriding function accepts a `data` argument;
+# generated from the base implementation of the doctype dashboard,
+# along with any modifications made in other Frappe apps
+# override_doctype_dashboards = {
+# 	"Task": "erpnext_mz.task.get_dashboard_data"
+# }
+
+# exempt linked doctypes from being automatically cancelled
+#
+# auto_cancel_exempted_doctypes = ["Auto Repeat"]
+
+# Ignore links to specified DocTypes when deleting documents
+# -----------------------------------------------------------
+
+# ignore_links_on_delete = ["Communication", "ToDo"]
+
+# Request Events
+# ----------------
+# before_request = ["erpnext_mz.utils.before_request"]
+# after_request = ["erpnext_mz.utils.after_request"]
+
+# Job Events
+# ----------
+# before_job = ["erpnext_mz.utils.before_job"]
+# after_job = ["erpnext_mz.utils.after_job"]
+
+# User Data Protection
+# --------------------
+
+# user_data_fields = [
+# 	{
+# 		"doctype": "{doctype_1}",
+# 		"filter_by": "{filter_by}",
+# 		"redact_fields": ["{field_1}", "{field_2}"],
+# 		"partial": 1,
+# 	},
+# 	{
+# 		"doctype": "{doctype_2}",
+# 		"filter_by": "{filter_by}",
+# 		"partial": 1,
+# 	},
+# 	{
+# 		"doctype": "{doctype_3}",
+# 		"strict": False,
+# 	},
+# 	{
+# 		"doctype": "{doctype_4}"
+# 	}
+# ]
+
+# Authentication and authorization
+# --------------------------------
+
+# auth_hooks = [
+# 	"erpnext_mz.auth.validate"
+# ]
+
+# Automatically update python controller files with type annotations for this app.
+# export_python_type_annotations = True
+
+# default_log_clearing_doctypes = {
+# 	"Logging DocType Name": 30  # days to retain logs
+# }
+
