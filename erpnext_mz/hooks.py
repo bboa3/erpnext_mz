@@ -16,7 +16,8 @@ Esta aplicação fornece funcionalidades específicas para Moçambique em confor
 app_email = "contacto@mozeconomia.co.mz"
 app_license = "mit"
 app_version = "1.0.0"
-app_icon = "octicon octicon-globe"
+app_logo_url = "/assets/erpnext_mz/images/logo180.png"
+app_icon = "/assets/erpnext_mz/images/icon.svg"
 app_color = "#02664D"
 
 # Apps
@@ -36,23 +37,22 @@ add_to_apps_screen = [
 ]
 
 fixtures = [
-  {"dt": "Custom Field", "filters": [
-    ["name", "in", ["customer_nuit", "supplier_nuit","company_nuit","employee_nuit", "lead_nuit", "sales_invoice_mz_invoice_note", "purchase_invoice_mz_invoice_note"]]
-  ]},
-  {"dt": "Property Setter", "filters": [
-    ["doc_type", "in", ["Sales Invoice", "Purchase Invoice", "Customer", "Supplier", "Company", "Employee", "Lead", "Sales Order", "Purchase Order", "Delivery Note", "Quotation", "Sales Invoice", "Purchase Invoice", "Customer", "Supplier", "Company", "Employee", "Lead", "Sales Order", "Purchase Order", "Delivery Note", "Quotation"]]
-  ]},
-  {"dt": "Print Format", "filters": [["module", "=", "ERPNext MZ"]]},
-  {"dt": "Workspace", "filters": [["module", "=", "ERPNext MZ"]]},
-  {"dt": "Client Script", "filters": [["module", "=", "ERPNext MZ"]]},
-  {"dt": "Tax Category", "filters": [["title", "in", ["IVA 16%", "IVA 5%", "Isento/0%"]]]},
-  {"dt": "Tax Template", "filters": [["title", "in", ["IVA 16%", "IVA 5%", "Isento/0%"]]]},
-  {"dt": "Module Def", "filters": [["module", "=", "ERPNext MZ"]]},
+  "Custom Field",
+  "Property Setter",
+  "Print Format",
+  "Document Naming Settings",
+  "Workspace",
+  "Client Script",
+  "Tax Category",
+  "Tax Template",
+  "Module Def",
 ]
 
 website_context = {
     "favicon": "/assets/erpnext_mz/images/favicon.ico",
-    "brand_html": "ERPNext MZ",
+    "brand_image": "/assets/erpnext_mz/images/logo180.png",
+    "brand_image_alt": "ERPNext Moçambique",
+    "splash_image": "/assets/erpnext_mz/images/icon.svg",
 }
 
 # Includes in <head>
@@ -91,7 +91,7 @@ web_include_css = "/assets/erpnext_mz/css/erpnext_mz.css"
 # ----------
 
 # application home page (will override Website Settings)
-# home_page = "login"
+home_page = "login"
 
 # website user home page (by Role)
 # role_home_page = {
@@ -277,3 +277,20 @@ after_migrate = "erpnext_mz.install.after_migrate"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+default_mail_footer = """
+  <div>
+  Enviado via <a href="https://mozeconomia.co.mz" target="_blank">ERPNext Moçambique</a>
+  </div>
+"""
+
+portal_menu_items = [
+    {"title": "Painel", "route": "/dashboard", "role": "Customer"},
+    {"title": "Pedidos", "route": "/orders", "role": "Customer"},
+    {"title": "Sobre Nós", "route": "/about", "role": "Customer"},
+    {"title": "Contacto", "route": "/contact", "role": "Customer"},
+]
+
+translated_languages_for_website = [
+    {"language": "pt", "name": "Português"},
+    {"language": "en", "name": "English"},
+]
