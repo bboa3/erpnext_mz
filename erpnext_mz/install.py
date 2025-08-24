@@ -2,11 +2,13 @@ import frappe
 
 def after_install():
     apply_system_settings(override=True)
+    apply_website_branding(override=True)
 
 
 def after_migrate():
     # Re-apply defaults where fields are empty, without overriding admin choices
     apply_system_settings(override=False)
+    apply_website_branding(override=False)
 
 
 def apply_system_settings(override: bool = True):
@@ -54,4 +56,41 @@ def apply_system_settings(override: bool = True):
 
     except Exception:
         frappe.log_error(title="apply_system_settings failed", message=frappe.get_traceback())
+        return {"applied": False, "error": frappe.get_traceback()}
+
+
+
+def apply_website_branding(override: bool = False):
+    """
+    Set website logo / brand text.
+    Idempotent: by default only fills blanks. Pass override=True to force.
+    """
+    try:
+        ws = frappe.get_single("Website Settings")
+
+        logo = "/assets/erpnext_mz/images/logo180.png"
+        brand = "ERPNext Moçambique"
+
+        changed = False
+
+        def set_if_needed(field: str, value: str) -> None:
+            nonlocal changed
+            current = getattr(ws, field, None)
+            if override or not current:
+                setattr(ws, field, value)
+                changed = True
+
+        # Correct fields on Website Settings
+        set_if_needed("app_logo", logo)
+        set_if_needed("app_name", brand)
+
+        if changed:
+            ws.save(ignore_permissions=True)
+            from frappe.website.utils import clear_website_cache
+            clear_website_cache()
+
+        return {"applied": True, "changed": changed}
+
+    except Exception:
+        frappe.log_error(title="apply_website_branding failed", message=frappe.get_traceback())
         return {"applied": False, "error": frappe.get_traceback()}
