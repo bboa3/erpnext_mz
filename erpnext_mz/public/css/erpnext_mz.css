@@ -1,9 +1,514 @@
-/* Navbar */
-:root {
-  --brand-color: #02664D;
+/* =========================================================
+   MozEconomia – ERPNext Theme
+   - Modern, high-contrast, accessible
+   - Desk + Website (light/dark)
+   - Uses CSS variables so tenants can override easily
+   ======================================================= */
+
+/* ---------- Brand font (optional) ---------- */
+/* Serve from /public/fonts/... => /assets/erpnext_mz/fonts/... */
+@font-face {
+  font-family: "Gotham";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/erpnext_mz/fonts/Gotham/GOTHAM-BOLD.woff2") format("woff2");
 }
 
-.btn-primary {
-  background: var(--brand-color);
-  border-color: var(--brand-color);
+@font-face {
+  font-family: "Gotham";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/erpnext_mz/fonts/Gotham/GOTHAM-BOOK.woff2") format("woff2");
+}
+
+/* ---------- Design tokens ---------- */
+:root {
+  /* Brand palette */
+  --mz-primary-25: #F3FBFA;
+  --mz-primary-50: #E9F7F6;
+  --mz-primary-100: #CFF0EC;
+  --mz-primary-200: #9DE1D9;
+  --mz-primary-300: #56C4B3;
+  --mz-primary-400: #2BA891;
+  --mz-primary-500: #02664D;
+  /* brand */
+  --mz-primary-600: #025A43;
+  --mz-primary-700: #014A36;
+  --mz-primary-800: #01362A;
+  --mz-primary-900: #011F1A;
+
+  /* Neutral scale */
+  --mz-gray-25: #FDFDFD;
+  --mz-gray-50: #FAFAFA;
+  --mz-gray-100: #F5F6F7;
+  --mz-gray-200: #EBEEF0;
+  --mz-gray-300: #E0E3E6;
+  --mz-gray-400: #C3C7CE;
+  --mz-gray-500: #A9ABB1;
+  --mz-gray-600: #8C9099;
+  --mz-gray-700: #5F636F;
+  --mz-gray-800: #3B414D;
+  --mz-gray-900: #1E2A38;
+
+  /* Semantics */
+  --mz-success: #28A745;
+  --mz-warning: #FFC107;
+  --mz-danger: #DC3545;
+  --mz-info: #17A2B8;
+
+  /* Base */
+  --mz-bg: #FFFFFF;
+  --mz-surface: #FFFFFF;
+  --mz-surface-2: #F7FAF9;
+  --mz-text: var(--mz-gray-900);
+  --mz-text-muted: var(--mz-gray-600);
+  --mz-border: var(--mz-gray-200);
+
+  /* Layout tokens */
+  --mz-radius-sm: 8px;
+  --mz-radius-md: 12px;
+  --mz-radius-lg: 16px;
+  --mz-shadow-sm: 0 1px 2px rgba(0, 0, 0, .06);
+  --mz-shadow-md: 0 6px 18px rgba(2, 102, 77, .12);
+  --mz-shadow-lg: 0 16px 32px rgba(0, 0, 0, .18);
+  --mz-focus: 0 0 0 3px rgba(2, 102, 77, .24);
+
+  --mz-navbar-h: 56px;
+  --mz-pagehead-h: 56px;
+
+  --mz-font: "Gotham", "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", sans-serif;
+
+  /* Scrollbars */
+  --mz-scroll-track: #EEF1F5;
+  --mz-scroll-thumb: #D9DFE6;
+}
+
+/* Dark mode overrides (ERPNext toggles [data-theme="dark"]) */
+[data-theme="dark"] {
+  --mz-bg: #0F1417;
+  --mz-surface: #13191D;
+  --mz-surface-2: #0F1417;
+  --mz-text: #F2F5F7;
+  --mz-text-muted: #B6BEC8;
+  --mz-border: #2A333B;
+  --mz-shadow-sm: 0 1px 2px rgba(0, 0, 0, .45);
+  --mz-shadow-md: 0 6px 18px rgba(0, 0, 0, .55);
+  --mz-shadow-lg: 0 16px 32px rgba(0, 0, 0, .65);
+  --mz-scroll-track: #1A2127;
+  --mz-scroll-thumb: #2A333B;
+}
+
+/* ---------- Base ---------- */
+html,
+body {
+  background: var(--mz-bg);
+  color: var(--mz-text);
+  font-family: var(--mz-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--mz-primary-500);
+}
+
+a:hover {
+  color: var(--mz-primary-600);
+}
+
+/* Subtle global transitions */
+* {
+  transition: background-color .2s ease, border-color .2s ease, color .15s ease, box-shadow .2s ease;
+}
+
+/* Scrollbar */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--mz-scroll-track);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--mz-scroll-thumb);
+  border-radius: 999px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--mz-scroll-thumb) var(--mz-scroll-track);
+}
+
+/* ---------- Top bar & page head ---------- */
+.navbar {
+  height: var(--mz-navbar-h) !important;
+  background: var(--mz-primary-800) !important;
+  color: #fff !important;
+  box-shadow: var(--mz-shadow-sm);
+}
+
+.navbar .navbar-brand,
+#navbar-breadcrumbs a,
+.navbar .btn {
+  color: #fff !important;
+}
+
+.navbar-nav>li>a {
+  position: relative;
+  color: #fff;
+  /* base white text */
+  font-weight: 500;
+  padding: 0 12px;
+  transition: color .2s ease;
+}
+
+.navbar-nav>li>a::before {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  /* sits just below text baseline */
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--mz-primary-400, #2BA891);
+  border-radius: 2px;
+  transition: width .25s ease-in-out;
+}
+
+.navbar-nav>li>a:hover {
+  text-decoration: none;
+  color: var(--mz-primary-100, #CFF0EC);
+}
+
+.navbar-nav>li>a:hover::before {
+  width: 100%;
+}
+
+.navbar-nav>li.active>a,
+.navbar-nav>li>a.active {
+  color: var(--mz-primary-200, #9DE1D9) !important;
+}
+
+.navbar-nav>li.active>a::before,
+.navbar-nav>li>a.active::before {
+  width: 100%;
+  background: var(--mz-primary-500, #02664D);
+}
+
+.page-head,
+.page-head .page-head-content {
+  min-height: var(--mz-pagehead-h);
+  background: var(--mz-surface);
+  border-bottom: 1px solid var(--mz-border);
+}
+
+.page-title .title-text,
+.head-title {
+  color: var(--mz-primary-700);
+  font-weight: 700;
+}
+
+/* ---------- Sidebar ---------- */
+.layout-side-section {
+  background: var(--mz-surface);
+  border-right: 1px solid var(--mz-border);
+}
+
+.layout-side-section .sidebar-label {
+  color: var(--mz-primary-600);
+  letter-spacing: .3px;
+  font-weight: 600;
+}
+
+.list-sidebar-button {
+  background: var(--mz-surface-2) !important;
+  border: 1px solid var(--mz-border) !important;
+  box-shadow: none !important;
+  border-radius: var(--mz-radius-sm);
+}
+
+/* ---------- Cards / sections ---------- */
+.widget,
+.frappe-card,
+.dashboard-graph-section,
+.form-dashboard-section,
+.form-section {
+  background: var(--mz-surface);
+  border: 1px solid var(--mz-border);
+  border-radius: var(--mz-radius-md);
+  box-shadow: var(--mz-shadow-sm);
+}
+
+.form-section .section-head,
+.form-dashboard-section .section-head {
+  color: var(--mz-primary-600);
+  font-weight: 700;
+}
+
+/* ---------- Forms & inputs ---------- */
+.form-control,
+.input-with-feedback,
+.awesomplete>input {
+  background: var(--mz-surface);
+  border: 1px solid var(--mz-border);
+  border-radius: var(--mz-radius-sm);
+  color: var(--mz-text);
+}
+
+.form-control:focus,
+.input-with-feedback:focus,
+.awesomplete>input:focus {
+  border-color: var(--mz-primary-400);
+  box-shadow: var(--mz-focus);
+  outline: none;
+}
+
+.control-label,
+.grid-static-col .text-muted {
+  color: var(--mz-text-muted);
+  font-weight: 600;
+}
+
+.form-control[disabled],
+.control-input.disabled,
+.btn[disabled] {
+  background: var(--mz-gray-100);
+  color: var(--mz-gray-600);
+  opacity: .9;
+}
+
+/* Select/Autocomplete popovers */
+.awesomplete>ul,
+.select2-container .select2-dropdown {
+  border-radius: var(--mz-radius-sm);
+  box-shadow: var(--mz-shadow-lg);
+  border: 1px solid var(--mz-border);
+}
+
+/* ---------- Buttons ---------- */
+.btn,
+.primary-action,
+.btn-default,
+.btn-secondary {
+  border-radius: calc(var(--mz-radius-sm) - 2px);
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+.btn-primary,
+.primary-action {
+  background: var(--mz-primary-500) !important;
+  border-color: var(--mz-primary-500) !important;
+  color: #fff !important;
+}
+
+.btn-primary:hover,
+.primary-action:hover {
+  background: var(--mz-primary-600) !important;
+  border-color: var(--mz-primary-600) !important;
+}
+
+.btn-primary:active,
+.primary-action:active {
+  background: var(--mz-primary-700) !important;
+  border-color: var(--mz-primary-700) !important;
+}
+
+.btn-secondary,
+.btn-default {
+  background: var(--mz-surface-2);
+  border: 1px solid var(--mz-border);
+  color: var(--mz-text);
+}
+
+.btn-secondary:hover,
+.btn-default:hover {
+  background: var(--mz-gray-100);
+}
+
+.btn-danger {
+  background: var(--mz-danger) !important;
+  border-color: var(--mz-danger) !important;
+}
+
+.btn-danger:hover {
+  filter: brightness(.9);
+}
+
+/* Icon-only buttons */
+.btn.btn-icon {
+  border-radius: 999px;
+}
+
+/* ---------- Tables & grids ---------- */
+.form-grid {
+  border: 1px solid var(--mz-border);
+  border-radius: var(--mz-radius-md);
+  overflow: hidden;
+  background: var(--mz-surface);
+}
+
+.grid-heading-row {
+  background: var(--mz-gray-100);
+  border-bottom: 1px solid var(--mz-border);
+  font-weight: 700;
+  color: var(--mz-text);
+}
+
+.form-grid .grid-row:hover {
+  background: rgba(2, 102, 77, .06);
+}
+
+/* Datatable (list & reports) */
+.datatable .dt-header .dt-cell--header .dt-cell__content {
+  background: var(--mz-gray-100);
+  color: var(--mz-text);
+  border-bottom: 1px solid var(--mz-border);
+}
+
+.datatable .dt-row:hover .dt-cell {
+  background: rgba(2, 102, 77, .05);
+}
+
+/* ---------- Tabs ---------- */
+.nav-tabs {
+  border-bottom: 1px solid var(--mz-border);
+}
+
+.nav-tabs>li>a {
+  border: none !important;
+  color: var(--mz-text-muted);
+  font-weight: 600;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li>a:hover {
+  color: var(--mz-primary-600);
+  background: transparent;
+  border-bottom: 2px solid var(--mz-primary-500) !important;
+}
+
+/* ---------- Modals ---------- */
+.modal-content {
+  border-radius: var(--mz-radius-md);
+  border: 1px solid var(--mz-border);
+  background: var(--mz-surface);
+  box-shadow: var(--mz-shadow-md);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--mz-border);
+  background: var(--mz-surface-2);
+}
+
+/* ---------- Alerts & badges ---------- */
+.alert {
+  border-radius: var(--mz-radius-sm);
+  border: 1px solid var(--mz-border);
+}
+
+.alert-info {
+  background: rgba(23, 162, 184, .08);
+  color: var(--mz-info);
+}
+
+.alert-warning {
+  background: rgba(255, 193, 7, .12);
+  color: var(--mz-warning);
+}
+
+.alert-danger {
+  background: rgba(220, 53, 69, .12);
+  color: var(--mz-danger);
+}
+
+.alert-success {
+  background: rgba(40, 167, 69, .12);
+  color: var(--mz-success);
+}
+
+.indicator {
+  border-radius: 999px;
+  padding: .125rem .5rem;
+  font-weight: 600;
+}
+
+.indicator.green {
+  background: rgba(40, 167, 69, .12);
+  color: var(--mz-success);
+}
+
+.indicator.red {
+  background: rgba(220, 53, 69, .12);
+  color: var(--mz-danger);
+}
+
+.indicator.orange {
+  background: rgba(255, 193, 7, .12);
+  color: var(--mz-warning);
+}
+
+/* ---------- Workspace tiles ---------- */
+.workspace .widget,
+.quick-list .widget {
+  border-radius: var(--mz-radius-md);
+  box-shadow: var(--mz-shadow-sm);
+}
+
+.shortcut-widget .shortcut-title {
+  font-weight: 700;
+}
+
+/* ---------- Page footer / small text ---------- */
+.text-muted,
+.muted-text {
+  color: var(--mz-text-muted) !important;
+}
+
+/* ---------- Focus states (a11y) ---------- */
+a:focus,
+button:focus,
+.btn:focus,
+.form-control:focus,
+.input-with-feedback:focus {
+  box-shadow: var(--mz-focus) !important;
+  outline: none !important;
+}
+
+/* ---------- Website specific tweaks ---------- */
+:root .web-page .navbar,
+.web-sidebar {
+  backdrop-filter: saturate(120%) blur(6px);
+}
+
+.web-footer {
+  border-top: 1px solid var(--mz-border);
+  background: var(--mz-surface);
+}
+
+/* ---------- Micro interactions ---------- */
+.btn,
+.form-control,
+.frappe-card,
+.links-widget-box {
+  transition: transform .06s ease, box-shadow .2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.frappe-card:hover,
+.links-widget-box:hover {
+  box-shadow: var(--mz-shadow-md);
+}
+
+/* ---------- High density lists (keeps things airy but compact) ---------- */
+.list-row-container .level-left,
+.list-row-container .level-item {
+  gap: .35rem;
 }
