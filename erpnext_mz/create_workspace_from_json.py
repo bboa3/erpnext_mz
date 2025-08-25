@@ -102,8 +102,13 @@ def _append_shortcuts(workspace, shortcuts: List[Dict[str, Any]]) -> None:
 			try:
 				frappe.get_meta(lto, cached=True)
 			except Exception:
-				frappe.logger().info(f"Skipping missing DocType shortcut: {lto}")
-				continue
+				# try alias resolution
+				alias = _resolve_doctype_alias(lto)
+				if alias:
+					sc["link_to"] = alias
+				else:
+					frappe.logger().info(f"Skipping missing DocType shortcut: {lto}")
+					continue
 		elif ltype == "Report":
 			resolved = _resolve_report_name(lto)
 			if not resolved:
@@ -174,7 +179,11 @@ def _validate_links_exist(links: List[Dict[str, Any]]) -> List[str]:
 			try:
 				frappe.get_meta(lto, cached=True)
 			except Exception:
-				missing.append(f"DocType: {lto}")
+				alias = _resolve_doctype_alias(lto)
+				if alias:
+					lk["link_to"] = alias
+				else:
+					missing.append(f"DocType: {lto}")
 		elif ltype == "Report":
 			resolved = _resolve_report_name(lto)
 			if not resolved:
@@ -187,6 +196,25 @@ def _validate_links_exist(links: List[Dict[str, Any]]) -> List[str]:
 			# Not critical; dashboards are optional
 			pass
 	return missing
+
+
+# Aliases/fallbacks for DocType names which vary across versions/modules
+_DOCTYPE_ALIAS_CANDIDATES: Dict[str, List[str]] = {
+	"Job Position": ["Designation", "Job Opening"],
+	"Time Tracking": ["Timesheet"],
+	"Work Schedule": ["Shift Type", "Shift Assignment"],
+}
+
+
+def _resolve_doctype_alias(name: str) -> str | None:
+	"""Try to resolve a DocType name to an existing alternative using aliases."""
+	for candidate in _DOCTYPE_ALIAS_CANDIDATES.get(name, []):
+		try:
+			frappe.get_meta(candidate, cached=True)
+			return candidate
+		except Exception:
+			continue
+	return None
 
 
 def create_workspace_by_title(title: str):
@@ -299,3 +327,118 @@ def recreate_all():
 	for t in titles:
 		create_workspace_by_title(t)
 	print("✅ Recreated all Mozambique workspaces")
+
+
+def sync_workspace_by_title(title: str):
+	"""Update an existing workspace to match mozambique_workspaces.json; create if missing."""
+	config = _load_config()
+	ws_conf = _find_workspace_config(config, title)
+	if not ws_conf:
+		print(f"❌ Workspace '{title}' not found in mozambique_workspaces.json")
+		return None
+
+	if not frappe.db.exists("Workspace", title):
+		print(f"➕ Workspace '{title}' not found. Creating new...")
+		return create_workspace_by_title(title)
+
+	workspace = frappe.get_doc("Workspace", title)
+	print(f"🔄 Syncing workspace: {title}")
+
+	# Preserve ordering/visibility but update metadata
+	workspace.label = ws_conf.get("label") or ws_conf.get("title") or workspace.label
+	workspace.icon = ws_conf.get("icon") or workspace.icon
+	workspace.indicator_color = ws_conf.get("indicator_color") or workspace.indicator_color
+	workspace.public = 1
+	workspace.hide_custom = 0
+	workspace.is_hidden = 0
+
+	# Replace child tables with config-driven content
+	workspace.set("shortcuts", [])
+	workspace.set("links", [])
+	workspace.set("charts", [])
+	workspace.set("number_cards", [])
+
+	_append_shortcuts(workspace, ws_conf.get("shortcuts", []))
+	missing_links = _validate_links_exist(ws_conf.get("links", []))
+	if missing_links:
+		print(f"⚠️  Skipping {len(missing_links)} missing links: {missing_links}")
+		filtered_links = [lk for lk in ws_conf.get("links", []) if not (
+			(lk.get("link_type") == "DocType" and f"DocType: {lk.get('link_to')}" in missing_links) or
+			(lk.get("link_type") == "Report" and f"Report: {lk.get('link_to')}" in missing_links) or
+			(lk.get("link_type") == "Page" and f"Page: {lk.get('link_to')}" in missing_links)
+		)]
+		_append_links(workspace, filtered_links)
+	else:
+		_append_links(workspace, ws_conf.get("links", []))
+
+	_append_charts(workspace, ws_conf.get("charts", []))
+	_append_number_cards(workspace, ws_conf.get("number_cards", []))
+
+	# Regenerate content json
+	workspace.content = json.dumps(generate_workspace_content(workspace))
+	workspace.save(ignore_permissions=True)
+	frappe.clear_cache()
+	print(f"✅ Synced workspace: {title}")
+	return workspace
+
+
+def dump_workspace(title: str):
+	"""Dump a workspace's structure as JSON (shortcuts, links, charts, number cards)."""
+	if not frappe.db.exists("Workspace", title):
+		print(f"❌ Workspace '{title}' not found")
+		return None
+	ws = frappe.get_doc("Workspace", title)
+	data: Dict[str, Any] = {
+		"title": ws.title,
+		"icon": getattr(ws, "icon", None),
+		"indicator_color": getattr(ws, "indicator_color", None),
+		"shortcuts": [],
+		"links": [],
+		"charts": [],
+		"number_cards": [],
+	}
+	for s in (ws.shortcuts or []):
+		data["shortcuts"].append({
+			"label": getattr(s, "label", None),
+			"type": getattr(s, "type", None),
+			"link_to": getattr(s, "link_to", None),
+			"doc_view": getattr(s, "doc_view", None),
+			"report_ref_doctype": getattr(s, "report_ref_doctype", None),
+			"url": getattr(s, "url", None),
+			"color": getattr(s, "color", None),
+			"stats_filter": getattr(s, "stats_filter", None),
+			"format": getattr(s, "format", None),
+		})
+	for l in (ws.links or []):
+		data["links"].append({
+			"type": getattr(l, "type", None),
+			"label": getattr(l, "label", None),
+			"link_type": getattr(l, "link_type", None),
+			"link_to": getattr(l, "link_to", None),
+			"is_query_report": getattr(l, "is_query_report", None),
+			"report_ref_doctype": getattr(l, "report_ref_doctype", None),
+			"icon": getattr(l, "icon", None),
+			"dependencies": getattr(l, "dependencies", None),
+			"hidden": getattr(l, "hidden", None),
+		})
+	for c in (ws.charts or []):
+		data["charts"].append({
+			"chart_name": getattr(c, "chart_name", None),
+			"width": getattr(c, "width", None),
+		})
+	for n in (ws.number_cards or []):
+		data["number_cards"].append({
+			"number_card_name": getattr(n, "number_card_name", None),
+			"col": getattr(n, "col", None),
+		})
+	print(json.dumps(data, indent=2, ensure_ascii=False))
+	return data
+
+
+def dump_accounting():
+	"""Dump the default Accounting workspace (tries 'Accounting' then 'Accounts')."""
+	for t in ("Accounting", "Accounts"):
+		if frappe.db.exists("Workspace", t):
+			return dump_workspace(t)
+	print("❌ Could not find a workspace titled 'Accounting' or 'Accounts'")
+	return None

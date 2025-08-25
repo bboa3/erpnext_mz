@@ -400,9 +400,6 @@ Three core dashboards provide comprehensive business insights:
 *System configuration and administration*
 
 #### Shortcuts (Quick Access)
-- **📊 Dashboard Financeiro** - Accounting & Taxes Dashboard
-- **🎯 Dashboard de Vendas** - CRM & Sales Dashboard
-- **👥 Dashboard de RH** - HR & Payroll Dashboard
 - **Configurações do Sistema** - System settings
 - **Gestão de Utilizadores** - User management
 - **Permissões** - Permissions

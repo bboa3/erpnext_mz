@@ -42,6 +42,21 @@
           "link_to": "Sales Invoice"
         },
         {
+          "label": "Payment Entry",
+          "type": "DocType",
+          "link_to": "Payment Entry"
+        },
+        {
+          "label": "ToDo",
+          "type": "DocType",
+          "link_to": "ToDo"
+        },
+        {
+          "label": "Event",
+          "type": "DocType",
+          "link_to": "Event"
+        },
+        {
           "label": "Leaderboard",
           "type": "Page",
           "link_to": "leaderboard"
@@ -88,6 +103,40 @@
           "link_type": "DocType",
           "link_to": "Email Account",
           "onboard": 1
+        },
+        {
+          "type": "Card Break",
+          "label": "Actividade Recente",
+          "icon": "activity",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Sales Order",
+          "link_type": "DocType",
+          "link_to": "Sales Order",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Purchase Order",
+          "link_type": "DocType",
+          "link_to": "Purchase Order",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Delivery Note",
+          "link_type": "DocType",
+          "link_to": "Delivery Note",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Purchase Receipt",
+          "link_type": "DocType",
+          "link_to": "Purchase Receipt",
+          "onboard": 0
         }
       ],
       "charts": [
@@ -103,6 +152,14 @@
         },
         {
           "number_card_name": "Total Outgoing Bills",
+          "col": 3
+        },
+        {
+          "number_card_name": "Total Incoming Payment",
+          "col": 3
+        },
+        {
+          "number_card_name": "Total Outgoing Payment",
           "col": 3
         }
       ]
@@ -122,6 +179,36 @@
           "label": "Dashboard Financeiro",
           "type": "Dashboard",
           "link_to": "Accounting & Taxes Dashboard"
+        },
+        {
+          "label": "Customer",
+          "type": "DocType",
+          "link_to": "Customer"
+        },
+        {
+          "label": "Lead",
+          "type": "DocType",
+          "link_to": "Lead"
+        },
+        {
+          "label": "Opportunity",
+          "type": "DocType",
+          "link_to": "Opportunity"
+        },
+        {
+          "label": "Quotation",
+          "type": "DocType",
+          "link_to": "Quotation"
+        },
+        {
+          "label": "Sales Order",
+          "type": "DocType",
+          "link_to": "Sales Order"
+        },
+        {
+          "label": "Sales Invoice",
+          "type": "DocType",
+          "link_to": "Sales Invoice"
         },
         {
           "label": "Lead",
@@ -157,6 +244,20 @@
           "link_type": "DocType",
           "link_to": "Lead",
           "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Contact",
+          "link_type": "DocType",
+          "link_to": "Contact",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Address",
+          "link_type": "DocType",
+          "link_to": "Address",
+          "onboard": 0
         },
         {
           "type": "Link",
@@ -984,21 +1085,6 @@
       "indicator_color": "blue",
       "shortcuts": [
         {
-          "label": "Dashboard Financeiro",
-          "type": "Dashboard",
-          "link_to": "Accounting & Taxes Dashboard"
-        },
-        {
-          "label": "Dashboard de Vendas",
-          "type": "Dashboard",
-          "link_to": "CRM & Sales Dashboard"
-        },
-        {
-          "label": "Dashboard de RH",
-          "type": "Dashboard",
-          "link_to": "HR & Payroll Dashboard"
-        },
-        {
           "label": "System Settings",
           "type": "DocType",
           "link_to": "System Settings"
@@ -1040,12 +1126,7 @@
           "link_to": "Email Account"
         }
       ],
-      "charts": [
-        {
-          "chart_name": "Bank Balance",
-          "width": "Full"
-        }
-      ],
+      "charts": [],
       "number_cards": []
     }
   ]
