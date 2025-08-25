@@ -37,20 +37,17 @@ add_to_apps_screen = [
 ]
 
 fixtures = [
-    {"dt": "Custom Field", "filters": [["name", "in", [
-    "customer_nuit", "supplier_nuit", "company_nuit", "employee_nuit",
-    "lead_nuit", "sales_invoice_mz_invoice_note", "purchase_invoice_mz_invoice_note"
-  ]]]},
-  {"dt": "Property Setter", "filters": [["module", "=", "ERPNext MZ"]]},
+  "Workspace",
+  "Custom Field",
+  "Property Setter",
   "Document Naming Settings",
-  {"dt": "Print Format", "filters": [["module", "=", "ERPNext MZ"]]},
-  {"dt": "Workspace", "filters": [["module", "=", "ERPNext MZ"]]},
-  {"dt": "Client Script", "filters": [["module", "=", "ERPNext MZ"]]},
-  {"dt": "Tax Category", "filters": [["title", "in", ["IVA 16%", "IVA 5%", "Isento/0%"]]]},
-  {"dt": "Sales Taxes and Charges Template", "filters": [["title", "like", "IVA %"]]},
-  {"dt": "Purchase Taxes and Charges Template", "filters": [["title", "like", "IVA %"]]},
-  {"dt": "Item Tax Template", "filters": [["title", "like", "IVA %"]]},
-  {"dt": "Module Def", "filters": [["module_name", "=", "ERPNext MZ"]]},
+  "Print Format",
+  "Client Script",
+  "Tax Category",
+  "Sales Taxes and Charges Template",
+  "Purchase Taxes and Charges Template",
+  "Item Tax Template",
+  "Module Def",
 ]
 
 website_context = {

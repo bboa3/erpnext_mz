@@ -1,0 +1,101 @@
+{
+  "dashboards": [
+    {
+      "dashboard_name": "Accounting & Taxes Dashboard",
+      "module": "Accounts",
+      "cards": [
+        {
+          "card": "Total Outgoing Bills"
+        },
+        {
+          "card": "Total Incoming Bills"
+        },
+        {
+          "card": "Total Incoming Payment"
+        },
+        {
+          "card": "Total Outgoing Payment"
+        }
+      ],
+      "charts": [
+        {
+          "chart": "Profit and Loss",
+          "width": "Full"
+        },
+        {
+          "chart": "Accounts Receivable Ageing",
+          "width": "Half"
+        },
+        {
+          "chart": "Accounts Payable Ageing",
+          "width": "Half"
+        },
+        {
+          "chart": "Bank Balance",
+          "width": "Full"
+        }
+      ]
+    },
+    {
+      "dashboard_name": "CRM & Sales Dashboard",
+      "module": "Selling",
+      "cards": [
+        {
+          "card": "Annual Sales"
+        },
+        {
+          "card": "Sales Orders to Deliver"
+        },
+        {
+          "card": "Sales Orders to Bill"
+        },
+        {
+          "card": "Active Customers"
+        }
+      ],
+      "charts": [
+        {
+          "chart": "Sales Order Trends",
+          "width": "Full"
+        },
+        {
+          "chart": "Top Customers",
+          "width": "Half"
+        },
+        {
+          "chart": "Sales Order Analysis",
+          "width": "Half"
+        },
+        {
+          "chart": "Item-wise Annual Sales",
+          "width": "Full"
+        }
+      ]
+    },
+    {
+      "dashboard_name": "HR & Payroll Dashboard",
+      "module": "HR",
+      "cards": [
+        {
+          "card": "Total Employees"
+        },
+        {
+          "card": "New Hires (This Year)"
+        },
+        {
+          "card": "Employee Exits (This Year)"
+        }
+      ],
+      "charts": [
+        {
+          "chart": "Hiring vs Attrition Count",
+          "width": "Full"
+        },
+        {
+          "chart": "Employees by Age",
+          "width": "Full"
+        }
+      ]
+    }
+  ]
+}

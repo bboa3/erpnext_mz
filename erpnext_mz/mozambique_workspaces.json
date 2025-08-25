@@ -1,0 +1,1052 @@
+{
+  "workspaces": [
+    {
+      "title": "Início",
+      "label": "Início",
+      "icon": "getting-started",
+      "indicator_color": "blue",
+      "shortcuts": [
+        {
+          "label": "Dashboard Financeiro",
+          "type": "Dashboard",
+          "link_to": "Accounting & Taxes Dashboard"
+        },
+        {
+          "label": "Dashboard de Vendas",
+          "type": "Dashboard",
+          "link_to": "CRM & Sales Dashboard"
+        },
+        {
+          "label": "Dashboard de RH",
+          "type": "Dashboard",
+          "link_to": "HR & Payroll Dashboard"
+        },
+        {
+          "label": "Item",
+          "type": "DocType",
+          "link_to": "Item"
+        },
+        {
+          "label": "Customer",
+          "type": "DocType",
+          "link_to": "Customer"
+        },
+        {
+          "label": "Supplier",
+          "type": "DocType",
+          "link_to": "Supplier"
+        },
+        {
+          "label": "Sales Invoice",
+          "type": "DocType",
+          "link_to": "Sales Invoice"
+        },
+        {
+          "label": "Leaderboard",
+          "type": "Page",
+          "link_to": "leaderboard"
+        }
+      ],
+      "links": [
+        {
+          "type": "Card Break",
+          "label": "Configuração & Importação",
+          "icon": "settings",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Company",
+          "link_type": "DocType",
+          "link_to": "Company",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Chart of Accounts",
+          "link_type": "DocType",
+          "link_to": "Account",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Data Import",
+          "link_type": "DocType",
+          "link_to": "Data Import",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Letter Head",
+          "link_type": "DocType",
+          "link_to": "Letter Head",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Email Account",
+          "link_type": "DocType",
+          "link_to": "Email Account",
+          "onboard": 1
+        }
+      ],
+      "charts": [
+        {
+          "chart_name": "Profit and Loss",
+          "width": "Full"
+        }
+      ],
+      "number_cards": [
+        {
+          "number_card_name": "Total Incoming Bills",
+          "col": 3
+        },
+        {
+          "number_card_name": "Total Outgoing Bills",
+          "col": 3
+        }
+      ]
+    },
+    {
+      "title": "Clientes & CRM",
+      "label": "Clientes & CRM",
+      "icon": "crm",
+      "indicator_color": "blue",
+      "shortcuts": [
+        {
+          "label": "Dashboard de Vendas",
+          "type": "Dashboard",
+          "link_to": "CRM & Sales Dashboard"
+        },
+        {
+          "label": "Dashboard Financeiro",
+          "type": "Dashboard",
+          "link_to": "Accounting & Taxes Dashboard"
+        },
+        {
+          "label": "Lead",
+          "type": "DocType",
+          "link_to": "Lead"
+        },
+        {
+          "label": "Opportunity",
+          "type": "DocType",
+          "link_to": "Opportunity"
+        },
+        {
+          "label": "Customer",
+          "type": "DocType",
+          "link_to": "Customer"
+        },
+        {
+          "label": "Sales Analytics",
+          "type": "Report",
+          "link_to": "Sales Analytics"
+        }
+      ],
+      "links": [
+        {
+          "type": "Card Break",
+          "label": "Gestão de Clientes",
+          "icon": "users",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Lead",
+          "link_type": "DocType",
+          "link_to": "Lead",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Customer",
+          "link_type": "DocType",
+          "link_to": "Customer",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Customer Group",
+          "link_type": "DocType",
+          "link_to": "Customer Group",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Territory",
+          "link_type": "DocType",
+          "link_to": "Territory",
+          "onboard": 0
+        },
+        {
+          "type": "Card Break",
+          "label": "Relatórios de Vendas",
+          "icon": "report",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Sales Analytics",
+          "link_type": "Report",
+          "link_to": "Sales Analytics"
+        },
+        {
+          "type": "Link",
+          "label": "Sales Order Analysis",
+          "link_type": "Report",
+          "link_to": "Sales Order Analysis"
+        }
+      ],
+      "charts": [
+        {
+          "chart_name": "Territory Wise Sales",
+          "width": "Full"
+        }
+      ],
+      "number_cards": []
+    },
+    {
+      "title": "Stock",
+      "label": "Stock",
+      "icon": "stock",
+      "indicator_color": "blue",
+      "shortcuts": [
+        {
+          "label": "Dashboard Financeiro",
+          "type": "Dashboard",
+          "link_to": "Accounting & Taxes Dashboard"
+        },
+        {
+          "label": "Dashboard de Vendas",
+          "type": "Dashboard",
+          "link_to": "CRM & Sales Dashboard"
+        },
+        {
+          "label": "Item",
+          "type": "DocType",
+          "link_to": "Item"
+        },
+        {
+          "label": "Material Request",
+          "type": "DocType",
+          "link_to": "Material Request"
+        },
+        {
+          "label": "Stock Entry",
+          "type": "DocType",
+          "link_to": "Stock Entry"
+        },
+        {
+          "label": "Purchase Receipt",
+          "type": "DocType",
+          "link_to": "Purchase Receipt"
+        },
+        {
+          "label": "Delivery Note",
+          "type": "DocType",
+          "link_to": "Delivery Note"
+        },
+        {
+          "label": "Stock Ledger",
+          "type": "Report",
+          "link_to": "Stock Ledger",
+          "report_ref_doctype": "Stock Ledger Entry"
+        },
+        {
+          "label": "Stock Balance",
+          "type": "Report",
+          "link_to": "Stock Balance",
+          "report_ref_doctype": "Stock Ledger Entry"
+        }
+      ],
+      "links": [
+        {
+          "type": "Card Break",
+          "label": "Catálogo de Itens",
+          "icon": "stock",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Item",
+          "link_type": "DocType",
+          "link_to": "Item",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Item Group",
+          "link_type": "DocType",
+          "link_to": "Item Group",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Product Bundle",
+          "link_type": "DocType",
+          "link_to": "Product Bundle",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Price List",
+          "link_type": "DocType",
+          "link_to": "Price List",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Item Price",
+          "link_type": "DocType",
+          "link_to": "Item Price",
+          "onboard": 0
+        },
+        {
+          "type": "Card Break",
+          "label": "Relatórios de Stock",
+          "icon": "report",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Stock Ledger",
+          "link_type": "Report",
+          "link_to": "Stock Ledger",
+          "report_ref_doctype": "Stock Ledger Entry"
+        },
+        {
+          "type": "Link",
+          "label": "Stock Balance",
+          "link_type": "Report",
+          "link_to": "Stock Balance",
+          "report_ref_doctype": "Stock Ledger Entry"
+        },
+        {
+          "type": "Link",
+          "label": "Stock Ageing",
+          "link_type": "Report",
+          "link_to": "Stock Ageing",
+          "report_ref_doctype": "Stock Ledger Entry"
+        }
+      ],
+      "charts": [
+        {
+          "chart_name": "Warehouse wise Stock Value",
+          "width": "Full"
+        }
+      ],
+      "number_cards": [
+        {
+          "number_card_name": "Total Stock Value",
+          "col": 4
+        },
+        {
+          "number_card_name": "Total Warehouses",
+          "col": 4
+        },
+        {
+          "number_card_name": "Total Active Items",
+          "col": 4
+        }
+      ]
+    },
+    {
+      "title": "Vendas & Faturação",
+      "label": "Vendas & Faturação",
+      "icon": "sell",
+      "indicator_color": "orange",
+      "shortcuts": [
+        {
+          "label": "Dashboard de Vendas",
+          "type": "Dashboard",
+          "link_to": "CRM & Sales Dashboard"
+        },
+        {
+          "label": "Dashboard Financeiro",
+          "type": "Dashboard",
+          "link_to": "Accounting & Taxes Dashboard"
+        },
+        {
+          "label": "Customer",
+          "type": "DocType",
+          "link_to": "Customer"
+        },
+        {
+          "label": "Quotation",
+          "type": "DocType",
+          "link_to": "Quotation"
+        },
+        {
+          "label": "Sales Order",
+          "type": "DocType",
+          "link_to": "Sales Order"
+        },
+        {
+          "label": "Sales Invoice",
+          "type": "DocType",
+          "link_to": "Sales Invoice"
+        },
+        {
+          "label": "Sales Analytics",
+          "type": "Report",
+          "link_to": "Sales Analytics"
+        }
+      ],
+      "links": [
+        {
+          "type": "Card Break",
+          "label": "Processo de Vendas",
+          "icon": "file-text",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Quotation",
+          "link_type": "DocType",
+          "link_to": "Quotation",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Sales Order",
+          "link_type": "DocType",
+          "link_to": "Sales Order",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Delivery Note",
+          "link_type": "DocType",
+          "link_to": "Delivery Note",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Sales Invoice",
+          "link_type": "DocType",
+          "link_to": "Sales Invoice",
+          "onboard": 1
+        },
+        {
+          "type": "Card Break",
+          "label": "Relatórios de Vendas",
+          "icon": "report",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Sales Analytics",
+          "link_type": "Report",
+          "link_to": "Sales Analytics"
+        },
+        {
+          "type": "Link",
+          "label": "Sales Order Trends",
+          "link_type": "Report",
+          "link_to": "Sales Order Trends"
+        }
+      ],
+      "charts": [
+        {
+          "chart_name": "Sales Order Trends",
+          "width": "Full"
+        }
+      ],
+      "number_cards": []
+    },
+    {
+      "title": "Compras & Fornecedores",
+      "label": "Compras & Fornecedores",
+      "icon": "buying",
+      "indicator_color": "green",
+      "shortcuts": [
+        {
+          "label": "Dashboard Financeiro",
+          "type": "Dashboard",
+          "link_to": "Accounting & Taxes Dashboard"
+        },
+        {
+          "label": "Dashboard de Vendas",
+          "type": "Dashboard",
+          "link_to": "CRM & Sales Dashboard"
+        },
+        {
+          "label": "Item",
+          "type": "DocType",
+          "link_to": "Item"
+        },
+        {
+          "label": "Material Request",
+          "type": "DocType",
+          "link_to": "Material Request"
+        },
+        {
+          "label": "Purchase Order",
+          "type": "DocType",
+          "link_to": "Purchase Order"
+        },
+        {
+          "label": "Purchase Receipt",
+          "type": "DocType",
+          "link_to": "Purchase Receipt"
+        },
+        {
+          "label": "Purchase Invoice",
+          "type": "DocType",
+          "link_to": "Purchase Invoice"
+        },
+        {
+          "label": "Purchase Analytics",
+          "type": "Report",
+          "link_to": "Purchase Analytics"
+        }
+      ],
+      "links": [
+        {
+          "type": "Card Break",
+          "label": "Processo de Compras",
+          "icon": "file-text",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Request for Quotation",
+          "link_type": "DocType",
+          "link_to": "Request for Quotation",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Supplier Quotation",
+          "link_type": "DocType",
+          "link_to": "Supplier Quotation",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Purchase Order",
+          "link_type": "DocType",
+          "link_to": "Purchase Order",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Purchase Receipt",
+          "link_type": "DocType",
+          "link_to": "Purchase Receipt",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Purchase Invoice",
+          "link_type": "DocType",
+          "link_to": "Purchase Invoice",
+          "onboard": 1
+        },
+        {
+          "type": "Card Break",
+          "label": "Relatórios de Compras",
+          "icon": "report",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Purchase Analytics",
+          "link_type": "Report",
+          "link_to": "Purchase Analytics"
+        },
+        {
+          "type": "Link",
+          "label": "Purchase Order Analysis",
+          "link_type": "Report",
+          "link_to": "Purchase Order Analysis"
+        },
+        {
+          "type": "Link",
+          "label": "Purchase Order Trends",
+          "link_type": "Report",
+          "link_to": "Purchase Order Trends"
+        }
+      ],
+      "charts": [
+        {
+          "chart_name": "Purchase Order Trends",
+          "width": "Full"
+        }
+      ],
+      "number_cards": []
+    },
+    {
+      "title": "Tesouraria & Bancos",
+      "label": "Tesouraria & Bancos",
+      "icon": "wallet",
+      "indicator_color": "blue",
+      "shortcuts": [
+        {
+          "label": "Dashboard Financeiro",
+          "type": "Dashboard",
+          "link_to": "Accounting & Taxes Dashboard"
+        },
+        {
+          "label": "Dashboard de Vendas",
+          "type": "Dashboard",
+          "link_to": "CRM & Sales Dashboard"
+        },
+        {
+          "label": "Payment Entry",
+          "type": "DocType",
+          "link_to": "Payment Entry"
+        },
+        {
+          "label": "Bank Account",
+          "type": "DocType",
+          "link_to": "Bank Account"
+        },
+        {
+          "label": "General Ledger",
+          "type": "Report",
+          "link_to": "General Ledger"
+        },
+        {
+          "label": "Cash Flow",
+          "type": "Report",
+          "link_to": "Cash Flow"
+        }
+      ],
+      "links": [
+        {
+          "type": "Card Break",
+          "label": "Gestão de Caixa",
+          "icon": "money",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Payment Entry",
+          "link_type": "DocType",
+          "link_to": "Payment Entry",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Journal Entry",
+          "link_type": "DocType",
+          "link_to": "Journal Entry",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Mode of Payment",
+          "link_type": "DocType",
+          "link_to": "Mode of Payment",
+          "onboard": 0
+        },
+        {
+          "type": "Card Break",
+          "label": "Bancos",
+          "icon": "bank",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Bank",
+          "link_type": "DocType",
+          "link_to": "Bank",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Bank Account",
+          "link_type": "DocType",
+          "link_to": "Bank Account",
+          "onboard": 0
+        }
+      ],
+      "charts": [
+        {
+          "chart_name": "Bank Balance",
+          "width": "Full"
+        }
+      ],
+      "number_cards": [
+        {
+          "number_card_name": "Total Incoming Payment",
+          "col": 3
+        },
+        {
+          "number_card_name": "Total Outgoing Payment",
+          "col": 3
+        }
+      ]
+    },
+    {
+      "title": "Contabilidade & Impostos",
+      "label": "Contabilidade & Impostos",
+      "icon": "accounting",
+      "indicator_color": "blue",
+      "shortcuts": [
+        {
+          "label": "Dashboard Financeiro",
+          "type": "Dashboard",
+          "link_to": "Accounting & Taxes Dashboard"
+        },
+        {
+          "label": "Dashboard de Vendas",
+          "type": "Dashboard",
+          "link_to": "CRM & Sales Dashboard"
+        },
+        {
+          "label": "Chart of Accounts",
+          "type": "DocType",
+          "link_to": "Account"
+        },
+        {
+          "label": "Sales Invoice",
+          "type": "DocType",
+          "link_to": "Sales Invoice"
+        },
+        {
+          "label": "Purchase Invoice",
+          "type": "DocType",
+          "link_to": "Purchase Invoice"
+        },
+        {
+          "label": "Trial Balance",
+          "type": "Report",
+          "link_to": "Trial Balance"
+        },
+        {
+          "label": "General Ledger",
+          "type": "Report",
+          "link_to": "General Ledger"
+        }
+      ],
+      "links": [
+        {
+          "type": "Card Break",
+          "label": "Relatórios Contabilísticos",
+          "icon": "report",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Trial Balance",
+          "link_type": "Report",
+          "link_to": "Trial Balance"
+        },
+        {
+          "type": "Link",
+          "label": "Balance Sheet",
+          "link_type": "Report",
+          "link_to": "Balance Sheet"
+        },
+        {
+          "type": "Link",
+          "label": "Profit and Loss",
+          "link_type": "Report",
+          "link_to": "Profit and Loss"
+        },
+        {
+          "type": "Link",
+          "label": "Cash Flow",
+          "link_type": "Report",
+          "link_to": "Cash Flow"
+        }
+      ],
+      "charts": [
+        {
+          "chart_name": "Profit and Loss",
+          "width": "Full"
+        }
+      ],
+      "number_cards": [
+        {
+          "number_card_name": "Total Incoming Bills",
+          "col": 3
+        },
+        {
+          "number_card_name": "Total Outgoing Bills",
+          "col": 3
+        }
+      ]
+    },
+    {
+      "title": "RH & Folha",
+      "label": "RH & Folha",
+      "icon": "hr",
+      "indicator_color": "blue",
+      "shortcuts": [
+        {
+          "label": "Dashboard de RH",
+          "type": "Dashboard",
+          "link_to": "HR & Payroll Dashboard"
+        },
+        {
+          "label": "Dashboard Financeiro",
+          "type": "Dashboard",
+          "link_to": "Accounting & Taxes Dashboard"
+        },
+        {
+          "label": "Employee",
+          "type": "DocType",
+          "link_to": "Employee"
+        },
+        {
+          "label": "Department",
+          "type": "DocType",
+          "link_to": "Department"
+        },
+        {
+          "label": "Job Position",
+          "type": "DocType",
+          "link_to": "Job Position"
+        },
+        {
+          "label": "Time Tracking",
+          "type": "DocType",
+          "link_to": "Time Tracking"
+        }
+      ],
+      "links": [
+        {
+          "type": "Card Break",
+          "label": "Gestão de Funcionários",
+          "icon": "users",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Employee",
+          "link_type": "DocType",
+          "link_to": "Employee",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Department",
+          "link_type": "DocType",
+          "link_to": "Department",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Job Position",
+          "link_type": "DocType",
+          "link_to": "Job Position",
+          "onboard": 0
+        },
+        {
+          "type": "Card Break",
+          "label": "Gestão de Tempo",
+          "icon": "clock",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Time Tracking",
+          "link_type": "DocType",
+          "link_to": "Time Tracking",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Work Schedule",
+          "link_type": "DocType",
+          "link_to": "Work Schedule",
+          "onboard": 0
+        }
+      ],
+      "charts": [
+        {
+          "chart_name": "Hiring vs Attrition Count",
+          "width": "Full"
+        }
+      ],
+      "number_cards": [
+        {
+          "number_card_name": "Total Employees",
+          "col": 4
+        },
+        {
+          "number_card_name": "Active Employees",
+          "col": 4
+        },
+        {
+          "number_card_name": "Total Departments",
+          "col": 4
+        }
+      ]
+    },
+    {
+      "title": "Relatórios & Declarações",
+      "label": "Relatórios & Declarações",
+      "icon": "trend-up",
+      "indicator_color": "blue",
+      "shortcuts": [
+        {
+          "label": "Dashboard Financeiro",
+          "type": "Dashboard",
+          "link_to": "Accounting & Taxes Dashboard"
+        },
+        {
+          "label": "Dashboard de Vendas",
+          "type": "Dashboard",
+          "link_to": "CRM & Sales Dashboard"
+        },
+        {
+          "label": "Dashboard de RH",
+          "type": "Dashboard",
+          "link_to": "HR & Payroll Dashboard"
+        },
+        {
+          "label": "Trial Balance",
+          "type": "Report",
+          "link_to": "Trial Balance"
+        },
+        {
+          "label": "Balance Sheet",
+          "type": "Report",
+          "link_to": "Balance Sheet"
+        },
+        {
+          "label": "Profit and Loss",
+          "type": "Report",
+          "link_to": "Profit and Loss"
+        },
+        {
+          "label": "Cash Flow",
+          "type": "Report",
+          "link_to": "Cash Flow"
+        }
+      ],
+      "links": [
+        {
+          "type": "Card Break",
+          "label": "Relatórios Financeiros",
+          "icon": "report",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Trial Balance",
+          "link_type": "Report",
+          "link_to": "Trial Balance"
+        },
+        {
+          "type": "Link",
+          "label": "Balance Sheet",
+          "link_type": "Report",
+          "link_to": "Balance Sheet"
+        },
+        {
+          "type": "Link",
+          "label": "Profit and Loss",
+          "link_type": "Report",
+          "link_to": "Profit and Loss"
+        },
+        {
+          "type": "Link",
+          "label": "Cash Flow",
+          "link_type": "Report",
+          "link_to": "Cash Flow"
+        }
+      ],
+      "charts": [
+        {
+          "chart_name": "Profit and Loss",
+          "width": "Full"
+        }
+      ],
+      "number_cards": [
+        {
+          "number_card_name": "Total Incoming Bills",
+          "col": 3
+        },
+        {
+          "number_card_name": "Total Outgoing Bills",
+          "col": 3
+        },
+        {
+          "number_card_name": "Total Incoming Payment",
+          "col": 3
+        },
+        {
+          "number_card_name": "Total Outgoing Payment",
+          "col": 3
+        }
+      ]
+    },
+    {
+      "title": "Configurações",
+      "label": "Configurações",
+      "icon": "settings",
+      "indicator_color": "blue",
+      "shortcuts": [
+        {
+          "label": "Dashboard Financeiro",
+          "type": "Dashboard",
+          "link_to": "Accounting & Taxes Dashboard"
+        },
+        {
+          "label": "Dashboard de Vendas",
+          "type": "Dashboard",
+          "link_to": "CRM & Sales Dashboard"
+        },
+        {
+          "label": "Dashboard de RH",
+          "type": "Dashboard",
+          "link_to": "HR & Payroll Dashboard"
+        },
+        {
+          "label": "System Settings",
+          "type": "DocType",
+          "link_to": "System Settings"
+        },
+        {
+          "label": "User",
+          "type": "DocType",
+          "link_to": "User"
+        },
+        {
+          "label": "Role",
+          "type": "DocType",
+          "link_to": "Role"
+        }
+      ],
+      "links": [
+        {
+          "type": "Card Break",
+          "label": "Configurações do Sistema",
+          "icon": "settings",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "System Settings",
+          "link_type": "DocType",
+          "link_to": "System Settings"
+        },
+        {
+          "type": "Link",
+          "label": "Company",
+          "link_type": "DocType",
+          "link_to": "Company"
+        },
+        {
+          "type": "Link",
+          "label": "Email Account",
+          "link_type": "DocType",
+          "link_to": "Email Account"
+        }
+      ],
+      "charts": [
+        {
+          "chart_name": "Bank Balance",
+          "width": "Full"
+        }
+      ],
+      "number_cards": []
+    }
+  ]
+}
