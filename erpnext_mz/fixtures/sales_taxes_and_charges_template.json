@@ -1,1 +1,37 @@
-[]
+[
+ {
+  "company": "MozEconomia SA",
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Sales Taxes and Charges Template",
+  "is_default": 0,
+  "modified": "2025-08-23 15:19:40.468529",
+  "name": "Mozambique Tax - MS",
+  "tax_category": null,
+  "taxes": [
+   {
+    "account_currency": null,
+    "account_head": "VAT - MS",
+    "base_tax_amount": 0.0,
+    "base_tax_amount_after_discount_amount": 0.0,
+    "base_total": 0.0,
+    "charge_type": "On Net Total",
+    "cost_center": "Main - MS",
+    "description": "VAT @ 17.0",
+    "dont_recompute_tax": 0,
+    "included_in_paid_amount": 0,
+    "included_in_print_rate": 0,
+    "item_wise_tax_detail": null,
+    "parent": "Mozambique Tax - MS",
+    "parentfield": "taxes",
+    "parenttype": "Sales Taxes and Charges Template",
+    "rate": 17.0,
+    "row_id": null,
+    "tax_amount": 0.0,
+    "tax_amount_after_discount_amount": 0.0,
+    "total": 0.0
+   }
+  ],
+  "title": "Mozambique Tax"
+ }
+]

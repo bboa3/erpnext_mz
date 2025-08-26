@@ -38,6 +38,9 @@ add_to_apps_screen = [
 
 fixtures = [
   "Workspace",
+  "Dashboard",
+  "Dashboard Chart",
+  "Number Card",
   "Custom Field",
   "Property Setter",
   "Document Naming Settings",
@@ -47,7 +50,7 @@ fixtures = [
   "Sales Taxes and Charges Template",
   "Purchase Taxes and Charges Template",
   "Item Tax Template",
-  "Module Def",
+  "Income Tax Slab",
 ]
 
 website_context = {

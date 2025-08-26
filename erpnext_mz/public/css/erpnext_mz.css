@@ -241,6 +241,7 @@ a:hover {
   border: 1px solid var(--mz-border);
   border-radius: var(--mz-radius-md);
   box-shadow: var(--mz-shadow-sm);
+  min-height: 31px;
 }
 
 .form-section .section-head,

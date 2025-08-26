@@ -32,10 +32,12 @@ except Exception:
 		content: List[Dict[str, Any]] = []
 		# number cards
 		for i, card in enumerate(workspace.number_cards):
+			# default to 4 columns when not set
+			col_value = getattr(card, "col", None) or 4
 			content.append({
 				"id": f"number_card_{i}",
 				"type": "number_card",
-				"data": {"number_card_name": getattr(card, "number_card_name", getattr(card, "label", "")), "col": getattr(card, "col", 4)},
+				"data": {"number_card_name": getattr(card, "number_card_name", getattr(card, "label", "")), "col": col_value},
 			})
 		# charts
 		for i, chart in enumerate(workspace.charts):
@@ -442,3 +444,114 @@ def dump_accounting():
 			return dump_workspace(t)
 	print("❌ Could not find a workspace titled 'Accounting' or 'Accounts'")
 	return None
+
+
+def _copy_links(src_ws, dst_ws) -> None:
+	"""Replace dst_ws.links with a copy of src_ws.links (allowed fields only)."""
+	allowed = {
+		"type",
+		"label",
+		"link_type",
+		"link_to",
+		"onboard",
+		"is_query_report",
+		"report_ref_doctype",
+		"icon",
+		"dependencies",
+		"hidden",
+	}
+	dst_ws.set("links", [])
+	for lk in (src_ws.links or []):
+		row = dst_ws.append("links", {})
+		for key in allowed:
+			if hasattr(lk, key):
+				setattr(row, key, getattr(lk, key))
+
+
+def restore_stock_links_from_default():
+	"""
+	Restore the 'Stock' workspace link cards from a default-like source.
+	Prefers an existing workspace named 'Stockstock' (if present).
+	Regenerates content to show the link cards.
+	"""
+	source_candidates = ["Stockstock"]
+	source_title = None
+	for cand in source_candidates:
+		if frappe.db.exists("Workspace", cand):
+			source_title = cand
+			break
+
+	if not source_title:
+		print("❌ No default Stock source workspace found (expected 'Stockstock').")
+		return None
+
+	dest_title = "Stock"
+	if not frappe.db.exists("Workspace", dest_title):
+		print("➕ Destination 'Stock' not found. Creating from JSON definition...")
+		create_stock()
+
+	src = frappe.get_doc("Workspace", source_title)
+	dst = frappe.get_doc("Workspace", dest_title)
+
+	print(f"🔄 Restoring links on '{dest_title}' from '{source_title}' ...")
+	_copy_links(src, dst)
+
+	# Regenerate minimal content so link cards appear
+	dst.content = json.dumps(generate_workspace_content(dst))
+	dst.save(ignore_permissions=True)
+	frappe.clear_cache()
+	print(f"✅ Restored link cards on '{dest_title}' from '{source_title}'")
+	return dump_workspace(dest_title)
+
+
+def enrich_stockstock_links_from_json():
+	"""
+	Enrich the 'Stockstock' workspace with the Stock links defined in mozambique_workspaces.json.
+	- Reads the 'Stock' workspace links from JSON
+	- Applies them to 'Stockstock' (creating it if missing)
+	- Regenerates content so the link cards appear
+	"""
+	config = _load_config()
+	ws_conf = _find_workspace_config(config, "Stock")
+	if not ws_conf:
+		print("❌ Could not find 'Stock' config in mozambique_workspaces.json")
+		return None
+
+	links = ws_conf.get("links", [])
+	# Ensure destination exists
+	dest_title = "Stockstock"
+	if not frappe.db.exists("Workspace", dest_title):
+		ws = frappe.new_doc("Workspace")
+		ws.title = dest_title
+		ws.label = dest_title
+		ws.icon = ws_conf.get("icon") or "stock"
+		ws.indicator_color = ws_conf.get("indicator_color") or "blue"
+		ws.public = 1
+		ws.hide_custom = 0
+		ws.is_hidden = 0
+		ws.sequence_id = get_next_sequence_id()
+		ws.insert(ignore_permissions=True)
+
+	ws = frappe.get_doc("Workspace", dest_title)
+	print(f"🔧 Enriching links on '{dest_title}' from JSON definition of 'Stock' ...")
+
+	# Replace links with validated/filtered ones
+	ws.set("links", [])
+	missing_links = _validate_links_exist(links)
+	if missing_links:
+		print(f"⚠️  Skipping {len(missing_links)} missing links: {missing_links}")
+		filtered_links = [lk for lk in links if not (
+			(lk.get("link_type") == "DocType" and f"DocType: {lk.get('link_to')}" in missing_links) or
+			(lk.get("link_type") == "Report" and f"Report: {lk.get('link_to')}" in missing_links) or
+			(lk.get("link_type") == "Page" and f"Page: {lk.get('link_to')}" in missing_links)
+		)]
+		_append_links(ws, filtered_links)
+	else:
+		_append_links(ws, links)
+
+	# Regenerate minimal content to show link cards
+	ws.content = json.dumps(generate_workspace_content(ws))
+	ws.save(ignore_permissions=True)
+	frappe.clear_cache()
+	print(f"✅ Enriched link cards on '{dest_title}' from JSON")
+	return dump_workspace(dest_title)

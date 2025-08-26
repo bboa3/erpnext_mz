@@ -391,6 +391,27 @@
         },
         {
           "type": "Link",
+          "label": "Shipping Rule",
+          "link_type": "DocType",
+          "link_to": "Shipping Rule",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Item Alternative",
+          "link_type": "DocType",
+          "link_to": "Item Alternative",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Item Manufacturer",
+          "link_type": "DocType",
+          "link_to": "Item Manufacturer",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
           "label": "Price List",
           "link_type": "DocType",
           "link_to": "Price List",
@@ -405,7 +426,100 @@
         },
         {
           "type": "Card Break",
-          "label": "Relatórios de Stock",
+          "label": "Transações de Estoque",
+          "icon": "transfer",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Material Request",
+          "link_type": "DocType",
+          "link_to": "Material Request",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Stock Entry",
+          "link_type": "DocType",
+          "link_to": "Stock Entry",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Delivery Note",
+          "link_type": "DocType",
+          "link_to": "Delivery Note",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Purchase Receipt",
+          "link_type": "DocType",
+          "link_to": "Purchase Receipt",
+          "onboard": 1
+        },
+        {
+          "type": "Link",
+          "label": "Pick List",
+          "link_type": "DocType",
+          "link_to": "Pick List",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Delivery Trip",
+          "link_type": "DocType",
+          "link_to": "Delivery Trip",
+          "onboard": 0
+        },
+        {
+          "type": "Card Break",
+          "label": "Número de Série e Lote",
+          "icon": "hash",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Serial No",
+          "link_type": "DocType",
+          "link_to": "Serial No",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Batch",
+          "link_type": "DocType",
+          "link_to": "Batch",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Installation Note",
+          "link_type": "DocType",
+          "link_to": "Installation Note",
+          "onboard": 0
+        },
+        {
+          "type": "Link",
+          "label": "Serial No Service Contract Expiry",
+          "link_type": "Report",
+          "link_to": "Serial No Service Contract Expiry"
+        },
+        {
+          "type": "Link",
+          "label": "Serial No Status",
+          "link_type": "Report",
+          "link_to": "Serial No Status"
+        },
+        {
+          "type": "Link",
+          "label": "Serial No Warranty Expiry",
+          "link_type": "Report",
+          "link_to": "Serial No Warranty Expiry"
+        },
+        {
+          "type": "Card Break",
+          "label": "Relatórios de Estoque",
           "icon": "report",
           "hidden": 0
         },
@@ -425,10 +539,82 @@
         },
         {
           "type": "Link",
+          "label": "Stock Projected Qty",
+          "link_type": "Report",
+          "link_to": "Stock Projected Qty"
+        },
+        {
+          "type": "Link",
+          "label": "Stock Summary",
+          "link_type": "Report",
+          "link_to": "Stock Summary"
+        },
+        {
+          "type": "Link",
           "label": "Stock Ageing",
           "link_type": "Report",
           "link_to": "Stock Ageing",
           "report_ref_doctype": "Stock Ledger Entry"
+        },
+        {
+          "type": "Link",
+          "label": "Item Prices",
+          "link_type": "Report",
+          "link_to": "Item Prices"
+        },
+        {
+          "type": "Link",
+          "label": "Warehouse Wise Stock Balance",
+          "link_type": "Report",
+          "link_to": "Warehouse Wise Stock Balance"
+        },
+        {
+          "type": "Card Break",
+          "label": "Relatórios Principais",
+          "icon": "star",
+          "hidden": 0
+        },
+        {
+          "type": "Link",
+          "label": "Stock Analytics",
+          "link_type": "Report",
+          "link_to": "Stock Analytics"
+        },
+        {
+          "type": "Link",
+          "label": "Delivery Note Trends",
+          "link_type": "Report",
+          "link_to": "Delivery Note Trends"
+        },
+        {
+          "type": "Link",
+          "label": "Purchase Receipt Trends",
+          "link_type": "Report",
+          "link_to": "Purchase Receipt Trends"
+        },
+        {
+          "type": "Link",
+          "label": "Sales Order Analysis",
+          "link_type": "Report",
+          "link_to": "Sales Order Analysis"
+        },
+        {
+          "type": "Link",
+          "label": "Purchase Order Analysis",
+          "link_type": "Report",
+          "link_to": "Purchase Order Analysis"
+        },
+        {
+          "type": "Link",
+          "label": "Items To Be Reordered",
+          "link_type": "Report",
+          "link_to": "Items To Be Reordered"
+        },
+        {
+          "type": "Link",
+          "label": "Batch-Wise Balance History",
+          "link_type": "Report",
+          "link_to": "Batch-Wise Balance History"
         }
       ],
       "charts": [
