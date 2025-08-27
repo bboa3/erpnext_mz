@@ -1,1264 +1,1281 @@
-language,source_text,translated_text
-pt-MZ,A list of resources which the Client App will have access to after the user allows it.<br> e.g. project,"Uma lista de recursos que o aplicativo cliente terá acesso a depois que o usuário permita. <br> por exemplo, do projeto"
-pt-MZ,A symbol for this currency. For e.g. $,Um símbolo para esta moeda. Por exemplo: MT
-pt-MZ,ALL,Tudo
-pt-MZ,API Access,Acesso API
-pt-MZ,API Key,Chave da API
-pt-MZ,API Method,Método API
-pt-MZ,API Secret,Segredo da API
-pt-MZ,Accepted,Aceito
-pt-MZ,Account,Conta
-pt-MZ,Accounts Manager,Gerente de Contas
-pt-MZ,Accounts User,Usuário de Contas
-pt-MZ,Action,Ação
-pt-MZ,Action / Route,Ação / Rota
-pt-MZ,Action Timeout (Seconds),Tempo Limite de Ação (Segundos)
-pt-MZ,Actions,Ações
-pt-MZ,Active,Ativo
-pt-MZ,Active Domains,Domínios ativos
-pt-MZ,Activity,Atividade
-pt-MZ,Add,Adicionar
-pt-MZ,Add Child,Adicionar Sub-item
-pt-MZ,Add Container,Adicionar recipiente
-pt-MZ,Add Gray Background,Adicionar fundo cinza
-pt-MZ,Add Multiple,Adicionar Múltiplos
-pt-MZ,Add Participants,Adicione Participantes
-pt-MZ,Add Total Row,Adicionar Linha de Total
-pt-MZ,Add Translate Data,Adicionar Dados Traduzidos
-pt-MZ,Add Unsubscribe Link,Adicionar link para cancelar inscrição
-pt-MZ,Added {0} ({1}),Adicionado {0} ({1})
-pt-MZ,Additional Permissions,Permissões Adicionais
-pt-MZ,Address,Endereço
-pt-MZ,Address Title,Título do Endereço
-pt-MZ,Address and other legal information you may want to put in the footer.,Endereço e outras informações legais que você pode querer colocar no rodapé.
-pt-MZ,Administrator,Administrador
-pt-MZ,Advanced Settings,Configurações avançadas
-pt-MZ,After Cancel,Após Cancelar
-pt-MZ,After Delete,Após Excluir
-pt-MZ,After Save,Após salvar
-pt-MZ,After Save (Submitted Document),Após salvar (documento enviado)
-pt-MZ,After Submit,Após o envio
-pt-MZ,Aggregate Function Based On,Função agregada com base em
-pt-MZ,Alert,Alerta
-pt-MZ,Align Labels to the Right,Alinhar etiquetas à direita
-pt-MZ,Align Right,Alinhar à direita
-pt-MZ,All,Todos
-pt-MZ,All Day,Dia Inteiro
-pt-MZ,Allocated To,Atribuído a
-pt-MZ,Allow Auto Repeat,Permitir repetição automática
-pt-MZ,Allow Bulk Edit,Permitir edição em massa
-pt-MZ,Allow Guest,Permitir convidado
-pt-MZ,Allow Guest to View,Permitir visualização de convidado
-pt-MZ,Allow Login using User Name,Permitir Login usando o nome de usuário
-pt-MZ,Allow Modules,Permitir Módulos
-pt-MZ,Allow Print for Cancelled,Permitir impressão para cancelado
-pt-MZ,Allow Read On All Link Options,Permitir leitura em todas as opções de link
-pt-MZ,Allow Rename,Permitir Renomear
-pt-MZ,Allow Roles,Permitir Funções
-pt-MZ,Allow Self Approval,Permitir auto-aprovação
-pt-MZ,Allow approval for creator of the document,Permitir aprovação para o criador do documento
-pt-MZ,Allow events in timeline,Permitir eventos na linha do tempo
-pt-MZ,Allow in Quick Entry,Permitir na entrada rápida
-pt-MZ,Allow on Submit,Permitir ao Enviar
-pt-MZ,Allow only one session per user,Permitir apenas uma sessão por usuário
-pt-MZ,Allow saving if mandatory fields are not filled,Permitir salvar se os campos obrigatórios não são preenchidas
-pt-MZ,Allowed,Permitido
-pt-MZ,Allowed In Mentions,Permitido nas menções
-pt-MZ,"Always add ""Draft"" Heading for printing draft documents","Sempre adicionar ""Rascunho"" no cabeçalho para impressão de documentos não enviados"
-pt-MZ,Amend,Corrigir
-pt-MZ,Analytics,Análise
-pt-MZ,Annual,Anual
-pt-MZ,App,Aplicativo
-pt-MZ,Append To,Acrescente Para
-pt-MZ,Application Logo,Logo do aplicativo
-pt-MZ,Application Name,Nome da Aplicação
-pt-MZ,Application Version,Versão do aplicativo
-pt-MZ,Applied On,Aplicado em
-pt-MZ,Apply Strict User Permissions,Aplicar permissões de usuário estrito
-pt-MZ,Apply this rule if the User is the Owner,Aplicar esta regra se o usuário é o proprietário
-pt-MZ,Assign Condition,Atribuir condição
-pt-MZ,Assign To Users,Atribuir aos usuários
-pt-MZ,Assigned,Atribuído
-pt-MZ,Assigned By Full Name,Atribuído por Nome completo
-pt-MZ,Assigned To,Atribuído A
-pt-MZ,Assignment Completed,Atribuição Concluída
-pt-MZ,Assignment Days,Dias de atribuição
-pt-MZ,Assignment Rules,Regras de Atribuição
-pt-MZ,Attach Image,Anexar Imagem
-pt-MZ,Attach Print,Anexar cópia
-pt-MZ,Attached File,Arquivo anexo
-pt-MZ,Attached To Field,Relacionado ao campo
-pt-MZ,Attached To Name,Anexado Para Nome
-pt-MZ,Attachment,Anexo
-pt-MZ,Attachment Limit (MB),Limite de Anexo (MB)
-pt-MZ,Attachment Link,Link de Anexo
-pt-MZ,Attachment Removed,Anexo Removido
-pt-MZ,Attachments,Anexos
-pt-MZ,Auth URL Data,Dados de URL de autenticação
-pt-MZ,Author,Autor
-pt-MZ,Authorization Code,Código de autorização
-pt-MZ,Authorize API Indexing  Access,Autorizar acesso de indexação de API
-pt-MZ,Authorize Google Calendar Access,Autorizar acesso ao Google Agenda
-pt-MZ,Authorize Google Contacts Access,Autorizar o acesso dos Contatos do Google
-pt-MZ,Authorize URL,Autorizar URL
-pt-MZ,Authorized,Autorizado
-pt-MZ,Auto Name,Nome Automático
-pt-MZ,Auto Reply Message,Resposta Automática
-pt-MZ,Awaiting Password,Aguardando Senha
-pt-MZ,Awaiting password,Aguardando Senha
-pt-MZ,BCC,CCO
-pt-MZ,Background Color,Cor de Fundo
-pt-MZ,Background Workers,Trabalhadores em Segundo Plano
-pt-MZ,Banner,Faixa
-pt-MZ,Banner HTML,Faixa HTML
-pt-MZ,Barcode,Código de Barras
-pt-MZ,Base Distinguished Name (DN),Base de dados de nome distinto (DN)
-pt-MZ,Base URL,URL Base
-pt-MZ,Based On,Baseado Em
-pt-MZ,Based on Field,Com base no campo
-pt-MZ,Based on Permissions For User,Com base em permissões para o usuário
-pt-MZ,Basic,Básico
-pt-MZ,Before Cancel,Antes de Cancelar
-pt-MZ,Before Delete,Antes de excluir
-pt-MZ,Before Insert,Antes da inserção
-pt-MZ,Before Save,Antes de salvar
-pt-MZ,Before Save (Submitted Document),Antes de salvar (documento enviado)
-pt-MZ,Before Submit,Antes de enviar
-pt-MZ,Billing,Faturamento
-pt-MZ,Birth Date,Data de nascimento
-pt-MZ,Block Modules,Bloquear Módulos
-pt-MZ,Blocked,Bloqueado
-pt-MZ,Blue,Azul
-pt-MZ,Bold,Negrito
-pt-MZ,Bottom,Inferior
-pt-MZ,Brand,Marca
-pt-MZ,Brand HTML,Marca HTML
-pt-MZ,Brand Image,Imagem da Marca
-pt-MZ,Browser Version,Versão do navegador
-pt-MZ,Brute Force Security,Segurança da força bruta
-pt-MZ,Button,Botão
-pt-MZ,Button Gradients,Gradientes de botão
-pt-MZ,Button Rounded Corners,Botão Cantos Arredondados
-pt-MZ,Button Shadows,Sombras de botão
-pt-MZ,Bypass Restricted IP Address Check If Two Factor Auth Enabled,"Ignorar endereço IP restrito, verificar se a autenticação de dois fatores estiver habilitada"
-pt-MZ,Bypass restricted IP Address check If Two Factor Auth Enabled,Ignorar verificação de endereço IP restrito se dois fatores de autenticação habilitados
-pt-MZ,CC,Cc
-pt-MZ,CSS Class,Classe CSS
-pt-MZ,Calendar Name,Nome do calendário
-pt-MZ,Call To Action,Apelo à ação
-pt-MZ,Call To Action URL,URL de apelo à ação
-pt-MZ,Callback Message,Mensagem de retorno
-pt-MZ,Callback Title,Título de retorno
-pt-MZ,Campaign,Campanha
-pt-MZ,Cancelled,Cancelado
-pt-MZ,Card,Cartão
-pt-MZ,Cards,Postais
-pt-MZ,Category Description,Descrição da Categoria
-pt-MZ,Category Name,Nome da Categoria
-pt-MZ,Center,Centro
-pt-MZ,Change Label (via Custom Translation),Alterar etiqueta (via tradução personalizada)
-pt-MZ,Change Password,Alterar Senha
-pt-MZ,Channel,Canal
-pt-MZ,Chart,Gráfico
-pt-MZ,Chart Configuration,Configuração de Gráfico
-pt-MZ,Chart Name,Nome do gráfico
-pt-MZ,Chart Options,Opções de gráfico
-pt-MZ,Chart Source,Fonte do gráfico
-pt-MZ,Charts,Gráficos
-pt-MZ,Check,Verifica
-pt-MZ,Check this if you want to force the user to select a series before saving. There will be no default if you check this.,Marque esta opção se você deseja forçar o usuário a selecionar uma série antes de salvar. Não haverá nenhum padrão se você marcar isso.
-pt-MZ,Choose authentication method to be used by all users,Escolha o método de autenticação a ser usado por todos os usuários
-pt-MZ,City,Cidade
-pt-MZ,City/Town,Cidade/Município
-pt-MZ,Clicked,Clicado
-pt-MZ,Client,Cliente
-pt-MZ,Client Code,Código do cliente
-pt-MZ,Client Credentials,Credenciais no cliente
-pt-MZ,Client ID,ID do Cliente
-pt-MZ,Client Information,Informação ao cliente
-pt-MZ,Client Secret,Segredo do cliente
-pt-MZ,Close,Fechar
-pt-MZ,Close Condition,Fechar Condição
-pt-MZ,Closed,Fechado
-pt-MZ,Code,Código
-pt-MZ,Collapse All,Recolher Todos
-pt-MZ,Collapsible,Desmontável
-pt-MZ,Collapsible Depends On,Depende dobrável
-pt-MZ,Column Break,Quebra de coluna
-pt-MZ,Columns,Colunas
-pt-MZ,Columns / Fields,Colunas / Campos
-pt-MZ,Comment By,Comentário por
-pt-MZ,Comments,Comentários
-pt-MZ,Comments and Communications will be associated with this linked document,Comentários e comunicações serão associados com este documento relacionado
-pt-MZ,Commit,Comprometer
-pt-MZ,Communication,Comunicação
-pt-MZ,Company Introduction,Introdução da Empresa
-pt-MZ,Company Name,Nome da Empresa
-pt-MZ,Complete,Concluído
-pt-MZ,Completed,Concluído
-pt-MZ,Contact Details,Detalhes do Contato
-pt-MZ,Contact Numbers,Números de contato
-pt-MZ,Contacts,Contatos
-pt-MZ,Context,Contexto
-pt-MZ,Continue,Continuar
-pt-MZ,Contributed,Contribuído
-pt-MZ,Contribution Document Name,Nome do documento de contribuição
-pt-MZ,Copyright,Direitos autorais
-pt-MZ,Counter,Contador
-pt-MZ,Country,País
-pt-MZ,Country Name,Nome do País
-pt-MZ,County,Distrito
-pt-MZ,Create,Criar
-pt-MZ,Create Entry,Criar entrada
-pt-MZ,Cron Format,Formato Cron
-pt-MZ,Currency,Moeda
-pt-MZ,Currency Name,Nome da Moeda
-pt-MZ,Currency Precision,Precisão de moeda
-pt-MZ,Custom CSS,CSS Personalizado
-pt-MZ,Custom Configuration,Configuração Personalizada
-pt-MZ,Custom Format,Formato Personalizado
-pt-MZ,Custom HTML Help,Ajuda HTML Personalizado
-pt-MZ,Custom Options,Opções Personalizadas
-pt-MZ,Custom Overrides,Substituições personalizadas
-pt-MZ,Custom Report,Relatório Personalizado
-pt-MZ,Custom SCSS,SCSS personalizado
-pt-MZ,Daily,Diário
-pt-MZ,Daily Long,Diário Longo
-pt-MZ,Danger,Perigo
-pt-MZ,Dark Color,Cor Escura
-pt-MZ,Date,Data
-pt-MZ,Date Format,Formato de Data
-pt-MZ,Date and Number Format,Data e Formato de número
-pt-MZ,Datetime,Data e Hora
-pt-MZ,Day of Week,Dia da Semana
-pt-MZ,Days After,Dias Após
-pt-MZ,Days Before,Dias Antes
-pt-MZ,Days Before or After,Dias Antes ou Após
-pt-MZ,Dear,Caro
-pt-MZ,"Dear System Manager,","Caro Administrador de Sistema,"
-pt-MZ,Default,Padrão
-pt-MZ,Default Letter Head,Cabeçalho de Carta Padrão
-pt-MZ,Default Portal Home,Página inicial do portal padrão
-pt-MZ,Default Print Format,Formato de impressão padrão
-pt-MZ,Default Print Language,Idioma de impressão padrão
-pt-MZ,Default Redirect URI,Padrão de redirecionamento URI
-pt-MZ,Default Role at Time of Signup,Função padrão no momento da inscrição
-pt-MZ,Default Sort Field,Campo de classificação padrão
-pt-MZ,Default Sort Order,Ordem de classificação padrão
-pt-MZ,Default Value,Valor padrão
-pt-MZ,"Default: ""Contact Us""","Padrão: ""Fale Conosco"""
-pt-MZ,Defaults,Padrões
-pt-MZ,Delete,Excluir
-pt-MZ,Delete,Excluir
-pt-MZ,Deleted Name,Nome Excluído
-pt-MZ,Department,Departamento
-pt-MZ,Depends On,Depende de
-pt-MZ,Description,Descrição
-pt-MZ,Designation,Designação
-pt-MZ,Desk Access,Acesso ao Ambiente de Trabalho
-pt-MZ,Digits,Dígitos
-pt-MZ,Disable Auto Refresh,Desativar atualização automática
-pt-MZ,Disable Count,Desativar Contagem
-pt-MZ,Disable SMTP server authentication,Desativar autenticação do servidor SMTP
-pt-MZ,Disable Sidebar Stats,Desativar Estatísticas da Barra Lateral
-pt-MZ,Disabled,Desativado
-pt-MZ,Display Depends On,Visualização depende
-pt-MZ,Document,Documento
-pt-MZ,Document Actions,Ações do Documento
-pt-MZ,Document Link,Link do Documento
-pt-MZ,Document Links,Links de documentos
-pt-MZ,Document Name,Nome do Documento
-pt-MZ,Document Share,Partilha de Documentos
-pt-MZ,Document States,Documento Unidos
-pt-MZ,Document Tag,Etiqueta de Documento
-pt-MZ,Document Title,Título do documento
-pt-MZ,Documentation Link,Link da documentação
-pt-MZ,Documentation URL,URL de documentação
-pt-MZ,Domains HTML,Domínios HTML
-pt-MZ,Done,Feito
-pt-MZ,Donut,Rosquinha
-pt-MZ,Download,Baixar
-pt-MZ,Download,Baixar
-pt-MZ,Download Template,Baixar Modelo
-pt-MZ,Draft,Rascunho
-pt-MZ,Due Date,Data de Vencimento
-pt-MZ,Due Date Based On,Data de vencimento baseada em
-pt-MZ,Duplicate,Duplicar
-pt-MZ,Duration,Duração
-pt-MZ,Dynamic Filters,Filtros Dinâmicos
-pt-MZ,Dynamic Filters JSON,Filtros dinâmicos JSON
-pt-MZ,Dynamic Filters Section,Seção de Filtros Dinâmicos
-pt-MZ,Dynamic Report Filters,Filtros dinâmicos de relatórios
-pt-MZ,Dynamic Route,Rota Dinâmica
-pt-MZ,Dynamic Template,Modelo dinâmico
-pt-MZ,Edit,Editar
-pt-MZ,Edit,Editar
-pt-MZ,Edit,Editar
-pt-MZ,Edit,Editar
-pt-MZ,Email Inbox,Caixa de Entrada
-pt-MZ,Email Sent At,E-mail enviado em
-pt-MZ,Enable,Permitir
-pt-MZ,Enable Auto Reply,Ativar resposta automática
-pt-MZ,Enable Automatic Linking in Documents,Ativar Vinculação Automática em Documentos
-pt-MZ,Enable Comments,Ativação de comentários
-pt-MZ,Enable Password Policy,Ativar política de senha
-pt-MZ,Enable Print Server,Ativar servidor de impressão
-pt-MZ,Enable Raw Printing,Ativar impressão bruta
-pt-MZ,Enable Scheduled Jobs,Ativar Tarefas Agendadas
-pt-MZ,Enable Security,Ativar segurança
-pt-MZ,Enable Social Login,Ativar Login Social
-pt-MZ,End Date,Data Final
-pt-MZ,End Date Field,Campo de data final
-pt-MZ,Ends on,Termina em
-pt-MZ,Energy Point,Ponto de energia
-pt-MZ,Enter Value,Digite o Valor
-pt-MZ,Error,Erro
-pt-MZ,Error,Erro
-pt-MZ,Event Category,Categoria do Evento
-pt-MZ,Example,Exemplo
-pt-MZ,Example: #Tree/Account,Exemplo: # árvore / conta
-pt-MZ,Example: 00001,Exemplo: 00001
-pt-MZ,Exception,Exceção
-pt-MZ,Expand All,Expandir Todos
-pt-MZ,Expert,Especialista
-pt-MZ,Expiration time,Data de validade
-pt-MZ,Expired,Expirado
-pt-MZ,Expires In,Expira em
-pt-MZ,Expires On,Expira Em
-pt-MZ,Expiry time of QR Code Image Page,Tempo de expiração da página de imagem de código QR
-pt-MZ,Export From,Exportar de
-pt-MZ,Expose Recipients,Mostrar Destinatários
-pt-MZ,"Expression, Optional","Expressão, Opcional"
-pt-MZ,Failed,Falhou
-pt-MZ,Feedback,Comentários
-pt-MZ,Female,Feminino
-pt-MZ,Fetch From,Buscar de
-pt-MZ,Field Description,Descrição do Campo
-pt-MZ,Field to Track,Campo para rastrear
-pt-MZ,File Information,Informações do arquivo
-pt-MZ,File Name,Nome do arquivo
-pt-MZ,File Size,Tamanho do arquivo
-pt-MZ,File URL,URL do arquivo
-pt-MZ,Filter Data,Filtrar dados
-pt-MZ,Filter Meta,Filtrar Meta
-pt-MZ,Filter Values,Valores de filtro
-pt-MZ,Filters,Filtros
-pt-MZ,Filters Configuration,Configuração de Filtros
-pt-MZ,Filters Display,Exibição dos Filtros
-pt-MZ,Filters JSON,Filtros JSON
-pt-MZ,Filters Section,Seção de Filtros
-pt-MZ,Finished,Acabado
-pt-MZ,First Success Message,Primeira mensagem de sucesso
-pt-MZ,Flag,Bandeira
-pt-MZ,Float Precision,Precisão de Casas Decimais
-pt-MZ,Fold,Dobrar
-pt-MZ,Folder,Pasta
-pt-MZ,Font Properties,Propriedades da fonte
-pt-MZ,Font Size,Tamanho da Fonte
-pt-MZ,Fonts,Fontes
-pt-MZ,Footer,Rodapé
-pt-MZ,Footer HTML,HTML de rodapé
-pt-MZ,Footer Items,Itens do Rodapé
-pt-MZ,Footer Logo,Logotipo do rodapé
-pt-MZ,Footer Template,Modelo de rodapé
-pt-MZ,Footer Template Values,Valores de modelo de rodapé
-pt-MZ,Footer will display correctly only in PDF,Rodapé será exibido corretamente somente em PDF
-pt-MZ,For Value,Por valor
-pt-MZ,For example: {} Open,Por exemplo: {} Abra
-pt-MZ,"For more information, <a class=""text-muted"" href=""https://docs.frappe.io/erpnext/user/manual/en/linking-emails-to-document"">click here</a>.","Para mais informações, <a class=""text-muted"" href=""https://docs.frappe.io/erpnext/user/manual/en/linking-emails-to-document"">clique aqui</a>."
-pt-MZ,Force,Força
-pt-MZ,Force Show,Forçar Exibição
-pt-MZ,Force User to Reset Password,Forçar usuário a redefinir a senha
-pt-MZ,Form Settings,Configurações de formulário
-pt-MZ,Form URL-Encoded,Codificado em URL do formulário
-pt-MZ,Format Data,Formato de dados
-pt-MZ,Fraction,Fração
-pt-MZ,Fraction Units,Unidades Fracionadas
-pt-MZ,From,De
-pt-MZ,From,De
-pt-MZ,From Date,Data De
-pt-MZ,From Date Field,Do campo de data
-pt-MZ,From Full Name,De nome completo
-pt-MZ,Full,Cheio
-pt-MZ,Full Width,Largura completa
-pt-MZ,GMail,Gmail
-pt-MZ,Generate Keys,Gerar Chaves
-pt-MZ,Geolocation,Geolocalização
-pt-MZ,Get Contacts,Obter contatos
-pt-MZ,Get Items,Obter Itens
-pt-MZ,Get your globally recognized avatar from Gravatar.com,Obtenha seu avatar globalmente reconhecido de Gravatar.com
-pt-MZ,Global Unsubscribe,Cancelar Inscrição Global
-pt-MZ,Go to Page,Vá para página
-pt-MZ,Google Analytics ID,ID do Google Analytics
-pt-MZ,Google Calendar Event ID,ID do evento do Google Agenda
-pt-MZ,Google Calendar ID,ID da Agenda do Google
-pt-MZ,Green,Verde
-pt-MZ,Group,Grupo
-pt-MZ,Group By,Agrupar Por
-pt-MZ,Group By Based On,Agrupar por Com base em
-pt-MZ,Group By Type,Agrupar por tipo
-pt-MZ,Group Node,Grupo de Nós
-pt-MZ,HH:mm,HH: mm
-pt-MZ,HTML Editor,Editor de HTML
-pt-MZ,HTML Page,Página HTML
-pt-MZ,HTML for header section. Optional,HTML para a seção de cabeçalho. opcional
-pt-MZ,Half,Metade
-pt-MZ,Header,Cabeçalho
-pt-MZ,Header HTML,HTML de cabeçalho
-pt-MZ,Headers,Cabeçalhos
-pt-MZ,Heatmap,Mapa de calor
-pt-MZ,"Hello,","Olá,"
-pt-MZ,Help,Ajuda
-pt-MZ,Help Articles,Artigos de Ajuda
-pt-MZ,Help HTML,Ajuda HTML
-pt-MZ,Hide Block,Esconder o Bloco
-pt-MZ,Hide Border,Ocultar borda
-pt-MZ,Hide Copy,Ocultar Cópia
-pt-MZ,Hide Days,Ocultar dias
-pt-MZ,Hide Seconds,Ocultar segundos
-pt-MZ,High,Alto
-pt-MZ,Higher priority rule will be applied first,Regra de prioridade mais alta será aplicada primeiro
-pt-MZ,Highlight,Realçar
-pt-MZ,Home,Início
-pt-MZ,Home Page,Pagina inicial
-pt-MZ,Home Settings,Configurações iniciais
-pt-MZ,Hourly,De hora em hora
-pt-MZ,Hourly Long,Por hora
-pt-MZ,Hourly rate limit for generating password reset links,Limite de taxa por hora para gerar links de redefinição de senha
-pt-MZ,Hours,Horas
-pt-MZ,"How should this currency be formatted? If not set, will use system defaults","Como essa moeda deve ser formatada? Se não for definido, serão usados os padrões do sistema"
-pt-MZ,IP Address,Endereço de IP
-pt-MZ,Icon will appear on the button,O ícone aparecerá no botão
-pt-MZ,Identity Details,Detalhes da identidade
-pt-MZ,"If checked, all other workflows become inactive.","Se marcada, todos os outros fluxos de trabalho tornam-se inativos."
-pt-MZ,"If disabled, this role will be removed from all users.",Se esta função for desativada será removida em todos os usuários.
-pt-MZ,"If enabled, changes to the document are tracked and shown in timeline","Se ativado, as alterações no documento são rastreadas e mostradas na linha do tempo"
-pt-MZ,"If enabled, document views are tracked, this can happen multiple times","Se ativado, as visualizações de documentos são rastreadas, isso pode acontecer várias vezes"
-pt-MZ,"If enabled, the document is marked as seen, the first time a user opens it","Se ativado, o documento é marcado como visto, a primeira vez que um usuário o abre"
-pt-MZ,"If enabled, the notification will show up in the notifications dropdown on the top right corner of the navigation bar.","Se ativada, a notificação aparecerá na lista suspensa de notificações no canto superior direito da barra de navegação."
-pt-MZ,"If enabled, users will be notified every time they login. If not enabled, users will only be notified once.","Se ativado, os usuários serão notificados sempre que iniciarem sessão. Se não estiver ativado, os usuários só serão notificados uma vez."
-pt-MZ,If non standard port (e.g. 587),"Se não for a porta padrão (por exemplo, 587)"
-pt-MZ,"If not set, the currency precision will depend on number format","Se não for definido, a precisão da moeda dependerá do formato de número"
-pt-MZ,If user is the owner,Se o usuário é o proprietário
-pt-MZ,Ignore XSS Filter,Ignorar Filtro XSS
-pt-MZ,Ignore attachments over this size,Ignorar anexos maiores que este tamanho
-pt-MZ,Ignored Apps,Aplicativos ignorados
-pt-MZ,Image,Imagem
-pt-MZ,Image Field,Campo de Imagem
-pt-MZ,Image Link,Link da Imagem
-pt-MZ,Implicit,Implícito
-pt-MZ,Import,Importar
-pt-MZ,Import,Importar
-pt-MZ,Import File,Importar arquivo
-pt-MZ,Import File Errors and Warnings,Erros e avisos de importação de arquivos
-pt-MZ,Import Log Preview,Visualização do registro de importação
-pt-MZ,Import Preview,Visualização de importação
-pt-MZ,Import Warnings,Avisos de importação
-pt-MZ,Import from Google Sheets,Importar do Planilhas Google
-pt-MZ,In Days,Em dias
-pt-MZ,In Filter,No Filtro da Lista
-pt-MZ,In Global Search,Na Busca Global
-pt-MZ,In Preview,Na pré-visualização
-pt-MZ,In Progress,Em Progresso
-pt-MZ,In Reply To,Em resposta a
-pt-MZ,In Standard Filter,Em Filtro Padrão
-pt-MZ,In points. Default is 9.,Em pontos. O padrão é 9.
-pt-MZ,In seconds,Em segundos
-pt-MZ,Include Search in Top Bar,Incluem a busca no Top Bar
-pt-MZ,Incoming,Entrada
-pt-MZ,Indicator,Indicador
-pt-MZ,Info,Informações
-pt-MZ,Initial Sync Count,Contagem de sincronização inicial
-pt-MZ,Insert New Records,Inserir novos registros
-pt-MZ,Insert Style,Inserir Estilo
-pt-MZ,Int,Inteiro
-pt-MZ,Introduce your company to the website visitor.,Apresente sua empresa para o visitante do site.
-pt-MZ,Introductory information for the Contact Us Page,Informação introdutória para a página Fale Conosco
-pt-MZ,Invalid Credentials,Credenciais Inválidas
-pt-MZ,Invalid URL,URL inválida
-pt-MZ,Inverse,Inverso
-pt-MZ,Is Active,É Ativo
-pt-MZ,Is Attachments Folder,É Pasta de Anexos
-pt-MZ,Is Complete,Está completo
-pt-MZ,Is Completed,Está completo
-pt-MZ,Is Custom Field,É campo personalizado
-pt-MZ,Is Folder,É Pasta
-pt-MZ,Is Mandatory Field,É campo obrigatório
-pt-MZ,Is Optional State,É estado opcional
-pt-MZ,Is Primary,É primário
-pt-MZ,Is Primary Contact,É o contato principal
-pt-MZ,Is Primary Mobile,É o Telemóvel principal
-pt-MZ,Is Primary Phone,É o telefone principal
-pt-MZ,Is Private,É privada
-pt-MZ,Is Public,É público
-pt-MZ,Is Published Field,É Publicado campo
-pt-MZ,Is Skipped,É pulado
-pt-MZ,Is Standard,É Padrão
-pt-MZ,Is Table,É Tabela
-pt-MZ,Is Tree,É árvore
-pt-MZ,Is Unique,É único
-pt-MZ,JSON Request Body,Corpo da solicitação JSON
-pt-MZ,Kanban Board,Painel Kanban
-pt-MZ,Key,Chave
-pt-MZ,LDAP First Name Field,Campo Primeiro Nome do LDAP
-pt-MZ,LDAP Group,Grupo LDAP
-pt-MZ,LDAP Group Field,Campo do Grupo LDAP
-pt-MZ,LDAP Group Mappings,Mapeamentos de grupo LDAP
-pt-MZ,LDAP Last Name Field,Campo Sobrenome LDAP
-pt-MZ,LDAP Middle Name Field,Campo de nome do meio LDAP
-pt-MZ,LDAP Mobile Field,Campo Móvel LDAP
-pt-MZ,LDAP Phone Field,Campo de telefone LDAP
-pt-MZ,LDAP Search String,Palavra de Busca do LDAP
-pt-MZ,LDAP Security,Segurança LDAP
-pt-MZ,LDAP User Creation and Mapping,Criação e Mapeamento de Usuários LDAP
-pt-MZ,LDAP Username Field,Campo Nome de Usuário do LDAP
-pt-MZ,Label Help,Ajuda sobre Etiquetas
-pt-MZ,Label and Type,Etiqueta e Tipo
-pt-MZ,Landing Page,Página de chegada
-pt-MZ,Language Code,Código do Idioma
-pt-MZ,Language Name,Nome do Idioma
-pt-MZ,Last Active,Ativo pela última vez
-pt-MZ,Last Execution,Última Execução
-pt-MZ,Last IP,Último IP
-pt-MZ,Last Known Versions,Últimas versões conhecidas
-pt-MZ,Last Login,Último Login
-pt-MZ,Last Month,Mês passado
-pt-MZ,Last Password Reset Date,Data da última redefinição de senha
-pt-MZ,Last Quarter,Ultimo quarto
-pt-MZ,Last Sync On,Última sincronização em
-pt-MZ,Last Synced On,Última sincronização em
-pt-MZ,Last User,Último usuário
-pt-MZ,Last Week,Semana passada
-pt-MZ,Last Year,Ano passado
-pt-MZ,Leave blank to repeat always,Deixe em branco para repetir sempre
-pt-MZ,Ledger,Livro Razão
-pt-MZ,Letter,Carta
-pt-MZ,Letter Head Based On,Carta de cabeça com base em
-pt-MZ,Letter Head Image,Carta cabeça imagem
-pt-MZ,Letter Head Name,Nome do timbrado
-pt-MZ,Letter Head in HTML,Cabeça Carta em HTML
-pt-MZ,Light Color,Cor clara
-pt-MZ,Likes,Gostos
-pt-MZ,Limit,Limite
-pt-MZ,Line,Linha
-pt-MZ,Link Cards,Cartões de ligação
-pt-MZ,Link Fieldname,Nome do campo do link
-pt-MZ,Link Name,Nome do Link
-pt-MZ,Link Title,Título do Link
-pt-MZ,Link To,Link para
-pt-MZ,Link to the page you want to open. Leave blank if you want to make it a group parent.,Link para a página que você deseja abrir. Deixe em branco se você quiser torná-lo um pai grupo.
-pt-MZ,Linked,Relacionado
-pt-MZ,List,Lista
-pt-MZ,Load Balancing,Balanceamento de carga
-pt-MZ,Location,Localização
-pt-MZ,Log,Registo
-pt-MZ,Logout,Sair
-pt-MZ,Logout All Sessions on Password Reset,Sair de todas as sessões ao redefinir a senha
-pt-MZ,Logout From All Devices After Changing Password,Saia de todos os dispositivos após alterar a senha
-pt-MZ,Long Text,Texto Longo
-pt-MZ,Low,Baixo
-pt-MZ,Madam,Senhora
-pt-MZ,Main Section,Seção Principal
-pt-MZ,Main Section (HTML),Seção Principal (HTML)
-pt-MZ,Main Section (Markdown),Seção Principal (Remarcação)
-pt-MZ,Maintenance Manager,Gerente de Manutenção
-pt-MZ,Maintenance User,Usuário da Manutenção
-pt-MZ,Male,Masculino
-pt-MZ,Mandatory,Obrigatório
-pt-MZ,Mandatory Depends On,Obrigatório Depende
-pt-MZ,Map route parameters into form variables. Example <code>/project/&lt;name&gt;</code>,Mapeie os parâmetros da rota em variáveis de formulário. Exemplo <code>/project/&lt;name&gt;</code>
-pt-MZ,Markdown Editor,Editor de Markdown
-pt-MZ,Master,Cadastro
-pt-MZ,Max Attachments,Máx. de Anexos
-pt-MZ,Max Length,Comprimento máximo
-pt-MZ,Max Value,Max Valor
-pt-MZ,Maximum,Máximo
-pt-MZ,Maximum Number of Fields,Número Máximo de Campos
-pt-MZ,Medium,Médio
-pt-MZ,Mention,Menção
-pt-MZ,Mentions,Menções
-pt-MZ,Merge with existing,Mesclar com existente
-pt-MZ,Message Examples,Exemplos de Mensagens
-pt-MZ,Message ID,ID da Mensagem
-pt-MZ,Message Parameter,Parâmetro da mensagem
-pt-MZ,Message Sent,Mensagem Enviada
-pt-MZ,Method,Método
-pt-MZ,Middle Name,Nome do Meio
-pt-MZ,Minimum,Mínimo
-pt-MZ,Miss,Senhorita
-pt-MZ,Missing Values Required,Faltando Valores Obrigatórios
-pt-MZ,Mobile,Móvel
-pt-MZ,Mobile No,Telemóvel
-pt-MZ,Module Name,Nome do Módulo
-pt-MZ,Modules HTML,Módulos HTML
-pt-MZ,Month,Mês
-pt-MZ,Monthly,Mensal
-pt-MZ,Monthly Long,Mensalmente Longo
-pt-MZ,More Information,Mais Informações
-pt-MZ,More content for the bottom of the page.,Mais conteúdo na parte de baixo da página.
-pt-MZ,Move,Mover
-pt-MZ,Must be a publicly accessible Google Sheets URL,Deve ser um URL de planilhas do Google acessível publicamente
-pt-MZ,Mute Sounds,Desativar Sons
-pt-MZ,Name,Nome
-pt-MZ,Naming,Nomeação
-pt-MZ,New,Novo
-pt-MZ,New value to be set,Novo valor a ser definido
-pt-MZ,Next,Próximo
-pt-MZ,Next,Próximo
-pt-MZ,Next Schedule Date,Próxima data programada
-pt-MZ,No,Não
-pt-MZ,No,Não
-pt-MZ,No,Não
-pt-MZ,No Copy,Nenhuma Cópia
-pt-MZ,No Data,Sem Dados
-pt-MZ,No data to export,Nenhum dado para exportar
-pt-MZ,Non Negative,Não Negativo
-pt-MZ,Non-Conforming,Não conforme
-pt-MZ,None,Nenhum
-pt-MZ,Not Allowed,Não Desejados
-pt-MZ,Not Permitted,Não Permitido
-pt-MZ,Not active,Inativo
-pt-MZ,Not permitted,Não Permitido
-pt-MZ,Note,Nota
-pt-MZ,"Note: For best results,  images must be of the same size and width must be greater than height.","Nota: Para obter melhores resultados, as imagens devem ter o mesmo tamanho e a largura deve ser maior que a altura."
-pt-MZ,Note: Multiple sessions will be allowed in case of mobile device,Observação: Serão permitidas múltiplas sessões no caso de dispositivo móvel
-pt-MZ,Notify if unreplied,Informar se não for respondido
-pt-MZ,Notify if unreplied for (in mins),Informar se não for respondido em (minutos)
-pt-MZ,Number,Número
-pt-MZ,Number Format,Formato de número
-pt-MZ,Number of Backups,Número de Backups
-pt-MZ,Number of Groups,Número de Grupos
-pt-MZ,OTP App,Aplicação OTP
-pt-MZ,OTP Issuer Name,Nome da Emissora OTP
-pt-MZ,Off,Desligado
-pt-MZ,Office,Escritório
-pt-MZ,On Hold,Em Espera
-pt-MZ,Only Allow Edit For,Somente permite edição para
-pt-MZ,Only Send Records Updated in Last X Hours,Somente Enviar Registros Atualizados em Últimas X Horas
-pt-MZ,Open,Aberto
-pt-MZ,Open,Aberto
-pt-MZ,Open Documents,Documentos abertos
-pt-MZ,Open Reference Document,Documento de Referência Aberto
-pt-MZ,Open URL in a New Tab,Abrir URL em uma nova guia
-pt-MZ,Opened,Inaugurado
-pt-MZ,Operation,Operação
-pt-MZ,Optional: The alert will be sent if this expression is true,Opcional: O alerta será enviado se essa expressão é verdadeira
-pt-MZ,Options Help,Ajuda sobre Opções
-pt-MZ,Order,Pedido
-pt-MZ,Org History,História da Organização
-pt-MZ,Org History Heading,Cabeçalho da História da Organização
-pt-MZ,Other,Outro
-pt-MZ,Outgoing,Saída
-pt-MZ,Output,Saída
-pt-MZ,Owner,Proprietário
-pt-MZ,PDF Page Size,Tamanho da página PDF
-pt-MZ,PDF Settings,Configurações do PDF
-pt-MZ,Page Building Blocks,Blocos de construção de página
-pt-MZ,Page HTML,Página HTML
-pt-MZ,Page Name,Nome da Página
-pt-MZ,Page Settings,Configurações da página
-pt-MZ,Page {0} of {1},Página {0} de {1}
-pt-MZ,Parent Label,Etiqueta Pai
-pt-MZ,Passive,Passivo
-pt-MZ,Password Reset Link Generation Limit,Limite de geração de link de redefinição de senha
-pt-MZ,Password for Base DN,Senha para DN de base
-pt-MZ,Patch,Remendo
-pt-MZ,Path to Server Certificate,Caminho para o certificado do servidor
-pt-MZ,Path to private Key File,Caminho para o arquivo de chaves privado
-pt-MZ,Pending,Pendente
-pt-MZ,Pending Approval,Aprovação pendente
-pt-MZ,Percentage,Percentagem
-pt-MZ,Period,Período
-pt-MZ,Perm Level,Nível Permanente
-pt-MZ,Permanent,Permanente
-pt-MZ,Permission Rules,Regras de Permissão
-pt-MZ,Personal,Pessoal
-pt-MZ,Phone,Telefone
-pt-MZ,Pie,Torta
-pt-MZ,Plant,Fábrica
-pt-MZ,Port,Porta
-pt-MZ,Position,Posição
-pt-MZ,Precision,Precisão
-pt-MZ,Prefer not to say,Prefiro não dizer
-pt-MZ,Preferred Billing Address,Endereço preferido de faturamento
-pt-MZ,Preferred Shipping Address,Endereço preferido para entrega
-pt-MZ,Prefix,Prefixo
-pt-MZ,Preview,Pré-visualização
-pt-MZ,Preview HTML,Pré-visualização de HTML
-pt-MZ,Preview Message,Visualizar mensagem
-pt-MZ,Primary,Primário
-pt-MZ,Primary Color,Cor primária
-pt-MZ,Print,Impressão
-pt-MZ,Print,Impressão
-pt-MZ,Print Format Help,Ajuda sobre Formatos de Impressão
-pt-MZ,Print Format Type,Tipo do Formato de Impressão
-pt-MZ,Print Heading,Cabeçalho de Impressão
-pt-MZ,Print Hide,Ocultar Impressão
-pt-MZ,Print Hide If No Value,Ocultar Impressão se não Preenchido
-pt-MZ,Print Server,Servidor de impressão
-pt-MZ,Print Style Name,Nome do estilo de impressão
-pt-MZ,Print Style Preview,Estilo de visualização de impressão
-pt-MZ,Print Width,Largura de impressão
-pt-MZ,"Print Width of the field, if the field is a column in a table","Largura de impressão do campo, se o campo é uma coluna na tabela"
-pt-MZ,Print with letterhead,Imprimir com o timbre
-pt-MZ,Printer Name,Nome da impressora
-pt-MZ,Priority,Prioridade
-pt-MZ,Project,Projeto
-pt-MZ,Property Depends On,Propriedade depende
-pt-MZ,Provider,Fornecedor
-pt-MZ,Provider Name,Nome do provedor
-pt-MZ,Pull from Google Calendar,Puxe do Google Agenda
-pt-MZ,Pulled from Google Calendar,Extraído do Google Agenda
-pt-MZ,Pulled from Google Contacts,Extraído dos Contatos do Google
-pt-MZ,Purchase Manager,Gerente de Compras
-pt-MZ,Purchase Master Manager,Gerente de Cadastros de Compras
-pt-MZ,Purchase User,Usuário de Compra
-pt-MZ,Push to Google Calendar,Enviar para o Google Agenda
-pt-MZ,Push to Google Contacts,Enviar para os Contatos do Google
-pt-MZ,Quarterly,Trimestralmente
-pt-MZ,Query,Consulta
-pt-MZ,Query Options,Opções de Consulta
-pt-MZ,Quick Entry,Entrada Rápida
-pt-MZ,RAW Information Log,Registro de informações RAW
-pt-MZ,Range,Alcance
-pt-MZ,Read Only Depends On,Somente leitura depende
-pt-MZ,Read by Recipient,Lido por destinatário
-pt-MZ,Read by Recipient On,Lido por destinatário ativado
-pt-MZ,Reason,Motivo
-pt-MZ,Received,Recebido
-pt-MZ,Receiver By Document Field,Receptor por campo de documento
-pt-MZ,Receiver By Role,Receptor por função
-pt-MZ,Receiver Parameter,Parâmetro do recebedor
-pt-MZ,Recipient,Destinatário
-pt-MZ,Recipient Unsubscribed,Destinatário com inscrição cancelada
-pt-MZ,Recipients,Destinatários
-pt-MZ,Red,Vermelho
-pt-MZ,Redirect URL,Redirecionar URL
-pt-MZ,Reference,Referência
-pt-MZ,Reference Date,Data de Referência
-pt-MZ,Reference DocName,Nome do Documento de Referência
-pt-MZ,Reference Docname,Nome do Documento de Referência
-pt-MZ,Reference Name,Nome de Referência
-pt-MZ,Reference Owner,Proprietário de Referência
-pt-MZ,Reference Report,Relatório de referência
-pt-MZ,Reference name,Nome de Referência
-pt-MZ,Refresh,Atualizar
-pt-MZ,Refresh Google Sheet,Atualizar planilha do Google
-pt-MZ,Relinked,Religado
-pt-MZ,Remember Last Selected Value,Lembrar última seleção
-pt-MZ,Rename,Renomear
-pt-MZ,Reopen,Reabrir
-pt-MZ,Repeat On,Repetir em
-pt-MZ,Repeat Till,Repita até que
-pt-MZ,Repeat on Day,Repetir no dia
-pt-MZ,Repeat on Last Day of the Month,Repetir no último dia do mês
-pt-MZ,Repeat this Event,Repita este evento
-pt-MZ,Replied,Respondido
-pt-MZ,Report,Relatório
-pt-MZ,Report Description,Descrição do relatório
-pt-MZ,Report Filters,Filtros de relatório
-pt-MZ,Report Hide,Ocultar Relatório
-pt-MZ,Report Information,Informações do Relatório
-pt-MZ,Reports,Relatórios
-pt-MZ,Request Data,Solicitar Dados
-pt-MZ,Request Structure,Estrutura da solicitação
-pt-MZ,Request URL,URL do pedido
-pt-MZ,Require Trusted Certificate,Exigir certificado confiável
-pt-MZ,Reset,Redefinir
-pt-MZ,Reset Password Key,Redefinição de senha chave
-pt-MZ,Response,Resposta
-pt-MZ,Restored,Restaurado
-pt-MZ,Restrict IP,Restringir IP
-pt-MZ,Restrict To Domain,Restringir ao domínio
-pt-MZ,Restrict to Domain,Restringir ao domínio
-pt-MZ,Reverse Icon Color,Inverta Ícone Cor
-pt-MZ,Revoked,Revogado
-pt-MZ,Role Name,Nome da Função
-pt-MZ,Role and Level,Função e Nível
-pt-MZ,Roles Assigned,Funções Atribuídas
-pt-MZ,Roles HTML,Funções HTML
-pt-MZ,Round Robin,Robin Redondo
-pt-MZ,Route Redirects,Redirecionamentos de rota
-pt-MZ,Row Index,Índice de linhas
-pt-MZ,Row Name,Nome da Linha
-pt-MZ,Rule,Regra
-pt-MZ,Rule Conditions,Condições da regra
-pt-MZ,Rules with higher priority number will be applied first.,Regras com número de prioridade mais alta serão aplicadas primeiro.
-pt-MZ,Run Jobs only Daily if Inactive For (Days),Executar trabalhos apenas diariamente se inativo por (dias)
-pt-MZ,Run scheduled jobs only if checked,As tarefas agendadas somente serão executadas se a opção estiver marcada
-pt-MZ,SSL/TLS Mode,Modo SSL / TLS
-pt-MZ,Sales Manager,Gerente de Vendas
-pt-MZ,Sales Master Manager,Gerente de Cadastros de Vendas
-pt-MZ,Sales User,Usuário de Vendas
-pt-MZ,Sample,Amostra
-pt-MZ,Save,Salvar
-pt-MZ,Scheduled Job,Trabalho agendado
-pt-MZ,Scheduler Inactive,Agendador Inativo
-pt-MZ,Scheduler is inactive. Cannot import data.,O agendador está inativo. Não é possível importar dados.
-pt-MZ,Search,Pesquisar
-pt-MZ,Search Fields,Campos de Pesquisa
-pt-MZ,Search Priorities,Prioridades de pesquisa
-pt-MZ,Section,Seção
-pt-MZ,Section Break,Quebra de seção
-pt-MZ,Security Settings,Configurações de Segurança
-pt-MZ,Seen By,Visto por
-pt-MZ,Seen By Table,Visto por tabela
-pt-MZ,Select,Selecionar
-pt-MZ,Select Date Range,Selecionar período
-pt-MZ,Select Transaction,Selecione a Transação
-pt-MZ,Select the label after which you want to insert new field.,Selecione a etiqueta após a qual você deseja inserir um novo campo.
-pt-MZ,Send,Enviar
-pt-MZ,Send,Enviar
-pt-MZ,Send After,Envie Depois
-pt-MZ,Send Alert On,Enviar Alerta
-pt-MZ,Send Notification to,Enviar Notificação para
-pt-MZ,Send Notifications For Documents Followed By Me,Enviar notificações para documentos seguidos por mim
-pt-MZ,Send Now,Enviar Agora
-pt-MZ,Send Print as PDF,Enviar impressão como PDF
-pt-MZ,Send System Notification,Enviar Notificação do Sistema
-pt-MZ,Send To All Assignees,Enviar para todos os cessionários
-pt-MZ,Send alert if date matches this field's value,Enviar alerta se a data corresponde valor deste campo
-pt-MZ,Send alert if this field's value changes,Enviar alerta se muda o valor desse campo
-pt-MZ,Send days before or after the reference date,Enviar dias antes ou depois da data de referência
-pt-MZ,Send only if there is any data,Envie somente se houver quaisquer dados
-pt-MZ,Sending,Enviando
-pt-MZ,Sent Read Receipt-MZ,Enviar Confirmação de Leitura
-pt-MZ,Sent or Received,Enviados ou recebidos
-pt-MZ,Separator,Separador
-pt-MZ,Series List for this Transaction,Lista de séries para esta transação
-pt-MZ,Server Action,Ação do Servidor
-pt-MZ,Server IP,IP do servidor
-pt-MZ,Service,Serviço
-pt-MZ,Set New Password,Definir nova senha
-pt-MZ,Set Property After Alert,Definir propriedade após o alerta
-pt-MZ,Set Role For,Definir papel para
-pt-MZ,Set Value,Definir valor
-pt-MZ,Settings,Configurações
-pt-MZ,Settings Dropdown,Lista suspensa de configurações
-pt-MZ,Shared,Compartilhado
-pt-MZ,Shipping,Expedição
-pt-MZ,Shipping Address,Endereço Para Entrega
-pt-MZ,Shop,Loja
-pt-MZ,Show Full Error and Allow Reporting of Issues to the Developer,Mostrar erro completo e permitir relatórios de problemas para o desenvolvedor
-pt-MZ,Show Full Form?,Mostrar formulário completo?
-pt-MZ,Show Line Breaks after Sections,Mostrar quebras de linha após seções
-pt-MZ,Show Percentage Stats,Mostrar estatísticas percentuais
-pt-MZ,Show Section Headings,Mostrar Seção Títulos
-pt-MZ,Show Title,Mostrar Título
-pt-MZ,Show full form instead of a quick entry modal,Mostrar o formulário completo em vez de um modal de entrada rápida
-pt-MZ,Show in Module Section,Mostrar na Seção Módulo
-pt-MZ,Show in filter,Mostrar no filtro
-pt-MZ,Show percentage difference according to this time interval,Mostra a diferença percentual de acordo com este intervalo de tempo
-pt-MZ,Sidebar Items,Itens da barra lateral
-pt-MZ,Sidebar Settings,Configurações da barra lateral
-pt-MZ,Signature,Assinatura
-pt-MZ,Simultaneous Sessions,Sessões simultâneas
-pt-MZ,Size,Tamanho
-pt-MZ,Skip Authorization,Ignorar autorização
-pt-MZ,Slack,Folga
-pt-MZ,Slack Channel,Canal de folga
-pt-MZ,Small Text,Texto Pequeno
-pt-MZ,Smallest Currency Fraction Value,Menor valor fracionado de moeda
-pt-MZ,Social Login Provider,Provedor de acesso social
-pt-MZ,Sort Field,Ordenar por campo
-pt-MZ,Sort Order,Ordem de classificação
-pt-MZ,Source,Origem
-pt-MZ,Start,Iniciar
-pt-MZ,Start Date,Data de Início
-pt-MZ,Start Date Field,Campo de Data de Início
-pt-MZ,Started,Começado
-pt-MZ,Starts on,Inicia em
-pt-MZ,State,Estado
-pt-MZ,State/Province,Estado / Província
-pt-MZ,States,Estados
-pt-MZ,Static Parameters,Parâmetros estáticos
-pt-MZ,Stats Time Interval,Intervalo de tempo das estatísticas
-pt-MZ,Step,Degrau
-pt-MZ,Steps,Passos
-pt-MZ,Stop,Parar
-pt-MZ,Stopped,Parado
-pt-MZ,Stores the JSON of last known versions of various installed apps. It is used to show release notes.,Armazena o JSON das últimas versões conhecidas de vários aplicativos instalados. Ele é usado para mostrar notas de lançamento.
-pt-MZ,Style,Estilo
-pt-MZ,Style Settings,Configurações de Estilo
-pt-MZ,Stylesheet,Folha de estilo
-pt-MZ,Sub-domain provided by erpnext.com,Sub-domínio fornecido pelo erpnext.com
-pt-MZ,Subdomain,Subdomínio
-pt-MZ,Subject,Assunto
-pt-MZ,Submit,Enviar
-pt-MZ,Submit,Enviar
-pt-MZ,Submit,Enviar
-pt-MZ,Submit,Enviar
-pt-MZ,Submit,Enviar
-pt-MZ,Submit,Enviar
-pt-MZ,Submit After Import,Enviar após importação
-pt-MZ,Submitted,Enviado
-pt-MZ,Subsidiary,Subsidiário
-pt-MZ,Subtitle,Subtítulo
-pt-MZ,Success,Sucesso
-pt-MZ,Success Message,Mensagem de sucesso
-pt-MZ,Success URL,URL de Confirmação
-pt-MZ,Symbol,Símbolo
-pt-MZ,Sync,Sincronizar
-pt-MZ,Sync with Google Calendar,Sincronize com o Google Agenda
-pt-MZ,Sync with Google Contacts,Sincronizar com os contatos do Google
-pt-MZ,System,Sistema
-pt-MZ,System Manager,Administrador do Sistema
-pt-MZ,System Notification,Notificação do sistema
-pt-MZ,System Page,Página do sistema
-pt-MZ,System managers are allowed by default,Gerentes de sistema são permitidos por padrão
-pt-MZ,Table Break,Pausa para a mesa
-pt-MZ,Table HTML,Tabela HTML
-pt-MZ,Task,Tarefa
-pt-MZ,Tasks,Tarefas
-pt-MZ,Team Members Heading,Título da página Membros da Equipe
-pt-MZ,Template,Modelo
-pt-MZ,Template Options,Opções de modelo
-pt-MZ,Template Warnings,Avisos do modelo
-pt-MZ,Text,Texto
-pt-MZ,Text Align,Alinhar Texto
-pt-MZ,Text Color,Cor do texto
-pt-MZ,Text Editor,Editor de Texto
-pt-MZ,The name that will appear in Google Calendar,O nome que aparecerá no Google Agenda
-pt-MZ,Theme,Tema
-pt-MZ,Theme Configuration,Configuração do Tema
-pt-MZ,Theme URL,URL do tema
-pt-MZ,These values will be automatically updated in transactions and also will be useful to restrict permissions for this user on transactions containing these values.,Esses valores serão atualizados automaticamente em transações e também serão úteis para restringir as permissões para este usuário em operações que contenham esses valores.
-pt-MZ,Third Party Authentication,Autenticação de Terceiros
-pt-MZ,This card will be available to all Users if this is set,Este cartão estará disponível para todos os usuários se estiver definido
-pt-MZ,This chart will be available to all Users if this is set,Este gráfico estará disponível para todos os usuários se estiver definido
-pt-MZ,This format is used if country specific format is not found,Este formato é usado se o formato específico país não é encontrado
-pt-MZ,This is the number of the last created transaction with this prefix,Este é o número da última transação criada com este prefixo
-pt-MZ,This will be shown in a modal after routing,Isso será mostrado em um modal após o roteamento
-pt-MZ,This will be shown to the user in a dialog after routing to the report,Isso será mostrado ao usuário em uma caixa de diálogo após o roteamento para o relatório
-pt-MZ,Time Format,Formato da hora
-pt-MZ,Time Series,Séries Temporais
-pt-MZ,Time Series Based On,Séries Temporais Baseadas em
-pt-MZ,Time Zones,Fusos horários
-pt-MZ,Time format,Formato da hora
-pt-MZ,Time in seconds to retain QR code image on server. Min:<strong>240</strong>,Tempo em segundos para manter a imagem do código QR no servidor. Min: <strong>240</strong>
-pt-MZ,Timeline Links,Links da linha do tempo
-pt-MZ,Title,Título
-pt-MZ,Title Field,Campo Título
-pt-MZ,Title Prefix,Prefixo do Título
-pt-MZ,To,Para
-pt-MZ,To,Para
-pt-MZ,To Date,Até a Data
-pt-MZ,To Date Field,Até o momento do campo
-pt-MZ,To and CC,Para e CC
-pt-MZ,Token,Símbolo
-pt-MZ,Tools,Ferramentas
-pt-MZ,Top,Topo
-pt-MZ,Top Bar Items,Itens da barra superior
-pt-MZ,Topic,Tópico
-pt-MZ,Total Subscribers,Total de Assinantes
-pt-MZ,Totals,Totais
-pt-MZ,Track Changes,Rastrear Alterações
-pt-MZ,Track Field,Trilha de corrida
-pt-MZ,Track Seen,Marcar como visto
-pt-MZ,Track Views,Acompanhar vistas
-pt-MZ,Transgender,Transgênero
-pt-MZ,Transition Rules,Regras de transição
-pt-MZ,Transitions,Transições
-pt-MZ,Translatable,Traduzível
-pt-MZ,Translated Text,Texto Traduzido
-pt-MZ,Tree,Árvore
-pt-MZ,Tree structures are implemented using Nested Set,As estruturas de árvore são implementadas usando o Conjunto Aninhado
-pt-MZ,Trigger Method,Método gatilho
-pt-MZ,Two Factor Authentication,Autenticação de dois fatores
-pt-MZ,Two Factor Authentication method,Método de autenticação de dois fatores
-pt-MZ,Type,Tipo
-pt-MZ,UNSEEN,Por Ler
-pt-MZ,URL for documentation or help,URL para documentação ou ajuda
-pt-MZ,Unassign Condition,Desatribuir condição
-pt-MZ,Unique,Único
-pt-MZ,Unknown,Desconhecido
-pt-MZ,Unread,Não lida
-pt-MZ,Unread Notification Sent,Notificação de mensagem não lida enviada
-pt-MZ,Unshared,Não Compartilhado
-pt-MZ,Unsubscribe Method,Método de Cancelamento de Inscrição
-pt-MZ,Update,Atualizar
-pt-MZ,Update Existing Records,Atualizar registros existentes
-pt-MZ,Update Field,Atualizar Campo
-pt-MZ,Update Series Number,Atualizar Números de Séries
-pt-MZ,Update Settings,Atualizar configurações
-pt-MZ,Update Value,Atualizar Valor
-pt-MZ,Uploaded To Dropbox,Enviado para o Dropbox
-pt-MZ,Uploaded To Google Drive,Carregado no Google Drive
-pt-MZ,Use ASCII encoding for password,Use codificação ASCII para senha
-pt-MZ,Use IMAP,Usar IMAP
-pt-MZ,Use Report Chart,Usar gráfico de relatório
-pt-MZ,Use SSL,Usar SSL
-pt-MZ,Use TLS,Usar TLS
-pt-MZ,Use this fieldname to generate title,Utilize este campo para gerar o título
-pt-MZ,User,Usuário
-pt-MZ,User,Usuário
-pt-MZ,User Agent,Agente de usuário
-pt-MZ,User Cannot Create,O Usuário não pode criar
-pt-MZ,User Cannot Search,O Usuário não pode pesquisar
-pt-MZ,User Defaults,Padrões de Perfil
-pt-MZ,User ID,ID de Usuário
-pt-MZ,User ID Property,Propriedade de ID do usuário
-pt-MZ,User Image,Imagem do Usuário
-pt-MZ,User Name,Nome de usuário
-pt-MZ,User Tags,Etiquetas de Usuários
-pt-MZ,User must always select,O Usuário deve sempre selecionar
-pt-MZ,User {0} is disabled,Usuário {0} está desativado
-pt-MZ,Valid,Válido
-pt-MZ,Validate Field,Validar Campo
-pt-MZ,Validity,Validade
-pt-MZ,Value,Valor
-pt-MZ,Value Based On,Valor Baseado em
-pt-MZ,Value Changed,Valor Alterado
-pt-MZ,Value To Be Set,Valor a ser definido
-pt-MZ,Value to Validate,Valor para Validar
-pt-MZ,Values Changed,Valores Alterados
-pt-MZ,Verified,Verificado
-pt-MZ,Video URL,URL do vídeo
-pt-MZ,View,Visão
-pt-MZ,View Properties (via Customize Form),Exibir Propriedades (via Personalizar Formulário)
-pt-MZ,View Report,Ver relatório
-pt-MZ,View Settings,Ver Definições
-pt-MZ,Viewed By,Visto por
-pt-MZ,Views,Visualizações
-pt-MZ,Visit,Visita
-pt-MZ,Warehouse,Armazém
-pt-MZ,Warning,Aviso
-pt-MZ,Web Form Fields,Campos de formulário Web
-pt-MZ,Website,Site
-pt-MZ,Website Manager,Administrador do Site
-pt-MZ,Website Theme Image,Imagem do Tema do Site
-pt-MZ,Weekdays,Dias da Semana
-pt-MZ,Weekly,Semanalmente
-pt-MZ,Weekly Long,Semanalmente Longo
-pt-MZ,Welcome to {0},Bem-vindo Ao {0}
-pt-MZ,Workflow Action Name,Nome da Ação do Fluxo de Trabalho
-pt-MZ,Workflow Action is not created for optional states,A ação do fluxo de trabalho não é criada para estados opcionais
-pt-MZ,Workflow Name,Nome do Fluxo de Trabalho
-pt-MZ,Wrapping up,Empacotando
-pt-MZ,Write,Escrever
-pt-MZ,X Field,Campo X
-pt-MZ,Y Axis,Eixo Y
-pt-MZ,Year,Ano
-pt-MZ,Yearly,Anualmente
-pt-MZ,Zero means send records updated at anytime,Zero significa enviar registros atualizados a qualquer momento
-pt-MZ,_report,_relatório
-pt-MZ,and,e
-pt-MZ,blue,azul
-pt-MZ,dd/mm/yyyy,dd/mm/aaaa
-pt-MZ,e.g. pop.gmail.com / imap.gmail.com,ex: pop.gmail.com / imap.gmail.com
-pt-MZ,e.g. smtp.gmail.com,ex: smtp.gmail.com
-pt-MZ,green,verde
-pt-MZ,icon,ícone
-pt-MZ,mm/dd/yyyy,mm/dd/aaaa
-pt-MZ,module,módulo
-pt-MZ,no failed attempts,tentativas não falharam
-pt-MZ,on_change,em mudança
-pt-MZ,or,ou
-pt-MZ,orange,laranja
-pt-MZ,page,página
-pt-MZ,print,imprimir
-pt-MZ,purple,roxo
-pt-MZ,query-report,relatório-de-consulta
-pt-MZ,red,vermelho
-pt-MZ,response,resposta
-pt-MZ,share,ação
-pt-MZ,yellow,amarelo
-pt-MZ,yyyy-mm-dd,dd/mm/yyyy
-pt-MZ,{0} is mandatory,{0} é obrigatório
-pt-MZ,{0} is required,{0} é necessário
-pt-MZ,Total Warehouses,Total de Armazéns
-pt-MZ,Total Stock Value,Valor Total do Stock
-pt-MZ,Total Active Items,Total de Artigos Ativos
-pt-MZ,Total Incoming Bills,Total de Faturas Recebidas
-pt-MZ,Total Outgoing Bills,Total de Faturas Emitidas
-pt-MZ,Total Incoming Payment,Total de Pagamentos Recebidos
-pt-MZ,Total Outgoing Payment,Total de Pagamentos Efetuados
-pt-MZ,Employee Tax Exemption Declaration,Declaração de Isenção Fiscal do Trabalhador
-pt-MZ,Additional Salary,Salário Adicional
-pt-MZ,Tax Setup,Configuração de Impostos
-pt-MZ,Income Tax Slab,Escalão de Imposto sobre o Rendimento (IRPS)
-pt-MZ,Employee Tax Exemption Category,Categoria de Isenção Fiscal do Trabalhador
-pt-MZ,Employee Tax Exemption Sub Category,Subcategoria de Isenção Fiscal do Trabalhador
-pt-MZ,Exemption,Isenção
-pt-MZ,Employee Tax Exemption Proof Submission,Submissão de Comprovativo de Isenção Fiscal do Trabalhador
-pt-MZ,Benefits,Benefícios
-pt-MZ,Employee Benefit Application,Candidatura a Benefício do Trabalhador
-pt-MZ,Employee Benefit Claim,Requisição de Benefício do Trabalhador
-pt-MZ,Income Tax Computation,Cálculo do Imposto sobre o Rendimento (IRPS)
-pt-MZ,Income Tax Deductions,Deduções do Imposto sobre o Rendimento (IRPS)
-pt-MZ,Masters & Reports,Tabelas & Relatórios
-pt-MZ,Salary Payout,Pagamento de Salário
-pt-MZ,Outgoing Salary,Pagamento de Salário
-pt-MZ,Salary Component,Componente Salarial
-pt-MZ,Salary Structure,Estrutura Salarial
-pt-MZ,Payroll Period,Período de Folha de Pagamento
-pt-MZ,Salary Structure Assignment,Atribuição de Estrutura Salarial
-pt-MZ,Bulk Salary Structure Assignment,Atribuição em Massa de Estruturas Salariais
-pt-MZ,Salary Slip,Folha de Vencimento
-pt-MZ,Payroll Entry,Entrada de Folha de Pagamento
-pt-MZ,Salary Withholding,Retenção Salarial
-pt-MZ,Employee Incentive,Incentivo do Trabalhador
-pt-MZ,Retention Bonus,Bónus de Retenção
-pt-MZ,Salary Register,Registo Salarial
-pt-MZ,Salary Payments Based On Payment Mode,Pagamentos de Salário por Método de Pagamento
-pt-MZ,Salary Payments via ECS,Pagamentos de Salário via Transferência Bancária
-pt-MZ,General Ledger,Razão Geral
-pt-MZ,Accounts Payable,Contas a Pagar
-pt-MZ,Accounts Receivable,Contas a Receber
-pt-MZ,Provident Fund Deductions,Deduções do INSS
-pt-MZ,Professional Tax Deductions,Deduções de Imposto Profissional
-pt-MZ,Expense Claim Type,Tipo de Reembolso de Despesa
-pt-MZ,Vehicle Service Item,Serviço de Viatura
-pt-MZ,Vehicle Log,Registo de Viatura
-pt-MZ,Travel Request,Pedido de Viagem
-pt-MZ,Purpose of Travel,Finalidade da Viagem
-pt-MZ,Employee Advance Summary,Resumo de Adiantamentos de Trabalhador
-pt-MZ,Unpaid Expense Claim,Reembolso de Despesa Não Pago
-pt-MZ,Accounting Report,Relatório de Contabilidade
-pt-MZ,Territory Wise Sales,Vendas por Território
-pt-MZ,Reports,Relatórios
-pt-MZ,Lead Details,Detalhes da Lead
-pt-MZ,Sales Pipeline Analytics,Análise do Funil de Vendas
-pt-MZ,Opportunity Summary by Sales Stage,Resumo de Oportunidades por Etapa de Vendas
-pt-MZ,Sales Funnel,Funil de Vendas
-pt-MZ,Prospects Engaged But Not Converted,Prospects Contactados mas Não Convertidos
-pt-MZ,First Response Time for Opportunity,Tempo da Primeira Resposta para Oportunidade
-pt-MZ,Inactive Customers,Clientes Inativos
-pt-MZ,Campaign Efficiency,Eficiência da Campanha
-pt-MZ,Lead Owner Efficiency,Eficiência do Responsável pela Lead
-pt-MZ,Maintenance,Manutenção
-pt-MZ,Maintenance Schedule,Plano de Manutenção
-pt-MZ,Maintenance Visit,Visita de Manutenção
-pt-MZ,Warranty Claim,Reclamação de Garantia
-pt-MZ,Masters,Tabelas
-pt-MZ,Territory,Território
-pt-MZ,Customer Group,Grupo de Clientes
-pt-MZ,Contact,Contacto
-pt-MZ,Prospect,Prospecto
-pt-MZ,Sales Person,Vendedor
-pt-MZ,Sales Stage,Etapa de Vendas
-pt-MZ,Lead Source,Origem da Lead
-pt-MZ,Sales Pipeline,Pipeline de Vendas
-pt-MZ,Lead,Lead
-pt-MZ,Opportunity,Oportunidade
-pt-MZ,Customer,Cliente
-pt-MZ,Contract,Contrato
-pt-MZ,Appointment,Agendamento
-pt-MZ,Newsletter,Boletim Informativo
-pt-MZ,Communication,Comunicação
-pt-MZ,Settings,Configurações
-pt-MZ,CRM Settings,Configurações de CRM
-pt-MZ,SMS Settings,Configurações de SMS
-pt-MZ,Campaign,Campanha
-pt-MZ,Email Campaign,Campanha de Email
-pt-MZ,SMS Center,Centro de SMS
-pt-MZ,SMS Log,Registo de SMS
-pt-MZ,Email Group,Grupo de Emails
-pt-MZ,Quick Access,Acesso Rápido
-pt-MZ,Warehouse wise Stock Value,Valor do Stock por Armazém
-pt-MZ,Delayed Tasks Summary,Resumo de Tarefas Atrasadas
-pt-MZ,Employee Onboarding,Integração de Trabalhador
-pt-MZ,Employee Separation,Desligamento de Trabalhador
-pt-MZ,Employee Grievance,Reclamação de Trabalhador
-pt-MZ,New Hires (This Month),Novas Contratações (Este Mês)
-pt-MZ,Exits (This Month),Desligamentos (Este Mês)
-pt-MZ,Trainings (This Week),Formações (Esta Semana)
-pt-MZ,Employee Onboarding Template,Modelo de Integração de Trabalhador
-pt-MZ,Employee Skill Map,Mapa de Competências do Trabalhador
-pt-MZ,Grievance,Reclamação
-pt-MZ,Grievance Type,Tipo de Reclamação
-pt-MZ,Training,Formação
-pt-MZ,Training Program,Programa de Formação
-pt-MZ,Training Event,Evento de Formação
-pt-MZ,Training Feedback,Feedback da Formação
-pt-MZ,Training Result,Resultado da Formação
-pt-MZ,Daily Work Summary,Resumo Diário de Trabalho
-pt-MZ,Daily Work Summary Group,Grupo de Resumos Diários de Trabalho
-pt-MZ,Daily Work Summary Replies,Respostas de Resumos Diários de Trabalho
-pt-MZ,Employee Exits,Saídas de Trabalhadores
-pt-MZ,Department Wise Openings,Vagas por Departamento
-pt-MZ,Job Opening,Vaga de Emprego
-pt-MZ,Job Offer,Oferta de Emprego
-pt-MZ,Interviews (This Week),Entrevistas (Esta Semana)
-pt-MZ,Jobs,Empregos
-pt-MZ,Staffing Plan,Plano de Pessoal
-pt-MZ,Job Requisition,Requisição de Emprego
-pt-MZ,Job Applicant,Candidato a Emprego
-pt-MZ,Employee Referral,Recomendação de Trabalhador
-pt-MZ,Interviews,Entrevistas
-pt-MZ,Interview Type,Tipo de Entrevista
-pt-MZ,Interview Round,Ronda de Entrevista
-pt-MZ,Interview,Entrevista
-pt-MZ,Interview Feedback,Feedback da Entrevista
-pt-MZ,Appointment Letter Template,Modelo de Carta de Nomeação
-pt-MZ,Appointment Letter,Carta de Nomeação
-pt-MZ,Recruitment Analytics,Análise de Recrutamento
-pt-MZ,Shift & Attendance,Turnos & Assiduidade
-pt-MZ,Attendance Count,Contagem de Assiduidade
-pt-MZ,Employee Checkin,Registo de Entrada do Trabalhador
-pt-MZ,Attendance,Assiduidade
-pt-MZ,Shift Request,Pedido de Turno
-pt-MZ,Roster,Escala de Trabalho
-pt-MZ,Shifts,Turnos
-pt-MZ,Shift Type,Tipo de Turno
-pt-MZ,Shift Location,Local de Turno
-pt-MZ,Shift Assignment,Atribuição de Turno
-pt-MZ,Shift Schedule,Horário de Turno
-pt-MZ,Shift Schedule Assignment,Atribuição de Horário de Turno
-pt-MZ,Shift Assignment Tool,Ferramenta de Atribuição de Turnos
-pt-MZ,Attendance Request,Pedido de Assiduidade
-pt-MZ,Employee Attendance Tool,Ferramenta de Assiduidade do Trabalhador
-pt-MZ,Upload Attendance,Carregar Assiduidade
-pt-MZ,Overtime,Horas Extra
-pt-MZ,Overtime Type,Tipo de Horas Extra
-pt-MZ,Overtime Slip,Ficha de Horas Extra
-pt-MZ,Monthly Attendance Sheet,Mapa Mensal de Assiduidade
-pt-MZ,Shift Attendance,Assiduidade por Turno
-pt-MZ,Employee Hours Utilization Based On Timesheet,Utilização de Horas do Trabalhador com Base no Timesheet
-pt-MZ,Project Profitability,Rentabilidade do Projeto
-pt-MZ,Employees working on a holiday,Trabalhadores a Trabalhar em Feriado
-pt-MZ,Leaves,Licenças / Férias
-pt-MZ,Leave Application,Pedido de Licença
-pt-MZ,Leave Allocation,Atribuição de Licença
-pt-MZ,Leave Type,Tipo de Licença
-pt-MZ,Leave Period,Período de Licença
-pt-MZ,Leave Policy,Política de Licenças
-pt-MZ,Leave Policy Assignment,Atribuição de Política de Licenças
-pt-MZ,Leave Control Panel,Painel de Controlo de Licenças
-pt-MZ,Leave Encashment,Conversão de Licença em Dinheiro
-pt-MZ,Compensatory Leave Request,Pedido de Licença Compensatória
-pt-MZ,Dunning,Cobrança de Inadimplentes
-pt-MZ,Financial Reports,Relatórios Financeiros
-pt-MZ,Ledger,Razão
-pt-MZ,Customer Ledger Summary,Resumo do Razão de Clientes
-pt-MZ,Supplier Ledger Summary,Resumo do Razão de Fornecedores
-pt-MZ,Asset Capitalization,Capitalização de Ativo
-pt-MZ,Asset Activity,Atividade do Ativo
-pt-MZ,Permission Manager,Gestor de Permissões
-pt-MZ,Job Position,Cargo
-pt-MZ,Work Schedule,Horário de Trabalho
-pt-MZ,Login,Iniciar sessão
-pt-MZ,Login to {0},Iniciar sessão no {0}
-pt-MZ,Login To {0},Iniciar sessão no {0}
-pt-MZ,Email,E-mail
-pt-MZ,Email Address,Endereço de e-mail
-pt-MZ,Password,Palavra-passe
-pt-MZ,Show,Mostrar
-pt-MZ,Forgot Password?,Esqueceu a palavra-passe?
-pt-MZ,Reset Password,Redefinir palavra-passe
-pt-MZ,Back to Login,Voltar ao início de sessão
-pt-MZ,Login with Email Link,Iniciar sessão com ligação por e-mail
-pt-MZ,Send login link,Enviar ligação de acesso
-pt-MZ,Login with {0},Iniciar sessão com {0}
-pt-MZ,Login with LDAP,Iniciar sessão com LDAP
-pt-MZ,Javascript is disabled on your browser,O JavaScript está desativado no seu navegador
-pt-MZ,You need to enable JavaScript for your app to work.,Precisa ativar o JavaScript para a sua aplicação funcionar.
-pt-MZ,Both login and password required,É obrigatório indicar o utilizador e a palavra-passe
-pt-MZ,Valid email and name required,É necessário e-mail e nome válidos
-pt-MZ,Valid Login id required.,É necessário um identificador de início de sessão válido.
-pt-MZ,Login with Frappe Cloud,Iniciar sessão com Frappe Cloud
-pt-MZ,Click on the button to log in to {0},Clique no botão para iniciar sessão no {0}
-pt-MZ,The link will expire in {0} minutes,A ligação expira em {0} minutos
-pt-MZ,Log In To {0},Iniciar sessão no {0}
-pt-MZ,Don't have an account?,Não tem uma conta?
-pt-MZ,Sign up,Registar
+A list of resources which the Client App will have access to after the user allows it.<br> e.g. project,"Uma lista de recursos que o aplicativo cliente terá acesso a depois que o usuário permita. <br> por exemplo, do projeto"
+A symbol for this currency. For e.g. $,Um símbolo para esta moeda. Por exemplo: MT
+ALL,Tudo
+API Access,Acesso API
+API Key,Chave da API
+API Method,Método API
+API Secret,Segredo da API
+Accepted,Aceito
+Account,Conta
+Accounts Manager,Gerente de Contas
+Accounts User,Usuário de Contas
+Action,Ação
+Action / Route,Ação / Rota
+Action Timeout (Seconds),Tempo Limite de Ação (Segundos)
+Actions,Ações
+Active,Ativo
+Active Domains,Domínios ativos
+Activity,Atividade
+Add,Adicionar
+Add Child,Adicionar Sub-item
+Add Container,Adicionar recipiente
+Add Gray Background,Adicionar fundo cinza
+Add Multiple,Adicionar Múltiplos
+Add Participants,Adicione Participantes
+Add Total Row,Adicionar Linha de Total
+Add Translate Data,Adicionar Dados Traduzidos
+Add Unsubscribe Link,Adicionar link para cancelar inscrição
+Added {0} ({1}),Adicionado {0} ({1})
+Additional Permissions,Permissões Adicionais
+Address,Endereço
+Address Title,Título do Endereço
+Address and other legal information you may want to put in the footer.,Endereço e outras informações legais que você pode querer colocar no rodapé.
+Administrator,Administrador
+Advanced Settings,Configurações avançadas
+After Cancel,Após Cancelar
+After Delete,Após Excluir
+After Save,Após salvar
+After Save (Submitted Document),Após salvar (documento enviado)
+After Submit,Após o envio
+Aggregate Function Based On,Função agregada com base em
+Alert,Alerta
+Align Labels to the Right,Alinhar etiquetas à direita
+Align Right,Alinhar à direita
+All,Todos
+All Day,Dia Inteiro
+Allocated To,Atribuído a
+Allow Auto Repeat,Permitir repetição automática
+Allow Bulk Edit,Permitir edição em massa
+Allow Guest,Permitir convidado
+Allow Guest to View,Permitir visualização de convidado
+Allow Login using User Name,Permitir Login usando o nome de usuário
+Allow Modules,Permitir Módulos
+Allow Print for Cancelled,Permitir impressão para cancelado
+Allow Read On All Link Options,Permitir leitura em todas as opções de link
+Allow Rename,Permitir Renomear
+Allow Roles,Permitir Funções
+Allow Self Approval,Permitir auto-aprovação
+Allow approval for creator of the document,Permitir aprovação para o criador do documento
+Allow events in timeline,Permitir eventos na linha do tempo
+Allow in Quick Entry,Permitir na entrada rápida
+Allow on Submit,Permitir ao Enviar
+Allow only one session per user,Permitir apenas uma sessão por usuário
+Allow saving if mandatory fields are not filled,Permitir salvar se os campos obrigatórios não são preenchidas
+Allowed,Permitido
+Allowed In Mentions,Permitido nas menções
+"Always add ""Draft"" Heading for printing draft documents","Sempre adicionar ""Rascunho"" no cabeçalho para impressão de documentos não enviados"
+Amend,Corrigir
+Analytics,Análise
+Annual,Anual
+App,Aplicativo
+Append To,Acrescente Para
+Application Logo,Logo do aplicativo
+Application Name,Nome da Aplicação
+Application Version,Versão do aplicativo
+Applied On,Aplicado em
+Apply Strict User Permissions,Aplicar permissões de usuário estrito
+Apply this rule if the User is the Owner,Aplicar esta regra se o usuário é o proprietário
+Assign Condition,Atribuir condição
+Assign To Users,Atribuir aos usuários
+Assigned,Atribuído
+Assigned By Full Name,Atribuído por Nome completo
+Assigned To,Atribuído A
+Assignment Completed,Atribuição Concluída
+Assignment Days,Dias de atribuição
+Assignment Rules,Regras de Atribuição
+Attach Image,Anexar Imagem
+Attach Print,Anexar cópia
+Attached File,Arquivo anexo
+Attached To Field,Relacionado ao campo
+Attached To Name,Anexado Para Nome
+Attachment,Anexo
+Attachment Limit (MB),Limite de Anexo (MB)
+Attachment Link,Link de Anexo
+Attachment Removed,Anexo Removido
+Attachments,Anexos
+Auth URL Data,Dados de URL de autenticação
+Author,Autor
+Authorization Code,Código de autorização
+Authorize API Indexing  Access,Autorizar acesso de indexação de API
+Authorize Google Calendar Access,Autorizar acesso ao Google Agenda
+Authorize Google Contacts Access,Autorizar o acesso dos Contatos do Google
+Authorize URL,Autorizar URL
+Authorized,Autorizado
+Auto Name,Nome Automático
+Auto Reply Message,Resposta Automática
+Awaiting Password,Aguardando Senha
+Awaiting password,Aguardando Senha
+BCC,CCO
+Background Color,Cor de Fundo
+Background Workers,Trabalhadores em Segundo Plano
+Banner,Faixa
+Banner HTML,Faixa HTML
+Barcode,Código de Barras
+Base Distinguished Name (DN),Base de dados de nome distinto (DN)
+Base URL,URL Base
+Based On,Baseado Em
+Based on Field,Com base no campo
+Based on Permissions For User,Com base em permissões para o usuário
+Basic,Básico
+Before Cancel,Antes de Cancelar
+Before Delete,Antes de excluir
+Before Insert,Antes da inserção
+Before Save,Antes de salvar
+Before Save (Submitted Document),Antes de salvar (documento enviado)
+Before Submit,Antes de enviar
+Billing,Faturamento
+Birth Date,Data de nascimento
+Block Modules,Bloquear Módulos
+Blocked,Bloqueado
+Blue,Azul
+Bold,Negrito
+Bottom,Inferior
+Brand,Marca
+Brand HTML,Marca HTML
+Brand Image,Imagem da Marca
+Browser Version,Versão do navegador
+Brute Force Security,Segurança da força bruta
+Button,Botão
+Button Gradients,Gradientes de botão
+Button Rounded Corners,Botão Cantos Arredondados
+Button Shadows,Sombras de botão
+Bypass Restricted IP Address Check If Two Factor Auth Enabled,"Ignorar endereço IP restrito, verificar se a autenticação de dois fatores estiver habilitada"
+Bypass restricted IP Address check If Two Factor Auth Enabled,Ignorar verificação de endereço IP restrito se dois fatores de autenticação habilitados
+CC,Cc
+CSS Class,Classe CSS
+Calendar Name,Nome do calendário
+Call To Action,Apelo à ação
+Call To Action URL,URL de apelo à ação
+Callback Message,Mensagem de retorno
+Callback Title,Título de retorno
+Campaign,Campanha
+Cancelled,Cancelado
+Card,Cartão
+Cards,Postais
+Category Description,Descrição da Categoria
+Category Name,Nome da Categoria
+Center,Centro
+Change Label (via Custom Translation),Alterar etiqueta (via tradução personalizada)
+Change Password,Alterar Senha
+Channel,Canal
+Chart,Gráfico
+Chart Configuration,Configuração de Gráfico
+Chart Name,Nome do gráfico
+Chart Options,Opções de gráfico
+Chart Source,Fonte do gráfico
+Charts,Gráficos
+Check,Verifica
+Check this if you want to force the user to select a series before saving. There will be no default if you check this.,Marque esta opção se você deseja forçar o usuário a selecionar uma série antes de salvar. Não haverá nenhum padrão se você marcar isso.
+Choose authentication method to be used by all users,Escolha o método de autenticação a ser usado por todos os usuários
+City,Cidade
+City/Town,Cidade/Município
+Clicked,Clicado
+Client,Cliente
+Client Code,Código do cliente
+Client Credentials,Credenciais no cliente
+Client ID,ID do Cliente
+Client Information,Informação ao cliente
+Client Secret,Segredo do cliente
+Close,Fechar
+Close Condition,Fechar Condição
+Closed,Fechado
+Code,Código
+Collapse All,Recolher Todos
+Collapsible,Desmontável
+Collapsible Depends On,Depende dobrável
+Column Break,Quebra de coluna
+Columns,Colunas
+Columns / Fields,Colunas / Campos
+Comment By,Comentário por
+Comments,Comentários
+Comments and Communications will be associated with this linked document,Comentários e comunicações serão associados com este documento relacionado
+Commit,Comprometer
+Communication,Comunicação
+Company Introduction,Introdução da Empresa
+Company Name,Nome da Empresa
+Complete,Concluído
+Completed,Concluído
+Contact Details,Detalhes do Contato
+Contact Numbers,Números de contato
+Contacts,Contatos
+Context,Contexto
+Continue,Continuar
+Contributed,Contribuído
+Contribution Document Name,Nome do documento de contribuição
+Copyright,Direitos autorais
+Counter,Contador
+Country,País
+Country Name,Nome do País
+County,Distrito
+Create,Criar
+Create Entry,Criar entrada
+Cron Format,Formato Cron
+Currency,Moeda
+Currency Name,Nome da Moeda
+Currency Precision,Precisão de moeda
+Custom CSS,CSS Personalizado
+Custom Configuration,Configuração Personalizada
+Custom Format,Formato Personalizado
+Custom HTML Help,Ajuda HTML Personalizado
+Custom Options,Opções Personalizadas
+Custom Overrides,Substituições personalizadas
+Custom Report,Relatório Personalizado
+Custom SCSS,SCSS personalizado
+Daily,Diário
+Daily Long,Diário Longo
+Danger,Perigo
+Dark Color,Cor Escura
+Date,Data
+Date Format,Formato de Data
+Date and Number Format,Data e Formato de número
+Datetime,Data e Hora
+Day of Week,Dia da Semana
+Days After,Dias Após
+Days Before,Dias Antes
+Days Before or After,Dias Antes ou Após
+Dear,Caro
+"Dear System Manager,","Caro Administrador de Sistema,"
+Default,Padrão
+Default Letter Head,Cabeçalho de Carta Padrão
+Default Portal Home,Página inicial do portal padrão
+Default Print Format,Formato de impressão padrão
+Default Print Language,Idioma de impressão padrão
+Default Redirect URI,Padrão de redirecionamento URI
+Default Role at Time of Signup,Função padrão no momento da inscrição
+Default Sort Field,Campo de classificação padrão
+Default Sort Order,Ordem de classificação padrão
+Default Value,Valor padrão
+"Default: ""Contact Us""","Padrão: ""Fale Conosco"""
+Defaults,Padrões
+Delete,Excluir
+Delete,Excluir
+Deleted Name,Nome Excluído
+Department,Departamento
+Depends On,Depende de
+Description,Descrição
+Designation,Designação
+Desk Access,Acesso ao Ambiente de Trabalho
+Digits,Dígitos
+Disable Auto Refresh,Desativar atualização automática
+Disable Count,Desativar Contagem
+Disable SMTP server authentication,Desativar autenticação do servidor SMTP
+Disable Sidebar Stats,Desativar Estatísticas da Barra Lateral
+Disabled,Desativado
+Display Depends On,Visualização depende
+Document,Documento
+Document Actions,Ações do Documento
+Document Link,Link do Documento
+Document Links,Links de documentos
+Document Name,Nome do Documento
+Document Share,Partilha de Documentos
+Document States,Documento Unidos
+Document Tag,Etiqueta de Documento
+Document Title,Título do documento
+Documentation Link,Link da documentação
+Documentation URL,URL de documentação
+Domains HTML,Domínios HTML
+Done,Feito
+Donut,Rosquinha
+Download,Baixar
+Download,Baixar
+Download Template,Baixar Modelo
+Draft,Rascunho
+Due Date,Data de Vencimento
+Due Date Based On,Data de vencimento baseada em
+Duplicate,Duplicar
+Duration,Duração
+Dynamic Filters,Filtros Dinâmicos
+Dynamic Filters JSON,Filtros dinâmicos JSON
+Dynamic Filters Section,Seção de Filtros Dinâmicos
+Dynamic Report Filters,Filtros dinâmicos de relatórios
+Dynamic Route,Rota Dinâmica
+Dynamic Template,Modelo dinâmico
+Edit,Editar
+Edit,Editar
+Edit,Editar
+Edit,Editar
+Email Inbox,Caixa de Entrada
+Email Sent At,E-mail enviado em
+Enable,Permitir
+Enable Auto Reply,Ativar resposta automática
+Enable Automatic Linking in Documents,Ativar Vinculação Automática em Documentos
+Enable Comments,Ativação de comentários
+Enable Password Policy,Ativar política de senha
+Enable Print Server,Ativar servidor de impressão
+Enable Raw Printing,Ativar impressão bruta
+Enable Scheduled Jobs,Ativar Tarefas Agendadas
+Enable Security,Ativar segurança
+Enable Social Login,Ativar Login Social
+End Date,Data Final
+End Date Field,Campo de data final
+Ends on,Termina em
+Energy Point,Ponto de energia
+Enter Value,Digite o Valor
+Error,Erro
+Error,Erro
+Event Category,Categoria do Evento
+Example,Exemplo
+Example: #Tree/Account,Exemplo: # árvore / conta
+Example: 00001,Exemplo: 00001
+Exception,Exceção
+Expand All,Expandir Todos
+Expert,Especialista
+Expiration time,Data de validade
+Expired,Expirado
+Expires In,Expira em
+Expires On,Expira Em
+Expiry time of QR Code Image Page,Tempo de expiração da página de imagem de código QR
+Export From,Exportar de
+Expose Recipients,Mostrar Destinatários
+"Expression, Optional","Expressão, Opcional"
+Failed,Falhou
+Feedback,Comentários
+Female,Feminino
+Fetch From,Buscar de
+Field Description,Descrição do Campo
+Field to Track,Campo para rastrear
+File Information,Informações do arquivo
+File Name,Nome do arquivo
+File Size,Tamanho do arquivo
+File URL,URL do arquivo
+Filter Data,Filtrar dados
+Filter Meta,Filtrar Meta
+Filter Values,Valores de filtro
+Filters,Filtros
+Filters Configuration,Configuração de Filtros
+Filters Display,Exibição dos Filtros
+Filters JSON,Filtros JSON
+Filters Section,Seção de Filtros
+Finished,Acabado
+First Success Message,Primeira mensagem de sucesso
+Flag,Bandeira
+Float Precision,Precisão de Casas Decimais
+Fold,Dobrar
+Folder,Pasta
+Font Properties,Propriedades da fonte
+Font Size,Tamanho da Fonte
+Fonts,Fontes
+Footer,Rodapé
+Footer HTML,HTML de rodapé
+Footer Items,Itens do Rodapé
+Footer Logo,Logotipo do rodapé
+Footer Template,Modelo de rodapé
+Footer Template Values,Valores de modelo de rodapé
+Footer will display correctly only in PDF,Rodapé será exibido corretamente somente em PDF
+For Value,Por valor
+For example: {} Open,Por exemplo: {} Abra
+"For more information, <a class=""text-muted"" href=""https://docs.frappe.io/erpnext/user/manual/en/linking-emails-to-document"">click here</a>.","Para mais informações, <a class=""text-muted"" href=""https://docs.frappe.io/erpnext/user/manual/en/linking-emails-to-document"">clique aqui</a>."
+Force,Força
+Force Show,Forçar Exibição
+Force User to Reset Password,Forçar usuário a redefinir a senha
+Form Settings,Configurações de formulário
+Form URL-Encoded,Codificado em URL do formulário
+Format Data,Formato de dados
+Fraction,Fração
+Fraction Units,Unidades Fracionadas
+From,De
+From,De
+From Date,Data De
+From Date Field,Do campo de data
+From Full Name,De nome completo
+Full,Cheio
+Full Width,Largura completa
+GMail,Gmail
+Generate Keys,Gerar Chaves
+Geolocation,Geolocalização
+Get Contacts,Obter contatos
+Get Items,Obter Itens
+Get your globally recognized avatar from Gravatar.com,Obtenha seu avatar globalmente reconhecido de Gravatar.com
+Global Unsubscribe,Cancelar Inscrição Global
+Go to Page,Vá para página
+Google Analytics ID,ID do Google Analytics
+Google Calendar Event ID,ID do evento do Google Agenda
+Google Calendar ID,ID da Agenda do Google
+Green,Verde
+Group,Grupo
+Group By,Agrupar Por
+Group By Based On,Agrupar por Com base em
+Group By Type,Agrupar por tipo
+Group Node,Grupo de Nós
+HH:mm,HH: mm
+HTML Editor,Editor de HTML
+HTML Page,Página HTML
+HTML for header section. Optional,HTML para a seção de cabeçalho. opcional
+Half,Metade
+Header,Cabeçalho
+Header HTML,HTML de cabeçalho
+Headers,Cabeçalhos
+Heatmap,Mapa de calor
+"Hello,","Olá,"
+Help,Ajuda
+Help Articles,Artigos de Ajuda
+Help HTML,Ajuda HTML
+Hide Block,Esconder o Bloco
+Hide Border,Ocultar borda
+Hide Copy,Ocultar Cópia
+Hide Days,Ocultar dias
+Hide Seconds,Ocultar segundos
+High,Alto
+Higher priority rule will be applied first,Regra de prioridade mais alta será aplicada primeiro
+Highlight,Realçar
+Home,Início
+Home Page,Pagina inicial
+Home Settings,Configurações iniciais
+Hourly,De hora em hora
+Hourly Long,Por hora
+Hourly rate limit for generating password reset links,Limite de taxa por hora para gerar links de redefinição de senha
+Hours,Horas
+"How should this currency be formatted? If not set, will use system defaults","Como essa moeda deve ser formatada? Se não for definido, serão usados os padrões do sistema"
+IP Address,Endereço de IP
+Icon will appear on the button,O ícone aparecerá no botão
+Identity Details,Detalhes da identidade
+"If checked, all other workflows become inactive.","Se marcada, todos os outros fluxos de trabalho tornam-se inativos."
+"If disabled, this role will be removed from all users.",Se esta função for desativada será removida em todos os usuários.
+"If enabled, changes to the document are tracked and shown in timeline","Se ativado, as alterações no documento são rastreadas e mostradas na linha do tempo"
+"If enabled, document views are tracked, this can happen multiple times","Se ativado, as visualizações de documentos são rastreadas, isso pode acontecer várias vezes"
+"If enabled, the document is marked as seen, the first time a user opens it","Se ativado, o documento é marcado como visto, a primeira vez que um usuário o abre"
+"If enabled, the notification will show up in the notifications dropdown on the top right corner of the navigation bar.","Se ativada, a notificação aparecerá na lista suspensa de notificações no canto superior direito da barra de navegação."
+"If enabled, users will be notified every time they login. If not enabled, users will only be notified once.","Se ativado, os usuários serão notificados sempre que iniciarem sessão. Se não estiver ativado, os usuários só serão notificados uma vez."
+If non standard port (e.g. 587),"Se não for a porta padrão (por exemplo, 587)"
+"If not set, the currency precision will depend on number format","Se não for definido, a precisão da moeda dependerá do formato de número"
+If user is the owner,Se o usuário é o proprietário
+Ignore XSS Filter,Ignorar Filtro XSS
+Ignore attachments over this size,Ignorar anexos maiores que este tamanho
+Ignored Apps,Aplicativos ignorados
+Image,Imagem
+Image Field,Campo de Imagem
+Image Link,Link da Imagem
+Implicit,Implícito
+Import,Importar
+Import,Importar
+Import File,Importar arquivo
+Import File Errors and Warnings,Erros e avisos de importação de arquivos
+Import Log Preview,Visualização do registro de importação
+Import Preview,Visualização de importação
+Import Warnings,Avisos de importação
+Import from Google Sheets,Importar do Planilhas Google
+In Days,Em dias
+In Filter,No Filtro da Lista
+In Global Search,Na Busca Global
+In Preview,Na pré-visualização
+In Progress,Em Progresso
+In Reply To,Em resposta a
+In Standard Filter,Em Filtro Padrão
+In points. Default is 9.,Em pontos. O padrão é 9.
+In seconds,Em segundos
+Include Search in Top Bar,Incluem a busca no Top Bar
+Incoming,Entrada
+Indicator,Indicador
+Info,Informações
+Initial Sync Count,Contagem de sincronização inicial
+Insert New Records,Inserir novos registros
+Insert Style,Inserir Estilo
+Int,Inteiro
+Introduce your company to the website visitor.,Apresente sua empresa para o visitante do site.
+Introductory information for the Contact Us Page,Informação introdutória para a página Fale Conosco
+Invalid Credentials,Credenciais Inválidas
+Invalid URL,URL inválida
+Inverse,Inverso
+Is Active,É Ativo
+Is Attachments Folder,É Pasta de Anexos
+Is Complete,Está completo
+Is Completed,Está completo
+Is Custom Field,É campo personalizado
+Is Folder,É Pasta
+Is Mandatory Field,É campo obrigatório
+Is Optional State,É estado opcional
+Is Primary,É primário
+Is Primary Contact,É o contato principal
+Is Primary Mobile,É o Telemóvel principal
+Is Primary Phone,É o telefone principal
+Is Private,É privada
+Is Public,É público
+Is Published Field,É Publicado campo
+Is Skipped,É pulado
+Is Standard,É Padrão
+Is Table,É Tabela
+Is Tree,É árvore
+Is Unique,É único
+JSON Request Body,Corpo da solicitação JSON
+Kanban Board,Painel Kanban
+Key,Chave
+LDAP First Name Field,Campo Primeiro Nome do LDAP
+LDAP Group,Grupo LDAP
+LDAP Group Field,Campo do Grupo LDAP
+LDAP Group Mappings,Mapeamentos de grupo LDAP
+LDAP Last Name Field,Campo Sobrenome LDAP
+LDAP Middle Name Field,Campo de nome do meio LDAP
+LDAP Mobile Field,Campo Móvel LDAP
+LDAP Phone Field,Campo de telefone LDAP
+LDAP Search String,Palavra de Busca do LDAP
+LDAP Security,Segurança LDAP
+LDAP User Creation and Mapping,Criação e Mapeamento de Usuários LDAP
+LDAP Username Field,Campo Nome de Usuário do LDAP
+Label Help,Ajuda sobre Etiquetas
+Label and Type,Etiqueta e Tipo
+Landing Page,Página de chegada
+Language Code,Código do Idioma
+Language Name,Nome do Idioma
+Last Active,Ativo pela última vez
+Last Execution,Última Execução
+Last IP,Último IP
+Last Known Versions,Últimas versões conhecidas
+Last Login,Último Login
+Last Month,Mês passado
+Last Password Reset Date,Data da última redefinição de senha
+Last Quarter,Ultimo quarto
+Last Sync On,Última sincronização em
+Last Synced On,Última sincronização em
+Last User,Último usuário
+Last Week,Semana passada
+Last Year,Ano passado
+Leave blank to repeat always,Deixe em branco para repetir sempre
+Ledger,Livro Razão
+Letter,Carta
+Letter Head Based On,Carta de cabeça com base em
+Letter Head Image,Carta cabeça imagem
+Letter Head Name,Nome do timbrado
+Letter Head in HTML,Cabeça Carta em HTML
+Light Color,Cor clara
+Likes,Gostos
+Limit,Limite
+Line,Linha
+Link Cards,Cartões de ligação
+Link Fieldname,Nome do campo do link
+Link Name,Nome do Link
+Link Title,Título do Link
+Link To,Link para
+Link to the page you want to open. Leave blank if you want to make it a group parent.,Link para a página que você deseja abrir. Deixe em branco se você quiser torná-lo um pai grupo.
+Linked,Relacionado
+List,Lista
+Load Balancing,Balanceamento de carga
+Location,Localização
+Log,Registo
+Logout,Sair
+Logout All Sessions on Password Reset,Sair de todas as sessões ao redefinir a senha
+Logout From All Devices After Changing Password,Saia de todos os dispositivos após alterar a senha
+Long Text,Texto Longo
+Low,Baixo
+Madam,Senhora
+Main Section,Seção Principal
+Main Section (HTML),Seção Principal (HTML)
+Main Section (Markdown),Seção Principal (Remarcação)
+Maintenance Manager,Gerente de Manutenção
+Maintenance User,Usuário da Manutenção
+Male,Masculino
+Mandatory,Obrigatório
+Mandatory Depends On,Obrigatório Depende
+Map route parameters into form variables. Example <code>/project/&lt;name&gt;</code>,Mapeie os parâmetros da rota em variáveis de formulário. Exemplo <code>/project/&lt;name&gt;</code>
+Markdown Editor,Editor de Markdown
+Master,Cadastro
+Max Attachments,Máx. de Anexos
+Max Length,Comprimento máximo
+Max Value,Max Valor
+Maximum,Máximo
+Maximum Number of Fields,Número Máximo de Campos
+Medium,Médio
+Mention,Menção
+Mentions,Menções
+Merge with existing,Mesclar com existente
+Message Examples,Exemplos de Mensagens
+Message ID,ID da Mensagem
+Message Parameter,Parâmetro da mensagem
+Message Sent,Mensagem Enviada
+Method,Método
+Middle Name,Nome do Meio
+Minimum,Mínimo
+Miss,Senhorita
+Missing Values Required,Faltando Valores Obrigatórios
+Mobile,Móvel
+Mobile No,Telemóvel
+Module Name,Nome do Módulo
+Modules HTML,Módulos HTML
+Month,Mês
+Monthly,Mensal
+Monthly Long,Mensalmente Longo
+More Information,Mais Informações
+More content for the bottom of the page.,Mais conteúdo na parte de baixo da página.
+Move,Mover
+Must be a publicly accessible Google Sheets URL,Deve ser um URL de planilhas do Google acessível publicamente
+Mute Sounds,Desativar Sons
+Name,Nome
+Naming,Nomeação
+New,Novo
+New value to be set,Novo valor a ser definido
+Next,Próximo
+Next,Próximo
+Next Schedule Date,Próxima data programada
+No,Não
+No,Não
+No,Não
+No Copy,Nenhuma Cópia
+No Data,Sem Dados
+No data to export,Nenhum dado para exportar
+Non Negative,Não Negativo
+Non-Conforming,Não conforme
+None,Nenhum
+Not Allowed,Não Desejados
+Not Permitted,Não Permitido
+Not active,Inativo
+Not permitted,Não Permitido
+Note,Nota
+"Note: For best results,  images must be of the same size and width must be greater than height.","Nota: Para obter melhores resultados, as imagens devem ter o mesmo tamanho e a largura deve ser maior que a altura."
+Note: Multiple sessions will be allowed in case of mobile device,Observação: Serão permitidas múltiplas sessões no caso de dispositivo móvel
+Notify if unreplied,Informar se não for respondido
+Notify if unreplied for (in mins),Informar se não for respondido em (minutos)
+Number,Número
+Number Format,Formato de número
+Number of Backups,Número de Backups
+Number of Groups,Número de Grupos
+OTP App,Aplicação OTP
+OTP Issuer Name,Nome da Emissora OTP
+Off,Desligado
+Office,Escritório
+On Hold,Em Espera
+Only Allow Edit For,Somente permite edição para
+Only Send Records Updated in Last X Hours,Somente Enviar Registros Atualizados em Últimas X Horas
+Open,Aberto
+Open,Aberto
+Open Documents,Documentos abertos
+Open Reference Document,Documento de Referência Aberto
+Open URL in a New Tab,Abrir URL em uma nova guia
+Opened,Inaugurado
+Operation,Operação
+Optional: The alert will be sent if this expression is true,Opcional: O alerta será enviado se essa expressão é verdadeira
+Options Help,Ajuda sobre Opções
+Order,Pedido
+Org History,História da Organização
+Org History Heading,Cabeçalho da História da Organização
+Other,Outro
+Outgoing,Saída
+Output,Saída
+Owner,Proprietário
+PDF Page Size,Tamanho da página PDF
+PDF Settings,Configurações do PDF
+Page Building Blocks,Blocos de construção de página
+Page HTML,Página HTML
+Page Name,Nome da Página
+Page Settings,Configurações da página
+Page {0} of {1},Página {0} de {1}
+Parent Label,Etiqueta Pai
+Passive,Passivo
+Password Reset Link Generation Limit,Limite de geração de link de redefinição de senha
+Password for Base DN,Senha para DN de base
+Patch,Remendo
+Path to Server Certificate,Caminho para o certificado do servidor
+Path to private Key File,Caminho para o arquivo de chaves privado
+Pending,Pendente
+Pending Approval,Aprovação pendente
+Percentage,Percentagem
+Period,Período
+Perm Level,Nível Permanente
+Permanent,Permanente
+Permission Rules,Regras de Permissão
+Personal,Pessoal
+Phone,Telefone
+Pie,Torta
+Plant,Fábrica
+Port,Porta
+Position,Posição
+Precision,Precisão
+Prefer not to say,Prefiro não dizer
+Preferred Billing Address,Endereço preferido de faturamento
+Preferred Shipping Address,Endereço preferido para entrega
+Prefix,Prefixo
+Preview,Pré-visualização
+Preview HTML,Pré-visualização de HTML
+Preview Message,Visualizar mensagem
+Primary,Primário
+Primary Color,Cor primária
+Print,Impressão
+Print,Impressão
+Print Format Help,Ajuda sobre Formatos de Impressão
+Print Format Type,Tipo do Formato de Impressão
+Print Heading,Cabeçalho de Impressão
+Print Hide,Ocultar Impressão
+Print Hide If No Value,Ocultar Impressão se não Preenchido
+Print Server,Servidor de impressão
+Print Style Name,Nome do estilo de impressão
+Print Style Preview,Estilo de visualização de impressão
+Print Width,Largura de impressão
+"Print Width of the field, if the field is a column in a table","Largura de impressão do campo, se o campo é uma coluna na tabela"
+Print with letterhead,Imprimir com o timbre
+Printer Name,Nome da impressora
+Priority,Prioridade
+Project,Projeto
+Property Depends On,Propriedade depende
+Provider,Fornecedor
+Provider Name,Nome do provedor
+Pull from Google Calendar,Puxe do Google Agenda
+Pulled from Google Calendar,Extraído do Google Agenda
+Pulled from Google Contacts,Extraído dos Contatos do Google
+Purchase Manager,Gerente de Compras
+Purchase Master Manager,Gerente de Cadastros de Compras
+Purchase User,Usuário de Compra
+Push to Google Calendar,Enviar para o Google Agenda
+Push to Google Contacts,Enviar para os Contatos do Google
+Quarterly,Trimestralmente
+Query,Consulta
+Query Options,Opções de Consulta
+Quick Entry,Entrada Rápida
+RAW Information Log,Registro de informações RAW
+Range,Alcance
+Read Only Depends On,Somente leitura depende
+Read by Recipient,Lido por destinatário
+Read by Recipient On,Lido por destinatário ativado
+Reason,Motivo
+Received,Recebido
+Receiver By Document Field,Receptor por campo de documento
+Receiver By Role,Receptor por função
+Receiver Parameter,Parâmetro do recebedor
+Recipient,Destinatário
+Recipient Unsubscribed,Destinatário com inscrição cancelada
+Recipients,Destinatários
+Red,Vermelho
+Redirect URL,Redirecionar URL
+Reference,Referência
+Reference Date,Data de Referência
+Reference DocName,Nome do Documento de Referência
+Reference Docname,Nome do Documento de Referência
+Reference Name,Nome de Referência
+Reference Owner,Proprietário de Referência
+Reference Report,Relatório de referência
+Reference name,Nome de Referência
+Refresh,Atualizar
+Refresh Google Sheet,Atualizar planilha do Google
+Relinked,Religado
+Remember Last Selected Value,Lembrar última seleção
+Rename,Renomear
+Reopen,Reabrir
+Repeat On,Repetir em
+Repeat Till,Repita até que
+Repeat on Day,Repetir no dia
+Repeat on Last Day of the Month,Repetir no último dia do mês
+Repeat this Event,Repita este evento
+Replied,Respondido
+Report,Relatório
+Report Description,Descrição do relatório
+Report Filters,Filtros de relatório
+Report Hide,Ocultar Relatório
+Report Information,Informações do Relatório
+Reports,Relatórios
+Request Data,Solicitar Dados
+Request Structure,Estrutura da solicitação
+Request URL,URL do pedido
+Require Trusted Certificate,Exigir certificado confiável
+Reset,Redefinir
+Reset Password Key,Redefinição de senha chave
+Response,Resposta
+Restored,Restaurado
+Restrict IP,Restringir IP
+Restrict To Domain,Restringir ao domínio
+Restrict to Domain,Restringir ao domínio
+Reverse Icon Color,Inverta Ícone Cor
+Revoked,Revogado
+Role Name,Nome da Função
+Role and Level,Função e Nível
+Roles Assigned,Funções Atribuídas
+Roles HTML,Funções HTML
+Round Robin,Robin Redondo
+Route Redirects,Redirecionamentos de rota
+Row Index,Índice de linhas
+Row Name,Nome da Linha
+Rule,Regra
+Rule Conditions,Condições da regra
+Rules with higher priority number will be applied first.,Regras com número de prioridade mais alta serão aplicadas primeiro.
+Run Jobs only Daily if Inactive For (Days),Executar trabalhos apenas diariamente se inativo por (dias)
+Run scheduled jobs only if checked,As tarefas agendadas somente serão executadas se a opção estiver marcada
+SSL/TLS Mode,Modo SSL / TLS
+Sales Manager,Gerente de Vendas
+Sales Master Manager,Gerente de Cadastros de Vendas
+Sales User,Usuário de Vendas
+Sample,Amostra
+Save,Salvar
+Scheduled Job,Trabalho agendado
+Scheduler Inactive,Agendador Inativo
+Scheduler is inactive. Cannot import data.,O agendador está inativo. Não é possível importar dados.
+Search,Pesquisar
+Search Fields,Campos de Pesquisa
+Search Priorities,Prioridades de pesquisa
+Section,Seção
+Section Break,Quebra de seção
+Security Settings,Configurações de Segurança
+Seen By,Visto por
+Seen By Table,Visto por tabela
+Select,Selecionar
+Select Date Range,Selecionar período
+Select Transaction,Selecione a Transação
+Select the label after which you want to insert new field.,Selecione a etiqueta após a qual você deseja inserir um novo campo.
+Send,Enviar
+Send,Enviar
+Send After,Envie Depois
+Send Alert On,Enviar Alerta
+Send Notification to,Enviar Notificação para
+Send Notifications For Documents Followed By Me,Enviar notificações para documentos seguidos por mim
+Send Now,Enviar Agora
+Send Print as PDF,Enviar impressão como PDF
+Send System Notification,Enviar Notificação do Sistema
+Send To All Assignees,Enviar para todos os cessionários
+Send alert if date matches this field's value,Enviar alerta se a data corresponde valor deste campo
+Send alert if this field's value changes,Enviar alerta se muda o valor desse campo
+Send days before or after the reference date,Enviar dias antes ou depois da data de referência
+Send only if there is any data,Envie somente se houver quaisquer dados
+Sending,Enviando
+Sent Read Receipt-MZ,Enviar Confirmação de Leitura
+Sent or Received,Enviados ou recebidos
+Separator,Separador
+Series List for this Transaction,Lista de séries para esta transação
+Server Action,Ação do Servidor
+Server IP,IP do servidor
+Service,Serviço
+Set New Password,Definir nova senha
+Set Property After Alert,Definir propriedade após o alerta
+Set Role For,Definir papel para
+Set Value,Definir valor
+Settings,Configurações
+Settings Dropdown,Lista suspensa de configurações
+Shared,Compartilhado
+Shipping,Expedição
+Shipping Address,Endereço Para Entrega
+Shop,Loja
+Show Full Error and Allow Reporting of Issues to the Developer,Mostrar erro completo e permitir relatórios de problemas para o desenvolvedor
+Show Full Form?,Mostrar formulário completo?
+Show Line Breaks after Sections,Mostrar quebras de linha após seções
+Show Percentage Stats,Mostrar estatísticas percentuais
+Show Section Headings,Mostrar Seção Títulos
+Show Title,Mostrar Título
+Show full form instead of a quick entry modal,Mostrar o formulário completo em vez de um modal de entrada rápida
+Show in Module Section,Mostrar na Seção Módulo
+Show in filter,Mostrar no filtro
+Show percentage difference according to this time interval,Mostra a diferença percentual de acordo com este intervalo de tempo
+Sidebar Items,Itens da barra lateral
+Sidebar Settings,Configurações da barra lateral
+Signature,Assinatura
+Simultaneous Sessions,Sessões simultâneas
+Size,Tamanho
+Skip Authorization,Ignorar autorização
+Slack,Folga
+Slack Channel,Canal de folga
+Small Text,Texto Pequeno
+Smallest Currency Fraction Value,Menor valor fracionado de moeda
+Social Login Provider,Provedor de acesso social
+Sort Field,Ordenar por campo
+Sort Order,Ordem de classificação
+Source,Origem
+Start,Iniciar
+Start Date,Data de Início
+Start Date Field,Campo de Data de Início
+Started,Começado
+Starts on,Inicia em
+State,Estado
+State/Province,Estado / Província
+States,Estados
+Static Parameters,Parâmetros estáticos
+Stats Time Interval,Intervalo de tempo das estatísticas
+Step,Degrau
+Steps,Passos
+Stop,Parar
+Stopped,Parado
+Stores the JSON of last known versions of various installed apps. It is used to show release notes.,Armazena o JSON das últimas versões conhecidas de vários aplicativos instalados. Ele é usado para mostrar notas de lançamento.
+Style,Estilo
+Style Settings,Configurações de Estilo
+Stylesheet,Folha de estilo
+Sub-domain provided by erpnext.com,Sub-domínio fornecido pelo erpnext.com
+Subdomain,Subdomínio
+Subject,Assunto
+Submit,Enviar
+Submit,Enviar
+Submit,Enviar
+Submit,Enviar
+Submit,Enviar
+Submit,Enviar
+Submit After Import,Enviar após importação
+Submitted,Enviado
+Subsidiary,Subsidiário
+Subtitle,Subtítulo
+Success,Sucesso
+Success Message,Mensagem de sucesso
+Success URL,URL de Confirmação
+Symbol,Símbolo
+Sync,Sincronizar
+Sync with Google Calendar,Sincronize com o Google Agenda
+Sync with Google Contacts,Sincronizar com os contatos do Google
+System,Sistema
+System Manager,Administrador do Sistema
+System Notification,Notificação do sistema
+System Page,Página do sistema
+System managers are allowed by default,Gerentes de sistema são permitidos por padrão
+Table Break,Pausa para a mesa
+Table HTML,Tabela HTML
+Task,Tarefa
+Tasks,Tarefas
+Team Members Heading,Título da página Membros da Equipe
+Template,Modelo
+Template Options,Opções de modelo
+Template Warnings,Avisos do modelo
+Text,Texto
+Text Align,Alinhar Texto
+Text Color,Cor do texto
+Text Editor,Editor de Texto
+The name that will appear in Google Calendar,O nome que aparecerá no Google Agenda
+Theme,Tema
+Theme Configuration,Configuração do Tema
+Theme URL,URL do tema
+These values will be automatically updated in transactions and also will be useful to restrict permissions for this user on transactions containing these values.,Esses valores serão atualizados automaticamente em transações e também serão úteis para restringir as permissões para este usuário em operações que contenham esses valores.
+Third Party Authentication,Autenticação de Terceiros
+This card will be available to all Users if this is set,Este cartão estará disponível para todos os usuários se estiver definido
+This chart will be available to all Users if this is set,Este gráfico estará disponível para todos os usuários se estiver definido
+This format is used if country specific format is not found,Este formato é usado se o formato específico país não é encontrado
+This is the number of the last created transaction with this prefix,Este é o número da última transação criada com este prefixo
+This will be shown in a modal after routing,Isso será mostrado em um modal após o roteamento
+This will be shown to the user in a dialog after routing to the report,Isso será mostrado ao usuário em uma caixa de diálogo após o roteamento para o relatório
+Time Format,Formato da hora
+Time Series,Séries Temporais
+Time Series Based On,Séries Temporais Baseadas em
+Time Zones,Fusos horários
+Time format,Formato da hora
+Time in seconds to retain QR code image on server. Min:<strong>240</strong>,Tempo em segundos para manter a imagem do código QR no servidor. Min: <strong>240</strong>
+Timeline Links,Links da linha do tempo
+Title,Título
+Title Field,Campo Título
+Title Prefix,Prefixo do Título
+To,Para
+To,Para
+To Date,Até a Data
+To Date Field,Até o momento do campo
+To and CC,Para e CC
+Token,Símbolo
+Tools,Ferramentas
+Top,Topo
+Top Bar Items,Itens da barra superior
+Topic,Tópico
+Total Subscribers,Total de Assinantes
+Totals,Totais
+Track Changes,Rastrear Alterações
+Track Field,Trilha de corrida
+Track Seen,Marcar como visto
+Track Views,Acompanhar vistas
+Transgender,Transgênero
+Transition Rules,Regras de transição
+Transitions,Transições
+Translatable,Traduzível
+Translated Text,Texto Traduzido
+Tree,Árvore
+Tree structures are implemented using Nested Set,As estruturas de árvore são implementadas usando o Conjunto Aninhado
+Trigger Method,Método gatilho
+Two Factor Authentication,Autenticação de dois fatores
+Two Factor Authentication method,Método de autenticação de dois fatores
+Type,Tipo
+UNSEEN,Por Ler
+URL for documentation or help,URL para documentação ou ajuda
+Unassign Condition,Desatribuir condição
+Unique,Único
+Unknown,Desconhecido
+Unread,Não lida
+Unread Notification Sent,Notificação de mensagem não lida enviada
+Unshared,Não Compartilhado
+Unsubscribe Method,Método de Cancelamento de Inscrição
+Update,Atualizar
+Update Existing Records,Atualizar registros existentes
+Update Field,Atualizar Campo
+Update Series Number,Atualizar Números de Séries
+Update Settings,Atualizar configurações
+Update Value,Atualizar Valor
+Uploaded To Dropbox,Enviado para o Dropbox
+Uploaded To Google Drive,Carregado no Google Drive
+Use ASCII encoding for password,Use codificação ASCII para senha
+Use IMAP,Usar IMAP
+Use Report Chart,Usar gráfico de relatório
+Use SSL,Usar SSL
+Use TLS,Usar TLS
+Use this fieldname to generate title,Utilize este campo para gerar o título
+User,Usuário
+User,Usuário
+User Agent,Agente de usuário
+User Cannot Create,O Usuário não pode criar
+User Cannot Search,O Usuário não pode pesquisar
+User Defaults,Padrões de Perfil
+User ID,ID de Usuário
+User ID Property,Propriedade de ID do usuário
+User Image,Imagem do Usuário
+User Name,Nome de usuário
+User Tags,Etiquetas de Usuários
+User must always select,O Usuário deve sempre selecionar
+User {0} is disabled,Usuário {0} está desativado
+Valid,Válido
+Validate Field,Validar Campo
+Validity,Validade
+Value,Valor
+Value Based On,Valor Baseado em
+Value Changed,Valor Alterado
+Value To Be Set,Valor a ser definido
+Value to Validate,Valor para Validar
+Values Changed,Valores Alterados
+Verified,Verificado
+Video URL,URL do vídeo
+View,Visão
+View Properties (via Customize Form),Exibir Propriedades (via Personalizar Formulário)
+View Report,Ver relatório
+View Settings,Ver Definições
+Viewed By,Visto por
+Views,Visualizações
+Visit,Visita
+Warehouse,Armazém
+Warning,Aviso
+Web Form Fields,Campos de formulário Web
+Website,Site
+Website Manager,Administrador do Site
+Website Theme Image,Imagem do Tema do Site
+Weekdays,Dias da Semana
+Weekly,Semanalmente
+Weekly Long,Semanalmente Longo
+Welcome to {0},Bem-vindo Ao {0}
+Workflow Action Name,Nome da Ação do Fluxo de Trabalho
+Workflow Action is not created for optional states,A ação do fluxo de trabalho não é criada para estados opcionais
+Workflow Name,Nome do Fluxo de Trabalho
+Wrapping up,Empacotando
+Write,Escrever
+X Field,Campo X
+Y Axis,Eixo Y
+Year,Ano
+Yearly,Anualmente
+Zero means send records updated at anytime,Zero significa enviar registros atualizados a qualquer momento
+_report,_relatório
+and,e
+blue,azul
+dd/mm/yyyy,dd/mm/aaaa
+e.g. pop.gmail.com / imap.gmail.com,ex: pop.gmail.com / imap.gmail.com
+e.g. smtp.gmail.com,ex: smtp.gmail.com
+green,verde
+icon,ícone
+mm/dd/yyyy,mm/dd/aaaa
+module,módulo
+no failed attempts,tentativas não falharam
+on_change,em mudança
+or,ou
+orange,laranja
+page,página
+print,imprimir
+purple,roxo
+query-report,relatório-de-consulta
+red,vermelho
+response,resposta
+share,ação
+yellow,amarelo
+yyyy-mm-dd,dd/mm/yyyy
+{0} is mandatory,{0} é obrigatório
+{0} is required,{0} é necessário
+Hide,Ocultar
+Verifying...,A verificar...
+Invalid Login. Try again.,Início de sessão inválido. Tente novamente.
+Oops! Something went wrong.,Ups! Algo correu mal.
+User does not exist.,O utilizador não existe.
+Something went wrong.,Algo correu mal.
+Instructions Emailed,Instruções enviadas por e‑mail
+Not a valid user,Utilizador inválido
+Not Allowed: Disabled User,Não permitido: Utilizador desativado
+Login link sent to your email,Ligação de acesso enviada para o seu e‑mail
+Verification,Verificação
+Verification Code,Código de verificação
+Verify,Verificar
+Enter Code displayed in OTP App.,Introduza o código mostrado na App OTP.
+OTP setup using OTP App was not completed. Please contact Administrator.,A configuração via App OTP não foi concluída. Contacte o Administrador.
+SMS was not sent. Please contact Administrator.,O SMS não foi enviado. Contacte o Administrador.
+Verification code email not sent. Please contact Administrator.,O e‑mail com o código de verificação não foi enviado. Contacte o Administrador.
+Total Warehouses,Total de Armazéns
+Total Stock Value,Valor Total do Stock
+Total Active Items,Total de Artigos Ativos
+Total Incoming Bills,Total de Faturas Recebidas
+Total Outgoing Bills,Total de Faturas Emitidas
+Total Incoming Payment,Total de Pagamentos Recebidos
+Total Outgoing Payment,Total de Pagamentos Efetuados
+Employee Tax Exemption Declaration,Declaração de Isenção Fiscal do Trabalhador
+Additional Salary,Salário Adicional
+Tax Setup,Configuração de Impostos
+Income Tax Slab,Escalão de Imposto sobre o Rendimento (IRPS)
+Employee Tax Exemption Category,Categoria de Isenção Fiscal do Trabalhador
+Employee Tax Exemption Sub Category,Subcategoria de Isenção Fiscal do Trabalhador
+Exemption,Isenção
+Employee Tax Exemption Proof Submission,Submissão de Comprovativo de Isenção Fiscal do Trabalhador
+Benefits,Benefícios
+Employee Benefit Application,Candidatura a Benefício do Trabalhador
+Employee Benefit Claim,Requisição de Benefício do Trabalhador
+Income Tax Computation,Cálculo do Imposto sobre o Rendimento (IRPS)
+Income Tax Deductions,Deduções do Imposto sobre o Rendimento (IRPS)
+Masters & Reports,Tabelas & Relatórios
+Salary Payout,Pagamento de Salário
+Outgoing Salary,Pagamento de Salário
+Salary Component,Componente Salarial
+Salary Structure,Estrutura Salarial
+Payroll Period,Período de Folha de Pagamento
+Salary Structure Assignment,Atribuição de Estrutura Salarial
+Bulk Salary Structure Assignment,Atribuição em Massa de Estruturas Salariais
+Salary Slip,Folha de Vencimento
+Payroll Entry,Entrada de Folha de Pagamento
+Salary Withholding,Retenção Salarial
+Employee Incentive,Incentivo do Trabalhador
+Retention Bonus,Bónus de Retenção
+Salary Register,Registo Salarial
+Salary Payments Based On Payment Mode,Pagamentos de Salário por Método de Pagamento
+Salary Payments via ECS,Pagamentos de Salário via Transferência Bancária
+General Ledger,Razão Geral
+Accounts Payable,Contas a Pagar
+Accounts Receivable,Contas a Receber
+Provident Fund Deductions,Deduções do INSS
+Professional Tax Deductions,Deduções de Imposto Profissional
+Expense Claim Type,Tipo de Reembolso de Despesa
+Vehicle Service Item,Serviço de Viatura
+Vehicle Log,Registo de Viatura
+Travel Request,Pedido de Viagem
+Purpose of Travel,Finalidade da Viagem
+Employee Advance Summary,Resumo de Adiantamentos de Trabalhador
+Unpaid Expense Claim,Reembolso de Despesa Não Pago
+Accounting Report,Relatório de Contabilidade
+Territory Wise Sales,Vendas por Território
+Reports,Relatórios
+Lead Details,Detalhes da Lead
+Sales Pipeline Analytics,Análise do Funil de Vendas
+Opportunity Summary by Sales Stage,Resumo de Oportunidades por Etapa de Vendas
+Sales Funnel,Funil de Vendas
+Prospects Engaged But Not Converted,Prospects Contactados mas Não Convertidos
+First Response Time for Opportunity,Tempo da Primeira Resposta para Oportunidade
+Inactive Customers,Clientes Inativos
+Campaign Efficiency,Eficiência da Campanha
+Lead Owner Efficiency,Eficiência do Responsável pela Lead
+Maintenance,Manutenção
+Maintenance Schedule,Plano de Manutenção
+Maintenance Visit,Visita de Manutenção
+Warranty Claim,Reclamação de Garantia
+Masters,Tabelas
+Territory,Território
+Customer Group,Grupo de Clientes
+Contact,Contacto
+Prospect,Prospecto
+Sales Person,Vendedor
+Sales Stage,Etapa de Vendas
+Lead Source,Origem da Lead
+Sales Pipeline,Pipeline de Vendas
+Lead,Lead
+Opportunity,Oportunidade
+Customer,Cliente
+Contract,Contrato
+Appointment,Agendamento
+Newsletter,Boletim Informativo
+Communication,Comunicação
+Settings,Configurações
+CRM Settings,Configurações de CRM
+SMS Settings,Configurações de SMS
+Campaign,Campanha
+Email Campaign,Campanha de Email
+SMS Center,Centro de SMS
+SMS Log,Registo de SMS
+Email Group,Grupo de Emails
+Quick Access,Acesso Rápido
+Warehouse wise Stock Value,Valor do Stock por Armazém
+Delayed Tasks Summary,Resumo de Tarefas Atrasadas
+Employee Onboarding,Integração de Trabalhador
+Employee Separation,Desligamento de Trabalhador
+Employee Grievance,Reclamação de Trabalhador
+New Hires (This Month),Novas Contratações (Este Mês)
+Exits (This Month),Desligamentos (Este Mês)
+Trainings (This Week),Formações (Esta Semana)
+Employee Onboarding Template,Modelo de Integração de Trabalhador
+Employee Skill Map,Mapa de Competências do Trabalhador
+Grievance,Reclamação
+Grievance Type,Tipo de Reclamação
+Training,Formação
+Training Program,Programa de Formação
+Training Event,Evento de Formação
+Training Feedback,Feedback da Formação
+Training Result,Resultado da Formação
+Daily Work Summary,Resumo Diário de Trabalho
+Daily Work Summary Group,Grupo de Resumos Diários de Trabalho
+Daily Work Summary Replies,Respostas de Resumos Diários de Trabalho
+Employee Exits,Saídas de Trabalhadores
+Department Wise Openings,Vagas por Departamento
+Job Opening,Vaga de Emprego
+Job Offer,Oferta de Emprego
+Interviews (This Week),Entrevistas (Esta Semana)
+Jobs,Empregos
+Staffing Plan,Plano de Pessoal
+Job Requisition,Requisição de Emprego
+Job Applicant,Candidato a Emprego
+Employee Referral,Recomendação de Trabalhador
+Interviews,Entrevistas
+Interview Type,Tipo de Entrevista
+Interview Round,Ronda de Entrevista
+Interview,Entrevista
+Interview Feedback,Feedback da Entrevista
+Appointment Letter Template,Modelo de Carta de Nomeação
+Appointment Letter,Carta de Nomeação
+Recruitment Analytics,Análise de Recrutamento
+Shift & Attendance,Turnos & Assiduidade
+Attendance Count,Contagem de Assiduidade
+Employee Checkin,Registo de Entrada do Trabalhador
+Attendance,Assiduidade
+Shift Request,Pedido de Turno
+Roster,Escala de Trabalho
+Shifts,Turnos
+Shift Type,Tipo de Turno
+Shift Location,Local de Turno
+Shift Assignment,Atribuição de Turno
+Shift Schedule,Horário de Turno
+Shift Schedule Assignment,Atribuição de Horário de Turno
+Shift Assignment Tool,Ferramenta de Atribuição de Turnos
+Attendance Request,Pedido de Assiduidade
+Employee Attendance Tool,Ferramenta de Assiduidade do Trabalhador
+Upload Attendance,Carregar Assiduidade
+Overtime,Horas Extra
+Overtime Type,Tipo de Horas Extra
+Overtime Slip,Ficha de Horas Extra
+Monthly Attendance Sheet,Mapa Mensal de Assiduidade
+Shift Attendance,Assiduidade por Turno
+Employee Hours Utilization Based On Timesheet,Utilização de Horas do Trabalhador com Base no Timesheet
+Project Profitability,Rentabilidade do Projeto
+Employees working on a holiday,Trabalhadores a Trabalhar em Feriado
+Leaves,Licenças / Férias
+Leave Application,Pedido de Licença
+Leave Allocation,Atribuição de Licença
+Leave Type,Tipo de Licença
+Leave Period,Período de Licença
+Leave Policy,Política de Licenças
+Leave Policy Assignment,Atribuição de Política de Licenças
+Leave Control Panel,Painel de Controlo de Licenças
+Leave Encashment,Conversão de Licença em Dinheiro
+Compensatory Leave Request,Pedido de Licença Compensatória
+Dunning,Cobrança de Inadimplentes
+Financial Reports,Relatórios Financeiros
+Ledger,Razão
+Customer Ledger Summary,Resumo do Razão de Clientes
+Supplier Ledger Summary,Resumo do Razão de Fornecedores
+Asset Capitalization,Capitalização de Ativo
+Asset Activity,Atividade do Ativo
+Permission Manager,Gestor de Permissões
+Job Position,Cargo
+Work Schedule,Horário de Trabalho
+Login,Iniciar sessão
+Login to {0},Iniciar sessão no {0}
+Login To {0},Iniciar sessão no {0}
+Email,E-mail
+Email Address,Endereço de e-mail
+Password,Palavra-passe
+Show,Mostrar
+Forgot Password?,Esqueceu a palavra-passe?
+Reset Password,Redefinir palavra-passe
+Forgot Password,Esqueceu a palavra-passe
+Back to Login,Voltar ao início de sessão
+Login with Email Link,Iniciar sessão com ligação por e-mail
+Send login link,Enviar ligação de acesso
+Login with {0},Iniciar sessão com {0}
+Login with LDAP,Iniciar sessão com LDAP
+Javascript is disabled on your browser,O JavaScript está desativado no seu navegador
+You need to enable JavaScript for your app to work.,Precisa ativar o JavaScript para a sua aplicação funcionar.
+Both login and password required,É obrigatório indicar o utilizador e a palavra-passe
+Valid email and name required,É necessário e-mail e nome válidos
+Valid Login id required.,É necessário um identificador de início de sessão válido.
+Login with Frappe Cloud,Iniciar sessão com Frappe Cloud
+Click on the button to log in to {0},Clique no botão para iniciar sessão no {0}
+The link will expire in {0} minutes,A ligação expira em {0} minutos
+Log In To {0},Iniciar sessão no {0}
+Don't have an account?,Não tem uma conta?
+Sign up,Registar

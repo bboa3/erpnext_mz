@@ -45,6 +45,7 @@ fixtures = [
   "Property Setter",
   "Document Naming Settings",
   "Print Format",
+  "Letter Head",
   "Client Script",
   "Tax Category",
   "Sales Taxes and Charges Template",
@@ -234,10 +235,13 @@ after_migrate = "erpnext_mz.install.after_migrate"
 
 # ignore_links_on_delete = ["Communication", "ToDo"]
 
+#################################
 # Request Events
 # ----------------
-# before_request = ["erpnext_mz.utils.before_request"]
-# after_request = ["erpnext_mz.utils.after_request"]
+# Enforce pt-MZ language for Guest (login and other guest pages)
+before_request = [
+    "erpnext_mz.utils.enforce_guest_language",
+]
 
 # Job Events
 # ----------
@@ -296,6 +300,7 @@ portal_menu_items = [
 ]
 
 translated_languages_for_website = [
+    {"language": "pt-MZ", "name": "Português (Moçambique)"},
     {"language": "pt", "name": "Português"},
     {"language": "en", "name": "English"},
 ]

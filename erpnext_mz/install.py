@@ -1,12 +1,14 @@
 import frappe
 
 def after_install():
+    ensure_language_pt_mz()
     apply_system_settings(override=True)
     apply_website_branding(override=True)
 
 
 def after_migrate():
     # Re-apply defaults where fields are empty, without overriding admin choices
+    ensure_language_pt_mz()
     apply_system_settings(override=False)
     apply_website_branding(override=False)
 
@@ -23,6 +25,7 @@ def apply_system_settings(override: bool = True):
             "country": "Mozambique",
             "currency": "MZN",
             "language": "pt-MZ",
+            "lang": "pt-MZ",
             "number_format": "#.###,##",  # 1.234,56
             "float_precision": 2,
             "currency_precision": 2,
@@ -58,6 +61,34 @@ def apply_system_settings(override: bool = True):
         frappe.log_error(title="apply_system_settings failed", message=frappe.get_traceback())
         return {"applied": False, "error": frappe.get_traceback()}
 
+
+
+def ensure_language_pt_mz():
+    """
+    Ensure Language 'pt-MZ' exists and is enabled so the site can select it.
+    This does not depend on frappe.geo.languages.json (which lacks pt-MZ).
+    Idempotent and safe to call repeatedly.
+    """
+    try:
+        if not frappe.db.exists("Language", "pt-MZ"):
+            frappe.get_doc(
+                {
+                    "doctype": "Language",
+                    "language_code": "pt-MZ",
+                    "language_name": "Português (Moçambique)",
+                    "based_on": "pt",
+                    "enabled": 1,
+                }
+            ).insert(ignore_permissions=True)
+        else:
+            # Make sure it is enabled and linked to base Portuguese
+            frappe.db.set_value("Language", "pt-MZ", {
+                "enabled": 1,
+                "based_on": "pt",
+            })
+    except Exception:
+        frappe.log_error(title="ensure_language_pt_MZ failed", message=frappe.get_traceback())
+        return {"applied": False, "error": frappe.get_traceback()}
 
 
 def apply_website_branding(override: bool = False):
