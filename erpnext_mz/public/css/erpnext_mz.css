@@ -206,6 +206,16 @@ a:hover {
   border-bottom: 1px solid var(--mz-border);
 }
 
+.btn-reset.nav-link,
+.btn-reset.nav-link span {
+  color: var(--mz-primary-300) !important;
+}
+
+.btn-reset.nav-link:hover,
+.btn-reset.nav-link:hover span {
+  color: var(--mz-primary-200) !important;
+}
+
 .page-title .title-text,
 .head-title {
   color: var(--mz-primary-700);

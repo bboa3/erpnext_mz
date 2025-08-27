@@ -1066,3 +1066,199 @@ pt-MZ,yellow,amarelo
 pt-MZ,yyyy-mm-dd,dd/mm/yyyy
 pt-MZ,{0} is mandatory,{0} é obrigatório
 pt-MZ,{0} is required,{0} é necessário
+pt-MZ,Total Warehouses,Total de Armazéns
+pt-MZ,Total Stock Value,Valor Total do Stock
+pt-MZ,Total Active Items,Total de Artigos Ativos
+pt-MZ,Total Incoming Bills,Total de Faturas Recebidas
+pt-MZ,Total Outgoing Bills,Total de Faturas Emitidas
+pt-MZ,Total Incoming Payment,Total de Pagamentos Recebidos
+pt-MZ,Total Outgoing Payment,Total de Pagamentos Efetuados
+pt-MZ,Employee Tax Exemption Declaration,Declaração de Isenção Fiscal do Trabalhador
+pt-MZ,Additional Salary,Salário Adicional
+pt-MZ,Tax Setup,Configuração de Impostos
+pt-MZ,Income Tax Slab,Escalão de Imposto sobre o Rendimento (IRPS)
+pt-MZ,Employee Tax Exemption Category,Categoria de Isenção Fiscal do Trabalhador
+pt-MZ,Employee Tax Exemption Sub Category,Subcategoria de Isenção Fiscal do Trabalhador
+pt-MZ,Exemption,Isenção
+pt-MZ,Employee Tax Exemption Proof Submission,Submissão de Comprovativo de Isenção Fiscal do Trabalhador
+pt-MZ,Benefits,Benefícios
+pt-MZ,Employee Benefit Application,Candidatura a Benefício do Trabalhador
+pt-MZ,Employee Benefit Claim,Requisição de Benefício do Trabalhador
+pt-MZ,Income Tax Computation,Cálculo do Imposto sobre o Rendimento (IRPS)
+pt-MZ,Income Tax Deductions,Deduções do Imposto sobre o Rendimento (IRPS)
+pt-MZ,Masters & Reports,Tabelas & Relatórios
+pt-MZ,Salary Payout,Pagamento de Salário
+pt-MZ,Outgoing Salary,Pagamento de Salário
+pt-MZ,Salary Component,Componente Salarial
+pt-MZ,Salary Structure,Estrutura Salarial
+pt-MZ,Payroll Period,Período de Folha de Pagamento
+pt-MZ,Salary Structure Assignment,Atribuição de Estrutura Salarial
+pt-MZ,Bulk Salary Structure Assignment,Atribuição em Massa de Estruturas Salariais
+pt-MZ,Salary Slip,Folha de Vencimento
+pt-MZ,Payroll Entry,Entrada de Folha de Pagamento
+pt-MZ,Salary Withholding,Retenção Salarial
+pt-MZ,Employee Incentive,Incentivo do Trabalhador
+pt-MZ,Retention Bonus,Bónus de Retenção
+pt-MZ,Salary Register,Registo Salarial
+pt-MZ,Salary Payments Based On Payment Mode,Pagamentos de Salário por Método de Pagamento
+pt-MZ,Salary Payments via ECS,Pagamentos de Salário via Transferência Bancária
+pt-MZ,General Ledger,Razão Geral
+pt-MZ,Accounts Payable,Contas a Pagar
+pt-MZ,Accounts Receivable,Contas a Receber
+pt-MZ,Provident Fund Deductions,Deduções do INSS
+pt-MZ,Professional Tax Deductions,Deduções de Imposto Profissional
+pt-MZ,Expense Claim Type,Tipo de Reembolso de Despesa
+pt-MZ,Vehicle Service Item,Serviço de Viatura
+pt-MZ,Vehicle Log,Registo de Viatura
+pt-MZ,Travel Request,Pedido de Viagem
+pt-MZ,Purpose of Travel,Finalidade da Viagem
+pt-MZ,Employee Advance Summary,Resumo de Adiantamentos de Trabalhador
+pt-MZ,Unpaid Expense Claim,Reembolso de Despesa Não Pago
+pt-MZ,Accounting Report,Relatório de Contabilidade
+pt-MZ,Territory Wise Sales,Vendas por Território
+pt-MZ,Reports,Relatórios
+pt-MZ,Lead Details,Detalhes da Lead
+pt-MZ,Sales Pipeline Analytics,Análise do Funil de Vendas
+pt-MZ,Opportunity Summary by Sales Stage,Resumo de Oportunidades por Etapa de Vendas
+pt-MZ,Sales Funnel,Funil de Vendas
+pt-MZ,Prospects Engaged But Not Converted,Prospects Contactados mas Não Convertidos
+pt-MZ,First Response Time for Opportunity,Tempo da Primeira Resposta para Oportunidade
+pt-MZ,Inactive Customers,Clientes Inativos
+pt-MZ,Campaign Efficiency,Eficiência da Campanha
+pt-MZ,Lead Owner Efficiency,Eficiência do Responsável pela Lead
+pt-MZ,Maintenance,Manutenção
+pt-MZ,Maintenance Schedule,Plano de Manutenção
+pt-MZ,Maintenance Visit,Visita de Manutenção
+pt-MZ,Warranty Claim,Reclamação de Garantia
+pt-MZ,Masters,Tabelas
+pt-MZ,Territory,Território
+pt-MZ,Customer Group,Grupo de Clientes
+pt-MZ,Contact,Contacto
+pt-MZ,Prospect,Prospecto
+pt-MZ,Sales Person,Vendedor
+pt-MZ,Sales Stage,Etapa de Vendas
+pt-MZ,Lead Source,Origem da Lead
+pt-MZ,Sales Pipeline,Pipeline de Vendas
+pt-MZ,Lead,Lead
+pt-MZ,Opportunity,Oportunidade
+pt-MZ,Customer,Cliente
+pt-MZ,Contract,Contrato
+pt-MZ,Appointment,Agendamento
+pt-MZ,Newsletter,Boletim Informativo
+pt-MZ,Communication,Comunicação
+pt-MZ,Settings,Configurações
+pt-MZ,CRM Settings,Configurações de CRM
+pt-MZ,SMS Settings,Configurações de SMS
+pt-MZ,Campaign,Campanha
+pt-MZ,Email Campaign,Campanha de Email
+pt-MZ,SMS Center,Centro de SMS
+pt-MZ,SMS Log,Registo de SMS
+pt-MZ,Email Group,Grupo de Emails
+pt-MZ,Quick Access,Acesso Rápido
+pt-MZ,Warehouse wise Stock Value,Valor do Stock por Armazém
+pt-MZ,Delayed Tasks Summary,Resumo de Tarefas Atrasadas
+pt-MZ,Employee Onboarding,Integração de Trabalhador
+pt-MZ,Employee Separation,Desligamento de Trabalhador
+pt-MZ,Employee Grievance,Reclamação de Trabalhador
+pt-MZ,New Hires (This Month),Novas Contratações (Este Mês)
+pt-MZ,Exits (This Month),Desligamentos (Este Mês)
+pt-MZ,Trainings (This Week),Formações (Esta Semana)
+pt-MZ,Employee Onboarding Template,Modelo de Integração de Trabalhador
+pt-MZ,Employee Skill Map,Mapa de Competências do Trabalhador
+pt-MZ,Grievance,Reclamação
+pt-MZ,Grievance Type,Tipo de Reclamação
+pt-MZ,Training,Formação
+pt-MZ,Training Program,Programa de Formação
+pt-MZ,Training Event,Evento de Formação
+pt-MZ,Training Feedback,Feedback da Formação
+pt-MZ,Training Result,Resultado da Formação
+pt-MZ,Daily Work Summary,Resumo Diário de Trabalho
+pt-MZ,Daily Work Summary Group,Grupo de Resumos Diários de Trabalho
+pt-MZ,Daily Work Summary Replies,Respostas de Resumos Diários de Trabalho
+pt-MZ,Employee Exits,Saídas de Trabalhadores
+pt-MZ,Department Wise Openings,Vagas por Departamento
+pt-MZ,Job Opening,Vaga de Emprego
+pt-MZ,Job Offer,Oferta de Emprego
+pt-MZ,Interviews (This Week),Entrevistas (Esta Semana)
+pt-MZ,Jobs,Empregos
+pt-MZ,Staffing Plan,Plano de Pessoal
+pt-MZ,Job Requisition,Requisição de Emprego
+pt-MZ,Job Applicant,Candidato a Emprego
+pt-MZ,Employee Referral,Recomendação de Trabalhador
+pt-MZ,Interviews,Entrevistas
+pt-MZ,Interview Type,Tipo de Entrevista
+pt-MZ,Interview Round,Ronda de Entrevista
+pt-MZ,Interview,Entrevista
+pt-MZ,Interview Feedback,Feedback da Entrevista
+pt-MZ,Appointment Letter Template,Modelo de Carta de Nomeação
+pt-MZ,Appointment Letter,Carta de Nomeação
+pt-MZ,Recruitment Analytics,Análise de Recrutamento
+pt-MZ,Shift & Attendance,Turnos & Assiduidade
+pt-MZ,Attendance Count,Contagem de Assiduidade
+pt-MZ,Employee Checkin,Registo de Entrada do Trabalhador
+pt-MZ,Attendance,Assiduidade
+pt-MZ,Shift Request,Pedido de Turno
+pt-MZ,Roster,Escala de Trabalho
+pt-MZ,Shifts,Turnos
+pt-MZ,Shift Type,Tipo de Turno
+pt-MZ,Shift Location,Local de Turno
+pt-MZ,Shift Assignment,Atribuição de Turno
+pt-MZ,Shift Schedule,Horário de Turno
+pt-MZ,Shift Schedule Assignment,Atribuição de Horário de Turno
+pt-MZ,Shift Assignment Tool,Ferramenta de Atribuição de Turnos
+pt-MZ,Attendance Request,Pedido de Assiduidade
+pt-MZ,Employee Attendance Tool,Ferramenta de Assiduidade do Trabalhador
+pt-MZ,Upload Attendance,Carregar Assiduidade
+pt-MZ,Overtime,Horas Extra
+pt-MZ,Overtime Type,Tipo de Horas Extra
+pt-MZ,Overtime Slip,Ficha de Horas Extra
+pt-MZ,Monthly Attendance Sheet,Mapa Mensal de Assiduidade
+pt-MZ,Shift Attendance,Assiduidade por Turno
+pt-MZ,Employee Hours Utilization Based On Timesheet,Utilização de Horas do Trabalhador com Base no Timesheet
+pt-MZ,Project Profitability,Rentabilidade do Projeto
+pt-MZ,Employees working on a holiday,Trabalhadores a Trabalhar em Feriado
+pt-MZ,Leaves,Licenças / Férias
+pt-MZ,Leave Application,Pedido de Licença
+pt-MZ,Leave Allocation,Atribuição de Licença
+pt-MZ,Leave Type,Tipo de Licença
+pt-MZ,Leave Period,Período de Licença
+pt-MZ,Leave Policy,Política de Licenças
+pt-MZ,Leave Policy Assignment,Atribuição de Política de Licenças
+pt-MZ,Leave Control Panel,Painel de Controlo de Licenças
+pt-MZ,Leave Encashment,Conversão de Licença em Dinheiro
+pt-MZ,Compensatory Leave Request,Pedido de Licença Compensatória
+pt-MZ,Dunning,Cobrança de Inadimplentes
+pt-MZ,Financial Reports,Relatórios Financeiros
+pt-MZ,Ledger,Razão
+pt-MZ,Customer Ledger Summary,Resumo do Razão de Clientes
+pt-MZ,Supplier Ledger Summary,Resumo do Razão de Fornecedores
+pt-MZ,Asset Capitalization,Capitalização de Ativo
+pt-MZ,Asset Activity,Atividade do Ativo
+pt-MZ,Permission Manager,Gestor de Permissões
+pt-MZ,Job Position,Cargo
+pt-MZ,Work Schedule,Horário de Trabalho
+pt-MZ,Login,Iniciar sessão
+pt-MZ,Login to {0},Iniciar sessão no {0}
+pt-MZ,Login To {0},Iniciar sessão no {0}
+pt-MZ,Email,E-mail
+pt-MZ,Email Address,Endereço de e-mail
+pt-MZ,Password,Palavra-passe
+pt-MZ,Show,Mostrar
+pt-MZ,Forgot Password?,Esqueceu a palavra-passe?
+pt-MZ,Reset Password,Redefinir palavra-passe
+pt-MZ,Back to Login,Voltar ao início de sessão
+pt-MZ,Login with Email Link,Iniciar sessão com ligação por e-mail
+pt-MZ,Send login link,Enviar ligação de acesso
+pt-MZ,Login with {0},Iniciar sessão com {0}
+pt-MZ,Login with LDAP,Iniciar sessão com LDAP
+pt-MZ,Javascript is disabled on your browser,O JavaScript está desativado no seu navegador
+pt-MZ,You need to enable JavaScript for your app to work.,Precisa ativar o JavaScript para a sua aplicação funcionar.
+pt-MZ,Both login and password required,É obrigatório indicar o utilizador e a palavra-passe
+pt-MZ,Valid email and name required,É necessário e-mail e nome válidos
+pt-MZ,Valid Login id required.,É necessário um identificador de início de sessão válido.
+pt-MZ,Login with Frappe Cloud,Iniciar sessão com Frappe Cloud
+pt-MZ,Click on the button to log in to {0},Clique no botão para iniciar sessão no {0}
+pt-MZ,The link will expire in {0} minutes,A ligação expira em {0} minutos
+pt-MZ,Log In To {0},Iniciar sessão no {0}
+pt-MZ,Don't have an account?,Não tem uma conta?
+pt-MZ,Sign up,Registar

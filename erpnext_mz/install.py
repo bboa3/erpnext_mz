@@ -22,7 +22,7 @@ def apply_system_settings(override: bool = True):
             "app_name": "ERPNext Moçambique",
             "country": "Mozambique",
             "currency": "MZN",
-            "language": "pt",
+            "language": "pt-MZ",
             "number_format": "#.###,##",  # 1.234,56
             "float_precision": 2,
             "currency_precision": 2,
