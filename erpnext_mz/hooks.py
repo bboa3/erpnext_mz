@@ -44,6 +44,7 @@ fixtures = [
   "Custom Field",
   "Property Setter",
   "Document Naming Settings",
+  "Document Naming Rule",
   "Print Format",
   "Letter Head",
   "Client Script",
@@ -52,6 +53,7 @@ fixtures = [
   "Purchase Taxes and Charges Template",
   "Item Tax Template",
   "Income Tax Slab",
+  "Payroll Settings",
 ]
 
 website_context = {
@@ -240,7 +242,7 @@ after_migrate = "erpnext_mz.install.after_migrate"
 # ----------------
 # Enforce pt-MZ language for Guest (login and other guest pages)
 before_request = [
-    "erpnext_mz.utils.enforce_guest_language",
+    "erpnext_mz.utils.web.enforce_guest_language",
 ]
 
 # Job Events

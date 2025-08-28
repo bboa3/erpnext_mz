@@ -1,3 +1,47 @@
+Warehouse,Armazém
+UOM,Unidade de Medida
+Unit of Measure,Unidade de Medida
+Employee,Funcionário
+Payroll,Folha de Pagamento
+Salary Slip,Recibo de Salário
+Letter Head,Cabeçalho
+Print Heading,Cabeçalho de Documento
+Print Format,Formato de Impressão
+Naming Series,Séries de Numeração
+Workflow,Fluxo de Trabalho
+User Permissions,Permissões do Utilizador
+Sales Invoice,Fatura
+Sales Invoices,Faturas
+Purchase Invoice,Fatura de Compra
+Payment Entry,Recibo
+Delivery Note,Guia de Remessa
+Sales Order,Ordem de Venda
+Quotation,Cotação
+Credit Note,Nota de Crédito
+Debit Note,Nota de Débito
+Customer,Cliente
+Supplier,Fornecedor
+Tax,Imposto
+Tax Category,Categoria Fiscal
+Item Tax Template,Modelo de Imposto do Artigo
+Sales Taxes and Charges Template,Modelo de Impostos de Vendas
+Purchase Taxes and Charges Template,Modelo de Impostos de Compras
+Income Tax Slab,Tabela de IRPS
+Company,Empresa
+Duties,Direitos
+Duties and Taxes,Direitos e Impostos
+Tax ID,NUIT
+Series,Série
+Is Return,É Devolução
+Return,Devolução
+Reference Invoice,Fatura de Referência
+Item,Artigo
+Items,Artigos
+Item Category,Categoria de Artigos
+Item Group,Grupo de Artigos
+Item Price List,Lista de Preços de Artigos
+Price List,Lista de Preços
+Item Price,Preço do Artigo
 A list of resources which the Client App will have access to after the user allows it.<br> e.g. project,"Uma lista de recursos que o aplicativo cliente terá acesso a depois que o usuário permita. <br> por exemplo, do projeto"
 A symbol for this currency. For e.g. $,Um símbolo para esta moeda. Por exemplo: MT
 ALL,Tudo

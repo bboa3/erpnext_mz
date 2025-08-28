@@ -8,54 +8,54 @@
   "docstatus": 1,
   "doctype": "Income Tax Slab",
   "effective_from": "2026-01-01",
-  "modified": "2025-08-26 00:12:23.554725",
-  "name": "IRPS Moçambique 2025",
+  "modified": "2025-08-27 13:58:38.054484",
+  "name": "IRPS Moçambique (2025)",
   "other_taxes_and_charges": [],
   "slabs": [
    {
     "condition": "",
     "from_amount": 0.0,
-    "parent": "IRPS Moçambique 2025",
+    "parent": "IRPS Moçambique (2025)",
     "parentfield": "slabs",
     "parenttype": "Income Tax Slab",
     "percent_deduction": 10.0,
-    "to_amount": 21000.0
+    "to_amount": 42000.0
    },
    {
     "condition": "",
-    "from_amount": 2101.0,
-    "parent": "IRPS Moçambique 2025",
+    "from_amount": 42001.0,
+    "parent": "IRPS Moçambique (2025)",
     "parentfield": "slabs",
     "parenttype": "Income Tax Slab",
     "percent_deduction": 15.0,
-    "to_amount": 87000.0
+    "to_amount": 168000.0
    },
    {
     "condition": "",
-    "from_amount": 87001.0,
-    "parent": "IRPS Moçambique 2025",
+    "from_amount": 168001.0,
+    "parent": "IRPS Moçambique (2025)",
     "parentfield": "slabs",
     "parenttype": "Income Tax Slab",
     "percent_deduction": 20.0,
-    "to_amount": 126000.0
+    "to_amount": 504000.0
    },
    {
     "condition": "",
-    "from_amount": 126001.0,
-    "parent": "IRPS Moçambique 2025",
+    "from_amount": 504001.0,
+    "parent": "IRPS Moçambique (2025)",
     "parentfield": "slabs",
     "parenttype": "Income Tax Slab",
     "percent_deduction": 25.0,
-    "to_amount": 231000.0
+    "to_amount": 1512000.0
    },
    {
     "condition": "",
-    "from_amount": 231001.0,
-    "parent": "IRPS Moçambique 2025",
+    "from_amount": 1512001.0,
+    "parent": "IRPS Moçambique (2025)",
     "parentfield": "slabs",
     "parenttype": "Income Tax Slab",
     "percent_deduction": 32.0,
-    "to_amount": 0.0
+    "to_amount": 10000000000.0
    }
   ],
   "standard_tax_exemption_amount": 0.0,

@@ -359,7 +359,6 @@ a:hover {
 .form-grid {
   border: 1px solid var(--mz-border);
   border-radius: var(--mz-radius-md);
-  overflow: hidden;
   background: var(--mz-surface);
 }
 
