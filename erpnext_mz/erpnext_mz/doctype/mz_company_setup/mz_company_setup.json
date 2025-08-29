@@ -1,0 +1,188 @@
+{
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:name",
+  "creation": "2025-08-29 01:39:50.484047",
+  "default_view": "Form",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "tab_break_olyi",
+    "sb_step1",
+    "cb1",
+    "tax_id",
+    "tax_regime",
+    "cb2",
+    "address_line1",
+    "neighborhood_or_district",
+    "city",
+    "province",
+    "sb_step2",
+    "phone",
+    "email",
+    "website",
+    "sb_step3",
+    "logo",
+    "small_text_logz",
+    "sb_status",
+    "step1_complete",
+    "step2_complete",
+    "step3_skipped",
+    "is_applied",
+    "last_applied_on"
+  ],
+  "fields": [
+    {
+      "fieldname": "tab_break_olyi",
+      "fieldtype": "Tab Break",
+      "label": "Configuração da empresa"
+    },
+    {
+      "fieldname": "sb_step1",
+      "fieldtype": "Section Break",
+      "label": "Dados fiscais da Empresa"
+    },
+    {
+      "fieldname": "cb1",
+      "fieldtype": "Column Break",
+      "label": "Dados fiscais"
+    },
+    {
+      "fieldname": "tax_id",
+      "fieldtype": "Data",
+      "label": "NUIT da Empresa"
+    },
+    {
+      "fieldname": "tax_regime",
+      "fieldtype": "Select",
+      "label": "Regime de IVA",
+      "options": "Normal\nIsento\nExportador",
+      "default": "Normal"
+    },
+    {
+      "fieldname": "cb2",
+      "fieldtype": "Column Break",
+      "label": "Endereço Legal da Empresa"
+    },
+    {
+      "fieldname": "address_line1",
+      "fieldtype": "Data",
+      "label": "Endereço"
+    },
+    {
+      "fieldname": "neighborhood_or_district",
+      "fieldtype": "Data",
+      "label": "Bairro ou distrito"
+    },
+    {
+      "fieldname": "city",
+      "fieldtype": "Data",
+      "label": "Cidade"
+    },
+    {
+      "fieldname": "province",
+      "fieldtype": "Data",
+      "label": "Província"
+    },
+    {
+      "fieldname": "sb_step2",
+      "fieldtype": "Section Break",
+      "label": "Contactos da Empresa"
+    },
+    {
+      "fieldname": "phone",
+      "fieldtype": "Data",
+      "label": "Nº de Telefone"
+    },
+    {
+      "fieldname": "email",
+      "fieldtype": "Data",
+      "label": "Endereço de E-mail"
+    },
+    {
+      "fieldname": "website",
+      "fieldtype": "Data",
+      "label": "Website"
+    },
+    {
+      "fieldname": "sb_step3",
+      "fieldtype": "Section Break",
+      "label": "Configuração da Empresa"
+    },
+    {
+      "fieldname": "logo",
+      "fieldtype": "Attach Image",
+      "label": "Logótipo da Empresa"
+    },
+    {
+      "fieldname": "small_text_logz",
+      "fieldtype": "Small Text",
+      "label": ""
+    },
+    {
+      "fieldname": "sb_status",
+      "fieldtype": "Section Break",
+      "label": "Estado"
+    },
+    {
+      "fieldname": "step1_complete",
+      "fieldtype": "Check",
+      "label": "Passo 1 Completo",
+      "default": 0
+    },
+    {
+      "fieldname": "step2_complete",
+      "fieldtype": "Check",
+      "label": "Passo 2 Completo",
+      "default": 0
+    },
+    {
+      "fieldname": "step3_skipped",
+      "fieldtype": "Check",
+      "label": "Passo 3 Ignorado",
+      "default": 0
+    },
+    {
+      "fieldname": "is_applied",
+      "fieldtype": "Check",
+      "label": "Configuração Aplicada",
+      "default": 0
+    },
+    {
+      "fieldname": "last_applied_on",
+      "fieldtype": "Datetime",
+      "label": "Aplicado Em"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "issingle": 1,
+  "links": [],
+  "modified": "2025-08-29 01:55:54.069916",
+  "modified_by": "Administrator",
+  "module": "ERPNext MZ",
+  "name": "MZ Company Setup",
+  "naming_rule": "By fieldname",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "quick_entry": 1,
+  "read_only": 0,
+  "read_only_depends_on": null,
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": [],
+  "track_changes": 1
+}

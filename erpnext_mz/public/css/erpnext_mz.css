@@ -261,6 +261,10 @@ a:hover {
 }
 
 /* ---------- Forms & inputs ---------- */
+.form-page {
+  padding: 1rem;
+}
+
 .form-control,
 .input-with-feedback,
 .awesomplete>input {

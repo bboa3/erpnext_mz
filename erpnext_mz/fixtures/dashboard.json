@@ -95,94 +95,6 @@
   "name": "Manufacturing"
  },
  {
-  "cards": [
-   {
-    "card": "Total Outgoing Bills",
-    "parent": "Accounts",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   },
-   {
-    "card": "Total Incoming Bills",
-    "parent": "Accounts",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   },
-   {
-    "card": "Total Incoming Payment",
-    "parent": "Accounts",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   },
-   {
-    "card": "Total Outgoing Payment",
-    "parent": "Accounts",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   }
-  ],
-  "chart_options": null,
-  "charts": [
-   {
-    "chart": "Profit and Loss",
-    "parent": "Accounts",
-    "parentfield": "charts",
-    "parenttype": "Dashboard",
-    "width": "Full"
-   },
-   {
-    "chart": "Incoming Bills (Purchase Invoice)",
-    "parent": "Accounts",
-    "parentfield": "charts",
-    "parenttype": "Dashboard",
-    "width": "Half"
-   },
-   {
-    "chart": "Outgoing Bills (Sales Invoice)",
-    "parent": "Accounts",
-    "parentfield": "charts",
-    "parenttype": "Dashboard",
-    "width": "Half"
-   },
-   {
-    "chart": "Accounts Receivable Ageing",
-    "parent": "Accounts",
-    "parentfield": "charts",
-    "parenttype": "Dashboard",
-    "width": "Half"
-   },
-   {
-    "chart": "Accounts Payable Ageing",
-    "parent": "Accounts",
-    "parentfield": "charts",
-    "parenttype": "Dashboard",
-    "width": "Half"
-   },
-   {
-    "chart": "Budget Variance",
-    "parent": "Accounts",
-    "parentfield": "charts",
-    "parenttype": "Dashboard",
-    "width": "Full"
-   },
-   {
-    "chart": "Bank Balance",
-    "parent": "Accounts",
-    "parentfield": "charts",
-    "parenttype": "Dashboard",
-    "width": "Full"
-   }
-  ],
-  "dashboard_name": "Accounts",
-  "docstatus": 0,
-  "doctype": "Dashboard",
-  "is_default": 0,
-  "is_standard": 1,
-  "modified": "2020-07-22 13:07:34.540574",
-  "module": "Accounts",
-  "name": "Accounts"
- },
- {
   "cards": [],
   "chart_options": null,
   "charts": [
@@ -696,6 +608,94 @@
  {
   "cards": [
    {
+    "card": "Total Outgoing Bills",
+    "parent": "Accounts",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Total Incoming Bills",
+    "parent": "Accounts",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Total Incoming Payment",
+    "parent": "Accounts",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Total Outgoing Payment",
+    "parent": "Accounts",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   }
+  ],
+  "chart_options": null,
+  "charts": [
+   {
+    "chart": "Profit and Loss",
+    "parent": "Accounts",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Full"
+   },
+   {
+    "chart": "Incoming Bills (Purchase Invoice)",
+    "parent": "Accounts",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "Outgoing Bills (Sales Invoice)",
+    "parent": "Accounts",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "Accounts Receivable Ageing",
+    "parent": "Accounts",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "Accounts Payable Ageing",
+    "parent": "Accounts",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "Budget Variance",
+    "parent": "Accounts",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Full"
+   },
+   {
+    "chart": "Bank Balance",
+    "parent": "Accounts",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Full"
+   }
+  ],
+  "dashboard_name": "Accounts",
+  "docstatus": 0,
+  "doctype": "Dashboard",
+  "is_default": 0,
+  "is_standard": 1,
+  "modified": "2020-07-22 13:07:34.540574",
+  "module": "Accounts",
+  "name": "Accounts"
+ },
+ {
+  "cards": [
+   {
     "card": "New Lead (Last 1 Month)",
     "parent": "CRM",
     "parentfield": "cards",
@@ -780,73 +780,6 @@
   "modified": "2020-07-21 18:56:47.230053",
   "module": "CRM",
   "name": "CRM"
- },
- {
-  "cards": [
-   {
-    "card": "Annual Purchase",
-    "parent": "Buying",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   },
-   {
-    "card": "Purchase Orders to Receive",
-    "parent": "Buying",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   },
-   {
-    "card": "Purchase Orders to Bill",
-    "parent": "Buying",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   },
-   {
-    "card": "Active Suppliers",
-    "parent": "Buying",
-    "parentfield": "cards",
-    "parenttype": "Dashboard"
-   }
-  ],
-  "chart_options": null,
-  "charts": [
-   {
-    "chart": "Purchase Order Trends",
-    "parent": "Buying",
-    "parentfield": "charts",
-    "parenttype": "Dashboard",
-    "width": "Full"
-   },
-   {
-    "chart": "Material Request Analysis",
-    "parent": "Buying",
-    "parentfield": "charts",
-    "parenttype": "Dashboard",
-    "width": "Half"
-   },
-   {
-    "chart": "Purchase Order Analysis",
-    "parent": "Buying",
-    "parentfield": "charts",
-    "parenttype": "Dashboard",
-    "width": "Half"
-   },
-   {
-    "chart": "Top Suppliers",
-    "parent": "Buying",
-    "parentfield": "charts",
-    "parenttype": "Dashboard",
-    "width": "Full"
-   }
-  ],
-  "dashboard_name": "Buying",
-  "docstatus": 0,
-  "doctype": "Dashboard",
-  "is_default": 0,
-  "is_standard": 1,
-  "modified": "2020-07-22 12:48:38.112744",
-  "module": "Buying",
-  "name": "Buying"
  },
  {
   "cards": [
@@ -1034,6 +967,73 @@
   "modified": "2022-09-16 11:36:44.704033",
   "module": "HR",
   "name": "Expense Claims"
+ },
+ {
+  "cards": [
+   {
+    "card": "Annual Purchase",
+    "parent": "Buying",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Purchase Orders to Receive",
+    "parent": "Buying",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Purchase Orders to Bill",
+    "parent": "Buying",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   },
+   {
+    "card": "Active Suppliers",
+    "parent": "Buying",
+    "parentfield": "cards",
+    "parenttype": "Dashboard"
+   }
+  ],
+  "chart_options": null,
+  "charts": [
+   {
+    "chart": "Purchase Order Trends",
+    "parent": "Buying",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Full"
+   },
+   {
+    "chart": "Material Request Analysis",
+    "parent": "Buying",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "Purchase Order Analysis",
+    "parent": "Buying",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   },
+   {
+    "chart": "Top Suppliers",
+    "parent": "Buying",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Full"
+   }
+  ],
+  "dashboard_name": "Buying",
+  "docstatus": 0,
+  "doctype": "Dashboard",
+  "is_default": 0,
+  "is_standard": 1,
+  "modified": "2020-07-22 12:48:38.112744",
+  "module": "Buying",
+  "name": "Buying"
  },
  {
   "cards": [

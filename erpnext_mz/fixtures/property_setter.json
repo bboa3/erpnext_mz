@@ -1,38 +1,6 @@
 [
  {
   "default_value": null,
-  "doc_type": "Salary Slip",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocField",
-  "field_name": "rounded_total",
-  "is_system_generated": 1,
-  "modified": "2025-08-23 02:35:41.511213",
-  "module": null,
-  "name": "Salary Slip-rounded_total-hidden",
-  "property": "hidden",
-  "property_type": "Check",
-  "row_name": null,
-  "value": "0"
- },
- {
-  "default_value": null,
-  "doc_type": "Salary Slip",
-  "docstatus": 0,
-  "doctype": "Property Setter",
-  "doctype_or_field": "DocField",
-  "field_name": "rounded_total",
-  "is_system_generated": 1,
-  "modified": "2025-08-23 02:35:41.515464",
-  "module": null,
-  "name": "Salary Slip-rounded_total-print_hide",
-  "property": "print_hide",
-  "property_type": "Check",
-  "row_name": null,
-  "value": "0"
- },
- {
-  "default_value": null,
   "doc_type": "Supplier",
   "docstatus": 0,
   "doctype": "Property Setter",
@@ -1822,5 +1790,37 @@
   "property_type": "Text",
   "row_name": null,
   "value": "COT-.YYYY.-"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Salary Slip",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "rounded_total",
+  "is_system_generated": 1,
+  "modified": "2025-08-29 01:56:00.224197",
+  "module": null,
+  "name": "Salary Slip-rounded_total-hidden",
+  "property": "hidden",
+  "property_type": "Check",
+  "row_name": null,
+  "value": "0"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Salary Slip",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "rounded_total",
+  "is_system_generated": 1,
+  "modified": "2025-08-29 01:56:00.233713",
+  "module": null,
+  "name": "Salary Slip-rounded_total-print_hide",
+  "property": "print_hide",
+  "property_type": "Check",
+  "row_name": null,
+  "value": "0"
  }
 ]

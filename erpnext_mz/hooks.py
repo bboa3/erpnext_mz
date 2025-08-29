@@ -41,19 +41,15 @@ fixtures = [
   "Dashboard",
   "Dashboard Chart",
   "Number Card",
-  "Custom Field",
   "Property Setter",
   "Document Naming Settings",
   "Document Naming Rule",
   "Print Format",
   "Letter Head",
   "Client Script",
-  "Tax Category",
-  "Sales Taxes and Charges Template",
-  "Purchase Taxes and Charges Template",
-  "Item Tax Template",
   "Income Tax Slab",
   "Payroll Settings",
+  {"dt": "Custom Field", "filters": [["module_name", "=", "ERPNext MZ"]]},
 ]
 
 website_context = {
@@ -68,7 +64,9 @@ website_context = {
 
 # include js, css files in header of desk.html
 app_include_css = "/assets/erpnext_mz/css/erpnext_mz.css"
-# app_include_js = "/assets/erpnext_mz/js/erpnext_mz.js"
+app_include_js = [
+    "/assets/erpnext_mz/js/mz_onboarding.js",
+]
 
 # include js, css files in header of web template
 web_include_css = "/assets/erpnext_mz/css/erpnext_mz.css"
@@ -306,3 +304,6 @@ translated_languages_for_website = [
     {"language": "pt", "name": "Português"},
     {"language": "en", "name": "English"},
 ]
+
+# Boot Session: expose onboarding status
+boot_session = "erpnext_mz.setup.boot.boot_session"
