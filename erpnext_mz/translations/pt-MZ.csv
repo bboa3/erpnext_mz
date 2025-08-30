@@ -280,7 +280,7 @@ Days Before or After,Dias Antes ou Após
 Dear,Caro
 "Dear System Manager,","Caro Administrador de Sistema,"
 Default,Padrão
-Default Letter Head,Cabeçalho de Carta Padrão
+Default Letter Head,Papel Timbrado Padrão
 Default Portal Home,Página inicial do portal padrão
 Default Print Format,Formato de impressão padrão
 Default Print Language,Idioma de impressão padrão
@@ -576,10 +576,10 @@ Last Year,Ano passado
 Leave blank to repeat always,Deixe em branco para repetir sempre
 Ledger,Livro Razão
 Letter,Carta
-Letter Head Based On,Carta de cabeça com base em
-Letter Head Image,Carta cabeça imagem
-Letter Head Name,Nome do timbrado
-Letter Head in HTML,Cabeça Carta em HTML
+Letter Head Based On,Papel Timbrado Baseado em
+Letter Head Image,Imagem do Papel Timbrado
+Letter Head Name,Nome do Papel Timbrado
+Letter Head in HTML,Papel Timbrado em HTML
 Light Color,Cor clara
 Likes,Gostos
 Limit,Limite

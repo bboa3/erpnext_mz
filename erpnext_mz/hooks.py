@@ -45,11 +45,10 @@ fixtures = [
   "Document Naming Settings",
   "Document Naming Rule",
   "Print Format",
-  "Letter Head",
   "Client Script",
   "Income Tax Slab",
   "Payroll Settings",
-  {"dt": "Custom Field", "filters": [["module_name", "=", "ERPNext MZ"]]},
+  "Custom Field"
 ]
 
 website_context = {
