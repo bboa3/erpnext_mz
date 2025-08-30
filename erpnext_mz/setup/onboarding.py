@@ -112,6 +112,9 @@ def apply_all():
     # B. Taxes: copy from erp.local if present, else ensure minimal defaults
     _ensure_tax_infrastructure(company_name, profile)
 
+    # C. Create print formats
+    _create_print_formats()
+
     profile.is_applied = 1
     profile.save(ignore_permissions=True)
     frappe.db.commit()
@@ -713,40 +716,16 @@ def debug_tax_templates():
         "purchase_templates": purchase_templates
     }
 
-import frappe
-from erpnext_mz.setup.language import ensure_language_pt_mz
 
-
-def complete_mz_setup(args: dict | None = None):
-    """
-    Hooked into setup_wizard_complete.
-
-    Runs after the main wizard completes. Applies Mozambique basics if requested
-    on our custom slide. Keep it idempotent and side-effect free beyond updates.
-    """
-    args = args or {}
-
+def _create_print_formats():
+    """Create Mozambique-specific print formats"""
     try:
-        if frappe.flags.in_test:
-            # Avoid side-effects in tests
-            return
-
-        # Always ensure pt-MZ language exists so users can pick it post-install too
-        ensure_language_pt_mz()
-
-        if args.get("enable_mz_defaults"):
-            # Do not override what the core wizard already set for the user, just
-            # make sure language availability is correct (handled above). Any further
-            # defaults can be applied by user via provided settings wizards.
-            pass
-
-        if args.get("create_demo"):
-            # Placeholder: In the future we could enqueue demo data creation here
-            # frappe.enqueue(erpnext_mz.demo.create_demo_data, enqueue_after_commit=True)
-            frappe.logger().info("ERPNext MZ: Demo data creation requested (not implemented)")
-
-    except Exception:
-        frappe.log_error(title="ERPNext MZ Setup Wizard Completion Failed", message=frappe.get_traceback())
-        # Do not raise; let the main wizard finish
-
-
+        from erpnext_mz.setup.create_print_formats import create_mozambique_sales_invoice_print_format
+        
+        # Create Sales Invoice print format if it doesn't exist
+        if not frappe.db.exists("Print Format", "Mozambique Sales Invoice"):
+            create_mozambique_sales_invoice_print_format()
+            frappe.log_error("Created Mozambique Sales Invoice print format", "Print Format Creation")
+        
+    except Exception as e:
+        frappe.log_error(f"Error creating print formats: {str(e)}", "Print Format Creation")

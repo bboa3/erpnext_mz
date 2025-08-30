@@ -48,7 +48,8 @@ fixtures = [
   "Client Script",
   "Income Tax Slab",
   "Payroll Settings",
-  "Custom Field"
+  "Custom Field",
+  "QR Code"
 ]
 
 website_context = {
@@ -112,11 +113,10 @@ home_page = "login"
 # Jinja
 # ----------
 
-# add methods and filters to jinja environment
-# jinja = {
-# 	"methods": "erpnext_mz.utils.jinja_methods",
-# 	"filters": "erpnext_mz.utils.jinja_filters"
-# }
+# add methods to jinja environment for print formats
+jinja = {
+    "methods": "erpnext_mz.utils.jinja",
+}
 
 # Installation
 # ------------
@@ -177,13 +177,26 @@ after_migrate = "erpnext_mz.install.after_migrate"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Sales Invoice": {
+		"on_submit": "erpnext_mz.qr_code.qr_generator.generate_document_qr_code",
+	},
+	"Purchase Invoice": {
+		"on_submit": "erpnext_mz.qr_code.qr_generator.generate_document_qr_code",
+	},
+	"Sales Order": {
+		"on_submit": "erpnext_mz.qr_code.qr_generator.generate_document_qr_code",
+	},
+	"Purchase Order": {
+		"on_submit": "erpnext_mz.qr_code.qr_generator.generate_document_qr_code",
+	},
+	"Delivery Note": {
+		"on_submit": "erpnext_mz.qr_code.qr_generator.generate_document_qr_code",
+	},
+	"Purchase Receipt": {
+		"on_submit": "erpnext_mz.qr_code.qr_generator.generate_document_qr_code",
+	},
+}
 
 # Scheduled Tasks
 # ---------------

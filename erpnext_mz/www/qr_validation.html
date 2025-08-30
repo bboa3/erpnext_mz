@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Validação de Documento - ERPNext MZ</title>
+  <style>
+    :root {
+      --brand: #02664D;
+      --ink: #1E2A38;
+      --muted: #6c757d;
+      --bg: #f5f7f8;
+      --card: #ffffff;
+      --border: #e6eaee;
+      --valid-bg: #E9F7F6;
+      --valid-fg: #02664D;
+      --invalid-bg: #fdecea;
+      --invalid-fg: #a1372d;
+      --info-bg: #f8fafb;
+      --shadow: 0 8px 24px rgba(17, 24, 39, .06), 0 2px 8px rgba(17, 24, 39, .04);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background: linear-gradient(180deg, #f3f7f6 0%, #f5f5f5 100%);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .wrap {
+      max-width: 960px;
+      padding: 24px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 8px 0 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand .logo {
+      display: block;
+      height: 40px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      color: var(--ink);
+    }
+
+    .brand p {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card__body {
+      padding: 22px;
+    }
+
+    .subheader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 22px;
+      border-bottom: 1px solid var(--border);
+      background: #fbfcfc;
+    }
+
+    .subheader h2 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .2px;
+    }
+
+    .status--valid {
+      background: var(--valid-bg);
+      color: var(--valid-fg);
+      border: 1px solid #bfe9e3;
+    }
+
+    .status--invalid {
+      background: var(--invalid-bg);
+      color: var(--invalid-fg);
+      border: 1px solid #f5c6c2;
+    }
+
+    .validation-result {
+      margin-bottom: 16px;
+    }
+
+    .validation-result p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 16px;
+      background: var(--info-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    @media (max-width:640px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 4px;
+      border-bottom: 1px dashed #e9eef2;
+    }
+
+    .row:last-child {
+      border-bottom: none;
+    }
+
+    .label {
+      color: #5b6672;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .value {
+      color: #2a3340;
+      font-size: 14px;
+      text-align: right;
+      word-break: break-word;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .loading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-style: italic;
+      padding: 12px 0;
+    }
+
+    .skeleton {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(90deg, #e9eef2, #f4f7f9, #e9eef2);
+      background-size: 200% 100%;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        background-position: 0% 0
+      }
+
+      100% {
+        background-position: 200% 0
+      }
+    }
+
+    .error {
+      color: var(--invalid-fg);
+      background: var(--invalid-bg);
+      border: 1px solid #f5c6c2;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      margin: 12px 0;
+    }
+
+    .footer {
+      margin: 20px 0 8px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="header">
+      <div class="brand">
+        <!-- MozEconomia Logo -->
+        <span class="logo" aria-hidden="true">
+          <svg width="180" height="28" viewBox="0 0 309 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M3.54982 9.48535C5.51318 9.48535 7.09964 11.0838 7.09964 13.0619V17.8307C7.09964 19.8088 5.51318 21.4073 3.54982 21.4073C1.58646 21.4073 0 19.8088 0 17.8307V13.0619C0 11.0838 1.58646 9.48535 3.54982 9.48535Z"
+              fill="#02664D" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M19.5386 0C21.502 0 23.0884 1.613 23.0884 3.6092V17.6895C23.0884 19.6857 21.502 21.2987 19.5386 21.2987C17.5752 21.2987 15.9888 19.6857 15.9888 17.6895V3.6092C15.9888 1.613 17.5752 0 19.5386 0Z"
+              fill="#02664D" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M11.544 5.01172C13.5073 5.01172 15.0938 6.59497 15.0938 8.55435V17.7389C15.0938 19.6983 13.5073 21.2816 11.544 21.2816C9.5806 21.2816 7.99414 19.6983 7.99414 17.7389V8.55435C7.99414 6.59497 9.5806 5.01172 11.544 5.01172Z"
+              fill="#02664D" />
+            <path
+              d="M0 47.6338V24.5856H4.2834L11.3204 35.4999L18.3574 24.5856H22.702V47.6338H18.6634V31.1098L11.3204 41.9632H11.198L3.97745 31.1708V47.6338H0Z"
+              fill="#1E2A38" />
+            <!-- (rest of logo paths trimmed for brevity; you can keep the full SVG you sent) -->
+          </svg>
+        </span>
+        <div>
+          <h1>Validação de Documento</h1>
+          <p>ERPNext Moçambique • Sistema de Validação Digital</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="subheader">
+        <h2>Resultado de Validação</h2>
+        <!-- status badge gets injected dynamically -->
+        <div id="status-badge" class="status" style="display:none;"></div>
+      </div>
+
+      <div class="card__body">
+        <div id="loading" class="loading">
+          <span class="skeleton" aria-hidden="true"></span>
+          <span>Carregando informações do documento…</span>
+        </div>
+
+        <div id="result" style="display:none;"></div>
+      </div>
+    </section>
+
+    <p class="footer">
+      © <span id="year"></span> MozEconomia • Este verificador confirma a autenticidade e integridade do documento.
+    </p>
+  </div>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Keep original functionality & IDs intact
+    const urlParams = new URLSearchParams(window.location.search);
+    const doctype = urlParams.get('doctype');
+    const name = urlParams.get('name');
+    const hash = urlParams.get('hash');
+
+    const loadingEl = document.getElementById('loading');
+    const resultEl = document.getElementById('result');
+    const badgeEl = document.getElementById('status-badge');
+
+    if (!doctype || !name) {
+      loadingEl.innerHTML =
+        '<div class="error">Parâmetros inválidos. Uso: ?doctype=Sales Invoice&name=FAT-2025-00001</div>';
+    } else {
+      fetch(`/api/method/erpnext_mz.api.validate_document?doctype=${encodeURIComponent(doctype)}&name=${encodeURIComponent(name)}&hash=${encodeURIComponent(hash || '')}`)
+        .then(r => r.json())
+        .then(data => {
+          loadingEl.style.display = 'none';
+          displayResult(data);
+        })
+        .catch(err => {
+          loadingEl.innerHTML = `<div class="error">Erro ao validar documento: ${err.message}</div>`;
+        });
+    }
+
+    function setStatusBadge(valid, text) {
+      badgeEl.style.display = 'inline-flex';
+      badgeEl.className = 'status ' + (valid ? 'status--valid' : 'status--invalid');
+      badgeEl.textContent = text;
+    }
+
+    function displayResult(data) {
+      resultEl.style.display = 'block';
+
+      if (data.message && data.message.valid) {
+        setStatusBadge(true, 'Documento válido');
+
+        const info = data.message.document_info || {};
+        const gen = data.message.generated_at ? new Date(data.message.generated_at).toLocaleString('pt-PT') : '';
+
+        resultEl.innerHTML = `
+          <div class="validation-result">
+            <p>Este documento foi validado com sucesso e é autêntico.</p>
+          </div>
+
+          <div class="grid" role="table" aria-label="Informações do Documento">
+            <div class="row" role="row">
+              <div class="label" role="cell">Tipo</div>
+              <div class="value" role="cell">${escapeHtml(info.type)}</div>
+            </div>
+            <div class="row" role="row">
+              <div class="label" role="cell">Número</div>
+              <div class="value mono" role="cell">${escapeHtml(info.name)}</div>
+            </div>
+            <div class="row" role="row">
+              <div class="label" role="cell">Empresa</div>
+              <div class="value" role="cell">${escapeHtml(info.company)}</div>
+            </div>
+            <div class="row" role="row">
+              <div class="label" role="cell">Data</div>
+              <div class="value mono" role="cell">${escapeHtml(info.date)}</div>
+            </div>
+            <div class="row" role="row">
+              <div class="label" role="cell">Valor</div>
+              <div class="value mono" role="cell">${escapeHtml(info.amount)} ${escapeHtml(info.currency || '')}</div>
+            </div>
+            <div class="row" role="row">
+              <div class="label" role="cell">Estado</div>
+              <div class="value" role="cell">${escapeHtml(info.status)}</div>
+            </div>
+            ${info.customer ? `
+            <div class="row" role="row">
+              <div class="label" role="cell">Cliente</div>
+              <div class="value" role="cell">${escapeHtml(info.customer)}</div>
+            </div>` : ''}
+
+            ${info.tax_id ? `
+            <div class="row" role="row">
+              <div class="label" role="cell">NUIT</div>
+              <div class="value mono" role="cell">${escapeHtml(info.tax_id)}</div>
+            </div>` : ''}
+
+            <div class="row" role="row">
+              <div class="label" role="cell">Gerado em</div>
+              <div class="value mono" role="cell">${escapeHtml(gen)}</div>
+            </div>
+          </div>
+        `;
+      } else {
+        setStatusBadge(false, 'Documento inválido');
+        resultEl.innerHTML = `
+          <div class="validation-result">
+            <p style="color:var(--invalid-fg)">Não foi possível validar o documento.</p>
+            <div class="error">${escapeHtml(data.message ? (data.message.message || 'Documento inválido') : 'Erro desconhecido')}</div>
+          </div>
+        `;
+      }
+    }
+
+    // Small XSS-safe helper for any injected text
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+
+</html>

@@ -70,6 +70,13 @@
     - **Auto-apply**: Complete ERPNext configuration based on wizard data
     - **Idempotent**: Safe to run multiple times, updates existing records
   **Acceptance:** System managers can complete company setup in guided wizard; all tax infrastructure auto-created.
+* [X] **Professional Print Formats** (🧩 CODE)
+  * **Mozambique Sales Invoice**: Professional, bilingual (PT/EN) print format
+  * **Features**: NUIT display, tax compliance, QR code ready, responsive design
+  * **Integration**: Auto-created during company setup wizard
+  * **Customization**: Jinja2 templates with professional CSS styling
+  * **Testing**: Comprehensive test suite for validation
+  **Acceptance:** Professional invoices with Mozambique compliance requirements; bilingual support.
 <!-- Removed: Integrity / Checksums (anti-tamper) -->
 * [ ] **SAF-T (Vendas & Folha) XML generator** (🧩 CODE Doctype + scheduler)
   * Implement schemas; validate; archive monthly file to S3 (WORM).
@@ -171,12 +178,23 @@ The wizard automatically creates a complete tax setup based on the selected regi
 - Triggers wizard for System Managers/Administrators
 - Provides real-time status updates
 
+#### 6. **Professional Print Formats** (`apps/erpnext_mz/erpnext_mz/setup/create_print_formats.py`)
+- **Mozambique Sales Invoice**: Professional, bilingual print format
+- **Features**: NUIT display, tax compliance, QR code ready, responsive design
+- **Template Engine**: Jinja2 with custom HTML/CSS
+- **Integration**: Auto-created during company setup
+- **Testing**: Comprehensive validation suite
+
 ### Data Flow
 1. **User Access**: System Manager/Administrator logs in
 2. **Status Check**: Boot session checks if onboarding is complete
 3. **Dialog Trigger**: If incomplete, wizard dialogs are shown
 4. **Data Collection**: User fills forms, data saved to Single DocType
 5. **Configuration**: `apply_all()` function configures ERPNext
+   - Updates company information (NUIT, address, contacts)
+   - Creates tax infrastructure (accounts, templates, rules)
+   - Generates letterhead and terms & conditions
+   - **Creates professional print formats**
 6. **Completion**: Wizard marked as complete, no longer shown
 
 ### Key Features
