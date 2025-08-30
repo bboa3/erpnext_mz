@@ -21,15 +21,31 @@
 ## Phase 3 — Mozambique Localization (Accounting & Tax)
 * [X] **IFRS Chart of Accounts** (🖱️ UI or import template).
   **Acceptance:** COA ready; GL/BS/P\&L run clean.
-* [ ] **VAT setup** (🖱️ UI)
-  * Templates: **IVA 16%**, **IVA 5%** (setores reduzidos), **IVA 0%** (export/isentos + menção legal).
-  * **Tax Categories** and per-item/per-customer mappings where needed.
-    **Acceptance:** Tax applied correctly on SO/SI/PI; reports reconcile.
+* [X] **Company Setup Wizard** (🧩 CODE + 🖱️ UI)
+  * **MZ Company Setup** Single DocType with comprehensive company configuration
+  * **3-Step Onboarding Dialog**: Tax & Address → Contacts → Branding (optional)
+  * **Auto-configuration**: Tax accounts, templates, categories, and rules based on selected tax regime
+  * **Letter Head Generation**: Custom HTML with logo, company details, and NUIT
+  * **Terms & Conditions**: Automatic creation and assignment to company
+    **Acceptance:** Complete company setup in 3 steps; all tax infrastructure auto-created.
+* [X] **VAT setup** (🧩 CODE + 🖱️ UI)
+  * **Tax Accounts**: Auto-created under "Duties and Taxes" parent with company abbreviations
+    * `13.01.01 - IVA Dedutível 16% - [COMPANY]` (Asset, 16%)
+    * `13.01.02 - IVA Dedutível 5% - [COMPANY]` (Asset, 5%)
+    * `13.01.03 - Isento/Exportação - [COMPANY]` (Asset, 0%)
+    * `24.01.01 - IVA a Entregar 16% - [COMPANY]` (Liability, 16%)
+    * `24.01.02 - IVA a Entregar 5% - [COMPANY]` (Liability, 5%)
+    * `24.01.03 - Isento/Exportação - [COMPANY]` (Liability, 0%)
+  * **Tax Categories**: `Regime Normal (16%)`, `Taxa Reduzida (5%)`, `Isento/Exportação`
+  * **Sales/Purchase Templates**: Auto-created with correct accounts and rates
+  * **Item Tax Templates**: Matching tax categories with appropriate rates
+  * **Tax Rules**: Default rules for all customers/items with priority-based application
+    **Acceptance:** Tax applied correctly on SO/SI/PI; reports reconcile; regime-based defaults.
 * [ ] **Custom Fields** (🧩 CODE)
   * Customer/Supplier **NUIT**.
     **Acceptance:** Fields visible and required where specified.
 * [ ] **Sequential numbering** (Naming Series) (🖱️ UI).
-  **Acceptance:** “FT-YYYY-####” issues sequentially; no duplicates.
+  **Acceptance:** "FT-YYYY-####" issues sequentially; no duplicates.
 
 ## Phase 4 — HR & Payroll Compliance
 * [ ] **INSS**: Empregador 4%, Empregado 3% (🖱️ UI components/structures).
@@ -41,8 +57,19 @@
 <!-- Removed: Leave policies for simplicity -->
 
 ## Phase 5 — Custom App: `erpnext_mz` (Compliance Logic)
-* [ ] App skeleton installed on all sites (🧩 CODE).
+* [X] App skeleton installed on all sites (🧩 CODE).
   **Acceptance:** `bench --site <site> list-apps` shows `erpnext_mz`.
+* [X] **Company Setup Wizard Implementation** (🧩 CODE)
+  * **DocType**: `MZ Company Setup` (Single DocType) with fields for tax, address, contacts, branding
+  * **Frontend**: `mz_onboarding.js` with 3-step dialog system
+  * **Backend**: `onboarding.py` with comprehensive configuration logic
+  * **Features**:
+    - **Step 1**: Tax regime selection, NUIT, company address
+    - **Step 2**: Contact information (phone, email, website)
+    - **Step 3**: Branding (logo, terms & conditions) - optional
+    - **Auto-apply**: Complete ERPNext configuration based on wizard data
+    - **Idempotent**: Safe to run multiple times, updates existing records
+  **Acceptance:** System managers can complete company setup in guided wizard; all tax infrastructure auto-created.
 <!-- Removed: Integrity / Checksums (anti-tamper) -->
 * [ ] **SAF-T (Vendas & Folha) XML generator** (🧩 CODE Doctype + scheduler)
   * Implement schemas; validate; archive monthly file to S3 (WORM).
@@ -92,6 +119,75 @@
 
 ---
 
-## Quick “who does what” cheat-sheet
+## Company Setup Wizard - Technical Implementation
+
+### Architecture Overview
+The Company Setup Wizard is implemented as a comprehensive onboarding system that guides users through Mozambique-specific ERPNext configuration.
+
+### Core Components
+
+#### 1. **MZ Company Setup DocType** (`apps/erpnext_mz/erpnext_mz/doctype/mz_company_setup/`)
+- **Type**: Single DocType (one record per site)
+- **Purpose**: Stores all company configuration data collected during onboarding
+- **Key Fields**:
+  - Tax information: `tax_id` (NUIT), `tax_regime`
+  - Address: `address_line1`, `address_line2`, `city`, `province`, `country`
+  - Contacts: `phone`, `email`, `website`
+  - Branding: `company_logo`, `terms_and_conditions_of_sale`
+  - Progress tracking: `step1_complete`, `step2_complete`, `step3_skipped`, `is_applied`
+
+#### 2. **Frontend Dialog System** (`apps/erpnext_mz/erpnext_mz/public/js/mz_onboarding.js`)
+- **Framework**: Frappe UI Dialog API
+- **Structure**: 3-step progressive dialog system
+- **Features**:
+  - Non-dismissable dialogs (except optional Step 3)
+  - Real-time validation and data persistence
+  - Automatic progression between steps
+  - Error handling and user feedback
+
+#### 3. **Backend Configuration Engine** (`apps/erpnext_mz/erpnext_mz/setup/onboarding.py`)
+- **Main Function**: `apply_all()` - orchestrates complete ERPNext configuration
+- **Key Methods**:
+  - `_update_company_tax_id()`: Sets company NUIT
+  - `_ensure_address()`: Creates/updates company address and contact info
+  - `_apply_branding()`: Generates letterhead and terms & conditions
+  - `_create_tax_masters()`: Creates complete tax infrastructure
+
+#### 4. **Tax Infrastructure Auto-Creation**
+The wizard automatically creates a complete tax setup based on the selected regime:
+
+**Tax Accounts** (under "Duties and Taxes" parent):
+- Asset accounts: `13.01.01-03` (IVA Dedutível 16%/5%/0%)
+- Liability accounts: `24.01.01-03` (IVA a Entregar 16%/5%/0%)
+
+**Tax Templates & Categories**:
+- Sales/Purchase tax templates with correct rates and accounts
+- Tax categories for different regimes
+- Item tax templates for product categorization
+- Tax rules for automatic tax application
+
+#### 5. **Boot Session Integration** (`apps/erpnext_mz/erpnext_mz/setup/boot.py`)
+- Exposes onboarding status to frontend
+- Triggers wizard for System Managers/Administrators
+- Provides real-time status updates
+
+### Data Flow
+1. **User Access**: System Manager/Administrator logs in
+2. **Status Check**: Boot session checks if onboarding is complete
+3. **Dialog Trigger**: If incomplete, wizard dialogs are shown
+4. **Data Collection**: User fills forms, data saved to Single DocType
+5. **Configuration**: `apply_all()` function configures ERPNext
+6. **Completion**: Wizard marked as complete, no longer shown
+
+### Key Features
+- **Idempotent**: Safe to run multiple times, updates existing records
+- **Resumable**: Progress saved after each step
+- **Comprehensive**: Covers all essential Mozambique tax and company setup
+- **User-Friendly**: Guided interface with clear instructions
+- **Error-Resistant**: Handles edge cases and provides meaningful feedback
+
+---
+
+## Quick "who does what" cheat-sheet
 **Do in the UI (🖱️):** VAT templates 16/5/0; Tax Categories; COA/IFRS; Naming Series; Custom Fields (NUIT, AT Cert Nº); fiscal Print Formats (with QR); Payroll components (INSS/IRPS); Leave policies; Workspaces.
-**Write in code (🧩):** SAF-T XML + scheduler; AT API client + post-submit hooks; NUIT validator (client/server); signed audit logs; after\_migrate guard; provisioning scripts.
+**Write in code (🧩):** SAF-T XML + scheduler; AT API client + post-submit hooks; NUIT validator (client/server); signed audit logs; after\_migrate guard; provisioning scripts; Company Setup Wizard.

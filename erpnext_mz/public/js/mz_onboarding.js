@@ -145,10 +145,10 @@ frappe.provide('erpnext_mz.onboarding');
             description: __('Logótipo da Empresa'),
           },
           {
-            fieldname: 'small_text_logz',
-            label: __('Rodapé legal'),
+            fieldname: 'terms_and_conditions_of_sale',
+            label: __('Termos de venda padrão'),
             fieldtype: 'Small Text',
-            description: __('Rodapé. Exemplo: "Copyright © 2025 Empresa. Todos os direitos reservados."'),
+            description: __('Termos e condições de venda padrão da Empresa'),
           },
         ],
         primary_action_label: __('Salvar e Continuar'),

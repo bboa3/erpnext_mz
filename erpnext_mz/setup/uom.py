@@ -7,8 +7,6 @@ This script should be run during app installation or migration.
 """
 
 import frappe
-import json
-from datetime import datetime
 
 # Complete list of Portuguese UOMs (deduplicated and optimized)
 PORTUGUESE_UOMS = [
@@ -112,31 +110,6 @@ PORTUGUESE_UOMS = [
     {"name": "Colher de Sopa", "must_be_whole": False},
     {"name": "Chávena", "must_be_whole": False},
 ]
-
-def backup_current_uoms():
-    """Create backup of current UOMs before deletion"""
-    print("📁 Creating backup of current UOMs...")
-    
-    current_uoms = frappe.get_all("UOM", 
-        fields=["name", "uom_name", "enabled", "must_be_whole_number"],
-        order_by="uom_name"
-    )
-    
-    backup_data = {
-        "backup_date": datetime.now().isoformat(),
-        "total_count": len(current_uoms),
-        "uoms": current_uoms,
-        "app_version": "erpnext_mz",
-        "backup_reason": "Complete UOM replacement with Portuguese units"
-    }
-    
-    # Create backup in site directory
-    backup_file = frappe.get_site_path(f"uom_backup_complete_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
-    with open(backup_file, 'w', encoding='utf-8') as f:
-        json.dump(backup_data, f, indent=2, ensure_ascii=False)
-    
-    print(f"✅ Backed up {len(current_uoms)} UOMs to: {backup_file}")
-    return backup_file, current_uoms
 
 def get_uom_references():
     """Get all references to UOMs in the system"""
@@ -506,8 +479,11 @@ def setup_portuguese_uoms_complete():
     print("⚠️  WARNING: This will delete ALL existing UOMs and create new Portuguese ones!")
     
     try:
-        # Step 1: Backup current UOMs
-        backup_file, old_uoms = backup_current_uoms()
+        # Step 1: Get all UOMs
+        old_uoms = frappe.get_all("UOM", 
+            fields=["name", "uom_name", "enabled", "must_be_whole_number"],
+            order_by="uom_name"
+        )
         
         # Step 2: Get all UOM references
         references = get_uom_references()
@@ -528,7 +504,6 @@ def setup_portuguese_uoms_complete():
         print("\n" + "="*60)
         print("🎉 COMPLETE UOM REPLACEMENT FINISHED!")
         print("="*60)
-        print(f"📁 Backup file: {backup_file}")
         print(f"🗑️  Deleted UOMs: {deleted_count}")
         print(f"➕ Created Portuguese UOMs: {created_count}")
         print(f"🔄 Updated references: {updated_refs}")

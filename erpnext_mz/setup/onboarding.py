@@ -46,7 +46,7 @@ def save_step(step: int | str, values=None):
             "email",
             "website",
         ],
-        3: ["logo", "small_text_logz"],
+        3: ["logo", "terms_and_conditions_of_sale"],
     }
 
     fields = allowed_fields_by_step.get(step_index, [])
@@ -146,55 +146,247 @@ def _ensure_fiscal_year():
 
 
 def _ensure_address(company_name: str, profile):
+    # Update Company document with contact information
+    try:
+        company_doc = frappe.get_doc("Company", company_name)
+        updated = False
+        
+        # Update phone if provided and different
+        if profile.phone and company_doc.phone_no != profile.phone:
+            company_doc.phone_no = profile.phone
+            updated = True
+            
+        # Update email if provided and different
+        if profile.email and company_doc.email != profile.email:
+            company_doc.email = profile.email
+            updated = True
+            
+        # Update website if provided and different
+        if profile.website and company_doc.website != profile.website:
+            company_doc.website = profile.website
+            updated = True
+            
+        if updated:
+            company_doc.save(ignore_permissions=True)
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Update Company contact info failed")
+
+    # Create or update Address document
     existing = frappe.get_all(
         "Dynamic Link",
         filters={"link_doctype": "Company", "link_name": company_name, "parenttype": "Address"},
         fields=["parent"],
         limit=1,
     )
-    if existing:
-        return
+    
     try:
-        addr = frappe.new_doc("Address")
-        addr.address_title = company_name
-        addr.address_type = "Billing"
-        addr.address_line1 = profile.address_line1 or ""
-        addr.address_line2 = profile.neighborhood_or_district or ""
-        addr.city = profile.city or ""
-        addr.state = profile.province or ""
-        addr.country = "Mozambique"
-        addr.phone = profile.phone or ""
-        addr.email_id = profile.email or ""
-        addr.append("links", {"link_doctype": "Company", "link_name": company_name})
-        addr.save(ignore_permissions=True)
+        if existing:
+            # Update existing address
+            addr = frappe.get_doc("Address", existing[0].parent)
+            addr.address_line1 = profile.address_line1 or ""
+            addr.address_line2 = profile.neighborhood_or_district or ""
+            addr.city = profile.city or ""
+            addr.state = profile.province or ""
+            addr.country = "Mozambique"
+            addr.phone = profile.phone or ""
+            addr.email_id = profile.email or ""
+            addr.save(ignore_permissions=True)
+        else:
+            # Create new address
+            addr = frappe.new_doc("Address")
+            addr.address_title = company_name
+            addr.address_type = "Billing"
+            addr.address_line1 = profile.address_line1 or ""
+            addr.address_line2 = profile.neighborhood_or_district or ""
+            addr.city = profile.city or ""
+            addr.state = profile.province or ""
+            addr.country = "Mozambique"
+            addr.phone = profile.phone or ""
+            addr.email_id = profile.email or ""
+            addr.append("links", {"link_doctype": "Company", "link_name": company_name})
+            addr.save(ignore_permissions=True)
     except Exception:
         frappe.log_error(frappe.get_traceback(), "Ensure Address failed")
 
 
 
 def _apply_branding(company_name: str, profile):
+    """Create or update a default letter head for the company using profile data.
+
+    - Builds an HTML header that includes the company logo (if provided) and company contact info
+    - Sets footer with ERPNext branding and company contact details
+    - Enables letterhead in Print Settings and sets Company's default letter head
+    - Creates Terms and Conditions for Sales if provided
+    - Updates company website if provided
+    """
     try:
-        if profile.logo:
-            lh_name = f"{company_name} - Default"
-            if not frappe.db.exists("Letter Head", lh_name):
-                lh = frappe.new_doc("Letter Head")
-                lh.letter_head_name = lh_name
-                lh.is_default = 1
-                lh.content = (profile.small_text_logz or "")
-                lh.is_header = 1
-                lh.is_active = 1
-                lh.company = company_name
-                lh.insert(ignore_permissions=True)
-            else:
-                lh = frappe.get_doc("Letter Head", lh_name)
-                lh.content = (profile.small_text_logz or lh.content or "")
-                lh.save(ignore_permissions=True)
-            frappe.db.set_single_value("Print Settings", "with_letterhead", 1)
-        elif profile.small_text_logz:
-            # Set global print footer if no letterhead provided
-            frappe.db.set_single_value("Print Settings", "pdf_footer_html", profile.small_text_logz)
+        lh_name = f"{company_name} - Default"
+
+        # Collect info
+        company_doc = frappe.get_doc("Company", company_name)
+        company_abbr = company_doc.abbr
+        tax_id = company_doc.tax_id or (profile.tax_id or "")
+        phone = profile.phone or ""
+        email = profile.email or ""
+        website = (getattr(profile, "website", None) or getattr(company_doc, "website", None) or "")
+        line1 = profile.address_line1 or ""
+        line2 = profile.neighborhood_or_district or ""
+        city = profile.city or ""
+        province = profile.province or ""
+        logo_url = None
+
+        # Update company website if provided in profile
+        if getattr(profile, "website", None) and company_doc.website != profile.website:
+            company_doc.website = profile.website
+            company_doc.save(ignore_permissions=True)
+
+        # Prefer profile logo; fallback to company logo
+        if getattr(profile, "logo", None):
+            logo_url = profile.logo
+        elif getattr(company_doc, "company_logo", None):
+            logo_url = company_doc.company_logo
+
+        # Build header HTML with three sections: Logo (left), Company Info (center), Address (right)
+        header_html = [
+            "<table style=\"width:100%; border-collapse:collapse; margin-bottom:20px;\">",
+            "<tr>",
+        ]
+        
+        # Left section: Logo and NUIT
+        header_html.append("<td style=\"width:150px; vertical-align:top; text-align:left;\">")
+        if logo_url:
+            header_html.append(f"<img src=\"{logo_url}\" style=\"max-height:80px; max-width:140px; object-fit:contain; margin-bottom:5px;\"/>")
+        if tax_id:
+            header_html.append(f"<div style=\"font-size:10pt; font-weight:bold; background-color:#f0f0f0; padding:3px; border:1px solid #ccc; text-align:center; margin-top:5px;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
+        header_html.append("</td>")
+        
+        # Center section: Company name and contact details
+        header_html.append("<td style=\"vertical-align:top; text-align:center; padding:0 20px;\">")
+        header_html.append(f"<div style=\"font-weight:bold; font-size:14pt; margin-bottom:8px;\">{frappe.utils.escape_html(company_name)}</div>")
+        
+        # Contact details in center
+        contact_details = []
+        if email:
+            contact_details.append(frappe.utils.escape_html(email))
+        if phone:
+            contact_details.append(frappe.utils.escape_html(phone))
+        if website:
+            contact_details.append(frappe.utils.escape_html(website))
+        if tax_id:
+            contact_details.append(frappe.utils.escape_html(tax_id))
+
+        
+        if contact_details:
+            header_html.append(f"<div style=\"font-size:10pt; line-height:1.4;\">{'<br>'.join(contact_details)}</div>")
+        header_html.append("</td>")
+        
+        # Right section: Company address
+        header_html.append("<td style=\"width:200px; vertical-align:top; text-align:right;\">")
+        address_parts = [p for p in [line1, line2, f"{city} {province}".strip()] if p]
+        if address_parts:
+            for part in address_parts:
+                header_html.append(f"<div style=\"font-size:10pt; line-height:1.3;\">{frappe.utils.escape_html(part)}</div>")
+        header_html.append(f"<div style=\"font-size:10pt; line-height:1.3; font-weight:bold;\">Mozambique</div>")
+        header_html.append("</td>")
+        
+        header_html.append("</tr>")
+        header_html.append("</table>")
+        header_html = "".join(header_html)
+
+        # Get terms and conditions text
+        terms_text = getattr(profile, "terms_and_conditions_of_sale", None) or ""
+
+        # Build footer HTML (without terms and conditions)
+        footer_html = []
+        
+        # Add "Processado pelo programa ERPNext Moçambique" (almost invisible)
+        footer_html.append("<div style=\"color:#e0e0e0; font-size:8pt; margin-bottom:8px;\">Processado pelo programa ERPNext Moçambique</div>")
+        
+        # Add company address and contacts in line
+        footer_contact_parts = []
+        if line1:
+            footer_contact_parts.append(frappe.utils.escape_html(line1))
+        if line2:
+            footer_contact_parts.append(frappe.utils.escape_html(line2))
+        if city and province:
+            footer_contact_parts.append(f"{frappe.utils.escape_html(city)}, {frappe.utils.escape_html(province)}")
+        if phone:
+            footer_contact_parts.append(f"Tel: {frappe.utils.escape_html(phone)}")
+        if email:
+            footer_contact_parts.append(f"Email: {frappe.utils.escape_html(email)}")
+        
+        if footer_contact_parts:
+            footer_html.append(f"<div style=\"font-size:9pt; color:#666;\">{' | '.join(footer_contact_parts)}</div>")
+        
+        footer_content = "".join(footer_html)
+
+        # Create or update Letter Head
+        if not frappe.db.exists("Letter Head", lh_name):
+            lh = frappe.new_doc("Letter Head")
+            lh.letter_head_name = lh_name
+            lh.company = company_name
+            lh.is_default = 1
+            lh.disabled = 0
+            lh.source = "HTML"
+            lh.footer_source = "HTML"
+            lh.content = header_html
+            lh.footer = footer_content
+            lh.insert(ignore_permissions=True)
+        else:
+            lh = frappe.get_doc("Letter Head", lh_name)
+            lh.company = company_name
+            lh.is_default = 1
+            lh.disabled = 0
+            lh.source = "HTML"
+            lh.footer_source = "HTML"
+            lh.content = header_html
+            lh.footer = footer_content
+            lh.save(ignore_permissions=True)
+
+        # Ensure letterhead is enabled in Print Settings
+        frappe.db.set_single_value("Print Settings", "with_letterhead", 1)
+
+        # Set as company's default letter head
+        try:
+            if getattr(company_doc, "default_letter_head", None) != lh_name:
+                company_doc.db_set("default_letter_head", lh_name, commit=True)
+        except Exception:
+            pass
+
+        # Create Terms and Conditions for Sales if provided
+        if terms_text:
+            _create_terms_and_conditions(company_name, terms_text)
+
     except Exception:
         frappe.log_error(frappe.get_traceback(), "Apply branding failed")
+
+
+def _create_terms_and_conditions(company_name: str, terms_text: str):
+    """Create Terms and Conditions for Sales transactions."""
+    try:
+        tc_name = f"{company_name} - Terms and Conditions"
+        
+        # Check if Terms and Conditions already exists
+        if frappe.db.exists("Terms and Conditions", tc_name):
+            return
+        
+        # Create new Terms and Conditions
+        tc = frappe.new_doc("Terms and Conditions")
+        tc.title = tc_name
+        tc.terms = terms_text
+        tc.insert(ignore_permissions=True)
+        
+        # Set as default for the company
+        try:
+            company_doc = frappe.get_doc("Company", company_name)
+            if getattr(company_doc, "default_selling_terms", None) != tc_name:
+                company_doc.db_set("default_selling_terms", tc_name, commit=True)
+        except Exception:
+            # Company might not have this field, that's okay
+            pass
+            
+    except Exception:
+        frappe.log_error(frappe.get_traceback(), "Create Terms and Conditions failed")
 
 
 def _ensure_tax_infrastructure(company_name: str, profile):
@@ -312,6 +504,15 @@ def _create_tax_masters(company_name: str):
     # Get the profile to determine which template should be default
     profile = _get_profile(create_if_missing=True)
     regime = (profile.tax_regime or "Normal").lower()
+    # Determine default template title by regime
+    if regime.startswith("normal"):
+        default_title = "Regime Normal (16%)"
+    elif regime.startswith("reduzida") or regime.startswith("reducida"):
+        default_title = "Taxa Reduzida (5%)"
+    elif regime.startswith("isento"):
+        default_title = "Isento/Exportação"
+    else:
+        default_title = "Isento/Exportação"
     
     ensure_sales_template("Regime Normal (16%)", 16.0, a_output_16, "Regime Normal (16%)", regime.startswith("normal"))
     ensure_sales_template("Taxa Reduzida (5%)", 5.0, a_output_5, "Taxa Reduzida (5%)", regime.startswith("reduzida"))
@@ -352,13 +553,24 @@ def _create_tax_masters(company_name: str):
 
     # Ensure only one template per company is marked as default
     def ensure_single_default_template(doctype: str, default_title: str):
-        # Unset all defaults for this company
-        frappe.db.sql(f"UPDATE `tab{doctype}` SET is_default = 0 WHERE company = %s", (company_name,))
-        # Set the correct default
-        frappe.db.sql(f"UPDATE `tab{doctype}` SET is_default = 1 WHERE company = %s AND title = %s", (company_name, default_title))
+        try:
+            # Unset all defaults for this company
+            frappe.db.sql(f"UPDATE `tab{doctype}` SET is_default = 0 WHERE company = %s", (company_name,))
+            frappe.db.commit()
+            
+            # Set the correct default
+            frappe.db.sql(f"UPDATE `tab{doctype}` SET is_default = 1 WHERE company = %s AND title = %s", (company_name, default_title))
+            frappe.db.commit()
+            
+            # Verify the default was set
+            default_exists = frappe.db.get_value(doctype, {"company": company_name, "title": default_title, "is_default": 1}, "name")
+            if not default_exists:
+                frappe.log_error(f"Failed to set default {doctype} for company {company_name}", "Tax Template Default Error")
+        except Exception as e:
+            frappe.log_error(f"Error setting default {doctype}: {str(e)}", "Tax Template Default Error")
     
-    ensure_single_default_template("Sales Taxes and Charges Template", default_template)
-    ensure_single_default_template("Purchase Taxes and Charges Template", default_template)
+    ensure_single_default_template("Sales Taxes and Charges Template", default_title)
+    ensure_single_default_template("Purchase Taxes and Charges Template", default_title)
 
     def ensure_item_tax_template(title: str, rate: float):
         if frappe.db.exists("Item Tax Template", {"title": title, "company": company_name}):
@@ -475,9 +687,31 @@ def get_profile_values():
         "email",
         "website",
         "logo",
-        "small_text_logz",
+        "terms_and_conditions_of_sale",
     ]
     return {f: profile.get(f) for f in fields}
+
+
+@frappe.whitelist()
+def debug_tax_templates():
+    """Debug function to check tax template status"""
+    company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
+    if not company_name:
+        return {"error": "No company found"}
+    
+    sales_templates = frappe.get_all("Sales Taxes and Charges Template", 
+                                   filters={"company": company_name}, 
+                                   fields=["name", "title", "is_default"])
+    
+    purchase_templates = frappe.get_all("Purchase Taxes and Charges Template", 
+                                      filters={"company": company_name}, 
+                                      fields=["name", "title", "is_default"])
+    
+    return {
+        "company": company_name,
+        "sales_templates": sales_templates,
+        "purchase_templates": purchase_templates
+    }
 
 import frappe
 from erpnext_mz.setup.language import ensure_language_pt_mz

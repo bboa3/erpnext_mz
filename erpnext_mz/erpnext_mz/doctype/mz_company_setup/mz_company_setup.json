@@ -24,7 +24,7 @@
     "website",
     "sb_step3",
     "logo",
-    "small_text_logz",
+    "terms_and_conditions_of_sale",
     "sb_status",
     "step1_complete",
     "step2_complete",
@@ -116,9 +116,9 @@
       "label": "Logótipo da Empresa"
     },
     {
-      "fieldname": "small_text_logz",
+      "fieldname": "terms_and_conditions_of_sale",
       "fieldtype": "Small Text",
-      "label": ""
+      "label": "Termos de venda padrão"
     },
     {
       "fieldname": "sb_status",
