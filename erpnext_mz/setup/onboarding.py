@@ -925,12 +925,15 @@ def trigger_onboarding_after_setup(args=None):
 def _create_print_formats():
     """Create Mozambique-specific print formats"""
     try:
-        from erpnext_mz.setup.create_print_formats import create_mozambique_sales_invoice_print_format
+        # Step 1: Disable existing print formats to avoid conflicts
+        from erpnext_mz.setup.disable_existing_print_formats import prepare_for_mozambique_print_formats
+        preparation_result = prepare_for_mozambique_print_formats()
+        frappe.log_error(f"Print format preparation completed: {preparation_result}", "Print Format Preparation")
         
-        # Create Sales Invoice print format if it doesn't exist
-        if not frappe.db.exists("Print Format", "Mozambique Sales Invoice"):
-            create_mozambique_sales_invoice_print_format()
-            frappe.log_error("Created Mozambique Sales Invoice print format", "Print Format Creation")
+        # Step 2: Create all professional print formats
+        from erpnext_mz.setup.comprehensive_print_formats import create_all_mozambique_print_formats
+        created_formats = create_all_mozambique_print_formats()
+        frappe.log_error(f"Created {len(created_formats)} Mozambique print formats: {created_formats}", "Print Format Creation")
         
     except Exception as e:
         frappe.log_error(f"Error creating print formats: {str(e)}", "Print Format Creation")

@@ -44,7 +44,6 @@ fixtures = [
   "Property Setter",
   "Document Naming Settings",
   "Document Naming Rule",
-  "Print Format",
   "Client Script",
 #  "Payroll Settings",
   "Custom Field",

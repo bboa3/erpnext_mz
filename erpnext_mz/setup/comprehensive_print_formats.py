@@ -1,0 +1,989 @@
+#!/usr/bin/env python3
+"""
+Comprehensive Print Formats for Mozambique ERPNext
+
+This module creates all essential business document print formats
+with consistent design and Mozambique compliance requirements.
+"""
+
+import frappe
+from frappe import _
+from .print_format_templates import PrintFormatTemplate
+
+
+class SalesInvoicePrintFormat(PrintFormatTemplate):
+    """Sales Invoice Print Format"""
+    
+    def __init__(self):
+        super().__init__("Sales Invoice", "Fatura (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("FACTURA")
+        customer_section = self.get_customer_details_section()
+        items_section = self.get_items_table_section()
+        totals_section = self.get_totals_section([
+            ("net_total", "Sub Total"),
+            ("grand_total", "Total Geral")
+        ])
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+""" + customer_section + """
+
+""" + items_section + """
+
+""" + totals_section + """
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+class SalesOrderPrintFormat(PrintFormatTemplate):
+    """Sales Order Print Format"""
+    
+    def __init__(self):
+        super().__init__("Sales Order", "Encomenda de Venda (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("ENCOMENDA DE VENDA")
+        customer_section = self.get_customer_details_section()
+        items_section = self.get_items_table_section()
+        totals_section = self.get_totals_section([
+            ("net_total", "Sub Total"),
+            ("grand_total", "Total Geral")
+        ])
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+""" + customer_section + """
+
+""" + items_section + """
+
+""" + totals_section + """
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+class DeliveryNotePrintFormat(PrintFormatTemplate):
+    """Delivery Note Print Format"""
+    
+    def __init__(self):
+        super().__init__("Delivery Note", "Guia de Remessa (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("GUIA DE REMESSA")
+        customer_section = self.get_customer_details_section()
+        items_section = self.get_items_table_section()
+        totals_section = self.get_totals_section([
+            ("net_total", "Sub Total"),
+            ("grand_total", "Total Geral")
+        ])
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+""" + customer_section + """
+
+""" + items_section + """
+
+""" + totals_section + """
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+class QuotationPrintFormat(PrintFormatTemplate):
+    """Quotation Print Format"""
+    
+    def __init__(self):
+        super().__init__("Quotation", "Orçamento (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("ORÇAMENTO")
+        customer_section = self.get_customer_details_section()
+        items_section = self.get_items_table_section()
+        totals_section = self.get_totals_section([
+            ("net_total", "Sub Total"),
+            ("grand_total", "Total Geral")
+        ])
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+""" + customer_section + """
+
+""" + items_section + """
+
+""" + totals_section + """
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+# Purchase Document Print Formats
+class PurchaseInvoicePrintFormat(PrintFormatTemplate):
+    """Purchase Invoice Print Format"""
+    
+    def __init__(self):
+        super().__init__("Purchase Invoice", "Factura de Compra (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("FACTURA DE COMPRA")
+        customer_section = self.get_customer_details_section("supplier", "supplier_name")
+        items_section = self.get_items_table_section()
+        totals_section = self.get_totals_section([
+            ("net_total", "Sub Total"),
+            ("grand_total", "Total Geral")
+        ])
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+""" + customer_section + """
+
+""" + items_section + """
+
+""" + totals_section + """
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+class PurchaseOrderPrintFormat(PrintFormatTemplate):
+    """Purchase Order Print Format"""
+    
+    def __init__(self):
+        super().__init__("Purchase Order", "Encomenda de Compra (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("ENCOMENDA DE COMPRA")
+        customer_section = self.get_customer_details_section("supplier", "supplier_name")
+        items_section = self.get_items_table_section()
+        totals_section = self.get_totals_section([
+            ("net_total", "Sub Total"),
+            ("grand_total", "Total Geral")
+        ])
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+""" + customer_section + """
+
+""" + items_section + """
+
+""" + totals_section + """
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+class PurchaseReceiptPrintFormat(PrintFormatTemplate):
+    """Purchase Receipt Print Format"""
+    
+    def __init__(self):
+        super().__init__("Purchase Receipt", "Recibo de Compra (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("RECIBO DE COMPRA")
+        customer_section = self.get_customer_details_section("supplier", "supplier_name")
+        items_section = self.get_items_table_section()
+        totals_section = self.get_totals_section([
+            ("net_total", "Sub Total"),
+            ("grand_total", "Total Geral")
+        ])
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+""" + customer_section + """
+
+""" + items_section + """
+
+""" + totals_section + """
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+# Inventory Document Print Formats
+class StockEntryPrintFormat(PrintFormatTemplate):
+    """Stock Entry Print Format"""
+    
+    def __init__(self):
+        super().__init__("Stock Entry", "Entrada de Stock (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("ENTRADA DE STOCK")
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+    <!-- Stock Entry Details -->
+    <div class="row customer-invoice-section">
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Tipo de Entrada") }}</h4>
+            <div class="customer-info">
+                <strong>{{ doc.stock_entry_type }}</strong>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Detalhes") }}</h4>
+            <div class="invoice-info">
+                {% if doc.from_warehouse %}
+                <div class="info-row">
+                    <span class="label">{{ _("De Armazém") }}:</span>
+                    <span class="value">{{ doc.from_warehouse }}</span>
+                </div>
+                {% endif %}
+                {% if doc.to_warehouse %}
+                <div class="info-row">
+                    <span class="label">{{ _("Para Armazém") }}:</span>
+                    <span class="value">{{ doc.to_warehouse }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Items Table Section -->
+    <div class="items-section">
+        <h4 class="section-title">{{ _("Artigos") }}</h4>
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th class="text-center">{{ _("Sr") }}</th>
+                    <th class="text-left">{{ _("Item") }}</th>
+                    <th class="text-center">{{ _("Qtd") }}</th>
+                    <th class="text-center">{{ _("U.M.") }}</th>
+                    <th class="text-center">{{ _("Armazém") }}</th>
+                    <th class="text-right">{{ _("Valor") }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in doc.items %}
+                <tr>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-left">
+                        <strong>{{ item.item_code }}</strong><br>
+                        {{ item.item_name }}
+                    </td>
+                    <td class="text-center">{{ item.get_formatted("qty", 0) }}</td>
+                    <td class="text-center">{{ item.get_formatted("uom", 0) }}</td>
+                    <td class="text-center">{{ item.warehouse }}</td>
+                    <td class="text-right">{{ item.get_formatted("basic_rate", doc) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+class MaterialRequestPrintFormat(PrintFormatTemplate):
+    """Material Request Print Format"""
+    
+    def __init__(self):
+        super().__init__("Material Request", "Pedido de Material (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("PEDIDO DE MATERIAL")
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+    <!-- Material Request Details -->
+    <div class="row customer-invoice-section">
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Detalhes do Pedido") }}</h4>
+            <div class="customer-info">
+                <strong>{{ _("Tipo") }}:</strong> {{ doc.material_request_type }}<br>
+                {% if doc.schedule_date %}
+                <strong>{{ _("Data Prevista") }}:</strong> {{ frappe.utils.format_date(doc.schedule_date) }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Destino") }}</h4>
+            <div class="invoice-info">
+                {% if doc.warehouse %}
+                <div class="info-row">
+                    <span class="label">{{ _("Armazém") }}:</span>
+                    <span class="value">{{ doc.warehouse }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Items Table Section -->
+    <div class="items-section">
+        <h4 class="section-title">{{ _("Artigos") }}</h4>
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th class="text-center">{{ _("Sr") }}</th>
+                    <th class="text-left">{{ _("Item") }}</th>
+                    <th class="text-center">{{ _("Qtd") }}</th>
+                    <th class="text-center">{{ _("U.M.") }}</th>
+                    <th class="text-center">{{ _("Data Prevista") }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in doc.items %}
+                <tr>
+                    <td class="text-center">{{ loop.index }}</td>
+                    <td class="text-left">
+                        <strong>{{ item.item_code }}</strong><br>
+                        {{ item.item_name }}
+                    </td>
+                    <td class="text-center">{{ item.get_formatted("qty", 0) }}</td>
+                    <td class="text-center">{{ item.get_formatted("uom", 0) }}</td>
+                    <td class="text-center">{{ frappe.utils.format_date(item.schedule_date) if item.schedule_date else '' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+# Financial Document Print Formats
+class PaymentEntryPrintFormat(PrintFormatTemplate):
+    """Payment Entry Print Format"""
+    
+    def __init__(self):
+        super().__init__("Payment Entry", "Entrada de Pagamento (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("ENTRADA DE PAGAMENTO")
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+    <!-- Payment Details -->
+    <div class="row customer-invoice-section">
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Detalhes do Pagamento") }}</h4>
+            <div class="customer-info">
+                <strong>{{ _("Tipo") }}:</strong> {{ doc.payment_type }}<br>
+                <strong>{{ _("Modo") }}:</strong> {{ doc.mode_of_payment }}<br>
+                {% if doc.party %}
+                <strong>{{ _("Parte") }}:</strong> {{ doc.party }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Valores") }}</h4>
+            <div class="invoice-info">
+                <div class="info-row">
+                    <span class="label">{{ _("Valor Total") }}:</span>
+                    <span class="value">{{ doc.get_formatted("paid_amount", doc) }}</span>
+                </div>
+                {% if doc.received_amount %}
+                <div class="info-row">
+                    <span class="label">{{ _("Valor Recebido") }}:</span>
+                    <span class="value">{{ doc.get_formatted("received_amount", doc) }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- References Section -->
+    {% if doc.references %}
+    <div class="items-section">
+        <h4 class="section-title">{{ _("Referências") }}</h4>
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th class="text-left">{{ _("Tipo") }}</th>
+                    <th class="text-left">{{ _("Referência") }}</th>
+                    <th class="text-right">{{ _("Valor") }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ref in doc.references %}
+                <tr>
+                    <td class="text-left">{{ ref.reference_doctype }}</td>
+                    <td class="text-left">{{ ref.reference_name }}</td>
+                    <td class="text-right">{{ ref.get_formatted("allocated_amount", doc) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+class JournalEntryPrintFormat(PrintFormatTemplate):
+    """Journal Entry Print Format"""
+    
+    def __init__(self):
+        super().__init__("Journal Entry", "Lançamento Contabilístico (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("LANÇAMENTO CONTABILÍSTICO")
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+    <!-- Journal Entry Details -->
+    <div class="row customer-invoice-section">
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Detalhes do Lançamento") }}</h4>
+            <div class="customer-info">
+                <strong>{{ _("Tipo") }}:</strong> {{ doc.voucher_type }}<br>
+                {% if doc.cheque_no %}
+                <strong>{{ _("Nº Cheque") }}:</strong> {{ doc.cheque_no }}<br>
+                {% endif %}
+                {% if doc.cheque_date %}
+                <strong>{{ _("Data Cheque") }}:</strong> {{ frappe.utils.format_date(doc.cheque_date) }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Valores") }}</h4>
+            <div class="invoice-info">
+                <div class="info-row">
+                    <span class="label">{{ _("Total Débito") }}:</span>
+                    <span class="value">{{ doc.get_formatted("total_debit", doc) }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">{{ _("Total Crédito") }}:</span>
+                    <span class="value">{{ doc.get_formatted("total_credit", doc) }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accounts Section -->
+    <div class="items-section">
+        <h4 class="section-title">{{ _("Contas") }}</h4>
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th class="text-left">{{ _("Conta") }}</th>
+                    <th class="text-left">{{ _("Centro de Custo") }}</th>
+                    <th class="text-right">{{ _("Débito") }}</th>
+                    <th class="text-right">{{ _("Crédito") }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for account in doc.accounts %}
+                <tr>
+                    <td class="text-left">
+                        <strong>{{ account.account }}</strong><br>
+                        {% if account.party_type and account.party %}
+                        <small>{{ account.party_type }}: {{ account.party }}</small>
+                        {% endif %}
+                    </td>
+                    <td class="text-left">{{ account.cost_center or '' }}</td>
+                    <td class="text-right">{{ account.get_formatted("debit", doc) if account.debit else '' }}</td>
+                    <td class="text-right">{{ account.get_formatted("credit", doc) if account.credit else '' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+# HR Document Print Formats
+class PayslipPrintFormat(PrintFormatTemplate):
+    """Payslip Print Format"""
+    
+    def __init__(self):
+        super().__init__("Salary Slip", "Recibo de Vencimento (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("RECIBO DE VENCIMENTO")
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+    <!-- Employee Details -->
+    <div class="row customer-invoice-section">
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Dados do Funcionário") }}</h4>
+            <div class="customer-info">
+                <strong>{{ doc.employee_name }}</strong><br>
+                <strong>{{ _("Nº Funcionário") }}:</strong> {{ doc.employee }}<br>
+                {% if doc.designation %}
+                <strong>{{ _("Cargo") }}:</strong> {{ doc.designation }}<br>
+                {% endif %}
+                {% if doc.department %}
+                <strong>{{ _("Departamento") }}:</strong> {{ doc.department }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Período") }}</h4>
+            <div class="invoice-info">
+                <div class="info-row">
+                    <span class="label">{{ _("De") }}:</span>
+                    <span class="value">{{ frappe.utils.format_date(doc.start_date) }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">{{ _("Até") }}:</span>
+                    <span class="value">{{ frappe.utils.format_date(doc.end_date) }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">{{ _("Dias Trabalhados") }}:</span>
+                    <span class="value">{{ doc.payment_days }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings Section -->
+    {% if doc.earnings %}
+    <div class="items-section">
+        <h4 class="section-title">{{ _("Vencimentos") }}</h4>
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th class="text-left">{{ _("Descrição") }}</th>
+                    <th class="text-center">{{ _("Dias/Horas") }}</th>
+                    <th class="text-right">{{ _("Taxa") }}</th>
+                    <th class="text-right">{{ _("Valor") }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for earning in doc.earnings %}
+                <tr>
+                    <td class="text-left">{{ earning.salary_component }}</td>
+                    <td class="text-center">{{ earning.get_formatted("amount", doc) if earning.amount else '' }}</td>
+                    <td class="text-right">{{ earning.get_formatted("default_amount", doc) if earning.default_amount else '' }}</td>
+                    <td class="text-right">{{ earning.get_formatted("amount", doc) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    <!-- Deductions Section -->
+    {% if doc.deductions %}
+    <div class="items-section">
+        <h4 class="section-title">{{ _("Descontos") }}</h4>
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th class="text-left">{{ _("Descrição") }}</th>
+                    <th class="text-right">{{ _("Valor") }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for deduction in doc.deductions %}
+                <tr>
+                    <td class="text-left">{{ deduction.salary_component }}</td>
+                    <td class="text-right">{{ deduction.get_formatted("amount", doc) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    <!-- Totals Section -->
+    <div class="row totals-section">
+        <div class="col-xs-12">
+            <div class="totals-table">
+                <div class="totals-row">
+                    <span class="totals-label">{{ _("Total Vencimentos") }}:</span>
+                    <span class="totals-value">{{ doc.get_formatted("gross_pay", doc) }}</span>
+                </div>
+                <div class="totals-row">
+                    <span class="totals-label">{{ _("Total Descontos") }}:</span>
+                    <span class="totals-value">{{ doc.get_formatted("total_deduction", doc) }}</span>
+                </div>
+                <div class="totals-row grand-total">
+                    <span class="totals-label">{{ _("Líquido a Receber") }}:</span>
+                    <span class="totals-value">{{ doc.get_formatted("net_pay", doc) }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+# Customer/Supplier Print Formats
+class CustomerPrintFormat(PrintFormatTemplate):
+    """Customer Print Format"""
+    
+    def __init__(self):
+        super().__init__("Customer", "Cliente (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("DADOS DO CLIENTE")
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+    <!-- Customer Details -->
+    <div class="row customer-invoice-section">
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Informações Gerais") }}</h4>
+            <div class="customer-info">
+                <strong>{{ doc.customer_name }}</strong><br>
+                {% if doc.tax_id %}
+                <strong>{{ _("NUIT") }}:</strong> {{ doc.tax_id }}<br>
+                {% endif %}
+                {% if doc.customer_type %}
+                <strong>{{ _("Tipo") }}:</strong> {{ doc.customer_type }}<br>
+                {% endif %}
+                {% if doc.territory %}
+                <strong>{{ _("Território") }}:</strong> {{ doc.territory }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Contactos") }}</h4>
+            <div class="invoice-info">
+                {% if doc.mobile_no %}
+                <div class="info-row">
+                    <span class="label">{{ _("Telemóvel") }}:</span>
+                    <span class="value">{{ doc.mobile_no }}</span>
+                </div>
+                {% endif %}
+                {% if doc.email_id %}
+                <div class="info-row">
+                    <span class="label">{{ _("Email") }}:</span>
+                    <span class="value">{{ doc.email_id }}</span>
+                </div>
+                {% endif %}
+                {% if doc.website %}
+                <div class="info-row">
+                    <span class="label">{{ _("Website") }}:</span>
+                    <span class="value">{{ doc.website }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Address Section -->
+    {% if doc.customer_primary_address %}
+    <div class="items-section">
+        <h4 class="section-title">{{ _("Endereço Principal") }}</h4>
+        <div class="customer-info">
+            {{ doc.customer_primary_address }}
+        </div>
+    </div>
+    {% endif %}
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+class SupplierPrintFormat(PrintFormatTemplate):
+    """Supplier Print Format"""
+    
+    def __init__(self):
+        super().__init__("Supplier", "Fornecedor (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("DADOS DO FORNECEDOR")
+        qr_section = self.get_qr_code_section()
+        footer_macro = self.get_common_footer_macro()
+        
+        return header_macro + """
+
+{% for page in layout %}
+<div class="page-break">
+    <div {% if print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+        {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+    </div>
+
+    <!-- Supplier Details -->
+    <div class="row customer-invoice-section">
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Informações Gerais") }}</h4>
+            <div class="customer-info">
+                <strong>{{ doc.supplier_name }}</strong><br>
+                {% if doc.tax_id %}
+                <strong>{{ _("NUIT") }}:</strong> {{ doc.tax_id }}<br>
+                {% endif %}
+                {% if doc.supplier_type %}
+                <strong>{{ _("Tipo") }}:</strong> {{ doc.supplier_type }}<br>
+                {% endif %}
+                {% if doc.country %}
+                <strong>{{ _("País") }}:</strong> {{ doc.country }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h4 class="section-title">{{ _("Contactos") }}</h4>
+            <div class="invoice-info">
+                {% if doc.mobile_no %}
+                <div class="info-row">
+                    <span class="label">{{ _("Telemóvel") }}:</span>
+                    <span class="value">{{ doc.mobile_no }}</span>
+                </div>
+                {% endif %}
+                {% if doc.email_id %}
+                <div class="info-row">
+                    <span class="label">{{ _("Email") }}:</span>
+                    <span class="value">{{ doc.email_id }}</span>
+                </div>
+                {% endif %}
+                {% if doc.website %}
+                <div class="info-row">
+                    <span class="label">{{ _("Website") }}:</span>
+                    <span class="value">{{ doc.website }}</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Address Section -->
+    {% if doc.supplier_primary_address %}
+    <div class="items-section">
+        <h4 class="section-title">{{ _("Endereço Principal") }}</h4>
+        <div class="customer-info">
+            {{ doc.supplier_primary_address }}
+        </div>
+    </div>
+    {% endif %}
+
+""" + qr_section + """
+
+""" + footer_macro + """
+</div>
+{% endfor %}
+"""
+
+
+# Main function to create all print formats
+@frappe.whitelist()
+def create_all_mozambique_print_formats():
+    """Create all Mozambique print formats"""
+    formats_created = []
+    
+    try:
+        # Step 1: Disable existing print formats to avoid conflicts
+        from .disable_existing_print_formats import prepare_for_mozambique_print_formats
+        preparation_result = prepare_for_mozambique_print_formats()
+        frappe.log_error(f"Preparation completed: {preparation_result}", "Print Format Preparation")
+        # Sales Documents
+        sales_invoice = SalesInvoicePrintFormat()
+        formats_created.append(sales_invoice.create_print_format())
+        
+        sales_order = SalesOrderPrintFormat()
+        formats_created.append(sales_order.create_print_format())
+        
+        delivery_note = DeliveryNotePrintFormat()
+        formats_created.append(delivery_note.create_print_format())
+        
+        quotation = QuotationPrintFormat()
+        formats_created.append(quotation.create_print_format())
+        
+        # Purchase Documents
+        purchase_invoice = PurchaseInvoicePrintFormat()
+        formats_created.append(purchase_invoice.create_print_format())
+        
+        purchase_order = PurchaseOrderPrintFormat()
+        formats_created.append(purchase_order.create_print_format())
+        
+        purchase_receipt = PurchaseReceiptPrintFormat()
+        formats_created.append(purchase_receipt.create_print_format())
+        
+        # Inventory Documents
+        stock_entry = StockEntryPrintFormat()
+        formats_created.append(stock_entry.create_print_format())
+        
+        material_request = MaterialRequestPrintFormat()
+        formats_created.append(material_request.create_print_format())
+        
+        # Financial Documents
+        payment_entry = PaymentEntryPrintFormat()
+        formats_created.append(payment_entry.create_print_format())
+        
+        journal_entry = JournalEntryPrintFormat()
+        formats_created.append(journal_entry.create_print_format())
+        
+        # HR Documents
+        payslip = PayslipPrintFormat()
+        formats_created.append(payslip.create_print_format())
+        
+        # Customer/Supplier Documents
+        customer = CustomerPrintFormat()
+        formats_created.append(customer.create_print_format())
+        
+        supplier = SupplierPrintFormat()
+        formats_created.append(supplier.create_print_format())
+        
+        frappe.msgprint(_("Successfully created {0} print formats").format(len(formats_created)))
+        return formats_created
+        
+    except Exception as e:
+        frappe.log_error(f"Error creating print formats: {str(e)}")
+        frappe.throw(_("Failed to create print formats: {0}").format(str(e)))
+
+
+if __name__ == "__main__":
+    # This can be run as a script
+    frappe.init(site="erp.local")
+    frappe.connect()
+    
+    # Create all print formats
+    formats = create_all_mozambique_print_formats()
+    print(f"Created {len(formats)} print formats: {formats}")

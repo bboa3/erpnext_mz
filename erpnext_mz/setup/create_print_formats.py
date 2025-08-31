@@ -612,17 +612,12 @@ def get_mozambique_sales_invoice_css():
 @frappe.whitelist()
 def create_all_mozambique_print_formats():
     """
-    Creates all Mozambique-specific print formats
+    Creates all Mozambique-specific print formats using the comprehensive system
     """
-    formats_created = []
-    
     try:
-        # Create Sales Invoice print format
-        sales_invoice_format = create_mozambique_sales_invoice_print_format()
-        formats_created.append(sales_invoice_format)
-        
-        frappe.msgprint(_("Successfully created {0} print formats").format(len(formats_created)))
-        return formats_created
+        # Import and use the comprehensive print format system
+        from .comprehensive_print_formats import create_all_mozambique_print_formats as create_all
+        return create_all()
         
     except Exception as e:
         frappe.log_error(f"Error creating print formats: {str(e)}")
@@ -637,8 +632,6 @@ def set_default_print_format(doctype, print_format_name):
     try:
         # Update the default print format in Print Settings
         if frappe.db.exists("Print Format", print_format_name):
-            # This would typically be done through Print Settings
-            frappe.msgprint(_("Print format '{0}' is available for {1}").format(print_format_name, doctype))
             return True
         else:
             frappe.throw(_("Print format '{0}' does not exist").format(print_format_name))
