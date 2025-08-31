@@ -630,6 +630,7 @@ def _create_tax_masters(company_name: str):
         profile = _get_profile(create_if_missing=True)
         regime = (profile.tax_regime or "Normal").lower()
         
+        # Determine default template title by regime
         if regime.startswith("normal"):
             template_title = "IVA 16%"
             category_title = "IVA 16%"
@@ -659,36 +660,49 @@ def _create_tax_masters(company_name: str):
         if not sales_template or not purchase_template or not tax_category_name:
             return
 
-        # Check if default rule already exists
-        exists = frappe.db.exists(
+        # Check if Sales Tax Rule already exists
+        sales_exists = frappe.db.exists(
             "Tax Rule",
             {
                 "company": company_name,
-                "use_for": "Sales",
+                "tax_type": "Sales",
                 "tax_category": tax_category_name,
                 "sales_tax_template": sales_template,
             },
         )
-        if exists:
-            return
+        
+        if not sales_exists:
+            # Create Sales Tax Rule
+            tr_sales = frappe.new_doc("Tax Rule")
+            tr_sales.company = company_name
+            tr_sales.tax_type = "Sales"
+            tr_sales.tax_category = tax_category_name
+            tr_sales.sales_tax_template = sales_template
+            tr_sales.priority = 1
+            tr_sales.insert(ignore_permissions=True)
+            print(f"✅ Created Sales Tax Rule for {template_title}")
 
-        # Create Sales Tax Rule
-        tr_sales = frappe.new_doc("Tax Rule")
-        tr_sales.company = company_name
-        tr_sales.use_for = "Sales"
-        tr_sales.tax_category = tax_category_name
-        tr_sales.sales_tax_template = sales_template
-        tr_sales.priority = 1
-        tr_sales.insert(ignore_permissions=True)
-
-        # Create Purchase Tax Rule
-        tr_purchase = frappe.new_doc("Tax Rule")
-        tr_purchase.company = company_name
-        tr_purchase.use_for = "Purchase"
-        tr_purchase.tax_category = tax_category_name
-        tr_purchase.purchase_tax_template = purchase_template
-        tr_purchase.priority = 1
-        tr_purchase.insert(ignore_permissions=True)
+        # Check if Purchase Tax Rule already exists
+        purchase_exists = frappe.db.exists(
+            "Tax Rule",
+            {
+                "company": company_name,
+                "tax_type": "Purchase",
+                "tax_category": tax_category_name,
+                "purchase_tax_template": purchase_template,
+            },
+        )
+        
+        if not purchase_exists:
+            # Create Purchase Tax Rule
+            tr_purchase = frappe.new_doc("Tax Rule")
+            tr_purchase.company = company_name
+            tr_purchase.tax_type = "Purchase"
+            tr_purchase.tax_category = tax_category_name
+            tr_purchase.purchase_tax_template = purchase_template
+            tr_purchase.priority = 1
+            tr_purchase.insert(ignore_permissions=True)
+            print(f"✅ Created Purchase Tax Rule for {template_title}")
 
     ensure_default_tax_rule()
 
@@ -881,6 +895,7 @@ def should_trigger_onboarding():
     except Exception as e:
         frappe.log_error(f"Error checking onboarding trigger: {str(e)}", "MZ Onboarding Trigger Check Error")
         return {"should_trigger": False, "reason": f"Error: {str(e)}"}
+
 
 
 def trigger_onboarding_after_setup(args=None):
