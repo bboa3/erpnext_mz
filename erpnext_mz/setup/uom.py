@@ -540,5 +540,19 @@ def test_portuguese_uoms():
         else:
             print(f"  ❌ {uom_name} - NOT FOUND")
     
+    # Check for any remaining English UOMs
+    english_uoms = ["Unit", "Nos", "Kg", "Meter", "Liter", "Box", "Set", "Piece", "Pair", "Dozen"]
+    print("\nChecking for English UOMs:")
+    english_found = []
+    for uom_name in english_uoms:
+        if frappe.db.exists("UOM", uom_name):
+            english_found.append(uom_name)
+            print(f"  ⚠️  {uom_name} - STILL EXISTS (should be Portuguese)")
+    
+    if not english_found:
+        print("  ✅ No English UOMs found - system is 100% Portuguese!")
+    else:
+        print(f"  ❌ Found {len(english_found)} English UOMs that should be converted")
+    
     print("✅ Test completed!")
-    return True
+    return len(english_found) == 0
