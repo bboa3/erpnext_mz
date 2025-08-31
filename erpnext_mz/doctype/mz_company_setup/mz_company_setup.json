@@ -30,7 +30,8 @@
     "step2_complete",
     "step3_skipped",
     "is_applied",
-    "last_applied_on"
+    "last_applied_on",
+    "trigger_onboarding"
   ],
   "fields": [
     {
@@ -57,8 +58,8 @@
       "fieldname": "tax_regime",
       "fieldtype": "Select",
       "label": "Regime de IVA",
-      "options": "Normal\nIsento\nExportador",
-      "default": "Normal"
+      "options": "Normal (16%)\nReduzida (5%)\nIsento",
+      "default": "Normal (16%)"
     },
     {
       "fieldname": "cb2",
@@ -153,6 +154,13 @@
       "fieldname": "last_applied_on",
       "fieldtype": "Datetime",
       "label": "Aplicado Em"
+    },
+    {
+      "fieldname": "trigger_onboarding",
+      "fieldtype": "Check",
+      "label": "Trigger Onboarding",
+      "default": 0,
+      "hidden": 1
     }
   ],
   "index_web_pages_for_search": 1,

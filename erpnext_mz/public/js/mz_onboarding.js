@@ -1,6 +1,7 @@
 frappe.provide('erpnext_mz.onboarding');
 
 (function () {
+  // console.log('🚀 MZ Onboarding script loaded'); // Commented for production
   function post(path, args) {
     return frappe.call({ method: path, args });
   }
@@ -27,9 +28,10 @@ frappe.provide('erpnext_mz.onboarding');
             fieldname: 'tax_regime',
             label: __('Regime de IVA'),
             fieldtype: 'Select',
-            options: ['Normal', 'Isento', 'Exportador'],
+            options: ['Normal (16%)', 'Reduzida (5%)', 'Isento'],
+            default: 'Normal (16%)',
             reqd: 1,
-            description: __('Regime de IVA da Empresa'),
+            description: __('Regime de IVA padrão da Empresa'),
           },
           {
             fieldname: 'cb2',
@@ -206,17 +208,92 @@ frappe.provide('erpnext_mz.onboarding');
 
   erpnext_mz.onboarding.start = run_chain;
 
-  $(document).on('app_ready', function () {
+  // Test function for manual triggering (can be called from browser console)
+  erpnext_mz.onboarding.test = function () {
+    console.log('🧪 Testing MZ onboarding manually...');
+    checkAndTriggerOnboarding();
+  };
+
+  // Performance optimization: prevent multiple simultaneous calls
+  let isCheckingOnboarding = false;
+  let onboardingChecked = false;
+
+  // Function to check and trigger onboarding
+  function checkAndTriggerOnboarding() {
     try {
-      const s = (frappe.boot && frappe.boot.erpnext_mz_onboarding) || null;
-      // Check if we're in the desk (not login page)
-      if (window.location.pathname.includes('/app/') && s && !s.applied) {
-        erpnext_mz.onboarding.start(s);
+      // Performance optimization: prevent multiple calls
+      if (isCheckingOnboarding || onboardingChecked) {
+        return;
       }
+
+      // Check if we're in the desk (not login page)
+      if (!window.location.pathname.includes('/app/')) {
+        return;
+      }
+
+      // Check if setup wizard is completed
+      if (!frappe.boot.setup_complete) {
+        return;
+      }
+
+      // Set flag to prevent multiple simultaneous calls
+      isCheckingOnboarding = true;
+
+      // Check if onboarding should be triggered
+      frappe.call({
+        method: 'erpnext_mz.setup.onboarding.should_trigger_onboarding',
+        callback: function (r) {
+          isCheckingOnboarding = false; // Reset flag
+
+          if (r.message && r.message.should_trigger) {
+            onboardingChecked = true; // Mark as checked to prevent future calls
+            erpnext_mz.onboarding.start(r.message.status);
+          } else {
+            // If trigger flag not set, mark as checked to prevent future calls
+            if (r.message && r.message.reason === 'Trigger flag not set') {
+              onboardingChecked = true;
+            }
+          }
+        },
+        error: function () {
+          isCheckingOnboarding = false; // Reset flag on error
+        }
+      });
     } catch (e) {
       console.error('Onboarding error:', e);
+      isCheckingOnboarding = false; // Reset flag on error
     }
+  }
+
+  // Optimized event listeners with debouncing
+  let onboardingTimeout = null;
+
+  function debouncedCheckAndTrigger() {
+    if (onboardingTimeout) {
+      clearTimeout(onboardingTimeout);
+    }
+    onboardingTimeout = setTimeout(checkAndTriggerOnboarding, 100);
+  }
+
+  // Try multiple approaches to trigger onboarding
+  $(document).on('app_ready', function () {
+    debouncedCheckAndTrigger();
   });
+
+  // Also try the startup event which might be more reliable
+  $(document).on('startup', function () {
+    debouncedCheckAndTrigger();
+  });
+
+  // Also check when the page is fully loaded
+  $(window).on('load', function () {
+    debouncedCheckAndTrigger();
+  });
+
+  // Direct check when script loads (for immediate execution)
+  if (frappe && frappe.boot && frappe.boot.setup_complete) {
+    setTimeout(checkAndTriggerOnboarding, 500);
+  }
 })();
 
 

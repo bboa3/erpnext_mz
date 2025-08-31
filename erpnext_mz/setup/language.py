@@ -56,8 +56,7 @@ def apply_system_settings(override: bool = True):
             "float_precision": 2,
             "currency_precision": 2,
             "date_format": "dd/mm/yyyy",
-            "time_zone": "Africa/Maputo",
-            "enable_onboarding": 0,
+            "time_zone": "Africa/Maputo"
         }
 
         applied = {}

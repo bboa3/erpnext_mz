@@ -62,6 +62,7 @@ def ensure_mz_company_setup_doctype_and_single():
                 "step2_complete",
                 "step3_skipped",
                 "is_applied",
+                "trigger_onboarding",
             ]
             for fieldname in baseline_checkbox_fields:
                 if frappe.db.get_single_value("MZ Company Setup", fieldname) is None:

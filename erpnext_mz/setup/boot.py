@@ -9,8 +9,8 @@ def boot_session(bootinfo):
         print("Boot session - User roles:", roles)
         
         # Temporarily allow all users for debugging
-        # if "System Manager" not in roles and "System Administrator" not in roles:
-        #     return
+        if "System Manager" not in roles and "System Administrator" not in roles:
+            return
 
         status = get_status()
         print("Boot session - Onboarding status:", status)

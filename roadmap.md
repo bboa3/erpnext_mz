@@ -32,11 +32,11 @@
   * **Tax Accounts**: Auto-created under "Duties and Taxes" parent with company abbreviations
     * `13.01.01 - IVA Dedutível 16% - [COMPANY]` (Asset, 16%)
     * `13.01.02 - IVA Dedutível 5% - [COMPANY]` (Asset, 5%)
-    * `13.01.03 - Isento/Exportação - [COMPANY]` (Asset, 0%)
+    * `13.01.03 - IVA Dedutível 0% - [COMPANY]` (Asset, 0%)
     * `24.01.01 - IVA a Entregar 16% - [COMPANY]` (Liability, 16%)
     * `24.01.02 - IVA a Entregar 5% - [COMPANY]` (Liability, 5%)
-    * `24.01.03 - Isento/Exportação - [COMPANY]` (Liability, 0%)
-  * **Tax Categories**: `Regime Normal (16%)`, `Taxa Reduzida (5%)`, `Isento/Exportação`
+    * `24.01.03 - IVA a Entregar 0% - [COMPANY]` (Liability, 0%)
+  * **Tax Categories**: `IVA 16%`, `IVA 5%`, `IVA 0% (Isento)`
   * **Sales/Purchase Templates**: Auto-created with correct accounts and rates
   * **Item Tax Templates**: Matching tax categories with appropriate rates
   * **Tax Rules**: Default rules for all customers/items with priority-based application

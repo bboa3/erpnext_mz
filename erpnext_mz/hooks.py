@@ -46,8 +46,7 @@ fixtures = [
   "Document Naming Rule",
   "Print Format",
   "Client Script",
-  "Income Tax Slab",
-  "Payroll Settings",
+#  "Payroll Settings",
   "Custom Field",
   "QR Code"
 ]
@@ -124,6 +123,11 @@ jinja = {
 # before_install = "erpnext_mz.install.before_install"
 after_install = "erpnext_mz.install.after_install"
 after_migrate = "erpnext_mz.install.after_migrate"
+
+# Setup Wizard Complete
+# ---------------------
+# Trigger onboarding after setup wizard is completed
+setup_wizard_complete = "erpnext_mz.setup.onboarding.trigger_onboarding_after_setup"
 
 # Uninstallation
 # ------------
