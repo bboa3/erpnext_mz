@@ -313,8 +313,8 @@ def get_mozambique_sales_invoice_css():
 /* Document Header */
 .document-header {
     border-bottom: 1px solid #e5e5e5;
-    padding-bottom: 15px;
-    margin-bottom: 25px;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .document-title {
@@ -329,14 +329,14 @@ def get_mozambique_sales_invoice_css():
 .document-subtitle {
     color: #7f8c8d;
     font-size: 12px;
-    margin: 5px 0 0 0;
+    margin: 2px 0 0 0;
     font-weight: 400;
 }
 
 .document-number {
     font-size: 16px;
     color: #2c3e50;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 .document-date {
@@ -348,8 +348,8 @@ def get_mozambique_sales_invoice_css():
 .document-status-cancelled {
     background-color: #fdf2f2;
     border: 1px solid #fecaca;
-    padding: 12px;
-    margin: 15px 0;
+    padding: 8px;
+    margin: 10px 0;
     border-radius: 4px;
     text-align: center;
 }
@@ -366,8 +366,8 @@ def get_mozambique_sales_invoice_css():
     color: #2c3e50;
     font-size: 14px;
     font-weight: 600;
-    margin: 0 0 12px 0;
-    padding-bottom: 6px;
+    margin: 0 0 6px 0;
+    padding-bottom: 4px;
     border-bottom: 1px solid #e5e5e5;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -375,7 +375,7 @@ def get_mozambique_sales_invoice_css():
 
 /* Customer and Invoice Details */
 .customer-invoice-section {
-    margin-bottom: 25px;
+    margin-bottom: 12px;
 }
 
 .customer-details, .invoice-details {
@@ -386,7 +386,7 @@ def get_mozambique_sales_invoice_css():
     color: #2c3e50;
     font-size: 14px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     display: block;
 }
 
@@ -403,8 +403,8 @@ def get_mozambique_sales_invoice_css():
 .info-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 6px;
-    padding: 4px 0;
+    margin-bottom: 4px;
+    padding: 2px 0;
 }
 
 .info-row .label {
@@ -419,20 +419,20 @@ def get_mozambique_sales_invoice_css():
 
 /* Items Table */
 .items-section {
-    margin-bottom: 25px;
+    margin-bottom: 12px;
 }
 
 .items-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 6px;
     border: 1px solid #e5e5e5;
 }
 
 .items-table th {
     background-color: #f8f9fa;
     color: #2c3e50;
-    padding: 12px 8px;
+    padding: 8px 6px;
     font-weight: 600;
     font-size: 11px;
     text-transform: uppercase;
@@ -450,7 +450,7 @@ def get_mozambique_sales_invoice_css():
 }
 
 .items-table td {
-    padding: 10px 8px;
+    padding: 6px 6px;
     border-bottom: 1px solid #f0f0f0;
     vertical-align: top;
     font-size: 12px;
@@ -471,17 +471,17 @@ def get_mozambique_sales_invoice_css():
 
 /* Totals Section */
 .totals-section {
-    margin-bottom: 25px;
+    margin-bottom: 12px;
 }
 
 .amount-in-words, .terms-section {
-    padding: 15px 0;
-    margin-bottom: 15px;
+    padding: 8px 0;
+    margin-bottom: 8px;
 }
 
 .amount-in-words h5, .terms-section h5 {
     color: #2c3e50;
-    margin: 0 0 8px 0;
+    margin: 0 0 6px 0;
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
@@ -502,7 +502,7 @@ def get_mozambique_sales_invoice_css():
 .totals-row {
     display: flex;
     justify-content: space-between;
-    padding: 6px 0;
+    padding: 3px 0;
     border-bottom: 1px solid #f0f0f0;
 }
 
@@ -524,8 +524,8 @@ def get_mozambique_sales_invoice_css():
 
 .totals-row.grand-total {
     border-top: 2px solid #2c3e50;
-    margin-top: 8px;
-    padding-top: 12px;
+    margin-top: 6px;
+    padding-top: 8px;
     font-weight: 600;
     font-size: 14px;
 }
@@ -538,19 +538,19 @@ def get_mozambique_sales_invoice_css():
 
 /* Payment Section */
 .payment-section {
-    margin-bottom: 25px;
+    margin-bottom: 12px;
 }
 
 .payment-info {
     background-color: #fef3c7;
     border: 1px solid #f59e0b;
-    padding: 15px;
+    padding: 8px;
     border-radius: 4px;
 }
 
 .payment-info h5 {
     color: #92400e;
-    margin: 0 0 8px 0;
+    margin: 0 0 6px 0;
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
@@ -558,19 +558,19 @@ def get_mozambique_sales_invoice_css():
 }
 
 .payment-info p {
-    margin: 4px 0;
+    margin: 2px 0;
     font-size: 12px;
     color: #92400e;
 }
 
 /* QR Code Section */
 .qr-section {
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
 .qr-code-container {
     text-align: center;
-    padding: 15px 0;
+    padding: 6px 0;
 }
 
 .qr-code-img {
@@ -585,73 +585,25 @@ def get_mozambique_sales_invoice_css():
 .qr-label {
     color: #7f8c8d;
     font-size: 10px;
-    margin: 8px 0 0 0;
+    margin: 6px 0 0 0;
     font-style: italic;
 }
 
 /* Utility Classes */
 .text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
 .text-uppercase { text-transform: uppercase; }
 
-/* Page Break */
-.page-break {
-    page-break-inside: avoid;
-}
+.page-break { page-break-inside: avoid; }
 
 /* Print Specific Styles */
 @media print {
-    .print-format {
-        font-size: 11px;
-    }
-    
-    .document-title {
-        font-size: 20px;
-    }
-    
-    .items-table th,
-    .items-table td {
-        padding: 8px 6px;
-    }
-    
-    .totals-row {
-        padding: 4px 0;
-    }
-    
-    .qr-code-img {
-        max-width: 80px;
-        max-height: 80px;
-    }
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-    .customer-invoice-section .col-xs-6 {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    
-    .totals-section .col-xs-6 {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    
-    .info-row {
-        flex-direction: column;
-    }
-    
-    .info-row .value {
-        margin-top: 2px;
-    }
-    
-    .totals-row {
-        flex-direction: column;
-    }
-    
-    .totals-row .totals-value {
-        margin-top: 2px;
-    }
+    .print-format { font-size: 11px; }
+    .document-title { font-size: 20px; }
+    .items-table th, .items-table td { padding: 6px 4px; }
+    .totals-row { padding: 2px 0; }
+    .payment-info { padding: 6px; }
 }
 """
 
