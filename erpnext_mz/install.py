@@ -1,7 +1,7 @@
 import frappe
 from erpnext_mz.setup.language import ensure_language_pt_mz, apply_system_settings
 from erpnext_mz.setup.branding import apply_website_branding
-from erpnext_mz.setup.uom import setup_portuguese_uoms_complete
+from erpnext_mz.setup.uom import setup_portuguese_uoms_safe
 
 
 def after_install():
@@ -16,7 +16,7 @@ def after_install():
 def setup_portuguese_uoms():
     """Setup Portuguese UOMs on installation"""
     try:
-        setup_portuguese_uoms_complete()
+        setup_portuguese_uoms_safe()
     except Exception as e:
         frappe.log_error(title="Portuguese UOM Setup Failed", message=str(e))
         pass
