@@ -38,8 +38,6 @@ add_to_apps_screen = [
 
 fixtures = [
   "Workspace",
-  "Dashboard",
-  "Dashboard Chart",
   "Number Card",
   "Property Setter",
   "Document Naming Settings",
