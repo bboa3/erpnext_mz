@@ -372,7 +372,7 @@ def _create_terms_and_conditions(company_name: str, terms_text: str):
         # Check if Terms and Conditions already exists
         if frappe.db.exists("Terms and Conditions", tc_name):
             return
-        
+
         # Create new Terms and Conditions
         tc = frappe.new_doc("Terms and Conditions")
         tc.title = tc_name

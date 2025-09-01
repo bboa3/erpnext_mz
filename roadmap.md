@@ -70,13 +70,37 @@
     - **Auto-apply**: Complete ERPNext configuration based on wizard data
     - **Idempotent**: Safe to run multiple times, updates existing records
   **Acceptance:** System managers can complete company setup in guided wizard; all tax infrastructure auto-created.
-* [X] **Professional Print Formats** (🧩 CODE)
-  * **Mozambique Sales Invoice**: Professional, bilingual (PT/EN) print format
-  * **Features**: NUIT display, tax compliance, QR code ready, responsive design
-  * **Integration**: Auto-created during company setup wizard
-  * **Customization**: Jinja2 templates with professional CSS styling
-  * **Testing**: Comprehensive test suite for validation
-  **Acceptance:** Professional invoices with Mozambique compliance requirements; bilingual support.
+* [X] **Comprehensive Professional Print Formats** (🧩 CODE)
+  * **14 Professional Print Formats**: Complete coverage of all essential business documents
+    - **Sales Documents**: Fatura (MZ), Encomenda de Venda (MZ), Guia de Remessa (MZ), Orçamento (MZ)
+    - **Purchase Documents**: Factura de Compra (MZ), Encomenda de Compra (MZ), Recibo de Compra (MZ)
+    - **Inventory Documents**: Entrada de Stock (MZ), Pedido de Material (MZ)
+    - **Financial Documents**: Entrada de Pagamento (MZ), Lançamento Contabilístico (MZ)
+    - **HR Documents**: Recibo de Vencimento (MZ)
+    - **Master Data**: Cliente (MZ), Fornecedor (MZ)
+  * **Advanced Features**:
+    - **QR Code Integration**: Automatic QR code generation with document validation links
+    - **Document Validation API**: Public endpoint for QR code validation (`/qr_validation`)
+    - **Professional Design**: Clean, minimalist UI with consistent branding
+    - **Bilingual Support**: Portuguese (MZ) and English labels
+    - **Tax Compliance**: NUIT display, tax breakdown, Mozambique-specific formatting
+    - **Responsive Layout**: Optimized for both screen and print
+  * **Technical Implementation**:
+    - **Modular Template System**: Base `PrintFormatTemplate` class for consistency
+    - **Jinja2 Templates**: Dynamic content generation with macros and conditional rendering
+    - **CSS Framework**: Professional styling with print-optimized layouts
+    - **QR Code Generation**: `pyqrcode` library with HMAC-secured validation links
+    - **Automatic Management**: Scripts to disable existing formats and enable Mozambique formats
+  * **Integration & Management**:
+    - **Auto-Creation**: All formats created during company setup wizard
+    - **Exclusive Enablement**: Mozambique formats are the only enabled options (de facto defaults)
+    - **Self-Maintaining**: Automatic enforcement of Mozambique-only policy
+    - **Verification System**: Comprehensive scripts to verify setup integrity
+  * **Security Features**:
+    - **HMAC Validation**: Secure document validation with tamper-proof hashing
+    - **Public API**: Whitelisted methods for document verification
+    - **Audit Trail**: Complete logging of QR code generation and validation
+  **Acceptance:** All 14 print formats created and enabled; QR codes working; validation API functional; Mozambique formats automatically selected as defaults.
 <!-- Removed: Integrity / Checksums (anti-tamper) -->
 * [ ] **SAF-T (Vendas & Folha) XML generator** (🧩 CODE Doctype + scheduler)
   * Implement schemas; validate; archive monthly file to S3 (WORM).
@@ -178,12 +202,13 @@ The wizard automatically creates a complete tax setup based on the selected regi
 - Triggers wizard for System Managers/Administrators
 - Provides real-time status updates
 
-#### 6. **Professional Print Formats** (`apps/erpnext_mz/erpnext_mz/setup/create_print_formats.py`)
-- **Mozambique Sales Invoice**: Professional, bilingual print format
-- **Features**: NUIT display, tax compliance, QR code ready, responsive design
-- **Template Engine**: Jinja2 with custom HTML/CSS
-- **Integration**: Auto-created during company setup
-- **Testing**: Comprehensive validation suite
+#### 6. **Comprehensive Professional Print Formats System** (`apps/erpnext_mz/erpnext_mz/setup/`)
+- **Complete Print Format Coverage**: 14 professional formats for all business documents
+- **Modular Architecture**: Base `PrintFormatTemplate` class with specialized implementations
+- **QR Code Integration**: Automatic generation with document validation API
+- **Template Engine**: Jinja2 with professional CSS and responsive design
+- **Management System**: Automatic creation, exclusive enablement, and verification
+- **Integration**: Auto-created during company setup wizard with self-maintaining enforcement
 
 ### Data Flow
 1. **User Access**: System Manager/Administrator logs in
@@ -204,6 +229,89 @@ The wizard automatically creates a complete tax setup based on the selected regi
 - **User-Friendly**: Guided interface with clear instructions
 - **Error-Resistant**: Handles edge cases and provides meaningful feedback
 
+---
+
+## Professional Print Formats System - Technical Implementation
+
+### Architecture Overview
+The Professional Print Formats System provides comprehensive coverage of all essential business documents with Mozambique-specific compliance requirements, QR code integration, and professional design.
+
+### Core Components
+
+#### 1. **Print Format Templates** (`apps/erpnext_mz/erpnext_mz/setup/print_format_templates.py`)
+- **Base Class**: `PrintFormatTemplate` with common methods for consistency
+- **Modular Design**: Reusable components for headers, footers, customer details, items tables, totals, and QR codes
+- **CSS Framework**: Professional styling with print-optimized layouts
+- **Macro System**: Jinja2 macros for dynamic content generation
+
+#### 2. **Comprehensive Print Format Generator** (`apps/erpnext_mz/erpnext_mz/setup/comprehensive_print_formats.py`)
+- **14 Specialized Classes**: Each inheriting from `PrintFormatTemplate`
+- **Document Coverage**:
+  - **Sales**: `SalesInvoicePrintFormat`, `SalesOrderPrintFormat`, `DeliveryNotePrintFormat`, `QuotationPrintFormat`
+  - **Purchase**: `PurchaseInvoicePrintFormat`, `PurchaseOrderPrintFormat`, `PurchaseReceiptPrintFormat`
+  - **Inventory**: `StockEntryPrintFormat`, `MaterialRequestPrintFormat`
+  - **Financial**: `PaymentEntryPrintFormat`, `JournalEntryPrintFormat`
+  - **HR**: `PayslipPrintFormat`
+  - **Master Data**: `CustomerPrintFormat`, `SupplierPrintFormat`
+- **Template Generation**: Each class provides customized HTML templates with Mozambique-specific content
+
+#### 3. **Print Format Management System** (`apps/erpnext_mz/erpnext_mz/setup/disable_existing_print_formats.py`)
+- **Preparation**: Disables all existing print formats to prevent conflicts
+- **Exclusive Enablement**: Ensures only Mozambique formats are enabled
+- **Default Selection**: Mozambique formats become de facto defaults by being the only available option
+- **Self-Maintenance**: Automatic enforcement of Mozambique-only policy
+
+#### 4. **QR Code Integration System** (`apps/erpnext_mz/erpnext_mz/qr_code/`)
+- **QR Code Generator** (`qr_generator.py`):
+  - Automatic generation on document submission
+  - HMAC-secured validation links
+  - Base64-encoded PNG images for HTML embedding
+- **Document Validation API** (`api.py`):
+  - Public endpoint for QR code validation
+  - Whitelisted methods for security
+  - Tamper-proof hash verification
+- **QR Code Storage** (`doctype/qr_code/`):
+  - Persistent storage of generated QR codes
+  - Validation data and metadata
+  - Audit trail for compliance
+
+#### 5. **Verification & Testing System** (`apps/erpnext_mz/erpnext_mz/verify_mozambique_setup.py`)
+- **Comprehensive Checks**: Verifies all aspects of print format setup
+- **Status Reporting**: Detailed feedback on system health
+- **Production Readiness**: Ensures system meets all requirements
+
+### Key Features
+
+#### **Professional Design**
+- **Clean Layout**: Minimalist design with clear visual hierarchy
+- **Consistent Branding**: Company logo, colors, and styling
+- **Bilingual Support**: Portuguese (MZ) and English labels
+- **Print Optimization**: CSS optimized for both screen and print
+
+#### **Mozambique Compliance**
+- **NUIT Display**: Company tax ID prominently shown
+- **Tax Breakdown**: Detailed tax information with rates
+- **Local Formatting**: Mozambique-specific date and number formats
+- **Regulatory Requirements**: Meets all local business document standards
+
+#### **QR Code System**
+- **Automatic Generation**: QR codes created on document submission
+- **Document Validation**: Public API for verification
+- **Security**: HMAC hashing prevents tampering
+- **User Experience**: Easy validation via mobile device scanning
+
+#### **Integration & Automation**
+- **Company Setup Wizard**: All formats created automatically during onboarding
+- **Self-Maintaining**: System automatically enforces Mozambique-only policy
+- **Error Handling**: Comprehensive error handling and logging
+- **Idempotent Operations**: Safe to run multiple times
+
+### Data Flow
+1. **Document Submission**: User submits document (e.g., Sales Invoice)
+2. **QR Code Generation**: Hook function generates QR code with validation link
+3. **Print Format Selection**: User selects print format (only Mozambique options available)
+4. **Template Rendering**: Jinja2 template renders with dynamic content and QR code
+5. **Document Output**: Professional PDF/print with Mozambique compliance and QR code
 ---
 
 ## Quick "who does what" cheat-sheet

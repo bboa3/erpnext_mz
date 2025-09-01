@@ -965,14 +965,21 @@ class SupplierPrintFormat(PrintFormatTemplate):
 # Main function to create all print formats
 @frappe.whitelist()
 def create_all_mozambique_print_formats():
-    """Create all Mozambique print formats"""
+    """Create all Mozambique print formats and set them as default"""
     formats_created = []
     
     try:
-        # Step 1: Disable existing print formats to avoid conflicts
-        from .disable_existing_print_formats import prepare_for_mozambique_print_formats
+        # Step 1: Complete preparation using enhanced script
+        from .disable_existing_print_formats import (
+            prepare_for_mozambique_print_formats,
+            set_mozambique_print_formats_as_default,
+            ensure_only_mozambique_formats_enabled
+        )
+        
         preparation_result = prepare_for_mozambique_print_formats()
         frappe.log_error(f"Preparation completed: {preparation_result}", "Print Format Preparation")
+        
+        # Step 2: Create all Mozambique print formats
         # Sales Documents
         sales_invoice = SalesInvoicePrintFormat()
         formats_created.append(sales_invoice.create_print_format())
@@ -1021,11 +1028,21 @@ def create_all_mozambique_print_formats():
         supplier = SupplierPrintFormat()
         formats_created.append(supplier.create_print_format())
         
-        frappe.msgprint(_("Successfully created {0} print formats").format(len(formats_created)))
-        return formats_created
+        # Step 3: Set Mozambique formats as default for their DocTypes
+        default_result = set_mozambique_print_formats_as_default()
+
+        # Step 4: Ensure only Mozambique formats are enabled
+        enable_result = ensure_only_mozambique_formats_enabled()
+        
+        return {
+            "formats_created": formats_created,
+            "defaults_set": default_result,
+            "enforcement": enable_result,
+            "status": "complete"
+        }
         
     except Exception as e:
-        frappe.log_error(f"Error creating print formats: {str(e)}")
+        frappe.log_error(f"Error creating print formats: {str(e)}", "Print Format Creation")
         frappe.throw(_("Failed to create print formats: {0}").format(str(e)))
 
 
