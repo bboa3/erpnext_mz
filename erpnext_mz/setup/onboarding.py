@@ -928,12 +928,11 @@ def _create_print_formats():
         # Step 1: Disable existing print formats to avoid conflicts
         from erpnext_mz.setup.disable_existing_print_formats import prepare_for_mozambique_print_formats
         preparation_result = prepare_for_mozambique_print_formats()
-        frappe.log_error(f"Print format preparation completed: {preparation_result}", "Print Format Preparation")
         
         # Step 2: Create all professional print formats
         from erpnext_mz.setup.comprehensive_print_formats import create_all_mozambique_print_formats
         created_formats = create_all_mozambique_print_formats()
-        frappe.log_error(f"Created {len(created_formats)} Mozambique print formats: {created_formats}", "Print Format Creation")
+        frappe.log_error(f"Criados {len(created_formats)} formatos de impressão para Moçambique.", "Print Format Creation")
         
     except Exception as e:
-        frappe.log_error(f"Error creating print formats: {str(e)}", "Print Format Creation")
+        frappe.log_error(f"Erro ao criar formatos de impressão: {str(e)}", "Print Format Creation")
