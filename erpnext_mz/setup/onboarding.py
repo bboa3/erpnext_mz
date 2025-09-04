@@ -817,6 +817,17 @@ def get_profile_values():
     ]
     return {f: profile.get(f) for f in fields}
 
+@frappe.whitelist()
+def create_tax_masters_manually():
+    company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
+    if not company_name:
+        return {"error": "No company found"}
+    try:
+        _create_tax_masters(company_name)
+        return {"success": True, "message": "Tax masters created successfully"}
+    except Exception as e:
+        return {"error": str(e)}
+
 
 @frappe.whitelist()
 def create_hr_tax_masters_manually():
