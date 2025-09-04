@@ -487,15 +487,15 @@ def _create_tax_masters(company_name: str):
         
         for parent_name in portuguese_tax_parents:
             # Check for parent account
-            tax_parent = frappe.db.exists("Account", {
+            pt_tax_parent = frappe.db.exists("Account", {
                 "company": company_name, 
                 "account_name": parent_name,
                 "is_group": 1
             })
 
-            if tax_parent:
-                print(f"🔄 Found tax parent: {tax_parent}")
-                return tax_parent
+            if pt_tax_parent:
+                print(f"🔄 Found tax parent: {pt_tax_parent}")
+                return pt_tax_parent
             
         # If no tax parent found, return None
         return None
