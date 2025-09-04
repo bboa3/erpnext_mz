@@ -492,7 +492,9 @@ def _create_tax_masters(company_name: str):
                 "account_name": parent_name,
                 "is_group": 1
             })
+
             if tax_parent:
+                print(f"🔄 Found tax parent: {tax_parent}")
                 return tax_parent
             
         # If no tax parent found, return None
