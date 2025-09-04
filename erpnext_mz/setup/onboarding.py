@@ -465,7 +465,7 @@ def _create_tax_masters(company_name: str):
     # Find the existing parent tax account (language-dependent name)
     def find_parent_tax_account():
         """Find the existing parent tax account for tax accounts"""
-        # ERPNext creates a VAT account during company setup, we'll use its parent
+        # First, try to find VAT account and get its parent
         vat_account_name = "VAT"
         vat_account = frappe.db.exists("Account", {"company": company_name, "account_name": vat_account_name})
         
@@ -477,7 +477,25 @@ def _create_tax_masters(company_name: str):
                 parent_account_name = frappe.get_value("Account", parent_account, "account_name")
                 return parent_account_name
         
-        # If no VAT account found, return None
+        # If no VAT account found, try common Portuguese tax parent account names
+        portuguese_tax_parents = [
+            "Duties and Taxes",
+            "Impostos e Contribuições", 
+            "Direitos e Impostos",
+            "Impostos",
+        ]
+        
+        for parent_name in portuguese_tax_parents:
+            # Check for parent account
+            tax_parent = frappe.db.exists("Account", {
+                "company": company_name, 
+                "account_name": parent_name,
+                "is_group": 1
+            })
+            if tax_parent:
+                return tax_parent
+            
+        # If no tax parent found, return None
         return None
     
     # Find the parent tax account (same for both Liability and Asset)
@@ -485,7 +503,7 @@ def _create_tax_masters(company_name: str):
     
     # If no parent tax account found, log error and return
     if not tax_parent:
-        frappe.log_error(f"Could not find parent tax account for company {company_name}. Looking for VAT - {company_abbr} account and its parent.", "Tax Account Parent Error")
+        print(f"❌  Could not find parent tax account for company {company_name}. Tried VAT account and Portuguese tax parent names: 'Duties and Taxes', 'Impostos e Contribuições', 'Direitos e Impostos', etc.")
         return
     
     # Create tax accounts with the same parent account for both Liability and Asset
