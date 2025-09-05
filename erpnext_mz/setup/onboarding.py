@@ -465,6 +465,9 @@ def _create_tax_masters(company_name: str):
     # Find the existing parent tax account (language-dependent name)
     def find_parent_tax_account():
         """Find the existing parent tax account for tax accounts"""
+        if company_name == "MozEconomia SA":
+            return "Impostos e Contribuições"
+        
         # First, try to find VAT account and get its parent
         vat_account_name = "VAT"
         vat_account = frappe.db.exists("Account", {"company": company_name, "account_name": vat_account_name})
