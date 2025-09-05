@@ -497,7 +497,8 @@ def _create_tax_masters(company_name: str):
 
             if pt_tax_parent:
                 print(f"🔄 Found tax parent: {pt_tax_parent}")
-                return pt_tax_parent
+                # Return just the account name without company abbreviation
+                return parent_name
             
         # If no tax parent found, return None
         return None
