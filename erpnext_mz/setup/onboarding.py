@@ -485,15 +485,14 @@ def _create_tax_masters(company_name: str):
             "Duties and Taxes",
             "Impostos e Contribuições", 
             "Direitos e Impostos",
-            "Impostos",
+            "Impostos e Taxas",
         ]
         
         for parent_name in portuguese_tax_parents:
             # Check for parent account
             pt_tax_parent = frappe.db.exists("Account", {
                 "company": company_name, 
-                "account_name": parent_name,
-                "is_group": 1
+                "account_name": parent_name
             })
 
             if pt_tax_parent:
