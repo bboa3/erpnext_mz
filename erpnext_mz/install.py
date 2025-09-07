@@ -14,12 +14,22 @@ def after_install():
 
 
 def setup_portuguese_uoms():
-    """Setup Portuguese UOMs on installation"""
+    """Setup Portuguese UOMs on installation - safe mode with guaranteed Portuguese UOMs"""
     try:
-        setup_portuguese_uoms_safe()
+        print("🔄 Setting up Portuguese UOMs (Safe Mode)...")
+        print("🇵🇹 Priority: Portuguese UOMs, but preserves English UOMs in use")
+        success = setup_portuguese_uoms_safe()
+        if success:
+            print("✅ Portuguese UOMs setup completed successfully!")
+            print("💡 ALL Portuguese UOMs are now available")
+            print("💡 English UOMs in use are preserved")
+        else:
+            print("❌ Portuguese UOMs setup failed!")
+        return success
     except Exception as e:
-        frappe.log_error(title="Portuguese UOM Setup Failed", message=str(e))
-        pass
+        print(f"❌ Error setting up Portuguese UOMs: {str(e)}")
+        frappe.log_error(frappe.get_traceback(), "UOM Setup Error")
+        return False
 
 
 def after_migrate():

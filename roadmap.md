@@ -118,7 +118,7 @@
   **Acceptance:** Posted invoices cannot be edited; only credit notes reverse.
 * [ ] **Signed audit trail** for critical DocTypes (🧩 CODE: logging hash + metadata)
   **Acceptance:** Tamper-evident logs exist for SI/Payroll Entry.
-* [ ] **Monthly archives to S3** (SAF-T, audit logs) with **10-year retention** (ops).
+* [X] **Monthly archives to S3** (SAF-T, audit logs) with **10-year retention** (ops).
   **Acceptance:** Glacier/locking verified; restore drill passes.
 
 ## Phase 7 — Certification with AT
