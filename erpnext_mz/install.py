@@ -9,28 +9,8 @@ def after_install():
     ensure_language_pt_mz()
     apply_system_settings(override=True)
     apply_website_branding(override=True)
-    setup_portuguese_uoms()
+    setup_portuguese_uoms_safe()
     ensure_mz_company_setup_doctype_and_single()
-
-
-def setup_portuguese_uoms():
-    """Setup Portuguese UOMs on installation - safe mode with guaranteed Portuguese UOMs"""
-    try:
-        print("🔄 Setting up Portuguese UOMs (Safe Mode)...")
-        print("🇵🇹 Priority: Portuguese UOMs, but preserves English UOMs in use")
-        success = setup_portuguese_uoms_safe()
-        if success:
-            print("✅ Portuguese UOMs setup completed successfully!")
-            print("💡 ALL Portuguese UOMs are now available")
-            print("💡 English UOMs in use are preserved")
-        else:
-            print("❌ Portuguese UOMs setup failed!")
-        return success
-    except Exception as e:
-        print(f"❌ Error setting up Portuguese UOMs: {str(e)}")
-        frappe.log_error(frappe.get_traceback(), "UOM Setup Error")
-        return False
-
 
 def after_migrate():
     """Run setup tasks after app migration"""
