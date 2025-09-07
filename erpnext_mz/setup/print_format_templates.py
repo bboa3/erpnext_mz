@@ -198,20 +198,32 @@ class PrintFormatTemplate:
         }
 
         .info-row {
-            display: flex;
-            justify-content: space-between;
             margin-bottom: 4px;
             padding: 2px 0;
+            overflow: hidden;
         }
 
         .info-row .label {
             color: #7f8c8d;
             font-weight: 500;
+            float: left;
+            width: 40%;
+            text-align: left;
         }
 
         .info-row .value {
             color: #2c3e50;
             font-weight: 500;
+            float: right;
+            width: 60%;
+            text-align: right;
+        }
+
+        /* Clear floats */
+        .info-row::after {
+            content: "";
+            display: table;
+            clear: both;
         }
 
         /* Items Table */
@@ -297,10 +309,10 @@ class PrintFormatTemplate:
         }
 
         .totals-row {
-            display: flex;
-            justify-content: space-between;
+            margin-bottom: 3px;
             padding: 3px 0;
             border-bottom: 1px solid #f0f0f0;
+            overflow: hidden;
         }
 
         .totals-row:last-child {
@@ -311,12 +323,23 @@ class PrintFormatTemplate:
             color: #555;
             font-size: 12px;
             font-weight: 500;
+            float: left;
+            width: 60%;
         }
 
         .totals-value {
             color: #2c3e50;
             font-size: 12px;
             font-weight: 500;
+            float: right;
+            width: 40%;
+            text-align: right;
+        }
+
+        .totals-row::after {
+            content: "";
+            display: table;
+            clear: both;
         }
 
         .totals-row.grand-total {
@@ -362,17 +385,18 @@ class PrintFormatTemplate:
 
         /* QR Code Section */
         .qr-section {
+            margin-top: 20px;
             margin-bottom: 8px;
         }
 
         .qr-code-container {
             text-align: center;
-            padding: 6px 0;
+            padding: 8px 0;
         }
 
         .qr-code-img {
-            max-width: 100px;
-            max-height: 100px;
+            max-width: 80px;
+            max-height: 80px;
             width: auto;
             height: auto;
             border: 1px solid #e5e5e5;
@@ -394,6 +418,39 @@ class PrintFormatTemplate:
 
         .page-break { page-break-inside: avoid; }
 
+        .row {
+            overflow: hidden;
+            margin: 0;
+        }
+
+        /* Ensure consistent spacing */
+        .customer-details {
+            padding-right: 15px;
+        }
+
+        .invoice-details {
+            padding-left: 15px;
+        }
+
+        /* Fix for potential text overflow */
+        .customer-name {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* Ensure proper alignment */
+        .text-right {
+            text-align: right !important;
+        }
+
+        .text-left {
+            text-align: left !important;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
         /* Print Specific Styles */
         @media print {
             .print-format { font-size: 11px; }
@@ -401,6 +458,54 @@ class PrintFormatTemplate:
             .items-table th, .items-table td { padding: 6px 4px; }
             .totals-row { padding: 2px 0; }
             .payment-info { padding: 6px; }
+            
+            /* QR Code print adjustments */
+            .qr-code-img {
+                max-width: 70px !important;
+                max-height: 70px !important;
+            }
+        
+            .col-xs-6 {
+                width: 50% !important;
+                float: left !important;
+                box-sizing: border-box !important;
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+            }
+            
+            .col-xs-6:first-child {
+                padding-left: 0 !important;
+            }
+            
+            .col-xs-6:last-child {
+                padding-right: 0 !important;
+            }
+            
+            /* Clear floats for proper layout */
+            .row::after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            /* Remove any inherited borders from form elements */
+            .info-row .label,
+            .info-row .value,
+            .customer-info,
+            .invoice-info {
+                border: none !important;
+                background: none !important;
+                box-shadow: none !important;
+            }
+            
+            /* Ensure proper spacing */
+            .customer-invoice-section {
+                margin-bottom: 15px;
+            }
+            
+            .section-title {
+                margin-bottom: 8px;
+            }
         }
     """
 
@@ -441,9 +546,6 @@ class PrintFormatTemplate:
                     {{ footer }}
                 </div>
                 {% endif %}
-                <p class="text-center small page-number visible-pdf">
-                    {{ _("Página") }} <span class="page"></span> {{ _("de") }} <span class="topage"></span>
-                </p>
             </div>
             {% endif %}
         {%- endmacro -%}
@@ -474,18 +576,18 @@ class PrintFormatTemplate:
                 <div class="col-xs-6 customer-details">
                     <h4 class="section-title">{{ _("Facturar Para") }}</h4>
                     <div class="customer-info">
-                        <strong class="customer-name">{{ doc.""" + customer_name_field + """ or doc.""" + customer_field + """ }}</strong><br>
+                        <div class="customer-name">{{ doc.""" + customer_name_field + """ or doc.""" + customer_field + """ }}</div>
                         {% if doc.tax_id %}
-                            <strong>{{ _("NUIT") }}:</strong> {{ doc.tax_id }}<br>
+                            <div><strong>{{ _("NUIT") }}:</strong> {{ doc.tax_id }}</div>
                         {% endif %}
                         {% if doc.address_display %}
-                            {{ doc.address_display }}<br>
+                            <div>{{ doc.address_display }}</div>
                         {% endif %}
                         {% if doc.contact_display %}
-                            <strong>{{ _("Contacto") }}:</strong> {{ doc.contact_display }}<br>
+                            <div><strong>{{ _("Contacto") }}:</strong> {{ doc.contact_display }}</div>
                         {% endif %}
                         {% if doc.contact_mobile %}
-                            <strong>{{ _("Telemóvel") }}:</strong> {{ doc.contact_mobile }}
+                            <div><strong>{{ _("Telemóvel") }}:</strong> {{ doc.contact_mobile }}</div>
                         {% endif %}
                     </div>
                 </div>
