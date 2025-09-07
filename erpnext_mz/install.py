@@ -11,6 +11,7 @@ def after_install():
     apply_website_branding(override=True)
     setup_portuguese_uoms_safe()
     ensure_mz_company_setup_doctype_and_single()
+    hide_unwanted_erpnext_workspaces()
 
 def after_migrate():
     """Run setup tasks after app migration"""
@@ -62,3 +63,38 @@ def ensure_mz_company_setup_doctype_and_single():
             title="Initialize MZ Company Setup Single Failed",
             message=frappe.get_traceback(),
         )
+
+
+def hide_unwanted_erpnext_workspaces():
+    """Hide unwanted ERPNext workspaces to ensure only custom erpnext_mz workspaces are visible"""
+    # List of workspaces that should be hidden
+    workspaces_to_hide = [
+        "Build",
+        "ERPNext Integrations", 
+        "ERPNext Settings",
+        "CRM",
+        "Payroll",
+        "HR",
+        "Manufacturing",
+        "Selling"
+    ]
+    
+    frappe.logger().info(f"ERPNext MZ: Hiding unwanted workspaces: {workspaces_to_hide}")
+    
+    for workspace_name in workspaces_to_hide:
+        try:
+            # Check if workspace exists before trying to hide it
+            if frappe.db.exists("Workspace", workspace_name):
+                frappe.db.set_value("Workspace", workspace_name, "public", 0)
+                frappe.db.set_value("Workspace", workspace_name, "is_hidden", 1)
+                frappe.logger().info(f"ERPNext MZ: Hidden workspace '{workspace_name}'")
+            else:
+                frappe.logger().info(f"ERPNext MZ: Workspace '{workspace_name}' not found, skipping")
+        except Exception as e:
+            frappe.log_error(
+                title=f"Failed to hide workspace '{workspace_name}'",
+                message=f"Error: {str(e)}\nTraceback: {frappe.get_traceback()}"
+            )
+    
+    frappe.db.commit()
+    frappe.logger().info("ERPNext MZ: Completed hiding unwanted workspaces")
