@@ -76,7 +76,8 @@ def hide_unwanted_erpnext_workspaces():
         "Payroll",
         "HR",
         "Manufacturing",
-        "Selling"
+        "Selling",
+        "Support"
     ]
     
     frappe.logger().info(f"ERPNext MZ: Hiding unwanted workspaces: {workspaces_to_hide}")
