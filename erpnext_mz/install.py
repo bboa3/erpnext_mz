@@ -77,6 +77,7 @@ def hide_unwanted_erpnext_workspaces():
         "HR",
         "Manufacturing",
         "Selling",
+        "Buying",
         "Support"
     ]
     
