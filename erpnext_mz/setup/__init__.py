@@ -14,6 +14,7 @@ to configure the system for Mozambican localization.
 from .language import ensure_language_pt_mz, apply_system_settings
 from .branding import apply_website_branding
 from .uom import setup_portuguese_uoms_hybrid, setup_portuguese_uoms_safe
+from .comprehensive_print_formats import create_all_mozambique_print_formats
 
 __all__ = [
     "ensure_language_pt_mz",
@@ -21,4 +22,5 @@ __all__ = [
     "apply_website_branding",
     "setup_portuguese_uoms_hybrid",
     "setup_portuguese_uoms_safe",
+    "create_all_mozambique_print_formats",
 ]
