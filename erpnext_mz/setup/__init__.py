@@ -13,7 +13,7 @@ to configure the system for Mozambican localization.
 
 from .language import ensure_language_pt_mz, apply_system_settings
 from .branding import apply_website_branding
-from .uom import setup_portuguese_uoms_hybrid, setup_portuguese_uoms_safe, test_enhanced_portuguese_uoms
+from .uom import setup_portuguese_uoms_hybrid, setup_portuguese_uoms_safe
 
 __all__ = [
     "ensure_language_pt_mz",
@@ -21,5 +21,4 @@ __all__ = [
     "apply_website_branding",
     "setup_portuguese_uoms_hybrid",
     "setup_portuguese_uoms_safe",
-    "test_enhanced_portuguese_uoms"
 ]

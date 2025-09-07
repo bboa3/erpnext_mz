@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 """
-Mozambique Print Format Templates - Base System
+Mozambique Print Format Templates - Fixed Version
 
 This module provides a comprehensive base system for creating professional
 print formats for all business documents in Mozambique ERPNext implementation.
 
-Features:
-- Modular template system
-- Consistent design across all documents
-- Mozambique-specific compliance
-- QR code integration
-- Bilingual support (Portuguese/English)
-- Professional styling
+FIXES APPLIED:
+- Removed flexbox layouts for PDF compatibility
+- Simplified Bootstrap grid usage
+- Fixed border rendering issues
+- Improved WeasyPrint compatibility
+- Enhanced CSS consistency
 """
 
 import frappe
@@ -19,7 +18,7 @@ from frappe import _
 
 
 class PrintFormatTemplate:
-    """Base class for all print format templates"""
+    """Base class for all print format templates - PDF OPTIMIZED"""
     
     def __init__(self, doc_type, format_name, module="ERPNext MZ"):
         self.doc_type = doc_type
@@ -28,15 +27,22 @@ class PrintFormatTemplate:
         self.base_css = self._get_base_css()
     
     def create_print_format(self):
-        """Create the print format document"""
+        """Create or update the print format document"""
         try:
+            print_format = None
             # Check if print format already exists
             if frappe.db.exists("Print Format", self.format_name):
-                frappe.msgprint(_("Print Format '{0}' already exists").format(self.format_name))
-                return self.format_name
+                    # Update existing print format
+                print_format = frappe.get_doc("Print Format", self.format_name)
+            else:
+                # Create new print format
+                print_format = frappe.new_doc("Print Format")
+        
+            if print_format is None:
+                frappe.log_error(_("Print Format '{0}' does not exist").format(self.format_name), "Print Format Creation")
+                return None
             
-            # Create the print format
-            print_format = frappe.new_doc("Print Format")
+            # Set/update the print format properties
             print_format.update({
                 "name": self.format_name,
                 "doc_type": self.doc_type,
@@ -60,20 +66,24 @@ class PrintFormatTemplate:
                 "disabled": 0
             })
             
-            # Set the HTML template and CSS
+            # Set/update the HTML template and CSS
             print_format.html = self.get_html_template()
             print_format.css = self.get_css_styles()
             
             # Save the print format
-            print_format.insert(ignore_permissions=True)
-            frappe.db.commit()
+            if frappe.db.exists("Print Format", self.format_name):
+                print_format.save(ignore_permissions=True)
+                frappe.msgprint(_("Successfully updated '{0}' print format").format(self.format_name))
+            else:
+                print_format.insert(ignore_permissions=True)
+                frappe.msgprint(_("Successfully created '{0}' print format").format(self.format_name))
             
-            frappe.msgprint(_("Successfully created '{0}' print format").format(self.format_name))
+            frappe.db.commit()
             return print_format.name
             
         except Exception as e:
-            frappe.log_error(f"Error creating print format {self.format_name}: {str(e)}")
-            frappe.throw(_("Failed to create print format: {0}").format(str(e)))
+            frappe.log_error(f"Error creating/updating print format {self.format_name}: {str(e)}")
+            frappe.throw(_("Failed to create/update print format: {0}").format(str(e)))
     
     def get_html_template(self):
         """Override in subclasses to provide specific HTML template"""
@@ -84,23 +94,26 @@ class PrintFormatTemplate:
         return self.base_css
     
     def _get_base_css(self):
-        """Base CSS styles shared across all print formats"""
+        """Base CSS styles optimized for PDF rendering with WeasyPrint"""
         return """
-        /* Mozambique Print Format Base Styles */
+        /* Mozambique Print Format Base Styles - PDF OPTIMIZED */
 
         .print-format {
             font-family: 'Arial', 'Helvetica', sans-serif;
             font-size: 12px;
-            line-height: 1.5;
+            line-height: 1.4;
             color: #333;
             background: #fff;
+            width: 100%;
+            max-width: 100%;
         }
 
-        /* Document Header */
+        /* Document Header - Fixed Layout */
         .document-header {
-            border-bottom: 1px solid #e5e5e5;
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
         }
 
         .document-title {
@@ -110,6 +123,8 @@ class PrintFormatTemplate:
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 1px;
+            float: left;
+            width: 60%;
         }
 
         .document-subtitle {
@@ -123,21 +138,36 @@ class PrintFormatTemplate:
             font-size: 16px;
             color: #2c3e50;
             margin-bottom: 2px;
+            float: right;
+            width: 35%;
+            text-align: right;
         }
 
         .document-date {
             font-size: 12px;
             color: #7f8c8d;
+            float: right;
+            width: 35%;
+            text-align: right;
+            clear: right;
+        }
+
+        /* Clear floats */
+        .document-header::after {
+            content: "";
+            display: table;
+            clear: both;
         }
 
         /* Document Status */
         .document-status-cancelled {
             background-color: #fdf2f2;
-            border: 1px solid #fecaca;
-            padding: 8px;
-            margin: 10px 0;
+            border: 2px solid #fecaca;
+            padding: 10px;
+            margin: 15px 0;
             border-radius: 4px;
             text-align: center;
+            clear: both;
         }
 
         .document-status-cancelled h3 {
@@ -152,27 +182,35 @@ class PrintFormatTemplate:
             color: #2c3e50;
             font-size: 14px;
             font-weight: 600;
-            margin: 0 0 6px 0;
+            margin: 0 0 8px 0;
             padding-bottom: 4px;
             border-bottom: 1px solid #e5e5e5;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        /* Customer and Invoice Details */
+        /* Customer and Invoice Details - Fixed Layout */
         .customer-invoice-section {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
         }
 
         .customer-details, .invoice-details {
             padding: 0;
+            float: left;
+            width: 48%;
+            margin-right: 4%;
+        }
+
+        .invoice-details {
+            margin-right: 0;
         }
 
         .customer-name {
             color: #2c3e50;
             font-size: 14px;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             display: block;
         }
 
@@ -186,33 +224,46 @@ class PrintFormatTemplate:
             font-size: 12px;
         }
 
+        /* Info rows - Fixed layout instead of flexbox */
         .info-row {
-            display: flex;
-            justify-content: space-between;
             margin-bottom: 4px;
-            padding: 2px 0;
+            padding: 3px 0;
+            overflow: hidden;
         }
 
         .info-row .label {
             color: #7f8c8d;
             font-weight: 500;
+            float: left;
+            width: 40%;
         }
 
         .info-row .value {
             color: #2c3e50;
             font-weight: 500;
+            float: right;
+            width: 55%;
+            text-align: right;
         }
 
-        /* Items Table */
+        /* Clear floats for info rows */
+        .info-row::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Items Table - Simplified */
         .items-section {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            clear: both;
         }
 
         .items-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 6px;
-            border: 1px solid #e5e5e5;
+            margin-top: 8px;
+            border: 1px solid #2c3e50;
         }
 
         .items-table th {
@@ -223,7 +274,7 @@ class PrintFormatTemplate:
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 2px solid #2c3e50;
             text-align: left;
         }
 
@@ -237,7 +288,7 @@ class PrintFormatTemplate:
 
         .items-table td {
             padding: 6px 6px;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid #e5e5e5;
             vertical-align: top;
             font-size: 12px;
         }
@@ -255,14 +306,18 @@ class PrintFormatTemplate:
             line-height: 1.4;
         }
 
-        /* Totals Section */
+        /* Totals Section - Fixed Layout */
         .totals-section {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
         }
 
         .amount-in-words, .terms-section {
             padding: 8px 0;
             margin-bottom: 8px;
+            float: left;
+            width: 48%;
+            margin-right: 4%;
         }
 
         .amount-in-words h5, .terms-section h5 {
@@ -283,13 +338,15 @@ class PrintFormatTemplate:
 
         .totals-table {
             padding: 0;
+            float: right;
+            width: 45%;
         }
 
+        /* Totals rows - Fixed layout instead of flexbox */
         .totals-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 3px 0;
+            padding: 4px 0;
             border-bottom: 1px solid #f0f0f0;
+            overflow: hidden;
         }
 
         .totals-row:last-child {
@@ -300,17 +357,22 @@ class PrintFormatTemplate:
             color: #555;
             font-size: 12px;
             font-weight: 500;
+            float: left;
+            width: 60%;
         }
 
         .totals-value {
             color: #2c3e50;
             font-size: 12px;
             font-weight: 500;
+            float: right;
+            width: 35%;
+            text-align: right;
         }
 
         .totals-row.grand-total {
             border-top: 2px solid #2c3e50;
-            margin-top: 6px;
+            margin-top: 8px;
             padding-top: 8px;
             font-weight: 600;
             font-size: 14px;
@@ -322,15 +384,23 @@ class PrintFormatTemplate:
             font-size: 14px;
         }
 
+        /* Clear floats for totals */
+        .totals-row::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
         /* Payment Section */
         .payment-section {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            clear: both;
         }
 
         .payment-info {
             background-color: #fef3c7;
-            border: 1px solid #f59e0b;
-            padding: 8px;
+            border: 2px solid #f59e0b;
+            padding: 10px;
             border-radius: 4px;
         }
 
@@ -351,12 +421,13 @@ class PrintFormatTemplate:
 
         /* QR Code Section */
         .qr-section {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            clear: both;
         }
 
         .qr-code-container {
             text-align: center;
-            padding: 6px 0;
+            padding: 8px 0;
         }
 
         .qr-code-img {
@@ -381,15 +452,50 @@ class PrintFormatTemplate:
         .text-right  { text-align: right; }
         .text-uppercase { text-transform: uppercase; }
 
-        .page-break { page-break-inside: avoid; }
+        .page-break { 
+            page-break-inside: avoid; 
+            clear: both;
+        }
 
-        /* Print Specific Styles */
+        /* Print Specific Styles - Enhanced for WeasyPrint */
         @media print {
-            .print-format { font-size: 11px; }
+            .print-format { 
+                font-size: 11px; 
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
             .document-title { font-size: 20px; }
             .items-table th, .items-table td { padding: 6px 4px; }
-            .totals-row { padding: 2px 0; }
-            .payment-info { padding: 6px; }
+            .totals-row { padding: 3px 0; }
+            .payment-info { padding: 8px; }
+            
+            /* Ensure proper page breaks */
+            .page-break {
+                page-break-before: always;
+            }
+            
+            /* Fix for WeasyPrint float issues */
+            .customer-details, .invoice-details,
+            .amount-in-words, .terms-section, .totals-table {
+                float: none;
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .totals-table {
+                width: 100%;
+            }
+        }
+
+        /* Screen specific styles */
+        @media screen {
+            .print-format {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
         }
     """
 
@@ -400,24 +506,17 @@ class PrintFormatTemplate:
                 <div class="letter-head">{{ letter_head }}</div>
             {% endif %}
             <div class="document-header">
-                <div class="row">
-                    <div class="col-xs-8">
-                        <h1 class="document-title">""" + document_title + """</h1>
-                    </div>
-                    <div class="col-xs-4 text-right">
-                        <div class="document-number"><strong>{{ doc.name }}</strong></div>
-                        <div class="document-date">{{ frappe.utils.format_date(doc.posting_date or doc.transaction_date or doc.creation) }}</div>
-                    </div>
-                </div>
+                <h1 class="document-title">""" + document_title + """</h1>
+                <div class="document-number"><strong>{{ doc.name }}</strong></div>
+                <div class="document-date">{{ frappe.utils.format_date(doc.posting_date or doc.transaction_date or doc.creation) }}</div>
             </div>
             {%- if doc.meta.is_submittable and doc.docstatus==2 -%}
-            <div class="text-center document-status-cancelled">
+            <div class="document-status-cancelled">
                 <h3>{{ _("CANCELADA") }}</h3>
             </div>
             {%- endif -%}
         {%- endmacro -%}
     """
-
 
     def get_common_footer_macro(self):
         """Common footer macro for all documents"""
@@ -442,25 +541,23 @@ class PrintFormatTemplate:
         """Common QR code section for all documents"""
         return """
         <!-- QR Code Section for Digital Compliance -->
-        <div class="row qr-section">
-            <div class="col-xs-12 text-center">
-                {% set qr_code_img = get_qr_image(doc.doctype, doc.name) %}
-                {% if qr_code_img %}
-                <div class="qr-code-container">
-                    <img src="data:image/png;base64,{{ qr_code_img }}" alt="QR Code" class="qr-code-img" />
-                    <p class="qr-label">{{ _("Escaneie o QR para verificar a autenticidade") }}</p>
-                </div>
-                {% endif %}
+        <div class="qr-section">
+            {% set qr_code_img = get_qr_image(doc.doctype, doc.name) %}
+            {% if qr_code_img %}
+            <div class="qr-code-container">
+                <img src="data:image/png;base64,{{ qr_code_img }}" alt="QR Code" class="qr-code-img" />
+                <p class="qr-label">{{ _("Escaneie o QR para verificar a autenticidade") }}</p>
             </div>
+            {% endif %}
         </div>
     """
 
     def get_customer_details_section(self, customer_field="customer", customer_name_field="customer_name"):
-        """Common customer details section"""
+        """Common customer details section - Fixed Layout"""
         return """
             <!-- Customer Details Section -->
-            <div class="row customer-invoice-section">
-                <div class="col-xs-6 customer-details">
+            <div class="customer-invoice-section">
+                <div class="customer-details">
                     <h4 class="section-title">{{ _("Facturar Para") }}</h4>
                     <div class="customer-info">
                         <strong class="customer-name">{{ doc.""" + customer_name_field + """ or doc.""" + customer_field + """ }}</strong><br>
@@ -479,7 +576,7 @@ class PrintFormatTemplate:
                     </div>
                 </div>
                 
-                <div class="col-xs-6 invoice-details">
+                <div class="invoice-details">
                     <h4 class="section-title">{{ _("Detalhes do Documento") }}</h4>
                     <div class="invoice-info">
                         {% if doc.due_date %}
@@ -556,7 +653,7 @@ class PrintFormatTemplate:
         """
 
     def get_totals_section(self, totals_fields=None):
-        """Common totals section (safe on doctypes without those fields)"""
+        """Common totals section (safe on doctypes without those fields) - Fixed Layout"""
         if totals_fields is None:
             totals_fields = [
                 ("net_total", "Sub Total"),
@@ -594,27 +691,20 @@ class PrintFormatTemplate:
 
         return f"""
             <!-- Totals Section -->
-            <div class="row totals-section">
-                <div class="col-xs-6">
+            <div class="totals-section">
+                <div class="amount-in-words">
                     {{% if doc.get("in_words") %}}
-                    <div class="amount-in-words">
-                        <h5>{{{{ _("Valor por Extenso") }}}}</h5>
-                        <p><strong>{{{{ doc.in_words }}}}</strong></p>
-                    </div>
+                    <h5>{{{{ _("Valor por Extenso") }}}}</h5>
+                    <p><strong>{{{{ doc.in_words }}}}</strong></p>
                     {{% endif %}}
                     
                     {{% if doc.get("terms") %}}
-                    <div class="terms-section">
-                        <h5>{{{{ _("Termos e Condições") }}}}</h5>
-                        <p>{{{{ doc.terms }}}}</p>
-                    </div>
+                    <h5>{{{{ _("Termos e Condições") }}}}</h5>
+                    <p>{{{{ doc.terms }}}}</p>
                     {{% endif %}}
                 </div>
-                <div class="col-xs-6">
-                    <div class="totals-table">
+                <div class="totals-table">
                 {totals_html}
-                    </div>
                 </div>
             </div>
         """
-
