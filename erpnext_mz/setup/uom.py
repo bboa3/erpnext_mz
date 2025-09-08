@@ -182,16 +182,6 @@ def transaction_context():
         frappe.db.rollback()
         raise e
 
-def log_message(level: str, message: str, details: str = None):
-    """Enhanced logging with different levels"""
-    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-    log_levels = {"DEBUG": "🔍", "INFO": "ℹ️", "WARNING": "⚠️", "ERROR": "❌", "SUCCESS": "✅"}
-    icon = log_levels.get(level, "📝")
-    
-    print(f"{icon} [{timestamp}] {message}")
-    if details and UOM_CONFIG["log_level"] == "DEBUG":
-        print(f"    Details: {details}")
-
 def retry_operation(operation, max_retries: int = None, delay: float = None):
     """Retry an operation with exponential backoff"""
     max_retries = max_retries or UOM_CONFIG["max_retries"]
@@ -203,7 +193,7 @@ def retry_operation(operation, max_retries: int = None, delay: float = None):
         except Exception as e:
             if attempt == max_retries - 1:
                 raise e
-            log_message("WARNING", f"Operation failed (attempt {attempt + 1}/{max_retries}), retrying...", str(e))
+            print(f"Operation failed (attempt {attempt + 1}/{max_retries}), retrying...", str(e))
             time.sleep(delay * (2 ** attempt))
 
 def validate_uom_name(uom_name: str) -> bool:
@@ -224,7 +214,7 @@ def validate_uom_name(uom_name: str) -> bool:
 
 def get_uom_references_enhanced() -> Dict[str, List[UOMReference]]:
     """Enhanced function to get all references to UOMs in the system"""
-    log_message("INFO", "Scanning for UOM references...")
+    print("Scanning for UOM references...")
     
     references = {}
     
@@ -274,7 +264,7 @@ def get_uom_references_enhanced() -> Dict[str, List[UOMReference]]:
                 references[uom_name].append(uom_ref)
                 
         except Exception as e:
-            log_message("WARNING", f"Could not scan table {table}.{field}", str(e))
+            print(f"Could not scan table {table}.{field}", str(e))
             continue
     
     # Get record IDs for critical tables (for detailed tracking)
@@ -293,7 +283,7 @@ def get_uom_references_enhanced() -> Dict[str, List[UOMReference]]:
                     ref.record_ids = []
     
     total_references = sum(len(refs) for refs in references.values())
-    log_message("SUCCESS", f"Found {len(references)} UOMs with {total_references} total references")
+    print(f"Found {len(references)} UOMs with {total_references} total references")
     
     return references
 
@@ -303,7 +293,7 @@ def get_uom_references_enhanced() -> Dict[str, List[UOMReference]]:
 
 def identify_safe_to_delete_uoms(references: Dict[str, List[UOMReference]]) -> Set[str]:
     """Identify UOMs that are safe to delete (not in use)"""
-    log_message("INFO", "Identifying UOMs safe to delete...")
+    print("Identifying UOMs safe to delete...")
     
     safe_to_delete = set()
     in_use = set()
@@ -316,13 +306,13 @@ def identify_safe_to_delete_uoms(references: Dict[str, List[UOMReference]]) -> S
             # UOM is in use
             in_use.add(uom_name)
             total_refs = sum(ref.record_count for ref in references[uom_name])
-            log_message("DEBUG", f"UOM '{uom_name}' is in use ({total_refs} references)")
+            print(f"UOM '{uom_name}' is in use ({total_refs} references)")
         else:
             # UOM is not in use - safe to delete
             safe_to_delete.add(uom_name)
-            log_message("DEBUG", f"UOM '{uom_name}' is safe to delete (no references)")
+            print(f"UOM '{uom_name}' is safe to delete (no references)")
     
-    log_message("SUCCESS", f"Found {len(safe_to_delete)} UOMs safe to delete, {len(in_use)} in use")
+    print(f"Found {len(safe_to_delete)} UOMs safe to delete, {len(in_use)} in use")
     return safe_to_delete
 
 def safe_delete_unused_uoms(safe_to_delete: Set[str]) -> UOMOperationResult:
@@ -330,7 +320,7 @@ def safe_delete_unused_uoms(safe_to_delete: Set[str]) -> UOMOperationResult:
     if not safe_to_delete:
         return UOMOperationResult(success=True, message="No UOMs to delete")
     
-    log_message("INFO", f"Safely deleting {len(safe_to_delete)} unused UOMs...")
+    print(f"Safely deleting {len(safe_to_delete)} unused UOMs...")
     
     deleted_count = 0
     errors = []
@@ -340,18 +330,18 @@ def safe_delete_unused_uoms(safe_to_delete: Set[str]) -> UOMOperationResult:
             try:
                 # Validate UOM exists
                 if not frappe.db.exists("UOM", uom_name):
-                    log_message("WARNING", f"UOM '{uom_name}' does not exist, skipping")
+                    print(f"UOM '{uom_name}' does not exist, skipping")
                     continue
                 
                 # Delete UOM
                 frappe.db.sql("DELETE FROM `tabUOM` WHERE name = %s", [uom_name])
                 deleted_count += 1
-                log_message("DEBUG", f"Deleted UOM: {uom_name}")
+                print(f"Deleted UOM: {uom_name}")
                 
             except Exception as e:
                 error_msg = f"Failed to delete UOM '{uom_name}': {str(e)}"
                 errors.append(error_msg)
-                log_message("ERROR", error_msg)
+                print(error_msg)
     
     if errors:
         return UOMOperationResult(
@@ -369,7 +359,6 @@ def safe_delete_unused_uoms(safe_to_delete: Set[str]) -> UOMOperationResult:
 
 def create_enhanced_uom_mapping(old_uoms, references) -> Tuple[Dict[str, str], List[str]]:
     """Enhanced function to create mapping from old English UOMs to new Portuguese UOMs"""
-    log_message("INFO", "Creating enhanced UOM mapping...")
     
     # Enhanced English to Portuguese mappings with confidence scores
     mappings = {
@@ -450,17 +439,17 @@ def create_enhanced_uom_mapping(old_uoms, references) -> Tuple[Dict[str, str], L
         if uom_name in references:  # Only map UOMs that are actually used
             if uom_name in mappings:
                 final_mapping[uom_name] = mappings[uom_name]
-                log_message("DEBUG", f"Mapped: {uom_name} -> {mappings[uom_name]}")
+                print(f"Mapped: {uom_name} -> {mappings[uom_name]}")
             else:
                 unmapped_uoms.append(uom_name)
                 # For unmapped UOMs, keep the same name but log warning
                 final_mapping[uom_name] = uom_name
-                log_message("WARNING", f"No mapping found for UOM: {uom_name}")
+                print(f"No mapping found for UOM: {uom_name}")
     
     if unmapped_uoms:
-        log_message("WARNING", f"{len(unmapped_uoms)} UOMs have no Portuguese mapping: {unmapped_uoms}")
+        print(f"{len(unmapped_uoms)} UOMs have no Portuguese mapping: {unmapped_uoms}")
     
-    log_message("SUCCESS", f"Created mapping for {len(final_mapping)} UOMs")
+    print(f"Created mapping for {len(final_mapping)} UOMs")
     return final_mapping, unmapped_uoms
 
 # =============================================================================
@@ -469,7 +458,6 @@ def create_enhanced_uom_mapping(old_uoms, references) -> Tuple[Dict[str, str], L
 
 def validate_portuguese_uoms() -> bool:
     """Validate that all Portuguese UOMs are properly defined"""
-    log_message("INFO", "Validating Portuguese UOM definitions...")
     
     required_fields = ["name", "must_be_whole"]
     missing_fields = []
@@ -486,17 +474,16 @@ def validate_portuguese_uoms() -> bool:
             invalid_names.append(f"UOM {i}: invalid name '{uom_data['name']}'")
     
     if missing_fields or invalid_names:
-        log_message("ERROR", "Portuguese UOM validation failed")
+        print("Portuguese UOM validation failed")
         for error in missing_fields + invalid_names:
-            log_message("ERROR", error)
+            print(error)
         return False
     
-    log_message("SUCCESS", f"All {len(PORTUGUESE_UOMS)} Portuguese UOMs are valid")
+    print(f"All {len(PORTUGUESE_UOMS)} Portuguese UOMs are valid")
     return True
 
 def create_portuguese_uoms_guaranteed() -> UOMOperationResult:
     """Guaranteed creation of all Portuguese UOMs with comprehensive validation"""
-    log_message("INFO", "Creating Portuguese UOMs with guaranteed success...")
     
     # Validate UOM definitions first
     if not validate_portuguese_uoms():
@@ -529,10 +516,10 @@ def create_portuguese_uoms_guaranteed() -> UOMOperationResult:
                         existing_uom.enabled = 1
                         existing_uom.save(ignore_permissions=True)
                         updated_count += 1
-                        log_message("DEBUG", f"Updated: {uom_name} {'(whole numbers)' if expected_whole else ''}")
+                        print(f"Updated: {uom_name} {'(whole numbers)' if expected_whole else ''}")
                     else:
                         skipped_count += 1
-                        log_message("DEBUG", f"UOM '{uom_name}' already exists with correct properties, skipping")
+                        print(f"UOM '{uom_name}' already exists with correct properties, skipping")
                     continue
                 
                 # Create UOM with retry mechanism
@@ -549,12 +536,12 @@ def create_portuguese_uoms_guaranteed() -> UOMOperationResult:
                 uom_doc = retry_operation(create_uom)
                 created_count += 1
                 
-                log_message("DEBUG", f"Created: {uom_name} {'(whole numbers)' if uom_data['must_be_whole'] else ''}")
+                print(f"Created: {uom_name} {'(whole numbers)' if uom_data['must_be_whole'] else ''}")
                 
             except Exception as e:
                 error_msg = f"Failed to create UOM '{uom_name}': {str(e)}"
                 errors.append(error_msg)
-                log_message("ERROR", error_msg)
+                print(error_msg)
     
     if errors:
         return UOMOperationResult(
@@ -576,8 +563,7 @@ def create_portuguese_uoms_guaranteed() -> UOMOperationResult:
 
 def update_uom_references_enhanced(uom_mapping: Dict[str, str]) -> UOMOperationResult:
     """Enhanced function to update all references to use new Portuguese UOM names"""
-    log_message("INFO", "Updating UOM references with enhanced safety...")
-    
+        
     if not uom_mapping:
         return UOMOperationResult(success=True, message="No UOM mappings to update")
     
@@ -610,8 +596,6 @@ def update_uom_references_enhanced(uom_mapping: Dict[str, str]) -> UOMOperationR
             if old_uom == new_uom:
                 continue  # Skip if no change needed
             
-            log_message("DEBUG", f"Updating references: {old_uom} -> {new_uom}")
-            
             for table, field in update_tables:
                 try:
                     # Check if table exists and has records to update
@@ -629,12 +613,11 @@ def update_uom_references_enhanced(uom_mapping: Dict[str, str]) -> UOMOperationR
                         """, [new_uom, old_uom])
                         
                         update_count += 1
-                        log_message("DEBUG", f"Updated {table}.{field}: {count_result[0][0]} records")
                         
                 except Exception as e:
                     error_msg = f"Failed to update {table}.{field} for {old_uom}: {str(e)}"
                     errors.append(error_msg)
-                    log_message("WARNING", error_msg)
+                    print(error_msg)
     
     if errors:
         return UOMOperationResult(
@@ -665,9 +648,6 @@ def setup_portuguese_uoms_safe() -> bool:
     4. Only deletes UOMs that are not in use
     5. Preserves all existing data integrity
     """
-    log_message("INFO", "🚀 Starting SAFE UOM setup for production sites...")
-    log_message("INFO", "🛡️  This mode preserves all existing data and ensures ALL Portuguese UOMs are available")
-    log_message("INFO", "🇵🇹 Priority: Portuguese UOMs, but keeps English UOMs in use")
     
     try:
         # Step 1: Get current state
@@ -675,20 +655,17 @@ def setup_portuguese_uoms_safe() -> bool:
             fields=["name", "uom_name", "enabled", "must_be_whole_number"],
             order_by="uom_name"
         )
-        log_message("INFO", f"📊 Found {len(old_uoms)} existing UOMs")
         
         # Step 2: Get all UOM references
         references = get_uom_references_enhanced()
-        log_message("INFO", f"🔍 Found {len(references)} UOMs with references")
         
         # Step 3: Create ALL Portuguese UOMs first (guaranteed)
-        log_message("INFO", "🔄 Creating/updating ALL Portuguese UOMs...")
         create_result = create_portuguese_uoms_guaranteed()
         if not create_result.success:
-            log_message("ERROR", "Failed to create Portuguese UOMs", create_result.message)
+            print("Failed to create Portuguese UOMs", create_result.message)
             return False
         
-        log_message("SUCCESS", f"✅ Portuguese UOMs: {create_result.message}")
+        print(f"✅ Portuguese UOMs: {create_result.message}")
         
         # Step 4: Verify all Portuguese UOMs are available
         missing_uoms = []
@@ -698,20 +675,20 @@ def setup_portuguese_uoms_safe() -> bool:
                 missing_uoms.append(uom_name)
         
         if missing_uoms:
-            log_message("ERROR", f"❌ Missing Portuguese UOMs: {missing_uoms}")
+            print(f"❌ Missing Portuguese UOMs: {missing_uoms}")
             return False
         
-        log_message("SUCCESS", f"✅ All {len(PORTUGUESE_UOMS)} Portuguese UOMs are available!")
+        print(f"✅ All {len(PORTUGUESE_UOMS)} Portuguese UOMs are available!")
         
         # Step 5: Create intelligent mapping for UOMs in use
         uom_mapping, unmapped = create_enhanced_uom_mapping(old_uoms, references)
         
         # Step 6: Update references to use Portuguese names (only for mapped UOMs)
         if uom_mapping:
-            log_message("INFO", f"🔄 Updating references for {len(uom_mapping)} mapped UOMs...")
+            print(f"🔄 Updating references for {len(uom_mapping)} mapped UOMs...")
             update_result = update_uom_references_enhanced(uom_mapping)
             if not update_result.success:
-                log_message("WARNING", "Some reference updates failed", update_result.message)
+                print("Some reference updates failed", update_result.message)
         
         # Step 7: Identify UOMs safe to delete (only unused ones)
         safe_to_delete = identify_safe_to_delete_uoms(references)
@@ -723,12 +700,12 @@ def setup_portuguese_uoms_safe() -> bool:
             safe_to_delete_filtered = [uom for uom in safe_to_delete if uom not in portuguese_names]
             
             if safe_to_delete_filtered:
-                log_message("INFO", f"🗑️  Safely deleting {len(safe_to_delete_filtered)} unused UOMs...")
+                print(f"🗑️  Safely deleting {len(safe_to_delete_filtered)} unused UOMs...")
                 delete_result = safe_delete_unused_uoms(safe_to_delete_filtered)
                 if not delete_result.success:
-                    log_message("WARNING", "Some UOM deletions failed", delete_result.message)
+                    print("Some UOM deletions failed", delete_result.message)
             else:
-                log_message("INFO", "✅ No unused UOMs to delete")
+                print("✅ No unused UOMs to delete")
         
         # Step 9: Final validation and summary
         final_count = frappe.db.count("UOM")
@@ -736,25 +713,23 @@ def setup_portuguese_uoms_safe() -> bool:
         english_count = len([uom for uom in old_uoms if uom.name not in [u["name"] for u in PORTUGUESE_UOMS]])
         
         # Step 10: Summary
-        log_message("SUCCESS", "="*60)
-        log_message("SUCCESS", "🎉 SAFE UOM SETUP COMPLETED!")
-        log_message("SUCCESS", "="*60)
-        log_message("SUCCESS", f"📊 Total UOMs in system: {final_count}")
-        log_message("SUCCESS", f"🇵🇹 Portuguese UOMs available: {portuguese_count}/{len(PORTUGUESE_UOMS)}")
-        log_message("SUCCESS", f"🇬🇧 English UOMs preserved: {english_count}")
-        log_message("SUCCESS", f"🔄 References updated: {len(uom_mapping)}")
-        log_message("SUCCESS", f"🗑️  Unused UOMs deleted: {len(safe_to_delete_filtered) if 'safe_to_delete_filtered' in locals() else 0}")
-        log_message("SUCCESS", f"⚠️  Unmapped UOMs kept: {len(unmapped)}")
+        print("🎉 SAFE UOM SETUP COMPLETED!")
+        print(f"📊 Total UOMs in system: {final_count}")
+        print(f"🇵🇹 Portuguese UOMs available: {portuguese_count}/{len(PORTUGUESE_UOMS)}")
+        print(f"🇬🇧 English UOMs preserved: {english_count}")
+        print(f"🔄 References updated: {len(uom_mapping)}")
+        print(f"🗑️  Unused UOMs deleted: {len(safe_to_delete_filtered) if 'safe_to_delete_filtered' in locals() else 0}")
+        print(f"⚠️  Unmapped UOMs kept: {len(unmapped)}")
         
-        log_message("SUCCESS", "✅ SUCCESS: Safe UOM setup completed!")
-        log_message("INFO", "💡 ALL Portuguese UOMs are available")
-        log_message("INFO", "💡 English UOMs in use are preserved")
-        log_message("INFO", "💡 System maintains data integrity")
+        print("✅ SUCCESS: Safe UOM setup completed!")
+        print("💡 ALL Portuguese UOMs are available")
+        print("💡 English UOMs in use are preserved")
+        print("💡 System maintains data integrity")
         
         return True
         
     except Exception as e:
-        log_message("ERROR", f"Safe UOM setup failed: {str(e)}")
+        print(f"Safe UOM setup failed: {str(e)}")
         frappe.log_error(frappe.get_traceback(), "Safe UOM Setup Error")
         if UOM_CONFIG["enable_rollback"]:
             frappe.db.rollback()
@@ -770,9 +745,6 @@ def setup_portuguese_uoms_hybrid() -> bool:
     3. Ensures all Portuguese UOMs are available
     4. Provides comprehensive logging and validation
     """
-    log_message("INFO", "🚀 Starting HYBRID UOM setup...")
-    log_message("INFO", "🔄 This mode keeps both English and Portuguese UOMs")
-    log_message("INFO", "🇵🇹 Ensuring ALL Portuguese UOMs are available")
     
     try:
         # Step 1: Get current state
@@ -780,16 +752,16 @@ def setup_portuguese_uoms_hybrid() -> bool:
             fields=["name", "uom_name", "enabled", "must_be_whole_number"],
             order_by="uom_name"
         )
-        log_message("INFO", f"📊 Found {len(old_uoms)} existing UOMs")
+        print(f"📊 Found {len(old_uoms)} existing UOMs")
         
         # Step 2: Create ALL Portuguese UOMs (guaranteed)
-        log_message("INFO", "🔄 Creating/updating all Portuguese UOMs...")
+        print("🔄 Creating/updating all Portuguese UOMs...")
         create_result = create_portuguese_uoms_guaranteed()
         if not create_result.success:
-            log_message("ERROR", "Failed to create Portuguese UOMs", create_result.message)
+            print("Failed to create Portuguese UOMs", create_result.message)
             return False
         
-        log_message("SUCCESS", f"✅ Portuguese UOMs: {create_result.message}")
+        print(f"✅ Portuguese UOMs: {create_result.message}")
         
         # Step 3: Verify all Portuguese UOMs are available
         missing_uoms = []
@@ -799,7 +771,7 @@ def setup_portuguese_uoms_hybrid() -> bool:
                 missing_uoms.append(uom_name)
         
         if missing_uoms:
-            log_message("ERROR", f"❌ Missing Portuguese UOMs: {missing_uoms}")
+            print(f"❌ Missing Portuguese UOMs: {missing_uoms}")
             return False
         
         # Step 4: Final validation and summary
@@ -807,21 +779,19 @@ def setup_portuguese_uoms_hybrid() -> bool:
         portuguese_count = len([uom for uom in PORTUGUESE_UOMS if frappe.db.exists("UOM", uom["name"])])
         english_count = len([uom for uom in old_uoms if uom.name not in [u["name"] for u in PORTUGUESE_UOMS]])
         
-        log_message("SUCCESS", "="*60)
-        log_message("SUCCESS", "🎉 HYBRID UOM SETUP COMPLETED!")
-        log_message("SUCCESS", "="*60)
-        log_message("SUCCESS", f"📊 Total UOMs in system: {total_count}")
-        log_message("SUCCESS", f"🇵🇹 Portuguese UOMs available: {portuguese_count}/{len(PORTUGUESE_UOMS)}")
-        log_message("SUCCESS", f"🇬🇧 English UOMs preserved: {english_count}")
-        log_message("SUCCESS", f"🔄 Created/Updated: {create_result.affected_records}")
-        log_message("SUCCESS", "✅ SUCCESS: Hybrid UOM setup completed!")
-        log_message("INFO", "💡 Users can now choose between English and Portuguese UOMs")
-        log_message("INFO", "💡 All Portuguese UOMs are guaranteed to be available")
+        print("🎉 HYBRID UOM SETUP COMPLETED!")
+        print(f"📊 Total UOMs in system: {total_count}")
+        print(f"🇵🇹 Portuguese UOMs available: {portuguese_count}/{len(PORTUGUESE_UOMS)}")
+        print(f"🇬🇧 English UOMs preserved: {english_count}")
+        print(f"🔄 Created/Updated: {create_result.affected_records}")
+        print("✅ SUCCESS: Hybrid UOM setup completed!")
+        print("💡 Users can now choose between English and Portuguese UOMs")
+        print("💡 All Portuguese UOMs are guaranteed to be available")
         
         return True
         
     except Exception as e:
-        log_message("ERROR", f"Hybrid UOM setup failed: {str(e)}")
+        print(f"Hybrid UOM setup failed: {str(e)}")
         frappe.log_error(frappe.get_traceback(), "Hybrid UOM Setup Error")
         return False
 
@@ -830,4 +800,4 @@ def setup_portuguese_uoms_hybrid() -> bool:
 # =============================================================================
 
 if __name__ == "__main__":
-    setup_portuguese_uoms_safe()
+    setup_portuguese_uoms_hybrid()
