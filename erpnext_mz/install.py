@@ -72,7 +72,6 @@ def hide_unwanted_erpnext_workspaces():
         "Build",
         "ERPNext Integrations", 
         "ERPNext Settings",
-        "CRM",
         "Payroll",
         "HR",
         "Manufacturing",
