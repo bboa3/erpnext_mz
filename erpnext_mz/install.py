@@ -87,7 +87,7 @@ def hide_unwanted_erpnext_workspaces():
         try:
             # Check if workspace exists before trying to hide it
             if frappe.db.exists("Workspace", workspace_name):
-                frappe.db.set_value("Workspace", workspace_name, "public", 0)
+                frappe.db.set_value("Workspace", workspace_name, "public", 1)
                 frappe.db.set_value("Workspace", workspace_name, "is_hidden", 0)
                 frappe.logger().info(f"ERPNext MZ: Hidden workspace '{workspace_name}'")
             else:
