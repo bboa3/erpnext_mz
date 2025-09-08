@@ -9,7 +9,7 @@
     "parenttype": "Workspace"
    }
   ],
-  "content": "[{\"id\":\"xKrWHhKh1L\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Vendas por Território\",\"col\":12}},{\"id\":\"Mv0ZPIPjj7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span><span class=\\\"h4\\\">Acesso Rápido</span>\",\"col\":12}},{\"id\":\"38m7frHOC-\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"jFF2ED5tX6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Cliente\",\"col\":3}},{\"id\":\"1mDmj1Qi11\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Potenciais Clientes\",\"col\":3}},{\"id\":\"x_H3CXmauJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Oportunidade\",\"col\":3}},{\"id\":\"gI1s_ZUj61\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Cotação\",\"col\":3}},{\"id\":\"cuL7AzEDQc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fatura de vendas\",\"col\":3}},{\"id\":\"bSE9foZEFG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Análise de Vendas\",\"col\":3}},{\"id\":\"_ZEU-n2kK0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard Financeiro\",\"col\":3}},{\"id\":\"3Zrl8DO9s9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard de Vendas\",\"col\":3}},{\"id\":\"GgzBErst13\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ttpROKW9vk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Tabelas &amp; Relatórios</span>\",\"col\":12}},{\"id\":\"-76QPdbBHy\",\"type\":\"card\",\"data\":{\"card_name\":\"Sales Pipeline\",\"col\":4}},{\"id\":\"_YmGwzVWRr\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"Bma1PxoXk3\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"80viA0R83a\",\"type\":\"card\",\"data\":{\"card_name\":\"Campaign\",\"col\":4}},{\"id\":\"Buo5HtKRFN\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"sLS_x4FMK2\",\"type\":\"card\",\"data\":{\"card_name\":\"Maintenance\",\"col\":4}}]",
+  "content": "[{\"id\":\"xKrWHhKh1L\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Vendas por Território\",\"col\":12}},{\"id\":\"Mv0ZPIPjj7\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b></b></span><span class=\\\"h4\\\">Acesso Rápido</span>\",\"col\":12}},{\"id\":\"38m7frHOC-\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"jFF2ED5tX6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Cliente\",\"col\":3}},{\"id\":\"1mDmj1Qi11\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Potenciais Clientes\",\"col\":3}},{\"id\":\"x_H3CXmauJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Oportunidade\",\"col\":3}},{\"id\":\"gI1s_ZUj61\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Cotação\",\"col\":3}},{\"id\":\"cuL7AzEDQc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fatura de vendas\",\"col\":3}},{\"id\":\"bSE9foZEFG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Análise de Vendas\",\"col\":3}},{\"id\":\"GgzBErst13\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ttpROKW9vk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Tabelas &amp; Relatórios</span>\",\"col\":12}},{\"id\":\"-76QPdbBHy\",\"type\":\"card\",\"data\":{\"card_name\":\"Sales Pipeline\",\"col\":4}},{\"id\":\"_YmGwzVWRr\",\"type\":\"card\",\"data\":{\"card_name\":\"Masters\",\"col\":4}},{\"id\":\"Bma1PxoXk3\",\"type\":\"card\",\"data\":{\"card_name\":\"Reports\",\"col\":4}},{\"id\":\"80viA0R83a\",\"type\":\"card\",\"data\":{\"card_name\":\"Campaign\",\"col\":4}},{\"id\":\"Buo5HtKRFN\",\"type\":\"card\",\"data\":{\"card_name\":\"Settings\",\"col\":4}},{\"id\":\"sLS_x4FMK2\",\"type\":\"card\",\"data\":{\"card_name\":\"Maintenance\",\"col\":4}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -723,7 +723,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2025-08-26 19:58:07.998028",
+  "modified": "2025-09-08 10:24:54.992777",
   "module": "CRM",
   "name": "Clientes",
   "number_cards": [],
@@ -834,40 +834,6 @@
     "restrict_to_domain": null,
     "stats_filter": null,
     "type": "Report",
-    "url": null
-   },
-   {
-    "color": "Grey",
-    "doc_view": "List",
-    "format": null,
-    "icon": null,
-    "kanban_board": null,
-    "label": "Dashboard Financeiro",
-    "link_to": "Accounting & Taxes Dashboard",
-    "parent": "Clientes",
-    "parentfield": "shortcuts",
-    "parenttype": "Workspace",
-    "report_ref_doctype": null,
-    "restrict_to_domain": null,
-    "stats_filter": null,
-    "type": "Dashboard",
-    "url": null
-   },
-   {
-    "color": "Grey",
-    "doc_view": "List",
-    "format": null,
-    "icon": null,
-    "kanban_board": null,
-    "label": "Dashboard de Vendas",
-    "link_to": "CRM & Sales Dashboard",
-    "parent": "Clientes",
-    "parentfield": "shortcuts",
-    "parenttype": "Workspace",
-    "report_ref_doctype": null,
-    "restrict_to_domain": null,
-    "stats_filter": null,
-    "type": "Dashboard",
     "url": null
    }
   ],
@@ -5036,7 +5002,7 @@
     "parenttype": "Workspace"
    }
   ],
-  "content": "[{\"id\":\"nDhfcJYbKH\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Profit and Loss\",\"col\":12}},{\"id\":\"VVvJ1lUcfc\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Outgoing Bills\",\"col\":3}},{\"id\":\"Vlj2FZtlHV\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Incoming Bills\",\"col\":3}},{\"id\":\"VVVjQVAhPf\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Incoming Payment\",\"col\":3}},{\"id\":\"DySNdlysIW\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Outgoing Payment\",\"col\":3}},{\"id\":\"9k1rDm2C0l\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"vikWSkNm6_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Atalhos</b></span>\",\"col\":12}},{\"id\":\"pMywM0nhlj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Chart of Accounts\",\"col\":3}},{\"id\":\"_pRdD6kqUG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"G984SgVRJN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"1ArNvt9qhz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Journal Entry\",\"col\":3}},{\"id\":\"F9f4I1viNr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"4IBBOIxfqW\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accounts Receivable\",\"col\":3}},{\"id\":\"El2anpPaFY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"1nwcM9upJo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Trial Balance\",\"col\":3}},{\"id\":\"OF9WOi1Ppc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"iAwpe-Chra\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Learn Accounting\",\"col\":3}},{\"id\":\"B7-uxs8tkU\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"tHb3yxthkR\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Tabelas &amp; Relatórios</span>\",\"col\":12}},{\"id\":\"DnNtsmxpty\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting Masters\",\"col\":4}},{\"id\":\"nKKr6fjgjb\",\"type\":\"card\",\"data\":{\"card_name\":\"Payments\",\"col\":4}},{\"id\":\"KlqilF5R_V\",\"type\":\"card\",\"data\":{\"card_name\":\"Tax Masters\",\"col\":4}},{\"id\":\"jTUy8LB0uw\",\"type\":\"card\",\"data\":{\"card_name\":\"Cost Center and Budgeting\",\"col\":4}},{\"id\":\"Wn2lhs7WLn\",\"type\":\"card\",\"data\":{\"card_name\":\"Multi Currency\",\"col\":4}},{\"id\":\"PAQMqqNkBM\",\"type\":\"card\",\"data\":{\"card_name\":\"Banking\",\"col\":4}},{\"id\":\"kxhoaiqdLq\",\"type\":\"card\",\"data\":{\"card_name\":\"Opening and Closing\",\"col\":4}},{\"id\":\"q0MAlU2j_Z\",\"type\":\"card\",\"data\":{\"card_name\":\"Subscription Management\",\"col\":4}},{\"id\":\"ptm7T6Hwu-\",\"type\":\"card\",\"data\":{\"card_name\":\"Share Management\",\"col\":4}}]",
+  "content": "[{\"id\":\"nDhfcJYbKH\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Profit and Loss\",\"col\":12}},{\"id\":\"VVvJ1lUcfc\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Outgoing Bills\",\"col\":3}},{\"id\":\"Vlj2FZtlHV\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Incoming Bills\",\"col\":3}},{\"id\":\"VVVjQVAhPf\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Incoming Payment\",\"col\":3}},{\"id\":\"DySNdlysIW\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Outgoing Payment\",\"col\":3}},{\"id\":\"9k1rDm2C0l\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"vikWSkNm6_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Atalhos</b></span>\",\"col\":12}},{\"id\":\"pMywM0nhlj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Chart of Accounts\",\"col\":3}},{\"id\":\"_pRdD6kqUG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"G984SgVRJN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Invoice\",\"col\":3}},{\"id\":\"1ArNvt9qhz\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Journal Entry\",\"col\":3}},{\"id\":\"F9f4I1viNr\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"4IBBOIxfqW\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Accounts Receivable\",\"col\":3}},{\"id\":\"El2anpPaFY\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"General Ledger\",\"col\":3}},{\"id\":\"1nwcM9upJo\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Trial Balance\",\"col\":3}},{\"id\":\"OF9WOi1Ppc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"B7-uxs8tkU\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"tHb3yxthkR\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Tabelas &amp; Relatórios</span>\",\"col\":12}},{\"id\":\"DnNtsmxpty\",\"type\":\"card\",\"data\":{\"card_name\":\"Accounting Masters\",\"col\":4}},{\"id\":\"nKKr6fjgjb\",\"type\":\"card\",\"data\":{\"card_name\":\"Payments\",\"col\":4}},{\"id\":\"KlqilF5R_V\",\"type\":\"card\",\"data\":{\"card_name\":\"Tax Masters\",\"col\":4}},{\"id\":\"jTUy8LB0uw\",\"type\":\"card\",\"data\":{\"card_name\":\"Cost Center and Budgeting\",\"col\":4}},{\"id\":\"Wn2lhs7WLn\",\"type\":\"card\",\"data\":{\"card_name\":\"Multi Currency\",\"col\":4}},{\"id\":\"PAQMqqNkBM\",\"type\":\"card\",\"data\":{\"card_name\":\"Banking\",\"col\":4}},{\"id\":\"kxhoaiqdLq\",\"type\":\"card\",\"data\":{\"card_name\":\"Opening and Closing\",\"col\":4}},{\"id\":\"q0MAlU2j_Z\",\"type\":\"card\",\"data\":{\"card_name\":\"Subscription Management\",\"col\":4}},{\"id\":\"ptm7T6Hwu-\",\"type\":\"card\",\"data\":{\"card_name\":\"Share Management\",\"col\":4}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -6020,7 +5986,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2025-08-26 02:56:25.584419",
+  "modified": "2025-09-08 10:32:24.737142",
   "module": "Accounts",
   "name": "Accounting",
   "number_cards": [
@@ -6060,23 +6026,6 @@
   "roles": [],
   "sequence_id": 15.0,
   "shortcuts": [
-   {
-    "color": "Grey",
-    "doc_view": "List",
-    "format": null,
-    "icon": null,
-    "kanban_board": null,
-    "label": "Learn Accounting",
-    "link_to": null,
-    "parent": "Accounting",
-    "parentfield": "shortcuts",
-    "parenttype": "Workspace",
-    "report_ref_doctype": null,
-    "restrict_to_domain": null,
-    "stats_filter": null,
-    "type": "URL",
-    "url": "https://school.frappe.io/lms/courses/erpnext-accounting?utm_source=in_app"
-   },
    {
     "color": null,
     "doc_view": null,
@@ -11927,7 +11876,7 @@
     "parenttype": "Workspace"
    }
   ],
-  "content": "[{\"id\":\"XOtAaNjB8b\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Lucros e perdas\",\"col\":12}},{\"id\":\"CAxbJLQQMH\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Faturas a Pagar\",\"col\":4}},{\"id\":\"YeXEcbFYv7\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Faturas a Receber\",\"col\":4}},{\"id\":\"wMl3ocFOVZ\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Pagamentos Efetuados\",\"col\":4}},{\"id\":\"xcalWJMdoR\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Pagamentos Recebidos\",\"col\":4}},{\"id\":\"L5jXD-Viue\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Valor Total do Stock\",\"col\":4}},{\"id\":\"ri7YGPUZNM\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Clientes Ativos\",\"col\":4}},{\"id\":\"zy-2Ioga8L\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"shortcuts_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Acesso Rápido</span>\",\"col\":12}},{\"id\":\"shortcut_0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard Financeiro\",\"col\":3}},{\"id\":\"shortcut_1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard de Vendas\",\"col\":3}},{\"id\":\"shortcut_2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard de RH\",\"col\":3}},{\"id\":\"shortcut_4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer\",\"col\":3}},{\"id\":\"shortcut_6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"shortcut_7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"shortcut_8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ToDo\",\"col\":3}},{\"id\":\"shortcut_9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Event\",\"col\":3}},{\"id\":\"spacer_before_links\",\"type\":\"spacer\",\"data\":{\"col\":12}}]",
+  "content": "[{\"id\":\"XOtAaNjB8b\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Lucros e perdas\",\"col\":12}},{\"id\":\"CAxbJLQQMH\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Faturas a Pagar\",\"col\":4}},{\"id\":\"YeXEcbFYv7\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Faturas a Receber\",\"col\":4}},{\"id\":\"wMl3ocFOVZ\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Pagamentos Efetuados\",\"col\":4}},{\"id\":\"xcalWJMdoR\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Pagamentos Recebidos\",\"col\":4}},{\"id\":\"L5jXD-Viue\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Valor Total do Stock\",\"col\":4}},{\"id\":\"ri7YGPUZNM\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Clientes Ativos\",\"col\":4}},{\"id\":\"zy-2Ioga8L\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"shortcuts_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Acesso Rápido</span>\",\"col\":12}},{\"id\":\"shortcut_4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Customer\",\"col\":3}},{\"id\":\"shortcut_6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sales Invoice\",\"col\":3}},{\"id\":\"shortcut_7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Payment Entry\",\"col\":3}},{\"id\":\"shortcut_8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"ToDo\",\"col\":3}},{\"id\":\"shortcut_9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Event\",\"col\":3}},{\"id\":\"spacer_before_links\",\"type\":\"spacer\",\"data\":{\"col\":12}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -12101,7 +12050,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2025-08-26 18:34:12.159002",
+  "modified": "2025-09-08 10:23:42.668407",
   "module": "Accounts",
   "name": "Home",
   "number_cards": [
@@ -12155,57 +12104,6 @@
   "roles": [],
   "sequence_id": 1.0,
   "shortcuts": [
-   {
-    "color": null,
-    "doc_view": "",
-    "format": null,
-    "icon": null,
-    "kanban_board": null,
-    "label": "Dashboard Financeiro",
-    "link_to": "Accounting & Taxes Dashboard",
-    "parent": "Home",
-    "parentfield": "shortcuts",
-    "parenttype": "Workspace",
-    "report_ref_doctype": null,
-    "restrict_to_domain": null,
-    "stats_filter": null,
-    "type": "Dashboard",
-    "url": null
-   },
-   {
-    "color": null,
-    "doc_view": "",
-    "format": null,
-    "icon": null,
-    "kanban_board": null,
-    "label": "Dashboard de Vendas",
-    "link_to": "CRM & Sales Dashboard",
-    "parent": "Home",
-    "parentfield": "shortcuts",
-    "parenttype": "Workspace",
-    "report_ref_doctype": null,
-    "restrict_to_domain": null,
-    "stats_filter": null,
-    "type": "Dashboard",
-    "url": null
-   },
-   {
-    "color": null,
-    "doc_view": "",
-    "format": null,
-    "icon": null,
-    "kanban_board": null,
-    "label": "Dashboard de RH",
-    "link_to": "HR & Payroll Dashboard",
-    "parent": "Home",
-    "parentfield": "shortcuts",
-    "parenttype": "Workspace",
-    "report_ref_doctype": null,
-    "restrict_to_domain": null,
-    "stats_filter": null,
-    "type": "Dashboard",
-    "url": null
-   },
    {
     "color": null,
     "doc_view": "",
@@ -12304,7 +12202,7 @@
     "parenttype": "Workspace"
    }
   ],
-  "content": "[{\"id\":\"w6b541HxDq\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Valor do Stock por Armazém\",\"col\":12}},{\"id\":\"ChkGp-Xwrb\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Valor Total do Stock\",\"col\":4}},{\"id\":\"YHaKCs4FKm\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Armazéns\",\"col\":4}},{\"id\":\"YNajpBlq1c\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Itens Ativos\",\"col\":4}},{\"id\":\"shortcuts_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Acesso Rápido</span>\",\"col\":12}},{\"id\":\"k9fNYm_FIe\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"shortcut_0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard Financeiro\",\"col\":3}},{\"id\":\"shortcut_1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard de Vendas\",\"col\":3}},{\"id\":\"shortcut_2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"shortcut_3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Material Request\",\"col\":3}},{\"id\":\"shortcut_4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"shortcut_5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Receipt\",\"col\":3}},{\"id\":\"shortcut_6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Delivery Note\",\"col\":3}},{\"id\":\"shortcut_7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Ledger\",\"col\":3}},{\"id\":\"shortcut_8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Balance\",\"col\":3}},{\"id\":\"spacer_before_links\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"links_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Tabelas &amp; Relatórios</span>\",\"col\":12}},{\"id\":\"card_Catálogo de Itens\",\"type\":\"card\",\"data\":{\"card_name\":\"Catálogo de Itens\",\"col\":4}},{\"id\":\"card_Transações de Estoque\",\"type\":\"card\",\"data\":{\"card_name\":\"Transações de Estoque\",\"col\":4}},{\"id\":\"card_Número de Série e Lote\",\"type\":\"card\",\"data\":{\"card_name\":\"Número de Série e Lote\",\"col\":4}},{\"id\":\"card_Relatórios de Estoque\",\"type\":\"card\",\"data\":{\"card_name\":\"Relatórios de Estoque\",\"col\":4}},{\"id\":\"card_Relatórios Principais\",\"type\":\"card\",\"data\":{\"card_name\":\"Relatórios Principais\",\"col\":4}}]",
+  "content": "[{\"id\":\"w6b541HxDq\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Valor do Stock por Armazém\",\"col\":12}},{\"id\":\"ChkGp-Xwrb\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Valor Total do Stock\",\"col\":4}},{\"id\":\"YHaKCs4FKm\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Armazéns\",\"col\":4}},{\"id\":\"YNajpBlq1c\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total de Itens Ativos\",\"col\":4}},{\"id\":\"shortcuts_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Acesso Rápido</span>\",\"col\":12}},{\"id\":\"k9fNYm_FIe\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"shortcut_2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Item\",\"col\":3}},{\"id\":\"shortcut_3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Material Request\",\"col\":3}},{\"id\":\"shortcut_4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Entry\",\"col\":3}},{\"id\":\"shortcut_5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Purchase Receipt\",\"col\":3}},{\"id\":\"shortcut_6\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Delivery Note\",\"col\":3}},{\"id\":\"shortcut_7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Ledger\",\"col\":3}},{\"id\":\"shortcut_8\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Stock Balance\",\"col\":3}},{\"id\":\"spacer_before_links\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"links_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Tabelas &amp; Relatórios</span>\",\"col\":12}},{\"id\":\"card_Catálogo de Itens\",\"type\":\"card\",\"data\":{\"card_name\":\"Catálogo de Itens\",\"col\":4}},{\"id\":\"card_Transações de Estoque\",\"type\":\"card\",\"data\":{\"card_name\":\"Transações de Estoque\",\"col\":4}},{\"id\":\"card_Número de Série e Lote\",\"type\":\"card\",\"data\":{\"card_name\":\"Número de Série e Lote\",\"col\":4}},{\"id\":\"card_Relatórios de Estoque\",\"type\":\"card\",\"data\":{\"card_name\":\"Relatórios de Estoque\",\"col\":4}},{\"id\":\"card_Relatórios Principais\",\"type\":\"card\",\"data\":{\"card_name\":\"Relatórios Principais\",\"col\":4}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -12982,7 +12880,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2025-08-27 14:45:47.140255",
+  "modified": "2025-09-08 10:24:01.801590",
   "module": null,
   "name": "Stock",
   "number_cards": [
@@ -13015,40 +12913,6 @@
   "roles": [],
   "sequence_id": 2.0,
   "shortcuts": [
-   {
-    "color": null,
-    "doc_view": "",
-    "format": null,
-    "icon": null,
-    "kanban_board": null,
-    "label": "Dashboard Financeiro",
-    "link_to": "Accounting & Taxes Dashboard",
-    "parent": "Stock",
-    "parentfield": "shortcuts",
-    "parenttype": "Workspace",
-    "report_ref_doctype": null,
-    "restrict_to_domain": null,
-    "stats_filter": null,
-    "type": "Dashboard",
-    "url": null
-   },
-   {
-    "color": null,
-    "doc_view": "",
-    "format": null,
-    "icon": null,
-    "kanban_board": null,
-    "label": "Dashboard de Vendas",
-    "link_to": "CRM & Sales Dashboard",
-    "parent": "Stock",
-    "parentfield": "shortcuts",
-    "parenttype": "Workspace",
-    "report_ref_doctype": null,
-    "restrict_to_domain": null,
-    "stats_filter": null,
-    "type": "Dashboard",
-    "url": null
-   },
    {
     "color": null,
     "doc_view": "",
@@ -13173,7 +13037,7 @@
  },
  {
   "charts": [],
-  "content": "[{\"id\":\"shortcuts_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Acesso Rápido</span>\",\"col\":12}},{\"id\":\"shortcut_0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard de RH\",\"col\":3}},{\"id\":\"shortcut_1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard Financeiro\",\"col\":3}},{\"id\":\"shortcut_2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"shortcut_3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"shortcut_4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Cargo\",\"col\":3}},{\"id\":\"shortcut_5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Tracking\",\"col\":3}},{\"id\":\"spacer_before_links\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"links_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Tabelas &amp; Relatórios</span>\",\"col\":12}},{\"id\":\"card_Gestão de Funcionários\",\"type\":\"card\",\"data\":{\"card_name\":\"Gestão de Funcionários\",\"col\":4}},{\"id\":\"card_Gestão de Tempo\",\"type\":\"card\",\"data\":{\"card_name\":\"Gestão de Tempo\",\"col\":4}}]",
+  "content": "[{\"id\":\"shortcuts_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Acesso Rápido</span>\",\"col\":12}},{\"id\":\"shortcut_2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Employee\",\"col\":3}},{\"id\":\"shortcut_3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Department\",\"col\":3}},{\"id\":\"shortcut_4\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Cargo\",\"col\":3}},{\"id\":\"shortcut_5\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Time Tracking\",\"col\":3}},{\"id\":\"spacer_before_links\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"links_header\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Tabelas &amp; Relatórios</span>\",\"col\":12}},{\"id\":\"card_Gestão de Funcionários\",\"type\":\"card\",\"data\":{\"card_name\":\"Gestão de Funcionários\",\"col\":4}},{\"id\":\"card_Gestão de Tempo\",\"type\":\"card\",\"data\":{\"card_name\":\"Gestão de Tempo\",\"col\":4}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -13311,7 +13175,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2025-08-26 23:34:09.912959",
+  "modified": "2025-09-08 10:30:56.178063",
   "module": null,
   "name": "RH & Folha",
   "number_cards": [],
@@ -13337,40 +13201,6 @@
     "restrict_to_domain": null,
     "stats_filter": "[]",
     "type": "DocType",
-    "url": null
-   },
-   {
-    "color": null,
-    "doc_view": "",
-    "format": null,
-    "icon": null,
-    "kanban_board": null,
-    "label": "Dashboard de RH",
-    "link_to": "HR & Payroll Dashboard",
-    "parent": "RH & Folha",
-    "parentfield": "shortcuts",
-    "parenttype": "Workspace",
-    "report_ref_doctype": null,
-    "restrict_to_domain": null,
-    "stats_filter": null,
-    "type": "Dashboard",
-    "url": null
-   },
-   {
-    "color": null,
-    "doc_view": "",
-    "format": null,
-    "icon": null,
-    "kanban_board": null,
-    "label": "Dashboard Financeiro",
-    "link_to": "Accounting & Taxes Dashboard",
-    "parent": "RH & Folha",
-    "parentfield": "shortcuts",
-    "parenttype": "Workspace",
-    "report_ref_doctype": null,
-    "restrict_to_domain": null,
-    "stats_filter": null,
-    "type": "Dashboard",
     "url": null
    },
    {
