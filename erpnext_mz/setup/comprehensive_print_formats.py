@@ -24,11 +24,11 @@ class SalesInvoicePrintFormat(PrintFormatTemplate):
         customer_section = self.get_customer_details_section()
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total"),
-            ("tax_amount", "Imposto"),
-            ("discount_amount", "Desconto"),
-            ("grand_total", "Total Geral"),
-            ("rounded_total", "Total Arredondado")
+            ("net_total", "Sub Total", True),
+            ("tax_amount", "Imposto", False),
+            ("discount_amount", "Desconto", False),
+            ("grand_total", "Total Geral", True),
+            ("rounded_total", "Total Arredondado", False)
         ])
         qr_section = self.get_qr_code_section()
         
@@ -68,11 +68,11 @@ class SalesOrderPrintFormat(PrintFormatTemplate):
         customer_section = self.get_customer_details_section()
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total"),
-            ("tax_amount", "Imposto"),
-            ("discount_amount", "Desconto"),
-            ("grand_total", "Total Geral"),
-            ("rounded_total", "Total Arredondado")
+            ("net_total", "Sub Total", True),
+            ("tax_amount", "Imposto", False),
+            ("discount_amount", "Desconto", False),
+            ("grand_total", "Total Geral", True),
+            ("rounded_total", "Total Arredondado", False)
         ])
         qr_section = self.get_qr_code_section()
         
@@ -112,11 +112,11 @@ class DeliveryNotePrintFormat(PrintFormatTemplate):
         customer_section = self.get_customer_details_section()
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total"),
-            ("tax_amount", "Imposto"),
-            ("discount_amount", "Desconto"),
-            ("grand_total", "Total Geral"),
-            ("rounded_total", "Total Arredondado")
+            ("net_total", "Sub Total", True),
+            ("tax_amount", "Imposto", False),
+            ("discount_amount", "Desconto", False),
+            ("grand_total", "Total Geral", True),
+            ("rounded_total", "Total Arredondado", False)
         ])
         qr_section = self.get_qr_code_section()
         
@@ -156,11 +156,11 @@ class QuotationPrintFormat(PrintFormatTemplate):
         customer_section = self.get_customer_details_section()
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total"),
-            ("tax_amount", "Imposto"),
-            ("discount_amount", "Desconto"),
-            ("grand_total", "Total Geral"),
-            ("rounded_total", "Total Arredondado")
+            ("net_total", "Sub Total", True),
+            ("tax_amount", "Imposto", False),
+            ("discount_amount", "Desconto", False),
+            ("grand_total", "Total Geral", True),
+            ("rounded_total", "Total Arredondado", False)
         ])
         qr_section = self.get_qr_code_section()
         
@@ -201,11 +201,11 @@ class PurchaseInvoicePrintFormat(PrintFormatTemplate):
         customer_section = self.get_customer_details_section("supplier", "supplier_name")
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total"),
-            ("tax_amount", "Imposto"),
-            ("discount_amount", "Desconto"),
-            ("grand_total", "Total Geral"),
-            ("rounded_total", "Total Arredondado")
+            ("net_total", "Sub Total", True),
+            ("tax_amount", "Imposto", False),
+            ("discount_amount", "Desconto", False),
+            ("grand_total", "Total Geral", True),
+            ("rounded_total", "Total Arredondado", False)
         ])
         qr_section = self.get_qr_code_section()
         
@@ -245,11 +245,11 @@ class PurchaseOrderPrintFormat(PrintFormatTemplate):
         customer_section = self.get_customer_details_section("supplier", "supplier_name")
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total"),
-            ("tax_amount", "Imposto"),
-            ("discount_amount", "Desconto"),
-            ("grand_total", "Total Geral"),
-            ("rounded_total", "Total Arredondado")
+            ("net_total", "Sub Total", True),
+            ("tax_amount", "Imposto", False),
+            ("discount_amount", "Desconto", False),
+            ("grand_total", "Total Geral", True),
+            ("rounded_total", "Total Arredondado", False)
         ])
         qr_section = self.get_qr_code_section()
         
@@ -289,11 +289,11 @@ class PurchaseReceiptPrintFormat(PrintFormatTemplate):
         customer_section = self.get_customer_details_section("supplier", "supplier_name")
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total"),
-            ("tax_amount", "Imposto"),
-            ("discount_amount", "Desconto"),
-            ("grand_total", "Total Geral"),
-            ("rounded_total", "Total Arredondado")
+            ("net_total", "Sub Total", True),
+            ("tax_amount", "Imposto", False),
+            ("discount_amount", "Desconto", False),
+            ("grand_total", "Total Geral", True),
+            ("rounded_total", "Total Arredondado", False)
         ])
         qr_section = self.get_qr_code_section()
         

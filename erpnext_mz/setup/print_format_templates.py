@@ -158,6 +158,22 @@ class PrintFormatTemplate:
             font-weight: 600;
         }
 
+        .document-status-draft {
+            background-color: #fef3c7;
+            border: 1px solid #f59e0b;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .document-status-draft h3 {
+            color: #92400e;
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
         /* Section Titles */
         .section-title {
             color: #2c3e50;
@@ -459,6 +475,18 @@ class PrintFormatTemplate:
             .totals-row { padding: 2px 0; }
             .payment-info { padding: 6px; }
             
+            /* Document status print adjustments */
+            .document-status-draft,
+            .document-status-cancelled {
+                margin: 8px 0 !important;
+                padding: 6px !important;
+            }
+            
+            .document-status-draft h3,
+            .document-status-cancelled h3 {
+                font-size: 14px !important;
+            }
+            
             /* QR Code print adjustments */
             .qr-code-img {
                 max-width: 70px !important;
@@ -526,10 +554,16 @@ class PrintFormatTemplate:
                     </div>
                 </div>
             </div>
-            {%- if doc.meta.is_submittable and doc.docstatus==2 -%}
-            <div class="text-center document-status-cancelled">
-                <h3>{{ _("CANCELADA") }}</h3>
-            </div>
+            {%- if doc.meta.is_submittable -%}
+                {%- if doc.docstatus==0 -%}
+                <div class="text-center document-status-draft">
+                    <h3>{{ _("RASCUNHO") }}</h3>
+                </div>
+                {%- elif doc.docstatus==2 -%}
+                <div class="text-center document-status-cancelled">
+                    <h3>{{ _("CANCELADA") }}</h3>
+                </div>
+                {%- endif -%}
             {%- endif -%}
         {%- endmacro -%}
     """
@@ -669,21 +703,32 @@ class PrintFormatTemplate:
         """
 
     def get_totals_section(self, totals_fields=None):
-        """Common totals section (safe on doctypes without those fields)"""
+        """Common totals section (safe on doctypes without those fields)
+        
+        Args:
+            totals_fields: List of tuples with (field_name, label) or (field_name, label, always_show)
+                          where always_show=True means the field will be displayed even if zero
+        """
         if totals_fields is None:
             totals_fields = [
                 ("net_total", "Sub Total"),
-                ("grand_total", "Total Geral")
+                ("grand_total", "Total Geral", True)
             ]
 
         rows = []
-        for field, label in totals_fields:
+        for field_data in totals_fields:
+            if len(field_data) == 2:
+                field, label = field_data
+                always_show = False
+            else:
+                field, label, always_show = field_data
+            
             row_class = "totals-row grand-total" if field == "grand_total" else "totals-row"
-            # Render only if the value is present (None => likely missing field on this doctype)
+            
             if field == "tax_amount":
                 rows.append("""
                     {% for tax in doc.taxes %}
-                        {% if tax.tax_amount %}
+                        {% if tax.tax_amount or """ + str(always_show).lower() + """ %}
                         <div class="totals-row">
                             <span class="totals-label">{{ _(tax.description) }}:</span>
                             <span class="totals-value">{{ tax.get_formatted("tax_amount", doc) }}</span>
@@ -693,9 +738,14 @@ class PrintFormatTemplate:
                 """)
                 continue
 
+            if always_show:
+                condition = f"doc.get('{field}') is not none"
+            else:
+                condition = f"doc.get('{field}')"
+
             rows.append(f"""
                     {{% set __val = doc.get("{field}") %}}
-                    {{% if __val %}}
+                    {{% if {condition} %}}
                     <div class="{row_class}">
                         <span class="totals-label">{label}:</span>
                         <span class="totals-value">{{{{ doc.get_formatted("{field}", doc) }}}}</span>
