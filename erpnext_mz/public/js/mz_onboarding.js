@@ -95,8 +95,9 @@ frappe.provide('erpnext_mz.onboarding');
     return new Promise((resolve) => {
       let closing = false;
       const d = new frappe.ui.Dialog({
-        title: __('Contactos da Empresa'),
+        title: __('Contactos da Empresa e Pagamentos'),
         fields: [
+          { fieldname: 'cb_contacts', fieldtype: 'Column Break', label: __('Contactos da Empresa') },
           {
             fieldname: 'phone',
             label: __('Nº de Telefone'),
@@ -117,6 +118,14 @@ frappe.provide('erpnext_mz.onboarding');
             fieldtype: 'Data',
             description: __('Website da Empresa'),
           },
+          { fieldname: 'cb_payment_methods', fieldtype: 'Column Break', label: __('Métodos de pagamento padrão da empresa') },
+          { fieldname: 'payment_method_pos_cash', fieldtype: 'Check', label: __('POS / Dinheiro'), default: 0, description: __('Pagamentos em numerário registados na conta "Caixa"') },
+          { fieldname: 'payment_method_bci', fieldtype: 'Check', label: __('Banco BCI'), default: 0, description: __('Conta no Banco BCI') },
+          { fieldname: 'payment_method_millenium', fieldtype: 'Check', label: __('Banco Millenium BIM'), default: 0, description: __('Conta no Banco MIM') },
+          { fieldname: 'payment_method_standard_bank', fieldtype: 'Check', label: __('Banco Standard Bank'), default: 0, description: __('Conta no Standard Bank') },
+          { fieldname: 'payment_method_absa', fieldtype: 'Check', label: __('Banco ABSA'), default: 0, description: __('Conta no ABSA') },
+          { fieldname: 'payment_method_emola', fieldtype: 'Check', label: __('E-Mola'), default: 0, description: __('Carteira móvel E-Mola') },
+          { fieldname: 'payment_method_mpesa', fieldtype: 'Check', label: __('M-Pesa'), default: 0, description: __('Carteira móvel M-Pesa') },
         ],
         primary_action_label: __('Salvar e Continuar'),
         primary_action(values) {
@@ -156,21 +165,17 @@ frappe.provide('erpnext_mz.onboarding');
         primary_action_label: __('Salvar e Continuar'),
         primary_action(values) {
           post('erpnext_mz.setup.onboarding.save_step', { step: 3, values }).then(() => {
-            post('erpnext_mz.setup.onboarding.apply_all', {}).then(() => {
-              closing = true;
-              d.hide();
-              setTimeout(() => { closing = false; resolve(); }, 0);
-            });
+            closing = true;
+            d.hide();
+            setTimeout(() => { closing = false; resolve(); }, 0);
           });
         },
         secondary_action_label: __('Ignorar'),
         secondary_action() {
           post('erpnext_mz.setup.onboarding.skip_step', { step: 3 }).then(() => {
-            post('erpnext_mz.setup.onboarding.apply_all', {}).then(() => {
-              closing = true;
-              d.hide();
-              setTimeout(() => { closing = false; resolve(); }, 0);
-            });
+            closing = true;
+            d.hide();
+            setTimeout(() => { closing = false; resolve(); }, 0);
           });
         }
       });

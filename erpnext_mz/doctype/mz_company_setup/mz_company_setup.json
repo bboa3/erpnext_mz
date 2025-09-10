@@ -22,6 +22,14 @@
     "phone",
     "email",
     "website",
+    "cb_payment_methods",
+    "payment_method_pos_cash",
+    "payment_method_bci",
+    "payment_method_millenium",
+    "payment_method_standard_bank",
+    "payment_method_absa",
+    "payment_method_emola",
+    "payment_method_mpesa",
     "sb_step3",
     "logo",
     "terms_and_conditions_of_sale",
@@ -89,6 +97,11 @@
     {
       "fieldname": "sb_step2",
       "fieldtype": "Section Break",
+      "label": "Contactos da Empresa e Pagamentos"
+    },
+    {
+      "fieldname": "cb_contacts",
+      "fieldtype": "Column Break",
       "label": "Contactos da Empresa"
     },
     {
@@ -105,6 +118,53 @@
       "fieldname": "website",
       "fieldtype": "Data",
       "label": "Website"
+    },
+    {
+      "fieldname": "cb_payment_methods",
+      "fieldtype": "Column Break",
+      "label": "Métodos de pagamento padrão da empresa"
+    },
+    {
+      "fieldname": "payment_method_pos_cash",
+      "fieldtype": "Check",
+      "label": "POS / Dinheiro",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_bci",
+      "fieldtype": "Check",
+      "label": "Banco BCI",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_millenium",
+      "fieldtype": "Check",
+      "label": "Banco Millenium BIM",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_standard_bank",
+      "fieldtype": "Check",
+      "label": "Banco Standard Bank",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_absa",
+      "fieldtype": "Check",
+      "label": "Banco ABSA",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_emola",
+      "fieldtype": "Check",
+      "label": "E-Mola (Carteira móvel)",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_mpesa",
+      "fieldtype": "Check",
+      "label": "M-Pesa (Carteira móvel)",
+      "default": 0
     },
     {
       "fieldname": "sb_step3",

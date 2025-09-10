@@ -522,6 +522,9 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                             {% if doc.party %}
                             <strong>{{ _("Parte") }}:</strong> {{ doc.party }}
                             {% endif %}
+                            {% if doc.tax_id %}
+                                <div><strong>{{ _("NUIT do cliente") }}:</strong> {{ doc.tax_id }}</div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col-xs-6">
