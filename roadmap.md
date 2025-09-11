@@ -23,11 +23,15 @@
   **Acceptance:** COA ready; GL/BS/P\&L run clean.
 * [X] **Company Setup Wizard** (🧩 CODE + 🖱️ UI)
   * **MZ Company Setup** Single DocType with comprehensive company configuration
-  * **3-Step Onboarding Dialog**: Tax & Address → Contacts → Branding (optional)
+  * **3-Step Onboarding Dialog**: Tax & Address → Contacts & Payment Methods → Branding (optional)
   * **Auto-configuration**: Tax accounts, templates, categories, and rules based on selected tax regime
+  * **Banking Infrastructure**: Automatic creation of Mozambican bank accounts and payment methods
+    * **Bank Accounts**: 7 standard Mozambican accounts (Caixa, BCI, Millenium BIM, Standard Bank, ABSA, E-Mola, M-Pesa)
+    * **Payment Methods**: Mode of Payment records linked to corresponding bank accounts
+    * **Account Hierarchy**: Proper parent-child relationships in Chart of Accounts
   * **Letter Head Generation**: Custom HTML with logo, company details, and NUIT
   * **Terms & Conditions**: Automatic creation and assignment to company
-    **Acceptance:** Complete company setup in 3 steps; all tax infrastructure auto-created.
+    **Acceptance:** Complete company setup in 3 steps; all tax and banking infrastructure auto-created.
 * [X] **VAT setup** (🧩 CODE + 🖱️ UI)
   * **Tax Accounts**: Auto-created under "Duties and Taxes" parent with company abbreviations
     * `13.01.01 - IVA Dedutível 16% - [COMPANY]` (Asset, 16%)
@@ -41,16 +45,13 @@
   * **Item Tax Templates**: Matching tax categories with appropriate rates
   * **Tax Rules**: Default rules for all customers/items with priority-based application
     **Acceptance:** Tax applied correctly on SO/SI/PI; reports reconcile; regime-based defaults.
-* [ ] **Custom Fields** (🧩 CODE)
-  * Customer/Supplier **NUIT**.
-    **Acceptance:** Fields visible and required where specified.
-* [ ] **Sequential numbering** (Naming Series) (🖱️ UI).
+* [X] **Sequential numbering** (Naming Series) (🖱️ UI).
   **Acceptance:** "FT-YYYY-####" issues sequentially; no duplicates.
 
 ## Phase 4 — HR & Payroll Compliance
 * [ ] **INSS**: Empregador 4%, Empregado 3% (🖱️ UI components/structures).
   **Acceptance:** Payslips compute correct INSS.
-* [ ] **IRPS progressive** 10/15/20/25/32% (🖱️ UI tables; verify latest tables with contabilista)
+* [X] **IRPS progressive** 10/15/20/25/32% (🖱️ UI tables; verify latest tables with contabilista)
   **Acceptance:** Payslips compute correct IRPS.
 * [ ] **Benefits in kind** (vehicle, housing, insurance…) (🖱️ UI fields;)
   **Acceptance:** Valuation in **MZN**; included in gross and SAF-T mapping.
@@ -60,16 +61,17 @@
 * [X] App skeleton installed on all sites (🧩 CODE).
   **Acceptance:** `bench --site <site> list-apps` shows `erpnext_mz`.
 * [X] **Company Setup Wizard Implementation** (🧩 CODE)
-  * **DocType**: `MZ Company Setup` (Single DocType) with fields for tax, address, contacts, branding
+  * **DocType**: `MZ Company Setup` (Single DocType) with fields for tax, address, contacts, branding, and payment methods
   * **Frontend**: `mz_onboarding.js` with 3-step dialog system
   * **Backend**: `onboarding.py` with comprehensive configuration logic
   * **Features**:
     - **Step 1**: Tax regime selection, NUIT, company address
-    - **Step 2**: Contact information (phone, email, website)
+    - **Step 2**: Contact information (phone, email, website) and payment method selection
     - **Step 3**: Branding (logo, terms & conditions) - optional
     - **Auto-apply**: Complete ERPNext configuration based on wizard data
+    - **Banking Infrastructure**: Automatic creation of bank accounts and payment methods
     - **Idempotent**: Safe to run multiple times, updates existing records
-  **Acceptance:** System managers can complete company setup in guided wizard; all tax infrastructure auto-created.
+  **Acceptance:** System managers can complete company setup in guided wizard; all tax and banking infrastructure auto-created.
 * [X] **Comprehensive Professional Print Formats** (🧩 CODE)
   * **14 Professional Print Formats**: Complete coverage of all essential business documents
     - **Sales Documents**: Fatura (MZ), Encomenda de Venda (MZ), Guia de Remessa (MZ), Orçamento (MZ)
@@ -164,6 +166,7 @@ The Company Setup Wizard is implemented as a comprehensive onboarding system tha
   - Tax information: `tax_id` (NUIT), `tax_regime`
   - Address: `address_line1`, `address_line2`, `city`, `province`, `country`
   - Contacts: `phone`, `email`, `website`
+  - Payment Methods: `payment_method_pos_cash`, `payment_method_bci`, `payment_method_millenium`, `payment_method_standard_bank`, `payment_method_absa`, `payment_method_emola`, `payment_method_mpesa`
   - Branding: `company_logo`, `terms_and_conditions_of_sale`
   - Progress tracking: `step1_complete`, `step2_complete`, `step3_skipped`, `is_applied`
 
@@ -183,6 +186,8 @@ The Company Setup Wizard is implemented as a comprehensive onboarding system tha
   - `_ensure_address()`: Creates/updates company address and contact info
   - `_apply_branding()`: Generates letterhead and terms & conditions
   - `_create_tax_masters()`: Creates complete tax infrastructure
+  - `_create_bank_accounts()`: Creates Mozambican bank accounts
+  - `_create_payment_methods()`: Creates Mode of Payment records linked to bank accounts
 
 #### 4. **Tax Infrastructure Auto-Creation**
 The wizard automatically creates a complete tax setup based on the selected regime:
@@ -197,12 +202,29 @@ The wizard automatically creates a complete tax setup based on the selected regi
 - Item tax templates for product categorization
 - Tax rules for automatic tax application
 
-#### 5. **Boot Session Integration** (`apps/erpnext_mz/erpnext_mz/setup/boot.py`)
+#### 5. **Banking Infrastructure Auto-Creation**
+The wizard automatically creates Mozambican banking infrastructure:
+
+**Bank Accounts** (under "Current Assets" parent):
+- `11.01.01 Caixa` - Cash/POS payments
+- `11.01.02 Banco BCI` - Banco Comercial e de Investimentos
+- `11.01.03 Banco Millenium BIM` - Banco Internacional de Moçambique
+- `11.01.04 Banco Standard Bank` - Standard Bank Moçambique
+- `11.01.05 Banco ABSA` - ABSA Moçambique
+- `11.01.06 E-Mola (Carteira móvel)` - Mobile money wallet
+- `11.01.07 M-Pesa (Carteira móvel)` - Mobile money wallet
+
+**Payment Methods** (Mode of Payment records):
+- Each selected payment method creates a Mode of Payment record
+- Payment methods are linked to their corresponding bank accounts
+- Idempotent creation - safe to run multiple times
+
+#### 6. **Boot Session Integration** (`apps/erpnext_mz/erpnext_mz/setup/boot.py`)
 - Exposes onboarding status to frontend
 - Triggers wizard for System Managers/Administrators
 - Provides real-time status updates
 
-#### 6. **Comprehensive Professional Print Formats System** (`apps/erpnext_mz/erpnext_mz/setup/`)
+#### 7. **Comprehensive Professional Print Formats System** (`apps/erpnext_mz/erpnext_mz/setup/`)
 - **Complete Print Format Coverage**: 14 professional formats for all business documents
 - **Modular Architecture**: Base `PrintFormatTemplate` class with specialized implementations
 - **QR Code Integration**: Automatic generation with document validation API
@@ -218,6 +240,7 @@ The wizard automatically creates a complete tax setup based on the selected regi
 5. **Configuration**: `apply_all()` function configures ERPNext
    - Updates company information (NUIT, address, contacts)
    - Creates tax infrastructure (accounts, templates, rules)
+   - Creates banking infrastructure (bank accounts, payment methods)
    - Generates letterhead and terms & conditions
    - **Creates professional print formats**
 6. **Completion**: Wizard marked as complete, no longer shown
@@ -225,9 +248,10 @@ The wizard automatically creates a complete tax setup based on the selected regi
 ### Key Features
 - **Idempotent**: Safe to run multiple times, updates existing records
 - **Resumable**: Progress saved after each step
-- **Comprehensive**: Covers all essential Mozambique tax and company setup
+- **Comprehensive**: Covers all essential Mozambique tax, banking, and company setup
 - **User-Friendly**: Guided interface with clear instructions
 - **Error-Resistant**: Handles edge cases and provides meaningful feedback
+- **Banking Integration**: Automatic creation of Mozambican bank accounts and payment methods
 
 ---
 

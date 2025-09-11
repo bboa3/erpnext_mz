@@ -550,7 +550,12 @@ class PrintFormatTemplate:
                     </div>
                     <div class="col-xs-4 text-right">
                         <div class="document-number"><strong>{{ doc.name }}</strong></div>
-                        <div class="document-date">{{ frappe.utils.format_date(doc.posting_date or doc.transaction_date or doc.creation) }}</div>
+                        <div class="document-date">
+                            {% set __dt = (doc.posting_date and (doc.posting_date ~ " " ~ (doc.posting_time or "00:00:00")))
+                                or (doc.transaction_date and (doc.transaction_date ~ " 00:00:00"))
+                                or doc.creation %}
+                            {{ frappe.utils.format_datetime(__dt) }}
+                        </div>
                     </div>
                 </div>
             </div>

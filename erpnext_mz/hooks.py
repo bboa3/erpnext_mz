@@ -197,6 +197,9 @@ doc_events = {
 	"Purchase Receipt": {
 		"on_submit": "erpnext_mz.qr_code.qr_generator.generate_document_qr_code",
 	},
+  "Payment Entry": {
+		"on_submit": "erpnext_mz.qr_code.qr_generator.generate_document_qr_code",
+	},
 }
 
 # Scheduled Tasks

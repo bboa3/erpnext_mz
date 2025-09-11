@@ -520,10 +520,27 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                             <strong>{{ _("Tipo") }}:</strong> {{ doc.payment_type }}<br>
                             <strong>{{ _("Modo") }}:</strong> {{ doc.mode_of_payment }}<br>
                             {% if doc.party %}
-                            <strong>{{ _("Parte") }}:</strong> {{ doc.party }}
+                            {% set __party_label = (doc.party_type=="Customer" and _("Cliente")) or (doc.party_type=="Supplier" and _("Fornecedor")) or _("Parte") %}
+                            <strong>{{ __party_label }}:</strong> {{ doc.party_name or doc.party }}<br>
+                            {% set __party_nuit = frappe.db.get_value(doc.party_type, doc.party, 'tax_id') %}
+                            {% if __party_nuit %}
+                                <div><strong>{{ _("NUIT") }}:</strong> {{ __party_nuit }}</div>
                             {% endif %}
-                            {% if doc.tax_id %}
-                                <div><strong>{{ _("NUIT do cliente") }}:</strong> {{ doc.tax_id }}</div>
+                            {% endif %}
+                            {% if doc.paid_from %}
+                            <div><strong>{{ _("Conta Origem") }}:</strong> {{ doc.paid_from }}</div>
+                            {% endif %}
+                            {% if doc.paid_to %}
+                            <div><strong>{{ _("Conta Destino") }}:</strong> {{ doc.paid_to }}</div>
+                            {% endif %}
+                            {% if doc.reference_no %}
+                            <div><strong>{{ _("Ref. Nº") }}:</strong> {{ doc.reference_no }}</div>
+                            {% endif %}
+                            {% if doc.reference_date %}
+                            <div><strong>{{ _("Data da Referência") }}:</strong> {{ frappe.utils.format_date(doc.reference_date) }}</div>
+                            {% endif %}
+                            {% if doc.clearance_date %}
+                            <div><strong>{{ _("Data de Compensação") }}:</strong> {{ frappe.utils.format_date(doc.clearance_date) }}</div>
                             {% endif %}
                         </div>
                     </div>
@@ -531,14 +548,23 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                         <h4 class="section-title">{{ _("Valores") }}</h4>
                         <div class="invoice-info">
                             <div class="info-row">
-                                <span class="label">{{ _("Valor Total") }}:</span>
+                                <span class="label">{{ _("Valor pago (origem)") }} [{{ doc.paid_from_account_currency or doc.company_currency }}]:</span>
                                 <span class="value">{{ doc.get_formatted("paid_amount", doc) }}</span>
                             </div>
                             {% if doc.received_amount %}
                             <div class="info-row">
-                                <span class="label">{{ _("Valor Recebido") }}:</span>
+                                <span class="label">{{ _("Valor recebido (destino)") }} [{{ doc.paid_to_account_currency or doc.company_currency }}]:</span>
                                 <span class="value">{{ doc.get_formatted("received_amount", doc) }}</span>
                             </div>
+                            {% endif %}
+                            {% if doc.paid_from_account_currency and doc.paid_to_account_currency and doc.paid_from_account_currency != doc.paid_to_account_currency %}
+                            {% set __fx = doc.get('target_exchange_rate') or 0 %}
+                            {% if __fx %}
+                            <div class="info-row">
+                                <span class="label">{{ _("Taxa de câmbio") }}:</span>
+                                <span class="value">1 {{ doc.paid_from_account_currency }} = {{ __fx }} {{ doc.paid_to_account_currency }}</span>
+                            </div>
+                            {% endif %}
                             {% endif %}
                         </div>
                     </div>
@@ -552,8 +578,10 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                         <thead>
                             <tr>
                                 <th class="text-left">{{ _("Tipo") }}</th>
-                                <th class="text-left">{{ _("Referência") }}</th>
+                                <th class="text-left">{{ _("Documento") }}</th>
+                                <th class="text-center">{{ _("Data") }}</th>
                                 <th class="text-right">{{ _("Valor") }}</th>
+                                <th class="text-right">{{ _("Saldo Após Pagamento") }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -561,13 +589,56 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                             <tr>
                                 <td class="text-left">{{ ref.reference_doctype }}</td>
                                 <td class="text-left">{{ ref.reference_name }}</td>
+                                {% set __ref_date = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'posting_date') or frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'transaction_date') or frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'bill_date') %}
+                                <td class="text-center">{% if __ref_date %}{{ frappe.utils.format_date(__ref_date) }}{% endif %}</td>
                                 <td class="text-right">{{ ref.get_formatted("allocated_amount", doc) }}</td>
+                                {% set __remaining = (ref.outstanding_amount or 0) | float - (ref.allocated_amount or 0) | float %}
+                                <td class="text-right">{{ frappe.utils.fmt_money(__remaining, currency=(doc.paid_to_account_currency or doc.company_currency)) }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
                 {% endif %}
+
+                <!-- Deduções / Retenções -->
+                {% if doc.deductions or doc.get('difference_amount') %}
+                <div class="items-section">
+                    <h4 class="section-title">{{ _("Retenções e Outras Deduções") }}</h4>
+                    <table class="items-table">
+                        <thead>
+                            <tr>
+                                <th class="text-left">{{ _("Conta") }}</th>
+                                <th class="text-left">{{ _("Descrição") }}</th>
+                                <th class="text-right">{{ _("Valor") }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for d in doc.deductions %}
+                            <tr>
+                                <td class="text-left">{{ d.account }}</td>
+                                <td class="text-left">{{ d.description or '' }}</td>
+                                <td class="text-right">{{ d.get_formatted('amount', doc) }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% if doc.get('difference_amount') %}
+                            <tr>
+                                <td class="text-left">—</td>
+                                <td class="text-left">{{ _("Diferença") }}</td>
+                                <td class="text-right">{{ doc.get_formatted('difference_amount', doc) }}</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+
+                <!-- Disclaimer -->
+                <div class="row">
+                    <div class="col-xs-12 text-left">
+                        <div class="qr-label">{{ _("Comprovativo de pagamento. Não substitui a factura para efeitos fiscais (CIVA).") }}</div>
+                    </div>
+                </div>
 
             """ + qr_section + """
 
