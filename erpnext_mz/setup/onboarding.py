@@ -270,7 +270,7 @@ def _apply_branding(company_name: str, profile):
         # Left section: Logo and NUIT
         header_html.append("<td style=\"width:150px; vertical-align:top; text-align:left;\">")
         if logo_url:
-            header_html.append(f"<img src=\"{logo_url}\" style=\"max-height:80px; max-width:140px; object-fit:contain; margin-bottom:5px;\"/>")
+            header_html.append(f"<img src=\"{logo_url}\" style=\"max-height:88px; max-width:150px; object-fit:contain; margin-bottom:5px;\"/>")
         if tax_id:
             header_html.append(f"<div style=\"font-size:10pt; font-weight:bold; background-color:#f0f0f0; padding:3px; border:1px solid #ccc; text-align:center; margin-top:5px;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
         header_html.append("</td>")
