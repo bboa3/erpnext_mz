@@ -72,58 +72,42 @@ def create_validation_data(doc):
     """
     # Get company information
     company = frappe.get_doc("Company", doc.company)
-
+    
     # Convert dates to strings for JSON serialization
-    document_date = doc.posting_date or getattr(doc, "transaction_date", None)
+    document_date = doc.posting_date or doc.transaction_date
     if document_date:
         document_date = str(document_date)
+    
+    # Determine amount and currency robustly across doctypes
+    amount = None
+    currency = None
 
-    # Determine an appropriate monetary amount across diverse DocTypes
-    amount_value = None
-    for field_name in [
-        "grand_total",
-        "total",
-        "net_total",
-        "base_grand_total",
-        "outstanding_amount",
-        "paid_amount",
-        "received_amount",
-        "total_amount",
-        "amount",
-    ]:
-        if hasattr(doc, field_name):
-            try:
-                raw_val = getattr(doc, field_name) or 0
-                numeric_val = float(raw_val)
-                # pick the first non-zero value; if all zero, last fallback will set 0.0
-                if numeric_val:
-                    amount_value = numeric_val
-                    break
-                if amount_value is None:
-                    amount_value = numeric_val
-            except Exception:
-                # ignore non-numeric fields
-                pass
-    if amount_value is None:
-        amount_value = 0.0
-
-    # Determine the most suitable currency for the document
-    currency_value = None
-    for currency_field in [
-        "currency",
-        "party_account_currency",
-        "price_list_currency",
-        "paid_to_account_currency",
-        "paid_from_account_currency",
-        "company_currency",
-    ]:
-        if hasattr(doc, currency_field):
-            val = getattr(doc, currency_field)
-            if val:
-                currency_value = val
+    # Payment Entry: prefer received_amount (destination) then paid_amount
+    if getattr(doc, "doctype", "") == "Payment Entry":
+        try:
+            amount = float((getattr(doc, "received_amount", None) or getattr(doc, "paid_amount", None) or 0) or 0)
+        except Exception:
+            amount = 0.0
+        currency = (
+            getattr(doc, "paid_to_account_currency", None)
+            or getattr(doc, "paid_from_account_currency", None)
+            or getattr(company, "default_currency", None)
+        )
+    else:
+        # Common financial docs
+        for field in ("grand_total", "rounded_total", "base_grand_total", "total", "net_total"):
+            if getattr(doc, field, None) not in (None, 0):
+                try:
+                    amount = float(getattr(doc, field))
+                except Exception:
+                    amount = 0.0
                 break
-    if not currency_value:
-        currency_value = getattr(company, "default_currency", None)
+        currency = getattr(doc, "currency", None) or getattr(company, "default_currency", None)
+
+    if amount is None:
+        amount = 0.0
+    if not currency:
+        currency = getattr(company, "default_currency", None)
 
     # Create validation data including public validation URL
     validation_url = build_validation_url(doc.doctype, doc.name)
@@ -132,13 +116,13 @@ def create_validation_data(doc):
         "type": doc.doctype,
         "company": doc.company,
         "date": document_date,
-        "amount": amount_value,
-        "currency": currency_value,
-        "tax_id": getattr(company, "tax_id", None),
+        "amount": amount,
+        "currency": currency,
+        "tax_id": company.tax_id if hasattr(company, 'tax_id') else None,
         "ts": datetime.now().isoformat(),
         "validation_url": validation_url,
     }
-
+    
     return validation_data
 
 
