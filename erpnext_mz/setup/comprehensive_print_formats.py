@@ -29,6 +29,7 @@ class SalesInvoicePrintFormat(PrintFormatTemplate):
             ("discount_amount", "Desconto", False),
             ("grand_total", "Total Geral", True),
             ("rounded_total", "Total Arredondado", False)
+#            ("base_grand_total", "Total em {{ doc.company_currency }}", False)
         ])
         qr_section = self.get_qr_code_section()
         
@@ -40,6 +41,30 @@ class SalesInvoicePrintFormat(PrintFormatTemplate):
                 </div>
 
             """ + customer_section + """
+
+            <!-- Compliance Enrichment: NUIT fallback and FX info -->
+            <div class="row customer-invoice-section">
+                <div class="col-xs-6 customer-details">
+                    <div class="customer-info">
+                        {% if not doc.tax_id and doc.customer %}
+                            {% set __cust_nuit = frappe.db.get_value('Customer', doc.customer, 'tax_id') %}
+                            {% if __cust_nuit %}
+                                <div><strong>{{ _("NUIT") }}:</strong> {{ __cust_nuit }}</div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xs-6 invoice-details">
+                    <div class="invoice-info">
+                        {% if doc.currency and doc.company_currency and doc.currency != doc.company_currency and doc.conversion_rate %}
+                        <div class="info-row">
+                            <span class="label">{{ _("Taxa de câmbio") }}:</span>
+                            <span class="value">1 {{ doc.currency }} = {{ doc.conversion_rate }} {{ doc.company_currency }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
 
             """ + items_section + """
 
@@ -129,9 +154,57 @@ class DeliveryNotePrintFormat(PrintFormatTemplate):
 
             """ + customer_section + """
 
+            <!-- Transporte e Destino -->
+            <div class="row customer-invoice-section">
+                <div class="col-xs-6 customer-details">
+                    <h4 class="section-title">{{ _("Transporte") }}</h4>
+                    <div class="customer-info">
+                        {% if doc.transporter_name or doc.transporter %}
+                        <div><strong>{{ _("Transportadora") }}:</strong> {{ doc.transporter_name or doc.transporter }}</div>
+                        {% endif %}
+                        {% if doc.vehicle_no %}
+                        <div><strong>{{ _("Matrícula") }}:</strong> {{ doc.vehicle_no }}</div>
+                        {% endif %}
+                        {% if doc.driver_name or doc.driver %}
+                        <div><strong>{{ _("Motorista") }}:</strong> {{ doc.driver_name or doc.driver }}</div>
+                        {% endif %}
+                        {% if doc.lr_no %}
+                        <div><strong>{{ _("Documento Transporte") }}:</strong> {{ doc.lr_no }}</div>
+                        {% endif %}
+                        {% if doc.lr_date %}
+                        <div><strong>{{ _("Data Documento") }}:</strong> {{ frappe.utils.format_date(doc.lr_date) }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xs-6 invoice-details">
+                    <h4 class="section-title">{{ _("Destino") }}</h4>
+                    <div class="invoice-info">
+                        {% if doc.customer %}
+                        <div class="info-row"><span class="label">{{ _("Cliente") }}:</span><span class="value">{{ doc.customer_name or doc.customer }}</span></div>
+                        {% endif %}
+                        {% if doc.shipping_address_display %}
+                        <div class="info-row"><span class="label">{{ _("Endereço de Entrega") }}:</span><span class="value">{{ doc.shipping_address_display }}</span></div>
+                        {% endif %}
+                        {% if doc.posting_date %}
+                        <div class="info-row"><span class="label">{{ _("Data de Saída") }}:</span><span class="value">{{ frappe.utils.format_date(doc.posting_date) }}</span></div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
             """ + items_section + """
 
             """ + totals_section + """
+
+            <!-- Assinaturas -->
+            <div class="row" style="margin-top: 8px;">
+                <div class="col-xs-6 text-left">
+                    <div style="border-top: 1px solid #e5e5e5; padding-top: 6px;">{{ _("Emitido por") }}: {% if doc.owner %}{{ frappe.utils.get_fullname(doc.owner) or doc.owner }}{% endif %}</div>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <div style="border-top: 1px solid #e5e5e5; padding-top: 6px;">{{ _("Recebido por") }}: ____________________</div>
+                </div>
+            </div>
 
             """ + qr_section + """
 
