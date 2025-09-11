@@ -43,9 +43,9 @@ fixtures = [
   #"Document Naming Settings",
   #"Document Naming Rule",
   "Client Script",
-#  "Payroll Settings",
+  #"Payroll Settings",
   "Custom Field",
-  "QR Code"
+  #"QR Code"
 ]
 
 website_context = {
