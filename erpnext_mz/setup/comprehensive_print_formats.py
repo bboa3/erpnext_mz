@@ -589,31 +589,58 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                 <div class="row customer-invoice-section">
                     <div class="col-xs-6">
                         <h4 class="section-title">{{ _("Detalhes do Pagamento") }}</h4>
-                        <div class="customer-info">
-                            <strong>{{ _("Tipo") }}:</strong> {{ doc.payment_type }}<br>
-                            <strong>{{ _("Modo") }}:</strong> {{ doc.mode_of_payment }}<br>
+                        <div class="invoice-info">
+                            <div class="info-row">
+                                <span class="label">{{ _("Tipo") }}:</span>
+                                <span class="value">{{ doc.payment_type }}</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">{{ _("Modo") }}:</span>
+                                <span class="value">{{ doc.mode_of_payment }}</span>
+                            </div>
                             {% if doc.party %}
                             {% set __party_label = (doc.party_type=="Customer" and _("Cliente")) or (doc.party_type=="Supplier" and _("Fornecedor")) or _("Parte") %}
-                            <strong>{{ __party_label }}:</strong> {{ doc.party_name or doc.party }}<br>
+                            <div class="info-row">
+                                <span class="label">{{ __party_label }}:</span>
+                                <span class="value">{{ doc.party_name or doc.party }}</span>
+                            </div>
                             {% set __party_nuit = frappe.db.get_value(doc.party_type, doc.party, 'tax_id') %}
                             {% if __party_nuit %}
-                                <div><strong>{{ _("NUIT") }}:</strong> {{ __party_nuit }}</div>
+                            <div class="info-row">
+                                <span class="label">{{ _("NUIT") }}:</span>
+                                <span class="value">{{ __party_nuit }}</span>
+                            </div>
                             {% endif %}
                             {% endif %}
                             {% if doc.paid_from %}
-                            <div><strong>{{ _("Conta Origem") }}:</strong> {{ doc.paid_from }}</div>
+                            <div class="info-row">
+                                <span class="label">{{ _("Conta Origem") }}:</span>
+                                <span class="value">{{ doc.paid_from }}</span>
+                            </div>
                             {% endif %}
                             {% if doc.paid_to %}
-                            <div><strong>{{ _("Conta Destino") }}:</strong> {{ doc.paid_to }}</div>
+                            <div class="info-row">
+                                <span class="label">{{ _("Conta Destino") }}:</span>
+                                <span class="value">{{ doc.paid_to }}</span>
+                            </div>
                             {% endif %}
                             {% if doc.reference_no %}
-                            <div><strong>{{ _("Ref. Nº") }}:</strong> {{ doc.reference_no }}</div>
+                            <div class="info-row">
+                                <span class="label">{{ _("Ref. Nº") }}:</span>
+                                <span class="value">{{ doc.reference_no }}</span>
+                            </div>
                             {% endif %}
                             {% if doc.reference_date %}
-                            <div><strong>{{ _("Data da Referência") }}:</strong> {{ frappe.utils.format_date(doc.reference_date) }}</div>
+                            <div class="info-row">
+                                <span class="label">{{ _("Data da Referência") }}:</span>
+                                <span class="value">{{ frappe.utils.format_date(doc.reference_date) }}</span>
+                            </div>
                             {% endif %}
                             {% if doc.clearance_date %}
-                            <div><strong>{{ _("Data de Compensação") }}:</strong> {{ frappe.utils.format_date(doc.clearance_date) }}</div>
+                            <div class="info-row">
+                                <span class="label">{{ _("Data de Compensação") }}:</span>
+                                <span class="value">{{ frappe.utils.format_date(doc.clearance_date) }}</span>
+                            </div>
                             {% endif %}
                         </div>
                     </div>
@@ -665,8 +692,8 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                                 {% set __ref_date = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'posting_date') or frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'transaction_date') or frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'bill_date') %}
                                 <td class="text-center">{% if __ref_date %}{{ frappe.utils.format_date(__ref_date) }}{% endif %}</td>
                                 <td class="text-right">{{ ref.get_formatted("allocated_amount", doc) }}</td>
-                                {% set __remaining = (ref.outstanding_amount or 0) | float - (ref.allocated_amount or 0) | float %}
-                                <td class="text-right">{{ frappe.utils.fmt_money(__remaining, currency=(doc.paid_to_account_currency or doc.company_currency)) }}</td>
+                                {% set __remaining = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'outstanding_amount') %}
+                                <td class="text-right">{% if __remaining is not none %}{{ frappe.utils.fmt_money(__remaining, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
