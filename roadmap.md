@@ -116,31 +116,23 @@
   **Acceptance:** Invalid NUIT blocked in form.
 
 ## Phase 6 — Data Integrity, Archiving & Backups
-* [ ] **Immutable numbering & cancel policy** (🖱️ UI + 🧩 CODE guard)
+* [X] **Immutable numbering & cancel policy** (🖱️ UI + 🧩 CODE guard)
   **Acceptance:** Posted invoices cannot be edited; only credit notes reverse.
-* [ ] **Signed audit trail** for critical DocTypes (🧩 CODE: logging hash + metadata)
-  **Acceptance:** Tamper-evident logs exist for SI/Payroll Entry.
 * [X] **Monthly archives to S3** (SAF-T, audit logs) with **10-year retention** (ops).
   **Acceptance:** Glacier/locking verified; restore drill passes.
 
-## Phase 7 — Certification with AT
-* [ ] Dossier (arch, security, flows, sample invoices, SAF-T) (🧩 CODE + docs).
-* [ ] Staging tenant for certification; iterate until pass.
-* [ ] **Record AT Certification ID** and show on invoice print (🖱️ UI).
-  **Acceptance:** ID displayed on all fiscal prints.
-
-## Phase 8 — SaaS Readiness (Multi-Tenant Ops)
+## Phase 7 — SaaS Readiness (Multi-Tenant Ops)
 * [ ] **Automated site provisioning** (🧩 CODE ops)
   * Script: `bench new-site` + install apps.
     **Acceptance:** New tenant ready in <5 min, isolated DB/files.
-* [ ] **Billing** (Stripe/MPesa/Bank) (🧩 CODE)
+* [ ] **Billing** (MPesa/Bank) (🧩 CODE)
   **Acceptance:** Subscriptions created; usage tracked.
 * [ ] **CI/CD** (tests, build, migrate per site) (🧩 CODE)
   **Acceptance:** Pipeline green; canary/blue-green works.
 * [ ] **Observability** (metrics/alerts/logs) (ops)
   **Acceptance:** Alarms on queues, workers, request latency.
 
-## Phase 9 — Go-Live & Continuous Compliance
+## Phase 8 — Go-Live & Continuous Compliance
 * [ ] Tenant onboarding; opening balances, master data.
 * [ ] Training (Accounting, Sales, HR/Payroll).
 * [ ] **Monthly ops checklist** (🖱️ UI + 🧩 CODE jobs):
