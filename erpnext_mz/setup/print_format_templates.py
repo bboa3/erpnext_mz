@@ -764,13 +764,7 @@ class PrintFormatTemplate:
             <!-- Totals Section -->
             <div class="row totals-section">
                 <div class="col-xs-6">
-                    {{% if doc.get("in_words") %}}
-                    <div class="amount-in-words">
-                        <h5>{{{{ _("Valor por Extenso") }}}}</h5>
-                        <p><strong>{{{{ doc.in_words }}}}</strong></p>
-                    </div>
-                    {{% endif %}}
-                    
+
                     {{% if doc.get("terms") %}}
                     <div class="terms-section">
                         <h5>{{{{ _("Termos e Condições") }}}}</h5>
