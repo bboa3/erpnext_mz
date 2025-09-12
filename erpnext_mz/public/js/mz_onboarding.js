@@ -126,6 +126,11 @@ frappe.provide('erpnext_mz.onboarding');
           { fieldname: 'payment_method_absa', fieldtype: 'Check', label: __('Banco ABSA'), default: 0, description: __('Conta no ABSA') },
           { fieldname: 'payment_method_emola', fieldtype: 'Check', label: __('E-Mola'), default: 0, description: __('Carteira móvel E-Mola') },
           { fieldname: 'payment_method_mpesa', fieldtype: 'Check', label: __('M-Pesa'), default: 0, description: __('Carteira móvel M-Pesa') },
+          { fieldname: 'payment_method_fnb', fieldtype: 'Check', label: __('Banco FNB'), default: 0, description: __('Conta no Banco FNB') },
+          { fieldname: 'payment_method_moza', fieldtype: 'Check', label: __('Moza Banco'), default: 0, description: __('Conta no Moza Banco') },
+          { fieldname: 'payment_method_letshego', fieldtype: 'Check', label: __('Banco Letshego'), default: 0, description: __('Conta no Banco Letshego') },
+          { fieldname: 'payment_method_first_capital', fieldtype: 'Check', label: __('First Capital Bank'), default: 0, description: __('Conta no First Capital Bank') },
+          { fieldname: 'payment_method_nedbank', fieldtype: 'Check', label: __('Nedbank'), default: 0, description: __('Conta no Nedbank') },
         ],
         primary_action_label: __('Salvar e Continuar'),
         primary_action(values) {

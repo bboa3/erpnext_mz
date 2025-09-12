@@ -52,7 +52,12 @@ def save_step(step: int | str, values=None):
             "payment_method_standard_bank",
             "payment_method_absa",
             "payment_method_emola",
-            "payment_method_mpesa"
+            "payment_method_mpesa",
+            "payment_method_fnb",
+            "payment_method_moza",
+            "payment_method_letshego",
+            "payment_method_first_capital",
+            "payment_method_nedbank",
         ],
         3: ["logo", "terms_and_conditions_of_sale"],
     }
@@ -788,6 +793,11 @@ def _create_bank_accounts(company_name: str):
         ("Banco ABSA", "11.01.05"),
         ("E-Mola (Carteira móvel)", "11.01.06"),
         ("M-Pesa (Carteira móvel)", "11.01.07"),
+        ("Banco FNB", "11.01.07"),
+        ("Moza Banco", "11.01.08"),
+        ("Banco Letshego", "11.01.09"),
+        ("First Capital Bank", "11.01.10"),
+        ("Nedbank", "11.01.11"),
     ]
     
     for bank_name, account_number in bank_accounts:
@@ -812,6 +822,11 @@ def _create_payment_methods(company_name: str, profile):
             "payment_method_absa": ("Banco ABSA", "Banco ABSA"),
             "payment_method_emola": ("E-Mola", "E-Mola (Carteira móvel)"),
             "payment_method_mpesa": ("M-Pesa", "M-Pesa (Carteira móvel)"),
+            "payment_method_fnb": ("Banco FNB", "Banco FNB"),
+            "payment_method_moza": ("Moza Banco", "Moza Banco"),
+            "payment_method_letshego": ("Banco Letshego", "Banco Letshego"),
+            "payment_method_first_capital": ("First Capital Bank", "First Capital Bank"),
+            "payment_method_nedbank": ("Nedbank", "Nedbank"),
         }
         
         # Get selected payment methods from profile

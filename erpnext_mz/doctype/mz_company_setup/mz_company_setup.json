@@ -30,6 +30,11 @@
     "payment_method_absa",
     "payment_method_emola",
     "payment_method_mpesa",
+    "payment_method_fnb",
+    "payment_method_moza",
+    "payment_method_letshego",
+    "payment_method_first_capital",
+    "payment_method_nedbank",
     "sb_step3",
     "logo",
     "terms_and_conditions_of_sale",
@@ -164,6 +169,36 @@
       "fieldname": "payment_method_mpesa",
       "fieldtype": "Check",
       "label": "M-Pesa (Carteira móvel)",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_fnb",
+      "fieldtype": "Check",
+      "label": "Banco FNB",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_moza",
+      "fieldtype": "Check",
+      "label": "Moza Banco",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_letshego",
+      "fieldtype": "Check",
+      "label": "Banco Letshego",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_first_capital",
+      "fieldtype": "Check",
+      "label": "First Capital Bank",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_nedbank",
+      "fieldtype": "Check",
+      "label": "Nedbank",
       "default": 0
     },
     {
