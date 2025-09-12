@@ -793,11 +793,11 @@ def _create_bank_accounts(company_name: str):
         ("Banco ABSA", "11.01.05"),
         ("E-Mola (Carteira móvel)", "11.01.06"),
         ("M-Pesa (Carteira móvel)", "11.01.07"),
-        ("Banco FNB", "11.01.07"),
-        ("Moza Banco", "11.01.08"),
-        ("Banco Letshego", "11.01.09"),
-        ("First Capital Bank", "11.01.10"),
-        ("Nedbank", "11.01.11"),
+        ("Banco FNB", "11.01.08"),
+        ("Moza Banco", "11.01.09"),
+        ("Banco Letshego", "11.01.10"),
+        ("First Capital Bank", "11.01.11"),
+        ("Nedbank", "11.01.12"),
     ]
     
     for bank_name, account_number in bank_accounts:
@@ -1008,6 +1008,11 @@ def get_profile_values():
         "payment_method_absa",
         "payment_method_emola",
         "payment_method_mpesa",
+        "payment_method_fnb",
+        "payment_method_moza",
+        "payment_method_letshego",
+        "payment_method_first_capital",
+        "payment_method_nedbank",
     ]
     return {f: profile.get(f) for f in fields}
 
