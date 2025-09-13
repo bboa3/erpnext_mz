@@ -23,7 +23,7 @@
     "email",
     "website",
     "cb_payment_methods",
-    "payment_method_pos_cash",
+    "payment_method_cash",
     "payment_method_bci",
     "payment_method_millenium",
     "payment_method_standard_bank",
@@ -130,9 +130,9 @@
       "label": "Métodos de pagamento padrão da empresa"
     },
     {
-      "fieldname": "payment_method_pos_cash",
+      "fieldname": "payment_method_cash",
       "fieldtype": "Check",
-      "label": "POS / Dinheiro",
+      "label": "Dinheiro (Cash)",
       "default": 0
     },
     {
@@ -224,7 +224,7 @@
     {
       "fieldname": "step1_complete",
       "fieldtype": "Check",
-      "label": "Step 1 Completo",
+      "label": "Passo 1 Completo",
       "default": 0
     },
     {

@@ -22,6 +22,19 @@
     "phone",
     "email",
     "website",
+    "cb_payment_methods",
+    "payment_method_cash",
+    "payment_method_bci",
+    "payment_method_millenium",
+    "payment_method_standard_bank",
+    "payment_method_absa",
+    "payment_method_emola",
+    "payment_method_mpesa",
+    "payment_method_fnb",
+    "payment_method_moza",
+    "payment_method_letshego",
+    "payment_method_first_capital",
+    "payment_method_nedbank",
     "sb_step3",
     "logo",
     "terms_and_conditions_of_sale",
@@ -30,7 +43,8 @@
     "step2_complete",
     "step3_skipped",
     "is_applied",
-    "last_applied_on"
+    "last_applied_on",
+    "trigger_onboarding"
   ],
   "fields": [
     {
@@ -57,8 +71,8 @@
       "fieldname": "tax_regime",
       "fieldtype": "Select",
       "label": "Regime de IVA",
-      "options": "Normal\nIsento\nExportador",
-      "default": "Normal"
+      "options": "Normal (16%)\nReduzida (5%)\nIsento",
+      "default": "Normal (16%)"
     },
     {
       "fieldname": "cb2",
@@ -88,6 +102,11 @@
     {
       "fieldname": "sb_step2",
       "fieldtype": "Section Break",
+      "label": "Contactos da Empresa e Pagamentos"
+    },
+    {
+      "fieldname": "cb_contacts",
+      "fieldtype": "Column Break",
       "label": "Contactos da Empresa"
     },
     {
@@ -106,9 +125,86 @@
       "label": "Website"
     },
     {
+      "fieldname": "cb_payment_methods",
+      "fieldtype": "Column Break",
+      "label": "Métodos de pagamento padrão da empresa"
+    },
+    {
+      "fieldname": "payment_method_cash",
+      "fieldtype": "Check",
+      "label": "Dinheiro (Cash)",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_bci",
+      "fieldtype": "Check",
+      "label": "Banco BCI",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_millenium",
+      "fieldtype": "Check",
+      "label": "Banco Millenium BIM",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_standard_bank",
+      "fieldtype": "Check",
+      "label": "Banco Standard Bank",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_absa",
+      "fieldtype": "Check",
+      "label": "Banco ABSA",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_emola",
+      "fieldtype": "Check",
+      "label": "E-Mola (Carteira móvel)",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_mpesa",
+      "fieldtype": "Check",
+      "label": "M-Pesa (Carteira móvel)",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_fnb",
+      "fieldtype": "Check",
+      "label": "Banco FNB",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_moza",
+      "fieldtype": "Check",
+      "label": "Moza Banco",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_letshego",
+      "fieldtype": "Check",
+      "label": "Banco Letshego",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_first_capital",
+      "fieldtype": "Check",
+      "label": "First Capital Bank",
+      "default": 0
+    },
+    {
+      "fieldname": "payment_method_nedbank",
+      "fieldtype": "Check",
+      "label": "Nedbank",
+      "default": 0
+    },
+    {
       "fieldname": "sb_step3",
       "fieldtype": "Section Break",
-      "label": "Configuração da Empresa"
+      "label": "Configuração da Empresa (opcional)"
     },
     {
       "fieldname": "logo",
@@ -118,7 +214,7 @@
     {
       "fieldname": "terms_and_conditions_of_sale",
       "fieldtype": "Small Text",
-      "label": "Termos de venda padrão"
+      "label": "Terms and Conditions of Sale"
     },
     {
       "fieldname": "sb_status",
@@ -153,6 +249,13 @@
       "fieldname": "last_applied_on",
       "fieldtype": "Datetime",
       "label": "Aplicado Em"
+    },
+    {
+      "fieldname": "trigger_onboarding",
+      "fieldtype": "Check",
+      "label": "Trigger Onboarding",
+      "default": 0,
+      "hidden": 1
     }
   ],
   "index_web_pages_for_search": 1,

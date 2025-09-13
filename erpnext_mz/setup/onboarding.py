@@ -46,7 +46,7 @@ def save_step(step: int | str, values=None):
             "phone",
             "email",
             "website",
-            "payment_method_pos_cash",
+            "payment_method_cash",
             "payment_method_bci", 
             "payment_method_millenium",
             "payment_method_standard_bank",
@@ -815,7 +815,7 @@ def _create_payment_methods(company_name: str, profile):
     try:
         # Mapping of payment method field names to payment method names and account names
         payment_method_mapping = {
-            "payment_method_pos_cash": ("POS / Dinheiro", "Caixa"),
+            "payment_method_cash": ("Dinheiro (Cash)", "Caixa"),
             "payment_method_bci": ("Banco BCI", "Banco BCI"),
             "payment_method_millenium": ("Banco Millenium BIM", "Banco Millenium BIM"),
             "payment_method_standard_bank": ("Banco Standard Bank", "Banco Standard Bank"),
@@ -1001,7 +1001,7 @@ def get_profile_values():
         "website",
         "logo",
         "terms_and_conditions_of_sale",
-        "payment_method_pos_cash",
+        "payment_method_cash",
         "payment_method_bci",
         "payment_method_millenium",
         "payment_method_standard_bank",

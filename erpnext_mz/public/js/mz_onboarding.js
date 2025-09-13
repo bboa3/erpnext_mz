@@ -119,7 +119,7 @@ frappe.provide('erpnext_mz.onboarding');
             description: __('Website da Empresa'),
           },
           { fieldname: 'cb_payment_methods', fieldtype: 'Column Break', label: __('Métodos de pagamento padrão da empresa') },
-          { fieldname: 'payment_method_pos_cash', fieldtype: 'Check', label: __('POS / Dinheiro'), default: 0, description: __('Pagamentos em numerário registados na conta "Caixa"') },
+          { fieldname: 'payment_method_cash', fieldtype: 'Check', label: __('Dinheiro (Cash)'), default: 0, description: __('Pagamentos em numerário registados na conta "Caixa"') },
           { fieldname: 'payment_method_bci', fieldtype: 'Check', label: __('Banco BCI'), default: 0, description: __('Conta no Banco BCI') },
           { fieldname: 'payment_method_millenium', fieldtype: 'Check', label: __('Banco Millenium BIM'), default: 0, description: __('Conta no Banco MIM') },
           { fieldname: 'payment_method_standard_bank', fieldtype: 'Check', label: __('Banco Standard Bank'), default: 0, description: __('Conta no Standard Bank') },
