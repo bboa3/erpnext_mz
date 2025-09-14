@@ -128,7 +128,10 @@ def apply_all():
     # C. Banking infrastructure: bank accounts and payment methods
     _ensure_banking_infrastructure(company_name, profile)
 
-    # D. Create print formats
+    # D. HR & Payroll infrastructure
+    _ensure_hr_payroll_infrastructure(company_name)
+
+    # E. Create print formats
     _create_print_formats()
 
     # Reload profile to avoid timestamp mismatch
@@ -895,18 +898,43 @@ def _create_payment_methods(company_name: str, profile):
 
 
 def _create_hr_tax_masters(company_name: str):
-    """Create HR tax masters for Mozambique including Income Tax Slab and other HR tax structures"""
+    """Backward-compatible wrapper now ensuring full HR & Payroll infra."""
     try:
-        # Create Income Tax Slab for Mozambique (IRPS)
-        _ensure_income_tax_slab(company_name)
-        
-        # Create other HR tax structures as needed
-        # TODO: Add other HR tax masters like INSS, etc.
-        
-        print("✅ HR Tax Masters created successfully")
-        
+        _ensure_hr_payroll_infrastructure(company_name)
+        print("✅ HR & Payroll infrastructure ensured")
     except Exception as e:
-        frappe.log_error(f"Error creating HR tax masters: {str(e)}", "HR Tax Masters Creation Error")
+        frappe.log_error(f"Error creating HR/Payroll infra: {str(e)}", "HR Payroll Infra Error")
+
+
+def _ensure_hr_payroll_infrastructure(company_name: str):
+    """Orchestrate payroll accounts, components, structure and IRPS slab linkage (idempotent)."""
+    try:
+        # 1) Ensure accounts/components/structure
+        from erpnext_mz.setup.payroll import (
+            ensure_payroll_chart_of_accounts,
+            ensure_salary_components,
+            ensure_salary_structure,
+            link_irps_slab_to_component,
+            validate_salary_setup,
+        )
+
+        accounts = ensure_payroll_chart_of_accounts(company_name)
+        components = ensure_salary_components(company_name, accounts)
+
+        # 2) Ensure Income Tax Slab (IRPS) exists
+        _ensure_income_tax_slab(company_name)
+
+        # 3) Link IRPS slab to IRPS Salary Component
+        link_irps_slab_to_component(company_name, "IRPS (Progressivo)")
+
+        # 4) Ensure salary structure and attach all components
+        structure_name = ensure_salary_structure(company_name, components, structure_name="Folha Moçambique")
+
+        # 5) Validate composition
+        report = validate_salary_setup(company_name, structure_name)
+        frappe.log_error(str(report), "Payroll Setup Validation Report")
+    except Exception as e:
+        frappe.log_error(f"Error ensuring HR payroll infrastructure: {str(e)}", "HR Payroll Infra Error")
 
 
 def _ensure_income_tax_slab(company_name: str):
@@ -1053,6 +1081,33 @@ def create_income_tax_slab_manually():
     try:
         _ensure_income_tax_slab(company_name)
         return {"success": True, "message": "Income Tax Slab created successfully"}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@frappe.whitelist()
+def create_payroll_setup_manually():
+    """Manual: run payroll setup orchestration for the default company."""
+    company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
+    if not company_name:
+        return {"error": "No company found"}
+    try:
+        _ensure_hr_payroll_infrastructure(company_name)
+        return {"success": True, "message": "HR & Payroll infrastructure created successfully"}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@frappe.whitelist()
+def validate_payroll_setup_manually():
+    """Manual: returns validation report for payroll setup."""
+    company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
+    if not company_name:
+        return {"error": "No company found"}
+    try:
+        from erpnext_mz.setup.payroll import validate_salary_setup
+        report = validate_salary_setup(company_name, "Folha Moçambique")
+        return {"success": True, "report": report}
     except Exception as e:
         return {"error": str(e)}
 
