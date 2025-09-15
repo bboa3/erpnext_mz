@@ -294,54 +294,60 @@ def _append_structure_row(table: list, component_name: str, *, depends_on_paymen
 
 
 def ensure_salary_structure(company_name: str, component_map: dict, *, structure_name: str = "Folha Moçambique") -> str:
-	"""Create/Update Salary Structure and attach all components."""
+	"""Create/Update Salary Structure and attach all components per IFRS MZ compliance."""
 	ss_name = frappe.db.exists("Salary Structure", {"name": structure_name})
 	if ss_name:
 		ss = frappe.get_doc("Salary Structure", ss_name)
-		# Ensure core attributes also on existing structures
-		ss.company = company_name
-		if hasattr(ss, "payroll_frequency"):
-			ss.payroll_frequency = "Monthly"
-		ss.is_active = 1
 	else:
 		ss = frappe.new_doc("Salary Structure")
-		# Try naming it directly; if naming rules prevent it, ERPNext will assign a new name
+		# set explicit name if allowed; fallback will be assigned by ERPNext
 		try:
 			ss.name = structure_name
 		except Exception:
 			pass
-		ss.company = company_name
-		if hasattr(ss, "payroll_frequency"):
-			ss.payroll_frequency = "Monthly"
-		ss.is_active = 1
 
-	# Reset details idempotently (keep doc but rebuild rows)
+	# Core fields
+	ss.company = company_name
+	if hasattr(ss, "payroll_frequency"):
+		ss.payroll_frequency = "Monthly"
+	if hasattr(ss, "currency"):
+		ss.currency = "MZN"
+	ss.is_active = 1
+
+	# Multi-tenant: leave payment routing fields blank for tenant configuration
+	if hasattr(ss, "mode_of_payment"):
+		ss.mode_of_payment = None
+	if hasattr(ss, "payment_account"):
+		ss.payment_account = None
+
+	# Reset details idempotently
 	ss.set("earnings", [])
 	ss.set("deductions", [])
 
-	# Earnings
+	# Earnings: SB, SDT, SDA, HBE, VBE, SBE
 	_append_structure_row(ss.earnings, component_map["c_base"], depends_on_payment_days=1)
 	_append_structure_row(ss.earnings, component_map["c_sub_transporte"], depends_on_payment_days=1)
 	_append_structure_row(ss.earnings, component_map["c_sub_alimentacao"], depends_on_payment_days=1)
 	_append_structure_row(ss.earnings, component_map["c_ben_habitacao"], depends_on_payment_days=1)
 	_append_structure_row(ss.earnings, component_map["c_ben_viatura"], depends_on_payment_days=1)
 	_append_structure_row(ss.earnings, component_map["c_ben_seguro"], depends_on_payment_days=1)
-	# Employer contribution as statistical earning to avoid net pay effect (engine may handle employer flag too)
+
+	# Employer contribution: INSS-EMP as statistical earning (excluded from net pay)
 	_append_structure_row(ss.earnings, component_map["c_inss_empregador_4"], statistical_component=1)
 
-	# Deductions
+	# Deductions: INSS-TRAB, IRPS
 	_append_structure_row(ss.deductions, component_map["c_inss_3"], depends_on_payment_days=1)
 	_append_structure_row(ss.deductions, component_map["c_irps_prog"], depends_on_payment_days=1)
 
-	# Link IRPS slab on structure if field exists
+	# Link IRPS slab if present
 	if hasattr(ss, "income_tax_slab") and frappe.db.exists("Income Tax Slab", "IRPS Moçambique (2025)"):
 		ss.income_tax_slab = "IRPS Moçambique (2025)"
 
+	# Save or insert, then enforce the target name
 	if ss_name:
 		ss.save(ignore_permissions=True)
 	else:
 		ss.insert(ignore_permissions=True)
-		# Ensure docname matches desired structure_name
 		try:
 			if ss.name != structure_name and not frappe.db.exists("Salary Structure", structure_name):
 				frappe.rename_doc("Salary Structure", ss.name, structure_name, force=True, ignore_permissions=True)
@@ -349,7 +355,7 @@ def ensure_salary_structure(company_name: str, component_map: dict, *, structure
 		except Exception:
 			pass
 
-	# Ensure Company default payroll payable account
+	# Default payable account: 21.05.01 - Salários a Pagar
 	try:
 		company = frappe.get_doc("Company", company_name)
 		acc = get_account_by_number(company_name, "21.05.01")
