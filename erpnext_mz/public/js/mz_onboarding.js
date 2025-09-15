@@ -214,6 +214,12 @@ frappe.provide('erpnext_mz.onboarding');
     if (!s.step3_skipped) {
       await show_step_3_optional(prefill);
     }
+
+    try {
+      await frappe.call({ method: 'erpnext_mz.setup.onboarding.apply_all' });
+    } catch (e) {
+      console.error('apply_all failed:', e);
+    }
   }
 
   erpnext_mz.onboarding.start = run_chain;
@@ -299,5 +305,3 @@ frappe.provide('erpnext_mz.onboarding');
     setTimeout(checkAndTriggerOnboarding, 500);
   }
 })();
-
-
