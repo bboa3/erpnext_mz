@@ -312,7 +312,12 @@ def ensure_salary_structure(company_name: str, component_map: dict, *, structure
 		ss.payroll_frequency = "Monthly"
 	if hasattr(ss, "currency"):
 		ss.currency = "MZN"
-	ss.is_active = 1
+	# HRMS expects Select('Yes'/'No') for is_active
+	try:
+		ss.is_active = "Yes"
+	except Exception:
+		# fallback for legacy schemas that may use checkbox
+		ss.is_active = 1
 
 	# Multi-tenant: leave payment routing fields blank for tenant configuration
 	if hasattr(ss, "mode_of_payment"):
