@@ -75,8 +75,9 @@ def upsert_salary_component(
 
 	# Core fields
 	doc.type = type_
-	if abbr and hasattr(doc, "abbr"):
-		doc.abbr = abbr
+	# Ensure explicit abbreviation is set on the correct field
+	if abbr:
+		doc.salary_component_abbr = abbr
 	if hasattr(doc, "depends_on_payment_days"):
 		doc.depends_on_payment_days = depends_on_payment_days
 	if hasattr(doc, "is_income_tax_component"):
