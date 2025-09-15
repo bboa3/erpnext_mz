@@ -191,36 +191,37 @@ def ensure_salary_components(company_name: str, accounts: dict) -> dict:
 
 	# Deductions
 	result["c_inss_3"] = upsert_salary_component(
-		"INSS Trabalhador (3%)",
-		"Deduction",
-		company_name,
-		accounts["liab_inss_pagar"],
-		abbr="INSS-TRAB",
-		formula="base * 0.03",
-		depends_on_payment_days=1,
+    "INSS Trabalhador (3%)",
+    "Deduction",
+    company_name,
+    accounts["liab_inss_pagar"],
+    abbr="INSS-TRAB",
+    formula="(SB + SDT + SDA + HBE + VBE + SBE) * 0.03",
+    depends_on_payment_days=1,
 	)
 	result["c_irps_prog"] = upsert_salary_component(
-		"IRPS (progressivo)",
-		"Deduction",
-		company_name,
-		accounts["liab_irps_pagar"],
-		abbr="IRPS",
-		formula=None,
-		is_income_tax_component=1,
-		depends_on_payment_days=1,
+    "IRPS (progressivo)",
+    "Deduction",
+    company_name,
+    accounts["liab_irps_pagar"],
+    abbr="IRPS",
+    formula=None,
+    is_income_tax_component=1,
+    depends_on_payment_days=1,
 	)
 
 	# Employer contribution (expense only, not in net pay)
 	result["c_inss_empregador_4"] = upsert_salary_component(
-		"INSS Empregador (4%)",
-		"Earning",
-		company_name,
-		accounts["expense_inss_employer"],
-		abbr="INSS-EMP",
-		formula="base * 0.04",
-		is_employer_contribution=1,
-		depends_on_payment_days=1,
-		statistical_component=0,
+    "INSS Empregador (4%)",
+    "Earning",
+    company_name,
+    accounts["expense_inss_employer"],
+    abbr="INSS-EMP",
+    formula="(SB + SDT + SDA + HBE + VBE + SBE) * 0.04",
+    is_employer_contribution=1,
+    depends_on_payment_days=1,
+    statistical_component=0,
+    do_not_include_in_net_pay=1,
 	)
 
 	return result
@@ -240,6 +241,11 @@ def ensure_salary_structure(company_name: str, component_map: dict, *, structure
 	ss_name = frappe.db.exists("Salary Structure", {"name": structure_name})
 	if ss_name:
 		ss = frappe.get_doc("Salary Structure", ss_name)
+		# Ensure core attributes also on existing structures
+		ss.company = company_name
+		if hasattr(ss, "payroll_frequency"):
+			ss.payroll_frequency = "Monthly"
+		ss.is_active = 1
 	else:
 		ss = frappe.new_doc("Salary Structure")
 		# Try naming it directly; if naming rules prevent it, ERPNext will assign a new name
