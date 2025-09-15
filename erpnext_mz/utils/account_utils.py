@@ -3,86 +3,40 @@
 
 import frappe
 
+def get_account_by_number(company_name: str, account_number: str) -> str | None:
+    """Return the Account name for a given company and account_number, or None.
 
-def ensure_account(company_name: str, name: str, root_type: str, account_type: str | None = None, parent_account: str | None = None, account_number: str | None = None, is_group: bool = False):
-    """
-    Utility function to ensure an account exists, creating it if necessary.
-    
-    This function is used throughout ERPNext MZ to create accounts consistently
-    with proper parent-child relationships and error handling.
-    
-    Args:
-        company_name (str): Company name
-        name (str): Account name
-        root_type (str): Root type (Asset, Liability, Income, Expense, Equity)
-        account_type (str, optional): Account type (Bank, Tax, etc.)
-        parent_account (str, optional): Parent account name
-        account_number (str, optional): Account number
-        is_group (bool): Whether this is a group account (default: False)
-    
-    Returns:
-        str: Account name if successful, None if failed
-    
-    Example:
-        # Create a bank account
-        account_name = ensure_account(
-            company_name="Test Company",
-            name="Test Bank Account",
-            root_type="Asset",
-            account_type="Bank",
-            parent_account="Bank Accounts",
-            account_number="11.01.01"
-        )
-        
-        # Create a group account
-        group_name = ensure_account(
-            company_name="Test Company",
-            name="New Group",
-            root_type="Asset",
-            is_group=True
-        )
+    The Account DocType stores an "account_number" field which is unique per company
+    in a well-formed chart. This helper fetches the document name by that number.
     """
     try:
-        # Check if account already exists
-        if frappe.db.exists("Account", {"company": company_name, "account_name": name}):
-            return frappe.get_value("Account", {"company": company_name, "account_name": name}, "name")
-        
-        # Find parent account
-        parent_acc = None
-        if parent_account:
-            parent_acc = frappe.db.exists("Account", {"company": company_name, "account_name": parent_account})
-            if not parent_acc:
-                # Create parent account as a group
-                parent_doc = frappe.new_doc("Account")
-                parent_doc.company = company_name
-                parent_doc.account_name = parent_account
-                parent_doc.root_type = root_type
-                parent_doc.is_group = 1
-                parent_doc.insert(ignore_permissions=True)
-                parent_acc = parent_doc.name
-                print(f"✅ Created parent account: {parent_account}")
-            else:
-                # Get the existing parent account name
-                parent_acc = frappe.get_value("Account", {"company": company_name, "account_name": parent_account}, "name")
-        
-        # Create the account
-        acc = frappe.new_doc("Account")
-        acc.company = company_name
-        acc.account_name = name
-        acc.root_type = root_type
-        acc.is_group = 1 if is_group else 0
-        if account_type:
-            acc.account_type = account_type
-        if account_number:
-            acc.account_number = account_number
-        if parent_acc:
-            acc.parent_account = parent_acc
-        acc.insert(ignore_permissions=True)
-        print(f"✅ Created account: {name}")
-        return acc.name
+        return frappe.db.get_value(
+            "Account", {"company": company_name, "account_number": account_number}, "name"
+        )
     except Exception as e:
-        frappe.log_error(f"Error creating account {name}: {str(e)}", "Account Creation Error")
+        frappe.log_error(f"Error fetching account by number {account_number}: {str(e)}", "Account Lookup Error")
         return None
+
+
+def require_account_by_number(company_name: str, account_number: str, purpose: str | None = None) -> str:
+    """Fetch an account by number and raise a clear error if not found.
+
+    Args:
+        company_name: Company
+        account_number: e.g. "21.02.01"
+        purpose: Optional context for error messages
+    Returns:
+        Account document name
+    Raises:
+        frappe.ValidationError if account is not found
+    """
+    name = get_account_by_number(company_name, account_number)
+    if not name:
+        msg = f"Missing required account {account_number} for company {company_name}"
+        if purpose:
+            msg = f"{msg} ({purpose})"
+        frappe.throw(msg)
+    return name
 
 
 def get_cost_center(company_name: str):

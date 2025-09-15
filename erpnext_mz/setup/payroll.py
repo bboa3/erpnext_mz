@@ -1,119 +1,38 @@
 import frappe
-from erpnext_mz.utils.account_utils import ensure_account
-
-
-def _find_parent_account(company_name: str, root_type: str, candidates: list[str]) -> str | None:
-	"""Find a sensible parent account by account_name among candidates. Falls back to the first
-	group account under the given root_type if no candidate matches. Returns the account_name
-	(not the full name with company abbreviation) suitable for ensure_account's parent_account argument.
-	"""
-	# Try explicit candidates by account_name
-	for candidate in candidates:
-		acc = frappe.db.exists("Account", {"company": company_name, "account_name": candidate})
-		if acc:
-			return candidate
-	# Fallback: pick any top-level group for root_type
-	rows = frappe.get_all(
-		"Account",
-		filters={"company": company_name, "root_type": root_type, "is_group": 1},
-		fields=["account_name"],
-		limit=1,
-	)
-	if rows:
-		return rows[0].account_name
-	return None
+from erpnext_mz.utils.account_utils import get_account_by_number, require_account_by_number
 
 
 def ensure_payroll_chart_of_accounts(company_name: str) -> dict:
-	"""Create Mozambican payroll accounts (idempotent). Returns mapping keys -> Account.name.
+	"""Locate Mozambican payroll accounts from IFRS MZ CoA. Returns mapping keys -> Account.name.
 
-	Expense:
-	- 53.01.01 - Salários e Ordenados
-	- 53.01.02 - Contribuição INSS Empregador
-	- 53.01.03 - Benefícios em Espécie
+	Expense (Gastos > Despesas com Pessoal 50.02):
+	- 50.02.01 - Salários e Ordenados
+	- 50.02.02 - INSS - Empregador
+	- 50.02.04 - Benefícios em Espécie - Habitação
+	- 50.02.05 - Benefícios em Espécie - Veículo
+	- 50.02.06 - Benefícios em Espécie - Seguro Saúde
 
-	Liability:
-	- 23.01.01 - Salários a Pagar (Payable)
-	- 23.01.02 - INSS a Pagar (Tax)
-	- 23.01.03 - IRPS a Pagar (Tax)
+	Liability (Passivos Correntes):
+	- 21.02.05 - INSS a Pagar
+	- 21.02.05 - INSS a Pagar
+	- 21.02.04 - IRPS Retido na Fonte
+	- 21.05.01 - Salários a Pagar
+	- 21.05.02 - Férias e Subsídios a Pagar
 	"""
-	# Parent discovery
-	expense_parent = _find_parent_account(
-		company_name,
-		"Expense",
-		candidates=[
-			"Expenses",
-			"Despesas",
-			"Operating Expenses",
-			"Despesas Operacionais",
-			"Indirect Expenses",
-			"Gastos",
-		],
-	)
-	liability_parent = _find_parent_account(
-		company_name,
-		"Liability",
-		candidates=[
-			"Current Liabilities",
-			"Liabilities",
-			"Passivo Corrente",
-			"Passivo",
-		],
-	)
-
 	result: dict[str, str] = {}
 
-	# Expense accounts
-	result["expense_salaries"] = ensure_account(
-		company_name,
-		"Salários e Ordenados",
-		"Expense",
-		None,
-		expense_parent,
-		"53.01.01",
-	)
-	result["expense_inss_employer"] = ensure_account(
-		company_name,
-		"Contribuição INSS Empregador",
-		"Expense",
-		None,
-		expense_parent,
-		"53.01.02",
-	)
-	result["expense_beneficios"] = ensure_account(
-		company_name,
-		"Benefícios em Espécie",
-		"Expense",
-		None,
-		expense_parent,
-		"53.01.03",
-	)
+	# Expense accounts by number
+	result["expense_salaries"] = require_account_by_number(company_name, "50.02.01", "Salários e Ordenados")
+	result["expense_inss_employer"] = require_account_by_number(company_name, "50.02.02", "INSS - Empregador")
+	result["expense_habitacao"] = require_account_by_number(company_name, "50.02.04", "Benefícios em Espécie - Habitação")
+	result["expense_viatura"] = require_account_by_number(company_name, "50.02.05", "Benefícios em Espécie - Veículo")
+	result["expense_seguro_saude"] = require_account_by_number(company_name, "50.02.06", "Benefícios em Espécie - Seguro Saúde")
 
-	# Liability accounts
-	result["liab_salarios_pagar"] = ensure_account(
-		company_name,
-		"Salários a Pagar",
-		"Liability",
-		"Payable",
-		liability_parent,
-		"23.01.01",
-	)
-	result["liab_inss_pagar"] = ensure_account(
-		company_name,
-		"INSS a Pagar",
-		"Liability",
-		"Tax",
-		liability_parent,
-		"23.01.02",
-	)
-	result["liab_irps_pagar"] = ensure_account(
-		company_name,
-		"IRPS a Pagar",
-		"Liability",
-		"Tax",
-		liability_parent,
-		"23.01.03",
-	)
+	# Liability accounts by number
+	result["liab_salarios_pagar"] = require_account_by_number(company_name, "21.05.01", "Salários a Pagar")
+	result["liab_ferias_pagar"] = require_account_by_number(company_name, "21.05.02", "Férias e Subsídios a Pagar")
+	result["liab_inss_pagar"] = require_account_by_number(company_name, "21.02.05", "INSS a Pagar")
+	result["liab_irps_pagar"] = require_account_by_number(company_name, "21.02.04", "IRPS Retido na Fonte")
 
 	return result
 
@@ -245,7 +164,7 @@ def ensure_salary_components(company_name: str, accounts: dict) -> dict:
 		"Habitação (Benefício em Espécie)",
 		"Earning",
 		company_name,
-		accounts["expense_beneficios"],
+		accounts["expense_habitacao"],
 		abbr="HBE",
 		formula=None,
 		depends_on_payment_days=1,
@@ -254,7 +173,7 @@ def ensure_salary_components(company_name: str, accounts: dict) -> dict:
 		"Viatura (Benefício em Espécie)",
 		"Earning",
 		company_name,
-		accounts["expense_beneficios"],
+		accounts["expense_viatura"],
 		abbr="VBE",
 		formula=None,
 		depends_on_payment_days=1,
@@ -263,7 +182,7 @@ def ensure_salary_components(company_name: str, accounts: dict) -> dict:
 		"Seguro (Benefício em Espécie)",
 		"Earning",
 		company_name,
-		accounts["expense_beneficios"],
+		accounts["expense_seguro_saude"],
 		abbr="SBE",
 		formula=None,
 		depends_on_payment_days=1,
@@ -369,11 +288,7 @@ def ensure_salary_structure(company_name: str, component_map: dict, *, structure
 	# Ensure Company default payroll payable account
 	try:
 		company = frappe.get_doc("Company", company_name)
-		acc = frappe.db.get_value(
-			"Account",
-			{"company": company_name, "account_name": "Salários a Pagar"},
-			"name",
-		)
+		acc = get_account_by_number(company_name, "21.05.01")
 		if hasattr(company, "default_payroll_payable_account") and acc and company.default_payroll_payable_account != acc:
 			company.db_set("default_payroll_payable_account", acc, commit=True)
 	except Exception:
@@ -406,66 +321,4 @@ def link_irps_slab_to_component(company_name: str, irps_component_name: str) -> 
 				comp.save(ignore_permissions=True)
 	except Exception:
 		pass
-
-
-def validate_salary_setup(company_name: str, structure_name: str) -> dict:
-	"""Return a brief validation report for accounts, components, and structure composition."""
-	report = {"accounts": {}, "components": {}, "structure": {}}
-
-	# Accounts
-	needed_accounts = [
-		("Salários e Ordenados", "Expense"),
-		("Contribuição INSS Empregador", "Expense"),
-		("Benefícios em Espécie", "Expense"),
-		("Salários a Pagar", "Liability"),
-		("INSS a Pagar", "Liability"),
-		("IRPS a Pagar", "Liability"),
-	]
-	for acc_name, _rt in needed_accounts:
-		acc = frappe.db.exists("Account", {"company": company_name, "account_name": acc_name})
-		report["accounts"][acc_name] = True if acc else False
-
-	# Components
-	component_names = [
-		"Salário Base",
-		"Subsídio de Transporte",
-		"Subsídio de Alimentação",
-		"Habitação (Benefício em Espécie)",
-		"Viatura (Benefício em Espécie)",
-		"Seguro (Benefício em Espécie)",
-		"INSS Trabalhador (3%)",
-		"IRPS (progressivo)",
-		"INSS Empregador (4%)",
-	]
-	for c in component_names:
-		cid = frappe.db.exists("Salary Component", c)
-		report["components"][c] = True if cid else False
-
-	# Structure
-	ss_id = frappe.db.exists("Salary Structure", {"name": structure_name})
-	if not ss_id:
-		report["structure"]["exists"] = False
-		return report
-	ss = frappe.get_doc("Salary Structure", ss_id)
-	report["structure"]["exists"] = True
-	# Check presence of components in rows
-	def _names(rows):
-		return {row.salary_component for row in rows}
-	all_earnings = _names(ss.earnings or [])
-	all_deductions = _names(ss.deductions or [])
-	must_earnings = {
-		"Salário Base",
-		"Subsídio de Transporte",
-		"Subsídio de Alimentação",
-		"Habitação (Benefício em Espécie)",
-		"Viatura (Benefício em Espécie)",
-		"Seguro/Outros (Benefício em Espécie)",
-		"INSS Empregador (4%)",
-	}
-	must_deductions = {"INSS Trabalhador (3%)", "IRPS (Progressivo)"}
-	report["structure"]["earnings_ok"] = must_earnings.issubset(all_earnings)
-	report["structure"]["deductions_ok"] = must_deductions.issubset(all_deductions)
-
-	return report
-
 

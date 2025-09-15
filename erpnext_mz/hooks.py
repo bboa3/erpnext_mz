@@ -51,7 +51,7 @@ fixtures = [
 website_context = {
     "favicon": "/assets/erpnext_mz/images/favicon.ico",
     "brand_image": "/assets/erpnext_mz/images/logo180.png",
-    "brand_image_alt": "ERPNext Moçambique",
+    "brand_image_alt": "MozEconomia Cloud",
     "splash_image": "/assets/erpnext_mz/images/icon.svg",
 }
 
@@ -170,15 +170,19 @@ setup_wizard_complete = "erpnext_mz.setup.onboarding.trigger_onboarding_after_se
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Company": "erpnext_mz.overrides.company.Company",
+}
 
 # Document Events
 # ---------------
 # Hook on document methods and events
 
 doc_events = {
+	"Company": {
+		"after_insert": "erpnext_mz.overrides.company.ensure_mz_coa_seeded",
+		"on_update": "erpnext_mz.overrides.company.ensure_mz_coa_seeded",
+	},
 	"Sales Invoice": {
 		"on_submit": "erpnext_mz.qr_code.qr_generator.generate_document_qr_code",
 	},
@@ -304,7 +308,7 @@ before_request = [
 
 default_mail_footer = """
   <div>
-  Enviado via <a href="https://mozeconomia.co.mz" target="_blank">ERPNext Moçambique</a>
+  Enviado via <a href="https://mozeconomia.co.mz" target="_blank">MozEconomia Cloud</a>
   </div>
 """
 

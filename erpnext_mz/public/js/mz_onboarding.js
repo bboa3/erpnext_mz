@@ -218,12 +218,6 @@ frappe.provide('erpnext_mz.onboarding');
 
   erpnext_mz.onboarding.start = run_chain;
 
-  // Test function for manual triggering (can be called from browser console)
-  erpnext_mz.onboarding.test = function () {
-    console.log('🧪 Testing MZ onboarding manually...');
-    checkAndTriggerOnboarding();
-  };
-
   // Performance optimization: prevent multiple simultaneous calls
   let isCheckingOnboarding = false;
   let onboardingChecked = false;

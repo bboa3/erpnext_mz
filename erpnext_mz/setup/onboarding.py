@@ -1,7 +1,7 @@
 import frappe
 from frappe import _
 from frappe.utils.data import cint
-from erpnext_mz.utils.account_utils import ensure_account, get_cost_center
+from erpnext_mz.utils.account_utils import get_cost_center, require_account_by_number
 
 
 def _get_profile(create_if_missing: bool = True):
@@ -420,9 +420,6 @@ def _ensure_tax_infrastructure(company_name: str, profile):
     try:
         # Create all tax masters if missing (new sites will need them)
         _create_tax_masters(company_name)
-        
-        # Create HR tax masters for Mozambique
-        _create_hr_tax_masters(company_name)
 
     except Exception:
         frappe.log_error(frappe.get_traceback(), "Ensure tax infra failed")
@@ -431,61 +428,14 @@ def _ensure_tax_infrastructure(company_name: str, profile):
 def _create_tax_masters(company_name: str):
     """Create tax masters for Mozambique including VAT accounts and tax templates"""
 
-    # Find the existing parent tax account (language-dependent name)
-    def find_parent_tax_account():
-        """Find the existing parent tax account for tax accounts"""
-        # First, try to find VAT account and get its parent
-        vat_account_name = "VAT"
-        vat_account = frappe.db.exists("Account", {"company": company_name, "account_name": vat_account_name})
-        
-        if vat_account:
-            # Get the parent account of the VAT account
-            parent_account = frappe.get_value("Account", vat_account, "parent_account")
-            if parent_account:
-                # Get the account name without company abbreviation
-                parent_account_name = frappe.get_value("Account", parent_account, "account_name")
-                return parent_account_name
-        
-        # If no VAT account found, try common Portuguese tax parent account names
-        portuguese_tax_parents = [
-            "Duties and Taxes",
-            "Impostos e Contribuições", 
-            "Direitos e Impostos",
-            "Impostos e Taxas",
-        ]
-        
-        for parent_name in portuguese_tax_parents:
-            # Check for parent account
-            pt_tax_parent = frappe.db.exists("Account", {
-                "company": company_name, 
-                "account_name": parent_name
-            })
-
-            if pt_tax_parent:
-                print(f"🔄 Found tax parent: {pt_tax_parent}")
-                # Return just the account name without company abbreviation
-                return parent_name
-            
-        # If no tax parent found, return None
-        return None
-    
-    # Find the parent tax account (same for both Liability and Asset)
-    tax_parent = find_parent_tax_account()
-
-    print(f"🔄 Found tax parent: {tax_parent}")
-    
-    # If no parent tax account found, log error and return
-    if not tax_parent:
-        print(f"❌  Could not find parent tax account for company {company_name}. Tried VAT account and Portuguese tax parent names: 'Duties and Taxes', 'Impostos e Contribuições', 'Direitos e Impostos', etc.")
-        return
-    
-    # Create tax accounts with the same parent account for both Liability and Asset
-    a_output_16 = ensure_account(company_name, f"IVA a Entregar 16%", "Liability", "Tax", tax_parent, "24.01.01")
-    a_output_5 = ensure_account(company_name, f"IVA a Entregar 5%", "Liability", "Tax", tax_parent, "24.01.02")
-    a_output_0 = ensure_account(company_name, f"IVA a Entregar 0%", "Liability", "Tax", tax_parent, "24.01.03")
-    a_input_16 = ensure_account(company_name, f"IVA Dedutível 16%", "Asset", "Tax", tax_parent, "13.01.01")
-    a_input_5 = ensure_account(company_name, f"IVA Dedutível 5%", "Asset", "Tax", tax_parent, "13.01.02")
-    a_input_0 = ensure_account(company_name, f"IVA Dedutível 0%", "Asset", "Tax", tax_parent, "13.01.03")
+    # With IFRS MZ CoA present, these accounts should already exist via mozambique_coa.json.
+    # Fetch by definitive account numbers instead of creating or guessing parents.
+    a_output_16 = require_account_by_number(company_name, "21.02.01", "IVA a Entregar 16%")
+    a_output_5  = require_account_by_number(company_name, "21.02.02", "IVA a Entregar 5%")
+    a_output_0  = require_account_by_number(company_name, "21.02.03", "IVA a Entregar 0%")
+    a_input_16  = require_account_by_number(company_name, "11.04.01", "IVA Dedutível 16%")
+    a_input_5   = require_account_by_number(company_name, "11.04.02", "IVA Dedutível 5%")
+    a_input_0   = require_account_by_number(company_name, "11.04.03", "IVA Dedutível 0%")
 
     
     def ensure_tax_category(title: str):
@@ -726,10 +676,7 @@ def _ensure_banking_infrastructure(company_name: str, profile):
     - Payment Methods based on user selection
     """
     try:
-        # Step 1: Create bank accounts
-        _create_bank_accounts(company_name)
-        
-        # Step 2: Create payment methods based on user selection
+        # Create payment methods based on user selection
         _create_payment_methods(company_name, profile)
         
         print("✅ Banking infrastructure setup completed successfully")
@@ -738,105 +685,30 @@ def _ensure_banking_infrastructure(company_name: str, profile):
         frappe.log_error(f"Error setting up banking infrastructure: {str(e)}", "Banking Infrastructure Setup Error")
 
 
-def _create_bank_accounts(company_name: str):
-    """Create bank accounts using the ensure_account utility function"""
-
-    # Find the existing parent bank account
-    def find_parent_bank_account():
-        """Find the existing parent bank account"""
-        # First, try to find existing bank account and get its parent
-        bank_accounts = frappe.get_all("Account", 
-            filters={"company": company_name, "account_type": "Bank"}, 
-            fields=["parent_account"], 
-            limit=1)
-        
-        if bank_accounts and bank_accounts[0].parent_account:
-            # Get the account name without company abbreviation (consistent with tax logic)
-            parent_account_name = frappe.get_value("Account", bank_accounts[0].parent_account, "account_name")
-            return parent_account_name
-        
-        # If no bank account found, try common Portuguese bank parent account names
-        portuguese_bank_parents = [
-            "Ativo Circulante",
-            "Current Assets",
-            "Ativos Atuais",
-        ]
-        
-        for parent_name in portuguese_bank_parents:
-            # Check for parent account
-            pt_bank_parent = frappe.db.exists("Account", {
-                "company": company_name, 
-                "account_name": parent_name
-            })
-
-            if pt_bank_parent:
-                print(f"🔄 Found bank parent: {pt_bank_parent}")
-                # Return just the account name without company abbreviation (consistent with tax logic)
-                return parent_name
-            
-        # If no bank parent found, return None
-        return None
-    
-    # Find the parent bank account
-    bank_parent = find_parent_bank_account()
-    
-    print(f"🔄 Bank parent found: {bank_parent}")
-    
-    # If no parent bank account found, log error and return
-    if not bank_parent:
-        print(f"❌ Could not find parent bank account for company {company_name}. Tried existing bank accounts and Portuguese bank parent names: 'Ativo Circulante', 'Current Assets', 'Ativos Atuais', etc.")
-        return
-    
-    # Create Mozambican bank accounts
-    bank_accounts = [
-        ("Caixa", "11.01.01"),
-        ("Banco BCI", "11.01.02"),
-        ("Banco Millenium BIM", "11.01.03"),
-        ("Banco Standard Bank", "11.01.04"),
-        ("Banco ABSA", "11.01.05"),
-        ("E-Mola (Carteira móvel)", "11.01.06"),
-        ("M-Pesa (Carteira móvel)", "11.01.07"),
-        ("Banco FNB", "11.01.08"),
-        ("Moza Banco", "11.01.09"),
-        ("Banco Letshego", "11.01.10"),
-        ("First Capital Bank", "11.01.11"),
-        ("Nedbank", "11.01.12"),
-    ]
-    
-    for bank_name, account_number in bank_accounts:
-        print(f"🔄 Creating bank account: {bank_name} with parent: {bank_parent}")
-        result = ensure_account(company_name, bank_name, "Asset", "Bank", bank_parent, account_number)
-        if result:
-            print(f"✅ Created bank account: {bank_name} -> {result}")
-        else:
-            print(f"❌ Failed to create bank account: {bank_name}")
-            frappe.log_error(f"Failed to create bank account {bank_name} with parent {bank_parent}", "Bank Account Creation Error")
-
-
 def _create_payment_methods(company_name: str, profile):
     """Create Mode of Payment records based on selected payment methods in the profile"""
     try:
-        # Mapping of payment method field names to payment method names and account names
-        payment_method_mapping = {
-            "payment_method_cash": ("Dinheiro (Cash)", "Caixa"),
-            "payment_method_bci": ("Banco BCI", "Banco BCI"),
-            "payment_method_millenium": ("Banco Millenium BIM", "Banco Millenium BIM"),
-            "payment_method_standard_bank": ("Banco Standard Bank", "Banco Standard Bank"),
-            "payment_method_absa": ("Banco ABSA", "Banco ABSA"),
-            "payment_method_emola": ("E-Mola", "E-Mola (Carteira móvel)"),
-            "payment_method_mpesa": ("M-Pesa", "M-Pesa (Carteira móvel)"),
-            "payment_method_fnb": ("Banco FNB", "Banco FNB"),
-            "payment_method_moza": ("Moza Banco", "Moza Banco"),
-            "payment_method_letshego": ("Banco Letshego", "Banco Letshego"),
-            "payment_method_first_capital": ("First Capital Bank", "First Capital Bank"),
-            "payment_method_nedbank": ("Nedbank", "Nedbank"),
+        # Map profile fields directly to Mode of Payment name and IFRS MZ account numbers
+        payment_method_number_map = {
+            "payment_method_cash": ("Dinheiro (Cash)", "11.01.01"),
+            "payment_method_bci": ("Banco BCI", "11.01.03"),
+            "payment_method_millenium": ("Banco Millenium BIM", "11.01.04"),
+            "payment_method_standard_bank": ("Banco Standard Bank", "11.01.05"),
+            "payment_method_absa": ("Banco ABSA", "11.01.02"),
+            "payment_method_emola": ("E-Mola", "11.01.12"),
+            "payment_method_mpesa": ("M-Pesa", "11.01.11"),
+            "payment_method_fnb": ("Banco FNB", "11.01.06"),
+            "payment_method_moza": ("Moza Banco", "11.01.07"),
+            "payment_method_letshego": ("Banco Letshego", "11.01.08"),
+            "payment_method_first_capital": ("First Capital Bank", "11.01.09"),
+            "payment_method_nedbank": ("Nedbank", "11.01.10"),
         }
-        
-        # Get selected payment methods from profile
+
+        # Build selected set from profile
         selected_methods = []
-        for field_name, (payment_method_name, account_name) in payment_method_mapping.items():
-            if hasattr(profile, field_name) and getattr(profile, field_name):
-                selected_methods.append((payment_method_name, account_name))
+        for field_name, (payment_method_name, account_number) in payment_method_number_map.items():
+            if getattr(profile, field_name, 0):
+                selected_methods.append((payment_method_name, account_number))
         
         if not selected_methods:
             print("ℹ️ No payment methods selected, skipping Payment Method creation")
@@ -844,24 +716,18 @@ def _create_payment_methods(company_name: str, profile):
         
         print(f"🔄 Creating Payment Methods for: {', '.join([method[0] for method in selected_methods])}")
         
-        for payment_method_name, account_name in selected_methods:
+
+        for payment_method_name, account_number in selected_methods:
             # Determine Mode of Payment type
-            if "Dinheiro" in payment_method_name or "POS" in payment_method_name:
+            if "Dinheiro" in payment_method_name or "Cash" in payment_method_name:
                 mop_type = "Cash"
             elif "E-Mola" in payment_method_name or "M-Pesa" in payment_method_name:
-                mop_type = "Phone"
+                mop_type = "Bank"
             else:
                 mop_type = "Bank"
 
-            # Find the account
-            account = frappe.db.exists("Account", {
-                "company": company_name,
-                "account_name": account_name
-            })
-            
-            if not account:
-                print(f"❌ Account not found: {account_name} for company {company_name}")
-                continue
+            # Resolve account strictly by IFRS MZ number
+            account = require_account_by_number(company_name, account_number, f"Mode of Payment: {payment_method_name}")
 
             # Create or update Mode of Payment idempotently
             existing_mop = frappe.db.exists("Mode of Payment", {"mode_of_payment": payment_method_name})
@@ -880,7 +746,7 @@ def _create_payment_methods(company_name: str, profile):
                 if not updated:
                     mop_doc.append("accounts", {"company": company_name, "default_account": account})
                 mop_doc.save(ignore_permissions=True)
-                print(f"✅ Updated Mode of Payment: {payment_method_name} -> {account_name}")
+                print(f"✅ Updated Mode of Payment: {payment_method_name} -> {account}")
                 continue
 
             mop_doc = frappe.new_doc("Mode of Payment")
@@ -889,22 +755,12 @@ def _create_payment_methods(company_name: str, profile):
             mop_doc.type = mop_type
             mop_doc.append("accounts", {"company": company_name, "default_account": account})
             mop_doc.insert(ignore_permissions=True)
-            print(f"✅ Created Mode of Payment: {payment_method_name} -> {account_name}")
+            print(f"✅ Created Mode of Payment: {payment_method_name} -> {account}")
         
         print(f"✅ Successfully created {len(selected_methods)} Modes of Payment")
         
     except Exception as e:
         frappe.log_error(f"Error creating Modes of Payment: {str(e)}", "Mode of Payment Creation Error")
-
-
-def _create_hr_tax_masters(company_name: str):
-    """Backward-compatible wrapper now ensuring full HR & Payroll infra."""
-    try:
-        _ensure_hr_payroll_infrastructure(company_name)
-        print("✅ HR & Payroll infrastructure ensured")
-    except Exception as e:
-        frappe.log_error(f"Error creating HR/Payroll infra: {str(e)}", "HR Payroll Infra Error")
-
 
 def _ensure_hr_payroll_infrastructure(company_name: str):
     """Orchestrate payroll accounts, components, structure and IRPS slab linkage (idempotent)."""
@@ -915,7 +771,6 @@ def _ensure_hr_payroll_infrastructure(company_name: str):
             ensure_salary_components,
             ensure_salary_structure,
             link_irps_slab_to_component,
-            validate_salary_setup,
         )
 
         accounts = ensure_payroll_chart_of_accounts(company_name)
@@ -928,11 +783,8 @@ def _ensure_hr_payroll_infrastructure(company_name: str):
         link_irps_slab_to_component(company_name, "IRPS (Progressivo)")
 
         # 4) Ensure salary structure and attach all components
-        structure_name = ensure_salary_structure(company_name, components, structure_name="Folha Moçambique")
+        ensure_salary_structure(company_name, components, structure_name="Folha Moçambique")
 
-        # 5) Validate composition
-        report = validate_salary_setup(company_name, structure_name)
-        frappe.log_error(str(report), "Payroll Setup Validation Report")
     except Exception as e:
         frappe.log_error(f"Error ensuring HR payroll infrastructure: {str(e)}", "HR Payroll Infra Error")
 
@@ -1058,56 +910,15 @@ def create_tax_masters_manually():
 
 
 @frappe.whitelist()
-def create_hr_tax_masters_manually():
+def create_hr_payroll_infrastructure_manually():
     """Manual function to create HR tax masters for testing"""
     company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
     if not company_name:
         return {"error": "No company found"}
     
     try:
-        _create_hr_tax_masters(company_name)
-        return {"success": True, "message": "HR tax masters created successfully"}
-    except Exception as e:
-        return {"error": str(e)}
-
-
-@frappe.whitelist()
-def create_income_tax_slab_manually():
-    """Manual function to create Income Tax Slab for testing"""
-    company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
-    if not company_name:
-        return {"error": "No company found"}
-    
-    try:
-        _ensure_income_tax_slab(company_name)
-        return {"success": True, "message": "Income Tax Slab created successfully"}
-    except Exception as e:
-        return {"error": str(e)}
-
-
-@frappe.whitelist()
-def create_payroll_setup_manually():
-    """Manual: run payroll setup orchestration for the default company."""
-    company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
-    if not company_name:
-        return {"error": "No company found"}
-    try:
         _ensure_hr_payroll_infrastructure(company_name)
         return {"success": True, "message": "HR & Payroll infrastructure created successfully"}
-    except Exception as e:
-        return {"error": str(e)}
-
-
-@frappe.whitelist()
-def validate_payroll_setup_manually():
-    """Manual: returns validation report for payroll setup."""
-    company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
-    if not company_name:
-        return {"error": "No company found"}
-    try:
-        from erpnext_mz.setup.payroll import validate_salary_setup
-        report = validate_salary_setup(company_name, "Folha Moçambique")
-        return {"success": True, "report": report}
     except Exception as e:
         return {"error": str(e)}
 
@@ -1124,49 +935,6 @@ def ensure_cost_center_manually():
             return {"success": True, "message": f"Cost center ensured: {cost_center}"}
         else:
             return {"error": "Could not find or create cost center"}
-    except Exception as e:
-        return {"error": str(e)}
-
-
-@frappe.whitelist()
-def debug_bank_parent_manually():
-    """Debug function to check bank parent account finding"""
-    company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
-    if not company_name:
-        return {"error": "No company found"}
-    
-    try:
-        # Test the bank parent finding logic
-        from erpnext_mz.setup.onboarding import _create_bank_accounts
-        
-        # Get existing bank accounts
-        existing_banks = frappe.get_all("Account", 
-            filters={"company": company_name, "account_type": "Bank"}, 
-            fields=["name", "account_name", "parent_account"])
-        
-        # Check for parent account candidates
-        parent_candidates = [
-            "Ativo Circulante",
-            "Current Assets", 
-            "Ativos Atuais",
-        ]
-        
-        found_parents = []
-        for candidate in parent_candidates:
-            exists = frappe.db.exists("Account", {
-                "company": company_name,
-                "account_name": candidate
-            })
-            if exists:
-                full_name = frappe.get_value("Account", exists, "name")
-                found_parents.append({"candidate": candidate, "exists": exists, "full_name": full_name})
-        
-        return {
-            "success": True,
-            "company_name": company_name,
-            "existing_banks": existing_banks,
-            "found_parents": found_parents
-        }
     except Exception as e:
         return {"error": str(e)}
 

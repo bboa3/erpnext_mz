@@ -1,0 +1,377 @@
+{
+  "country_code": "mz",
+  "name": "Mozambique - Plano de Contas (IFRS MZ)",
+  "tree": {
+    "Ativos": {
+      "root_type": "Asset",
+      "Ativos Correntes": {
+        "account_number": "11",
+        "Caixa e Bancos": {
+          "account_number": "11.01",
+          "Caixa": {
+            "account_number": "11.01.01",
+            "account_type": "Cash"
+          },
+          "Banco ABSA": {
+            "account_number": "11.01.02",
+            "account_type": "Bank"
+          },
+          "Banco BCI": {
+            "account_number": "11.01.03",
+            "account_type": "Bank"
+          },
+          "Banco Millenium BIM": {
+            "account_number": "11.01.04",
+            "account_type": "Bank"
+          },
+          "Banco Standard Bank": {
+            "account_number": "11.01.05",
+            "account_type": "Bank"
+          },
+          "Banco FNB": {
+            "account_number": "11.01.06",
+            "account_type": "Bank"
+          },
+          "Moza Banco": {
+            "account_number": "11.01.07",
+            "account_type": "Bank"
+          },
+          "Banco Letshego": {
+            "account_number": "11.01.08",
+            "account_type": "Bank"
+          },
+          "First Capital Bank": {
+            "account_number": "11.01.09",
+            "account_type": "Bank"
+          },
+          "Nedbank": {
+            "account_number": "11.01.10",
+            "account_type": "Bank"
+          },
+          "Carteira Móvel M-Pesa": {
+            "account_number": "11.01.11",
+            "account_type": "Bank"
+          },
+          "Carteira Móvel E-Mola": {
+            "account_number": "11.01.12",
+            "account_type": "Bank"
+          }
+        },
+        "Clientes e Contas a Receber": {
+          "account_number": "11.02",
+          "Clientes Nacionais": {
+            "account_number": "11.02.01",
+            "account_type": "Receivable"
+          },
+          "Clientes Estrangeiros": {
+            "account_number": "11.02.02",
+            "account_type": "Receivable"
+          },
+          "Clientes de Partes Relacionadas": {
+            "account_number": "11.02.03",
+            "account_type": "Receivable"
+          },
+          "Provisão para Dívidas Incobráveis": {
+            "account_number": "11.02.04"
+          }
+        },
+        "Inventários": {
+          "account_number": "11.03",
+          "Inventário de Mercadorias": {
+            "account_number": "11.03.01",
+            "account_type": "Stock"
+          },
+          "Inventário de Produtos Acabados": {
+            "account_number": "11.03.02",
+            "account_type": "Stock"
+          },
+          "Inventário de Matérias-Primas": {
+            "account_number": "11.03.03",
+            "account_type": "Stock"
+          },
+          "Ativos Biológicos (Agronegócio)": {
+            "account_number": "11.03.04"
+          }
+        },
+        "IVA Dedutível": {
+          "account_number": "11.04",
+          "IVA Dedutível 16%": {
+            "account_number": "11.04.01",
+            "account_type": "Tax"
+          },
+          "IVA Dedutível 5%": {
+            "account_number": "11.04.02",
+            "account_type": "Tax"
+          },
+          "IVA Dedutível 0%": {
+            "account_number": "11.04.03",
+            "account_type": "Tax"
+          }
+        },
+        "Outros Ativos Correntes": {
+          "account_number": "11.05",
+          "Adiantamentos a Fornecedores": {
+            "account_number": "11.05.01"
+          },
+          "Despesas Antecipadas": {
+            "account_number": "11.05.02"
+          }
+        }
+      },
+      "Ativos Não Correntes": {
+        "account_number": "12",
+        "Ativos Fixos Tangíveis": {
+          "account_number": "12.01",
+          "Edifícios": {
+            "account_number": "12.01.01",
+            "account_type": "Fixed Asset"
+          },
+          "Veículos": {
+            "account_number": "12.01.02",
+            "account_type": "Fixed Asset"
+          },
+          "Equipamento de Escritório": {
+            "account_number": "12.01.03",
+            "account_type": "Fixed Asset"
+          },
+          "Propriedades de Investimento": {
+            "account_number": "12.01.04",
+            "account_type": "Fixed Asset"
+          }
+        },
+        "Ativos Intangíveis": {
+          "account_number": "12.02",
+          "Software": {
+            "account_number": "12.02.01"
+          },
+          "Goodwill": {
+            "account_number": "12.02.02"
+          }
+        },
+        "Ativos Financeiros": {
+          "account_number": "12.03",
+          "Investimentos em Subsidiárias": {
+            "account_number": "12.03.01"
+          },
+          "Investimentos em Associadas": {
+            "account_number": "12.03.02"
+          },
+          "Ações e Obrigações": {
+            "account_number": "12.03.03"
+          }
+        },
+        "Ativos por Impostos Diferidos": {
+          "account_number": "12.04",
+          "account_type": "Tax"
+        }
+      }
+    },
+    "Passivos": {
+      "root_type": "Liability",
+      "Passivos Correntes": {
+        "account_number": "21",
+        "Fornecedores": {
+          "account_number": "21.01",
+          "Fornecedores Nacionais": {
+            "account_number": "21.01.01",
+            "account_type": "Payable"
+          },
+          "Fornecedores Estrangeiros": {
+            "account_number": "21.01.02",
+            "account_type": "Payable"
+          }
+        },
+        "Impostos a Pagar": {
+          "account_number": "21.02",
+          "IVA a Entregar 16%": {
+            "account_number": "21.02.01",
+            "account_type": "Tax"
+          },
+          "IVA a Entregar 5%": {
+            "account_number": "21.02.02",
+            "account_type": "Tax"
+          },
+          "IVA a Entregar 0%": {
+            "account_number": "21.02.03",
+            "account_type": "Tax"
+          },
+          "IRPS Retido na Fonte": {
+            "account_number": "21.02.04",
+            "account_type": "Tax"
+          },
+          "INSS a Pagar": {
+            "account_number": "21.02.05",
+            "account_type": "Tax"
+          },
+          "IRPC a Pagar": {
+            "account_number": "21.02.06",
+            "account_type": "Tax"
+          }
+        },
+        "Provisões e Outras Obrigações": {
+          "account_number": "21.03",
+          "Provisões para Garantias": {
+            "account_number": "21.03.01"
+          },
+          "Provisões para Litígios": {
+            "account_number": "21.03.02"
+          }
+        },
+        "Passivos de Arrendamento (IFRS 16)": {
+          "account_number": "21.04"
+        },
+        "Obrigações com Pessoal": {
+          "account_number": "21.05",
+          "Salários a Pagar": {
+            "account_number": "21.05.01",
+            "account_type": "Payable"
+          },
+          "Férias e Subsídios a Pagar": {
+            "account_number": "21.05.02",
+            "account_type": "Payable"
+          }
+        }
+      },
+      "Passivos Não Correntes": {
+        "account_number": "22",
+        "Empréstimos Bancários": {
+          "account_number": "22.01"
+        },
+        "Passivos por Impostos Diferidos": {
+          "account_number": "22.02",
+          "account_type": "Tax"
+        }
+      }
+    },
+    "Capital Próprio": {
+      "root_type": "Equity",
+      "Capital Social": {
+        "account_number": "30.01"
+      },
+      "Prémio de Emissão de Ações": {
+        "account_number": "30.02"
+      },
+      "Reservas": {
+        "account_number": "30.03",
+        "Reservas Legais": {
+          "account_number": "30.03.01"
+        },
+        "Reservas de Reavaliação": {
+          "account_number": "30.03.02"
+        },
+        "Reservas Livres": {
+          "account_number": "30.03.03"
+        }
+      },
+      "Resultados Transitados": {
+        "account_number": "30.04"
+      },
+      "Resultado do Exercício": {
+        "account_number": "30.05"
+      }
+    },
+    "Rendimentos": {
+      "root_type": "Income",
+      "Vendas de Mercadorias": {
+        "account_number": "40.01",
+        "account_type": "Income Account"
+      },
+      "Vendas de Serviços": {
+        "account_number": "40.02",
+        "account_type": "Income Account"
+      },
+      "Receitas Financeiras": {
+        "account_number": "40.03",
+        "Juros Ativos": {
+          "account_number": "40.03.01"
+        },
+        "Ganhos Cambiais": {
+          "account_number": "40.03.02"
+        }
+      },
+      "Subsídios e Incentivos": {
+        "account_number": "40.04"
+      },
+      "Outros Rendimentos": {
+        "account_number": "40.05",
+        "account_type": "Income Account"
+      }
+    },
+    "Gastos": {
+      "root_type": "Expense",
+      "Custo das Mercadorias Vendidas": {
+        "account_number": "50.01",
+        "account_type": "Cost of Goods Sold"
+      },
+      "Despesas com Pessoal": {
+        "account_number": "50.02",
+        "Salários e Ordenados": {
+          "account_number": "50.02.01",
+          "account_type": "Expense Account"
+        },
+        "INSS - Empregador": {
+          "account_number": "50.02.02",
+          "account_type": "Expense Account"
+        },
+        "IRPS - Empregador": {
+          "account_number": "50.02.03",
+          "account_type": "Expense Account"
+        },
+        "Benefícios em Espécie - Habitação": {
+          "account_number": "50.02.04",
+          "account_type": "Expense Account"
+        },
+        "Benefícios em Espécie - Veículo": {
+          "account_number": "50.02.05",
+          "account_type": "Expense Account"
+        },
+        "Benefícios em Espécie - Seguro Saúde": {
+          "account_number": "50.02.06",
+          "account_type": "Expense Account"
+        }
+      },
+      "Despesas Administrativas": {
+        "account_number": "50.03",
+        "Rendas e Arrendamentos": {
+          "account_number": "50.03.01",
+          "account_type": "Expense Account"
+        },
+        "Serviços Públicos (Água, Energia)": {
+          "account_number": "50.03.02",
+          "account_type": "Expense Account"
+        },
+        "Comunicações e Internet": {
+          "account_number": "50.03.03",
+          "account_type": "Expense Account"
+        },
+        "Material de Escritório": {
+          "account_number": "50.03.04",
+          "account_type": "Expense Account"
+        }
+      },
+      "Despesas de Marketing e Distribuição": {
+        "account_number": "50.04",
+        "account_type": "Expense Account"
+      },
+      "Despesas Financeiras": {
+        "account_number": "50.05",
+        "Juros Bancários": {
+          "account_number": "50.05.01",
+          "account_type": "Expense Account"
+        },
+        "Perdas Cambiais": {
+          "account_number": "50.05.02",
+          "account_type": "Expense Account"
+        }
+      },
+      "Depreciações e Amortizações": {
+        "account_number": "50.06",
+        "account_type": "Expense Account"
+      },
+      "Imposto sobre o Rendimento (IRPC)": {
+        "account_number": "50.07",
+        "account_type": "Tax"
+      }
+    }
+  }
+}
