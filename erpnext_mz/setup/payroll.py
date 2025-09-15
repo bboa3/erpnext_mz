@@ -2,6 +2,46 @@ import frappe
 from erpnext_mz.utils.account_utils import get_account_by_number, require_account_by_number
 
 
+# Component descriptions sourced from pyroll-compliance-roadmap.md
+COMPONENT_DESCRIPTIONS: dict[str, str] = {
+	"Salário Base": (
+		"Valor base contratual do trabalhador. Serve de referência para cálculo de INSS (3% e 4%) e IRPS. "
+		"Sempre expresso em MZN."
+	),
+	"Subsídio de Transporte": (
+		"Subsídios recorrentes pagos ao trabalhador. Em regra entram no cálculo de IRPS e INSS, exceto quando "
+		"expressamente isentos pela lei (ex.: subsídio de refeição em vales)."
+	),
+	"Subsídio de Alimentação": (
+		"Subsídios recorrentes pagos ao trabalhador. Em regra entram no cálculo de IRPS e INSS, exceto quando "
+		"expressamente isentos pela lei (ex.: subsídio de refeição em vales)."
+	),
+	"Habitação (Benefício em Espécie)": (
+		"Benefícios atribuídos em espécie (casa, viatura, seguro). Avaliados em Meticais e incluídos no rendimento "
+		"bruto para efeitos de INSS e IRPS. Atenção: algumas exceções legais podem excluir certos benefícios (ver legislação vigente)."
+	),
+	"Viatura (Benefício em Espécie)": (
+		"Benefícios atribuídos em espécie (casa, viatura, seguro). Avaliados em Meticais e incluídos no rendimento "
+		"bruto para efeitos de INSS e IRPS. Atenção: algumas exceções legais podem excluir certos benefícios (ver legislação vigente)."
+	),
+	"Seguro (Benefício em Espécie)": (
+		"Benefícios atribuídos em espécie (casa, viatura, seguro). Avaliados em Meticais e incluídos no rendimento "
+		"bruto para efeitos de INSS e IRPS. Atenção: algumas exceções legais podem excluir certos benefícios (ver legislação vigente)."
+	),
+	"INSS Trabalhador (3%)": (
+		"Contribuição do trabalhador para a Segurança Social. Retida na fonte e entregue ao INSS até dia 15 do mês seguinte. "
+		"Calculada sobre todos os rendimentos sujeitos, incluindo benefícios em espécie."
+	),
+	"IRPS (progressivo)": (
+		"Imposto sobre o Rendimento das Pessoas Singulares. Retido na fonte e entregue à AT até ao último dia útil do mês seguinte. "
+		"Base de cálculo = rendimento bruto (salário, subsídios e benefícios), salvo isenções específicas."
+	),
+	"INSS Empregador (4%)": (
+		"Contribuição patronal para a Segurança Social. Pago pela empresa e não deduzido ao trabalhador. Representa custo adicional de pessoal. "
+		"Deve ser declarado ao INSS até dia 15 do mês seguinte."
+	),
+}
+
 def ensure_payroll_chart_of_accounts(company_name: str) -> dict:
 	"""Locate Mozambican payroll accounts from IFRS MZ CoA. Returns mapping keys -> Account.name.
 
@@ -38,16 +78,19 @@ def ensure_payroll_chart_of_accounts(company_name: str) -> dict:
 
 
 def _set_component_account(doc, company_name: str, default_account: str) -> None:
-	"""Ensure Salary Component Account row for company points to default_account (Account.name)."""
+	"""Ensure Salary Component Account row for company points to the Account.name.
+
+	Child table field is 'account' (Link to Account), not 'default_account'.
+	"""
 	updated = False
 	for row in getattr(doc, "accounts", []) or []:
 		if row.company == company_name:
-			if row.default_account != default_account:
-				row.default_account = default_account
+			if getattr(row, "account", None) != default_account:
+				row.account = default_account
 			updated = True
 			break
 	if not updated:
-		doc.append("accounts", {"company": company_name, "default_account": default_account})
+		doc.append("accounts", {"company": company_name, "account": default_account})
 
 
 def upsert_salary_component(
@@ -63,6 +106,7 @@ def upsert_salary_component(
 	depends_on_payment_days: int = 1,
 	statistical_component: int = 0,
 	do_not_include_in_net_pay: int = 0,
+	description: str | None = None,
 ) -> str:
 	"""Create/update a Salary Component and bind company account. Returns component name."""
 	comp_name = name
@@ -105,6 +149,10 @@ def upsert_salary_component(
 	# Ensure company account row
 	_set_component_account(doc, company_name, default_account)
 
+	# Set compliance description if provided
+	if description:
+		doc.description = description
+
 	if comp_id:
 		doc.save(ignore_permissions=True)
 	else:
@@ -142,6 +190,7 @@ def ensure_salary_components(company_name: str, accounts: dict) -> dict:
 		abbr="SB",
 		formula=None,
 		depends_on_payment_days=1,
+		description=COMPONENT_DESCRIPTIONS.get("Salário Base"),
 	)
 	result["c_sub_transporte"] = upsert_salary_component(
 		"Subsídio de Transporte",
@@ -151,6 +200,7 @@ def ensure_salary_components(company_name: str, accounts: dict) -> dict:
 		abbr="SDT",
 		formula=None,
 		depends_on_payment_days=1,
+		description=COMPONENT_DESCRIPTIONS.get("Subsídio de Transporte"),
 	)
 	result["c_sub_alimentacao"] = upsert_salary_component(
 		"Subsídio de Alimentação",
@@ -160,6 +210,7 @@ def ensure_salary_components(company_name: str, accounts: dict) -> dict:
 		abbr="SDA",
 		formula=None,
 		depends_on_payment_days=1,
+		description=COMPONENT_DESCRIPTIONS.get("Subsídio de Alimentação"),
 	)
 	result["c_ben_habitacao"] = upsert_salary_component(
 		"Habitação (Benefício em Espécie)",
@@ -169,6 +220,7 @@ def ensure_salary_components(company_name: str, accounts: dict) -> dict:
 		abbr="HBE",
 		formula=None,
 		depends_on_payment_days=1,
+		description=COMPONENT_DESCRIPTIONS.get("Habitação (Benefício em Espécie)"),
 	)
 	result["c_ben_viatura"] = upsert_salary_component(
 		"Viatura (Benefício em Espécie)",
@@ -178,6 +230,7 @@ def ensure_salary_components(company_name: str, accounts: dict) -> dict:
 		abbr="VBE",
 		formula=None,
 		depends_on_payment_days=1,
+		description=COMPONENT_DESCRIPTIONS.get("Viatura (Benefício em Espécie)"),
 	)
 	result["c_ben_seguro"] = upsert_salary_component(
 		"Seguro (Benefício em Espécie)",
@@ -187,41 +240,45 @@ def ensure_salary_components(company_name: str, accounts: dict) -> dict:
 		abbr="SBE",
 		formula=None,
 		depends_on_payment_days=1,
+		description=COMPONENT_DESCRIPTIONS.get("Seguro (Benefício em Espécie)"),
 	)
 
 	# Deductions
 	result["c_inss_3"] = upsert_salary_component(
-    "INSS Trabalhador (3%)",
-    "Deduction",
-    company_name,
-    accounts["liab_inss_pagar"],
-    abbr="INSS-TRAB",
-    formula="(SB + SDT + SDA + HBE + VBE + SBE) * 0.03",
-    depends_on_payment_days=1,
+		"INSS Trabalhador (3%)",
+		"Deduction",
+		company_name,
+		accounts["liab_inss_pagar"],
+		abbr="INSS-TRAB",
+		formula="(SB + SDT + SDA + HBE + VBE + SBE) * 0.03",
+		depends_on_payment_days=1,
+		description=COMPONENT_DESCRIPTIONS.get("INSS Trabalhador (3%)"),
 	)
 	result["c_irps_prog"] = upsert_salary_component(
-    "IRPS (progressivo)",
-    "Deduction",
-    company_name,
-    accounts["liab_irps_pagar"],
-    abbr="IRPS",
-    formula=None,
-    is_income_tax_component=1,
-    depends_on_payment_days=1,
+		"IRPS (progressivo)",
+		"Deduction",
+		company_name,
+		accounts["liab_irps_pagar"],
+		abbr="IRPS",
+		formula=None,
+		is_income_tax_component=1,
+		depends_on_payment_days=1,
+		description=COMPONENT_DESCRIPTIONS.get("IRPS (progressivo)"),
 	)
 
 	# Employer contribution (expense only, not in net pay)
 	result["c_inss_empregador_4"] = upsert_salary_component(
-    "INSS Empregador (4%)",
-    "Earning",
-    company_name,
-    accounts["expense_inss_employer"],
-    abbr="INSS-EMP",
-    formula="(SB + SDT + SDA + HBE + VBE + SBE) * 0.04",
-    is_employer_contribution=1,
-    depends_on_payment_days=1,
-    statistical_component=0,
-    do_not_include_in_net_pay=1,
+		"INSS Empregador (4%)",
+		"Earning",
+		company_name,
+		accounts["expense_inss_employer"],
+		abbr="INSS-EMP",
+		formula="(SB + SDT + SDA + HBE + VBE + SBE) * 0.04",
+		is_employer_contribution=1,
+		depends_on_payment_days=1,
+		statistical_component=0,
+		do_not_include_in_net_pay=1,
+		description=COMPONENT_DESCRIPTIONS.get("INSS Empregador (4%)"),
 	)
 
 	return result
