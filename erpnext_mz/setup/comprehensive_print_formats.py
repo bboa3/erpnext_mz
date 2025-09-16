@@ -574,7 +574,7 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
         super().__init__("Payment Entry", "Entrada de Pagamento (MZ)")
     
     def get_html_template(self):
-        header_macro = self.get_common_header_macro("ENTRADA DE PAGAMENTO")
+        header_macro = self.get_common_header_macro("RECIBO DE PAGAMENTO")
         footer_macro = self.get_common_footer_macro()
         qr_section = self.get_qr_code_section()
         
