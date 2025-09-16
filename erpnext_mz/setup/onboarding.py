@@ -108,13 +108,13 @@ def apply_all():
     if not profile:
         frappe.throw(_("MZ Company Setup not found"))
 
-    company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
-    if not company_name:
-        # Fallback: pick first Company
-        company = frappe.get_all("Company", pluck="name", limit=1)
-        company_name = company[0] if company else None
-    if not company_name:
-        frappe.throw(_("No Company found. Please create a Company first."))
+    company_name = "MozEcconomia S.A."
+    # if not company_name:
+    #     # Fallback: pick first Company
+    #     company = frappe.get_all("Company", pluck="name", limit=1)
+    #     company_name = company[0] if company else None
+    # if not company_name:
+    #     frappe.throw(_("No Company found. Please create a Company first."))
 
     # A. Core updates
     _update_company_tax_id(company_name, profile.tax_id)
