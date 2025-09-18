@@ -40,13 +40,13 @@ fixtures = [
   "Workspace",
   "Number Card",
   "Property Setter",
-  "Document Naming Settings",
-  "Document Naming Rule",
+  #"Document Naming Settings",
+  #"Document Naming Rule",
   "Client Script",
   #"Payroll Settings",
   "Custom Field",
-  "MZ Company Setup",
-  "QR Code"
+  #"MZ Company Setup",
+  #"QR Code"
 ]
 
 website_context = {
