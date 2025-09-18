@@ -158,6 +158,14 @@
           },
           "Ações e Obrigações": {
             "account_number": "12.03.03"
+          },
+          "Depósitos a Prazo": {
+            "account_number": "12.03.04",
+            "account_type": "Bank"
+          },
+          "Garantias Bancárias / Cauções": {
+            "account_number": "12.03.05",
+            "account_type": "Current Asset"
           }
         },
         "Ativos por Impostos Diferidos": {
@@ -179,6 +187,10 @@
           "Fornecedores Estrangeiros": {
             "account_number": "21.01.02",
             "account_type": "Payable"
+          },
+          "Mercadorias Recebidas e Não Faturadas": {
+            "account_number": "21.01.03",
+            "account_type": "Stock Received But Not Billed"
           }
         },
         "Impostos a Pagar": {
@@ -201,6 +213,14 @@
           },
           "INSS a Pagar": {
             "account_number": "21.02.05",
+            "account_type": "Tax"
+          },
+          "Retenção na Fonte – Serviços (20%)": {
+            "account_number": "21.02.07",
+            "account_type": "Tax"
+          },
+          "Retenção na Fonte – Rendas (20%)": {
+            "account_number": "21.02.08",
             "account_type": "Tax"
           },
           "IRPC a Pagar": {
@@ -229,7 +249,19 @@
           "Férias e Subsídios a Pagar": {
             "account_number": "21.05.02",
             "account_type": "Payable"
+          },
+          "Provisão de 13º Mês": {
+            "account_number": "21.05.03",
+            "account_type": "Payable"
+          },
+          "Provisão de Indemnizações/Rescisões": {
+            "account_number": "21.05.04",
+            "account_type": "Payable"
           }
+        },
+        "Dividendos a Pagar": {
+          "account_number": "21.06",
+          "account_type": "Payable"
         }
       },
       "Passivos Não Correntes": {
@@ -371,6 +403,14 @@
       "Imposto sobre o Rendimento (IRPC)": {
         "account_number": "50.07",
         "account_type": "Tax"
+      },
+      "Despesas Incluídas na Valorização de Stock": {
+        "account_number": "50.08",
+        "account_type": "Expenses Included In Valuation"
+      },
+      "Ajustes de Inventário (Quebras e Perdas)": {
+        "account_number": "50.09",
+        "account_type": "Stock Adjustment"
       }
     }
   }
