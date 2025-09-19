@@ -134,6 +134,9 @@ def apply_all():
     # E. Create print formats
     _create_print_formats()
 
+    # F. SMTP infrastructure
+    _ensure_smtp_infrastructure(company_name)
+
     # Reload profile to avoid timestamp mismatch
     profile.reload()
     profile.is_applied = 1
@@ -850,6 +853,18 @@ def _ensure_income_tax_slab(company_name: str):
         frappe.log_error(f"Error creating Income Tax Slab: {str(e)}", "Income Tax Slab Creation Error")
 
 
+def _ensure_smtp_infrastructure(company_name: str):
+    """Orchestrate SMTP infrastructure (idempotent)."""
+    try:
+        from erpnext_mz.setup.email_setup import ensure_smtp_setup
+        email_result = ensure_smtp_setup(company_name)
+        if not email_result.get("ok"):
+            print(f"ℹ️ SMTP setup skipped: {email_result.get('message')}")
+        else:
+            print(f"✅ SMTP configured (Email Account: {email_result.get('account')})")
+    except Exception as e:
+        frappe.log_error(f"Error applying SMTP setup: {str(e)}", "SMTP Setup Error")
+
 @frappe.whitelist()
 def get_status():
     profile = _get_profile(create_if_missing=True)
@@ -969,6 +984,17 @@ def trigger_onboarding_manually():
     except Exception as e:
         return {"error": str(e)}
 
+@frappe.whitelist()
+def ensure_smtp_infrastructure_manually():
+    """Manual function to ensure SMTP infrastructure exists for the company"""
+    try:
+        company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
+        if not company_name:
+            return {"error": "No company found"}
+        _ensure_smtp_infrastructure(company_name)
+        return {"success": True, "message": "SMTP infrastructure ensured successfully"}
+    except Exception as e:
+        return {"error": str(e)}
 
 @frappe.whitelist()
 def should_trigger_onboarding():
