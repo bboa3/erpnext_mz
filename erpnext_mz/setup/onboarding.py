@@ -272,23 +272,23 @@ def _apply_branding(company_name: str, profile):
         elif getattr(company_doc, "company_logo", None):
             logo_url = company_doc.company_logo
 
-        # Build header HTML with three sections: Logo (left), Company Info (center), Address (right)
+        # Build header HTML with consistent design system matching print formats
         header_html = [
-            "<table style=\"width:100%; font-family: 'Arial', 'Helvetica', sans-serif; border-collapse:collapse; margin-bottom:20px;\">",
-            "<tr>",
+            "<div style=\"font-family: 'Arial', 'Helvetica', sans-serif; margin-bottom: 20px;\">",
+            "<div style=\"display: flex; align-items: flex-start; gap: 20px; margin-bottom: 12px;\">",
         ]
         
         # Left section: Logo and NUIT
-        header_html.append("<td style=\"width:150px; vertical-align:top; text-align:left;\">")
+        header_html.append("<div style=\"flex: 0 0 150px;\">")
         if logo_url:
-            header_html.append(f"<img src=\"{logo_url}\" style=\"max-height:88px; max-width:150px; object-fit:contain; margin-bottom:5px;\"/>")
+            header_html.append(f"<img src=\"{logo_url}\" style=\"max-height: 80px; max-width: 150px; object-fit: contain; margin-bottom: 8px;\"/>")
         if tax_id:
-            header_html.append(f"<div style=\"font-size:10pt; font-weight:bold; background-color:#f0f0f0; padding:3px; border:1px solid #ccc; text-align:center; margin-top:5px;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
-        header_html.append("</td>")
+            header_html.append(f"<div style=\"font-size: 11px; font-weight: 600; background-color: #f8f9fa; padding: 4px 8px; border: 1px solid #e5e5e5; text-align: center; color: #2c3e50; border-radius: 3px;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
+        header_html.append("</div>")
         
         # Center section: Company name and contact details
-        header_html.append("<td style=\"vertical-align:top; text-align:center; padding:0 20px;\">")
-        header_html.append(f"<div style=\"font-weight:bold; font-size:14pt; margin-bottom:8px; text-transform: uppercase;\">{frappe.utils.escape_html(company_name)}</div>")
+        header_html.append("<div style=\"flex: 1; text-align: center; padding: 0 20px;\">")
+        header_html.append(f"<h1 style=\"font-weight: 600; font-size: 20px; margin: 0 0 8px 0; color: #2c3e50; text-transform: uppercase; letter-spacing: 0.5px;\">{frappe.utils.escape_html(company_name)}</h1>")
         
         # Contact details in center
         contact_details = []
@@ -303,20 +303,20 @@ def _apply_branding(company_name: str, profile):
 
         
         if contact_details:
-            header_html.append(f"<div style=\"font-size:10pt; line-height:1.4;\">{'<br>'.join(contact_details)}</div>")
-        header_html.append("</td>")
+            header_html.append(f"<div style=\"font-size: 12px; line-height: 1.4; color: #7f8c8d;\">{'<br>'.join(contact_details)}</div>")
+        header_html.append("</div>")
         
         # Right section: Company address
-        header_html.append("<td style=\"width:200px; vertical-align:top; text-align:right;\">")
-        address_parts = [p for p in [line1, line2, f"{city} {province}".strip()] if p]
+        header_html.append("<div style=\"flex: 0 0 200px; text-align: right;\">")
+        address_parts = [p for p in [line1, lne2, f"{ciity} {province}".strip()] if p]
         if address_parts:
             for part in address_parts:
-                header_html.append(f"<div style=\"font-size:10pt; line-height:1.3;\">{frappe.utils.escape_html(part)}</div>")
-        header_html.append(f"<div style=\"font-size:10pt; line-height:1.3; font-weight:bold;\">Mozambique</div>")
-        header_html.append("</td>")
+                header_html.append(f"<div style=\"font-size: 12px; line-height: 1.3; color: #555; margin-bottom: 2px;\">{frappe.utils.escape_html(part)}</div>")
+        header_html.append(f"<div style=\"font-size: 12px; line-height: 1.3; font-weight: 600; color: #2c3e50;\">Mozambique</div>")
+        header_html.append("</div>")
         
-        header_html.append("</tr>")
-        header_html.append("</table>")
+        header_html.append("</div>")
+        header_html.append("</div>")
         header_html = "".join(header_html)
 
         # Get terms and conditions text
@@ -342,7 +342,7 @@ def _apply_branding(company_name: str, profile):
             footer_contact_parts.append(f"Email: {frappe.utils.escape_html(email)}")
         
         if footer_contact_parts:
-            footer_html.append(f"<div style=\"font-size: 10px; color: #666; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.3;\">{' | '.join(footer_contact_parts)}</div>")
+            footer_html.append(f"<div style=\"font-size: 9px; color: #7f8c8d; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.3;\">{' | '.join(footer_contact_parts)}</div>")
         
         footer_content = "".join(footer_html)
 
@@ -374,8 +374,8 @@ def _apply_branding(company_name: str, profile):
 
         # Set as company's default letter head
         try:
-            if getattr(company_doc, "default_letter_head", None) != lh_name:
-                company_doc.db_set("default_letter_head", lh_name, commit=True)
+            if getattr(company_doc, "default_letter_head", None) != 'MozEconomia Cloud - Default':
+                company_doc.db_set("default_letter_head", 'MozEconomia Cloud - Default', commit=True)
         except Exception:
             pass
 
