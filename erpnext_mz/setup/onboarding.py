@@ -256,8 +256,8 @@ def _apply_branding(company_name: str, profile):
         email = profile.email or ""
         website = (getattr(profile, "website", None) or getattr(company_doc, "website", None) or "")
         line1 = profile.address_line1 or ""
-        line2 = profile.neighborhood_or_district or ""
-        city = profile.city or ""
+        lne2 = profile.neighborhood_or_district or ""
+        ciity = profile.city or ""
         province = profile.province or ""
         logo_url = None
 
@@ -274,7 +274,7 @@ def _apply_branding(company_name: str, profile):
 
         # Build header HTML with three sections: Logo (left), Company Info (center), Address (right)
         header_html = [
-            "<table style=\"width:100%; border-collapse:collapse; margin-bottom:20px;\">",
+            "<table style=\"width:100%; font-family: 'Arial', 'Helvetica', sans-serif; border-collapse:collapse; margin-bottom:20px;\">",
             "<tr>",
         ]
         
@@ -288,7 +288,7 @@ def _apply_branding(company_name: str, profile):
         
         # Center section: Company name and contact details
         header_html.append("<td style=\"vertical-align:top; text-align:center; padding:0 20px;\">")
-        header_html.append(f"<div style=\"font-weight:bold; font-size:14pt; margin-bottom:8px;\">{frappe.utils.escape_html(company_name)}</div>")
+        header_html.append(f"<div style=\"font-weight:bold; font-size:14pt; margin-bottom:8px; text-transform: uppercase;\">{frappe.utils.escape_html(company_name)}</div>")
         
         # Contact details in center
         contact_details = []
@@ -322,34 +322,34 @@ def _apply_branding(company_name: str, profile):
         # Get terms and conditions text
         terms_text = getattr(profile, "terms_and_conditions_of_sale", None) or ""
 
-        # Build footer HTML (without terms and conditions)
+        # Build footer HTML with consistent design system
         footer_html = []
         
-        # Add "Processado pelo programa ERPNext Moçambique" (almost invisible)
-        footer_html.append("<div style=\"color:#e0e0e0; font-size:8pt; margin-bottom:8px;\">Processado pelo programa ERPNext Moçambique</div>")
+        # Add "Processado pelo programa ERPNext Moçambique" (subtle branding)
+        footer_html.append("<div style=\"color: #f0f0f0; font-size: 8px; margin-bottom: 8px; font-family: 'Arial', 'Helvetica', sans-serif;\">Processado pelo programa MozEconomia Cloud</div>")
         
-        # Add company address and contacts in line
+        # Add company address and contacts in line with consistent styling
         footer_contact_parts = []
         if line1:
             footer_contact_parts.append(frappe.utils.escape_html(line1))
-        if line2:
-            footer_contact_parts.append(frappe.utils.escape_html(line2))
-        if city and province:
-            footer_contact_parts.append(f"{frappe.utils.escape_html(city)}, {frappe.utils.escape_html(province)}")
+        if lne2:
+            footer_contact_parts.append(frappe.utils.escape_html(lne2))
+        if ciity and province:
+            footer_contact_parts.append(f"{frappe.utils.escape_html(ciity)}, {frappe.utils.escape_html(province)}")
         if phone:
             footer_contact_parts.append(f"Tel: {frappe.utils.escape_html(phone)}")
         if email:
             footer_contact_parts.append(f"Email: {frappe.utils.escape_html(email)}")
         
         if footer_contact_parts:
-            footer_html.append(f"<div style=\"font-size:9pt; color:#666;\">{' | '.join(footer_contact_parts)}</div>")
+            footer_html.append(f"<div style=\"font-size: 10px; color: #666; font-family: 'Arial', 'Helvetica', sans-serif; line-height: 1.3;\">{' | '.join(footer_contact_parts)}</div>")
         
         footer_content = "".join(footer_html)
 
         # Create or update Letter Head
-        if not frappe.db.exists("Letter Head", lh_name):
+        if not frappe.db.exists("Letter Head", 'MozEconomia Cloud - Default'):
             lh = frappe.new_doc("Letter Head")
-            lh.letter_head_name = lh_name
+            lh.letter_head_name = 'MozEconomia Cloud - Default'
             lh.company = company_name
             lh.is_default = 1
             lh.disabled = 0
@@ -359,7 +359,7 @@ def _apply_branding(company_name: str, profile):
             lh.footer = footer_content
             lh.insert(ignore_permissions=True)
         else:
-            lh = frappe.get_doc("Letter Head", lh_name)
+            lh = frappe.get_doc("Letter Head", 'MozEconomia Cloud - Default')
             lh.company = company_name
             lh.is_default = 1
             lh.disabled = 0

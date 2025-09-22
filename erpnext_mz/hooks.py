@@ -309,7 +309,7 @@ before_request = [
 
 default_mail_footer = """
   <div>
-  Enviado via <a href="https://mozeconomia.co.mz" target="_blank">MozEconomia Cloud</a>
+  Enviado via <a style="color: #02664D;" href="https://mozeconomia.co.mz" target="_blank">MozEconomia Cloud</a>
   </div>
 """
 
