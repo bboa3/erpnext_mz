@@ -1,9 +1,9 @@
 # App configuration
 app_name = "erpnext_mz"
-app_title = "ERPNext Moçambique"
+app_title = "MozEconomia Cloud"
 app_publisher = "MozEconomia, SA"
 app_description = f"""
-Aplicação Personalizada ERPNext MZ
+Aplicação Personalizada MozEconomia Cloud
 Esta aplicação fornece funcionalidades específicas para Moçambique em conformidade fiscal, contabilidade e RH:
 - Plano de Contas alinhado às IFRS
 - Modelos de IVA (16%, 5%, 0%)

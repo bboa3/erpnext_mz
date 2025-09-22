@@ -20,7 +20,7 @@ def apply_website_branding(override: bool = False):
         ws = frappe.get_single("Website Settings")
 
         logo = "/assets/erpnext_mz/images/logo180.png"
-        brand = "ERPNext Moçambique"
+        brand = "MozEconomia Cloud"
 
         changed = False
 

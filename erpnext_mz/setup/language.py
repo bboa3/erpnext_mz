@@ -47,7 +47,7 @@ def apply_system_settings(override: bool = True):
     """
     try:
         desired = {
-            "app_name": "ERPNext Moçambique",
+            "app_name": "MozEconomia Cloud",
             "country": "Mozambique",
             "currency": "MZN",
             "language": "pt-MZ",
