@@ -272,23 +272,23 @@ def _apply_branding(company_name: str, profile):
         elif getattr(company_doc, "company_logo", None):
             logo_url = company_doc.company_logo
 
-        # Build header HTML with consistent design system matching print formats
+        # Build header HTML with three sections: Logo (left), Company Info (center), Address (right)
         header_html = [
-            "<div style=\"font-family: 'Arial', 'Helvetica', sans-serif; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #e5e5e5;\">",
-            "<div style=\"display: flex; align-items: flex-start; gap: 16px;\">",
+            "<table style=\"width:100%; font-family: 'Arial', 'Helvetica', sans-serif; border-collapse:collapse; margin-bottom:20px;\">",
+            "<tr>",
         ]
         
         # Left section: Logo and NUIT
-        header_html.append("<div style=\"flex: 0 0 150px;\">")
+        header_html.append("<td style=\"width:150px; vertical-align:top; text-align:left;\">")
         if logo_url:
-            header_html.append(f"<img src=\"{logo_url}\" style=\"max-height: 60px; max-width: 120px; object-fit: contain; margin-bottom: 6px;\"/>")
+            header_html.append(f"<img src=\"{logo_url}\" style=\"max-height:88px; max-width:150px; object-fit:contain; margin-bottom:5px;\"/>")
         if tax_id:
-            header_html.append(f"<div style=\"font-size: 10px; font-weight: 600; background-color: #f8f9fa; padding: 6px 8px; border: 1px solid #e5e5e5; text-align: center; color: #2c3e50; border-radius: 4px; margin-top: 4px;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
-        header_html.append("</div>")
+            header_html.append(f"<div style=\"font-size:10pt; font-weight:bold; background-color:#f0f0f0; padding:3px; border:1px solid #ccc; text-align:center; margin-top:5px;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
+        header_html.append("</td>")
         
         # Center section: Company name and contact details
-        header_html.append("<div style=\"flex: 1; text-align: center; padding: 0 20px;\">")
-        header_html.append(f"<h1 style=\"font-weight: 600; font-size: 18px; margin: 0 0 6px 0; color: #2c3e50; text-transform: uppercase; letter-spacing: 0.5px;\">{frappe.utils.escape_html(company_name)}</h1>")
+        header_html.append("<td style=\"vertical-align:top; text-align:center; padding:0 20px;\">")
+        header_html.append(f"<div style=\"font-weight:bold; font-size:14pt; margin-bottom:8px; text-transform: uppercase;\">{frappe.utils.escape_html(company_name)}</div>")
         
         # Contact details in center
         contact_details = []
@@ -298,30 +298,34 @@ def _apply_branding(company_name: str, profile):
             contact_details.append(frappe.utils.escape_html(phone))
         if website:
             contact_details.append(frappe.utils.escape_html(website))
+        if tax_id:
+            contact_details.append(frappe.utils.escape_html(tax_id))
+
         
         if contact_details:
-            header_html.append(f"<div style=\"font-size: 11px; line-height: 1.3; color: #7f8c8d;\">{'<br>'.join(contact_details)}</div>")
-        header_html.append("</div>")
+            header_html.append(f"<div style=\"font-size:10pt; line-height:1.4;\">{'<br>'.join(contact_details)}</div>")
+        header_html.append("</td>")
         
         # Right section: Company address
-        header_html.append("<div style=\"flex: 0 0 200px; text-align: right;\">")
-        address_parts = [p for p in [line1, lne2, f"{ciity} {province}".strip()] if p]
+        header_html.append("<td style=\"width:200px; vertical-align:top; text-align:right;\">")
+        address_parts = [p for p in [line1, line2, f"{city} {province}".strip()] if p]
         if address_parts:
             for part in address_parts:
-                header_html.append(f"<div style=\"font-size: 11px; line-height: 1.2; color: #555; margin-bottom: 1px;\">{frappe.utils.escape_html(part)}</div>")
-        header_html.append(f"<div style=\"font-size: 11px; line-height: 1.2; font-weight: 600; color: #2c3e50; margin-top: 2px;\">Mozambique</div>")
-        header_html.append("</div>")
+                header_html.append(f"<div style=\"font-size:10pt; line-height:1.3;\">{frappe.utils.escape_html(part)}</div>")
+        header_html.append(f"<div style=\"font-size:10pt; line-height:1.3; font-weight:bold;\">Mozambique</div>")
+        header_html.append("</td>")
         
-        header_html.append("</div>")
-        header_html.append("</div>")
+        header_html.append("</tr>")
+        header_html.append("</table>")
         header_html = "".join(header_html)
 
         # Get terms and conditions text
         terms_text = getattr(profile, "terms_and_conditions_of_sale", None) or ""
 
-        # Build footer HTML (without terms and conditions)
+        # Build footer HTML with consistent design system
         footer_html = []
-                # Add company address and contacts in line
+        
+        # Add company address and contacts in line with consistent styling
         footer_contact_parts = []
         if line1:
             footer_contact_parts.append(frappe.utils.escape_html(line1))
@@ -344,9 +348,9 @@ def _apply_branding(company_name: str, profile):
         footer_content = "".join(footer_html)
 
         # Create or update Letter Head
-        if not frappe.db.exists("Letter Head", lh_name):
+        if not frappe.db.exists("Letter Head", 'MozEconomia Cloud - Default'):
             lh = frappe.new_doc("Letter Head")
-            lh.letter_head_name = lh_name
+            lh.letter_head_name = 'MozEconomia Cloud - Default'
             lh.company = company_name
             lh.is_default = 1
             lh.disabled = 0
@@ -356,7 +360,7 @@ def _apply_branding(company_name: str, profile):
             lh.footer = footer_content
             lh.insert(ignore_permissions=True)
         else:
-            lh = frappe.get_doc("Letter Head", lh_name)
+            lh = frappe.get_doc("Letter Head", 'MozEconomia Cloud - Default')
             lh.company = company_name
             lh.is_default = 1
             lh.disabled = 0
