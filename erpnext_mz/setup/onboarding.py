@@ -247,8 +247,7 @@ def _apply_branding(company_name: str, profile):
     - Updates company website if provided
     """
     try:
-       # lh_name = f"{company_name} - Default"
-        lh_name = f"MozEconomia Cloud - Default"
+        lh_name = f"{company_name} - Default"
 
         # Collect info
         company_doc = frappe.get_doc("Company", company_name)
