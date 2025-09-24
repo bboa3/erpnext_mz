@@ -111,6 +111,7 @@ class DeliveryNotePrintFormat(PrintFormatTemplate):
         header_macro = self.get_common_header_macro("GUIA DE REMESSA")
         footer_macro = self.get_common_footer_macro()
         customer_section = self.get_customer_details_section()
+        signatures_section = self.get_signatures_section()
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
             ("net_total", "Sub Total", True),
@@ -172,19 +173,7 @@ class DeliveryNotePrintFormat(PrintFormatTemplate):
 
             """ + totals_section + """
 
-            <!-- Assinaturas -->
-            <div class="row" style="margin-top: 8px;">
-                <div class="col-xs-6 text-left">
-                     <div style="border-top: 1px solid #e5e5e5; padding-top: 6px;">
-                     {{ _("Emitido por") }}:
-                     {% if doc.owner %}
-                        {{ doc.owner }}
-                     {% endif %}</div>
-                </div>
-                <div class="col-xs-6 text-right">
-                    <div style="border-top: 1px solid #e5e5e5; padding-top: 6px;">{{ _("Recebido por") }}: ____________________</div>
-                </div>
-            </div>
+            """ + signatures_section + """
 
             """ + qr_section + """
 

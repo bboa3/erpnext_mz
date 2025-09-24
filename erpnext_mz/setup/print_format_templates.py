@@ -244,13 +244,13 @@ class PrintFormatTemplate:
 
         /* Items Table */
         .items-section {
-            margin-bottom: 12px;
+            margin-bottom: 4px;
         }
 
         .items-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 6px;
+            margin-top: 4px;
             border: 1px solid #e5e5e5;
             table-layout: fixed;
         }
@@ -328,12 +328,12 @@ class PrintFormatTemplate:
 
         /* Totals Section */
         .totals-section {
-            margin-bottom: 12px;
+            margin-bottom: 4px;
         }
 
         .amount-in-words, .terms-section {
             padding: 8px 0;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .amount-in-words h5, .terms-section h5 {
@@ -392,8 +392,8 @@ class PrintFormatTemplate:
 
         .totals-row.grand-total {
             border-top: 2px solid #2c3e50;
-            margin-top: 6px;
-            padding-top: 8px;
+            margin-top: 4px;
+            padding-top: 6px;
             font-weight: 600;
             font-size: 14px;
         }
@@ -406,7 +406,7 @@ class PrintFormatTemplate:
 
         /* Payment Section */
         .payment-section {
-            margin-bottom: 12px;
+            margin-bottom: 4px;
         }
 
         .payment-info {
@@ -433,8 +433,8 @@ class PrintFormatTemplate:
 
         /* QR Code Section */
         .qr-section {
-            margin-top: 20px;
-            margin-bottom: 8px;
+            margin-top: 16px;
+            margin-bottom: 4px;
         }
 
         .qr-code-container {
@@ -889,6 +889,25 @@ class PrintFormatTemplate:
                     <div class="totals-table">
                         {totals_html}
                     </div>
+                </div>
+            </div>
+        """
+
+    def get_signatures_section(self):
+        """Common signatures section"""
+        return """
+            <!-- Signatures Section -->
+            <div class="row" style="margin-top: 8px;">
+                <div class="col-xs-6 text-left">
+                    <div style="border-top: 1px solid #e5e5e5; padding-top: 6px;">
+                        {{ _("Emitido por") }}:
+                        {% if doc.owner %}
+                            {{ doc.owner }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <div style="border-top: 1px solid #e5e5e5; padding-top: 6px;">{{ _("Recebido por") }}: ____________________</div>
                 </div>
             </div>
         """

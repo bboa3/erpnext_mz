@@ -274,7 +274,7 @@ def _apply_branding(company_name: str, profile):
 
         # Build header HTML with three sections: Logo (left), Company Info (center), Address (right)
         header_html = [
-            "<table style=\"width:100%; font-family: 'Arial', 'Helvetica', sans-serif; border-collapse:collapse; margin-bottom:20px;\">",
+            "<table style=\"width:100%; font-family: 'Arial', 'Helvetica', sans-serif; border-collapse:collapse;\">",
             "<tr>",
         ]
         
@@ -283,7 +283,7 @@ def _apply_branding(company_name: str, profile):
         if logo_url:
             header_html.append(f"<img src=\"{logo_url}\" style=\"max-height:88px; max-width:170px; object-fit:contain; margin-bottom:5px;\"/>")
         if tax_id:
-            header_html.append(f"<div style=\"font-size:10pt; font-weight:bold; background-color:#f0f0f0; padding:2px; border:1px solid #ccc; text-align:center; margin-top:5px;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
+            header_html.append(f"<div style=\"font-size:10pt; font-weight:bold; background-color:#f0f0f0; padding:3px; border:1px solid #ccc; text-align:center; margin-top:5px;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
         header_html.append("</td>")
         
         # Center section: Company name and contact details
@@ -312,7 +312,7 @@ def _apply_branding(company_name: str, profile):
         if address_parts:
             for part in address_parts:
                 header_html.append(f"<div style=\"font-size:10pt; line-height:1.3;\">{frappe.utils.escape_html(part)}</div>")
-        header_html.append(f"<div style=\"font-size:10pt; line-height:1.3; font-weight:bold;\">Mozambique</div>")
+        header_html.append(f"<div style=\"font-size:10pt; line-height:1.3; font-weight:bold;\">Moçambique</div>")
         header_html.append("</td>")
         
         header_html.append("</tr>")
@@ -341,8 +341,8 @@ def _apply_branding(company_name: str, profile):
         if footer_contact_parts:
             footer_html.append(f"<div style=\"font-size:9pt; color:#666;\">{' | '.join(footer_contact_parts)}</div>")
         
-        # Add "Processado pelo programa ERPNext Moçambique" (almost invisible)
-        footer_html.append("<div style=\"color:#e0e0e0; font-size:8pt; margin-bottom:8px;\">Processado pelo programa ERPNext Moçambique</div>")
+        # Add "Processado pelo programa MozEconomia Cloud" (almost invisible)
+        footer_html.append("<div style=\"color:#999; font-size:8pt; margin-top:2px;\">Processado pelo programa MozEconomia Cloud</div>")
 
         footer_content = "".join(footer_html)
 
