@@ -46,7 +46,7 @@ fixtures = [
   #"Payroll Settings",
   "Custom Field",
   #"MZ Company Setup",
-  #"QR Code"
+  #"QR Code",
 	{
     "doctype": "Currency",
     "filters": [

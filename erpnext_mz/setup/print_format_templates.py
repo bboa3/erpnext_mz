@@ -648,7 +648,7 @@ class PrintFormatTemplate:
         <div class="row qr-section">
             <div class="col-xs-12 text-center">
                 {% set qr_code_img = get_qr_image(doc.doctype, doc.name) %}
-                {% if qr_code_img %}
+                {% if qr_code_img and qr_code_img.strip() %}
                 <div class="qr-code-container">
                     <img src="data:image/png;base64,{{ qr_code_img }}" alt="QR Code" class="qr-code-img" />
                     <p class="qr-label">{{ _("Escaneie o QR para verificar a autenticidade") }}</p>

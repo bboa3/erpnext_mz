@@ -175,7 +175,11 @@ class DeliveryNotePrintFormat(PrintFormatTemplate):
             <!-- Assinaturas -->
             <div class="row" style="margin-top: 8px;">
                 <div class="col-xs-6 text-left">
-                    <div style="border-top: 1px solid #e5e5e5; padding-top: 6px;">{{ _("Emitido por") }}: {% if doc.owner %}{{ frappe.utils.get_fullname(doc.owner) or doc.owner }}{% endif %}</div>
+                     <div style="border-top: 1px solid #e5e5e5; padding-top: 6px;">
+                     {{ _("Emitido por") }}:
+                     {% if doc.owner %}
+                        {{ doc.owner }}
+                     {% endif %}</div>
                 </div>
                 <div class="col-xs-6 text-right">
                     <div style="border-top: 1px solid #e5e5e5; padding-top: 6px;">{{ _("Recebido por") }}: ____________________</div>
