@@ -255,26 +255,26 @@ class PrintFormatTemplate:
             table-layout: fixed;
         }
 
-        /* Column widths for 7-column layout */
+        /* Column widths for 7-column layout - Optimized for better readability */
         .items-table th:nth-child(1),
-        .items-table td:nth-child(1) { width: 5%; }   /* Sr */
+        .items-table td:nth-child(1) { width: 4%; }   /* Sr */
         .items-table th:nth-child(2),
-        .items-table td:nth-child(2) { width: 35%; }  /* Descrição */
+        .items-table td:nth-child(2) { width: 31%; }  /* Descrição */
         .items-table th:nth-child(3),
-        .items-table td:nth-child(3) { width: 8%; }   /* Qtd */
+        .items-table td:nth-child(3) { width: 8%; }  /* Qtd */
         .items-table th:nth-child(4),
-        .items-table td:nth-child(4) { width: 8%; }   /* U.M. */
+        .items-table td:nth-child(4) { width: 10%; }   /* U.M. */
         .items-table th:nth-child(5),
-        .items-table td:nth-child(5) { width: 12%; }  /* Preço */
+        .items-table td:nth-child(5) { width: 17%; }  /* Preço */
         .items-table th:nth-child(6),
-        .items-table td:nth-child(6) { width: 7%; }   /* IVA (%) */
+        .items-table td:nth-child(6) { width: 9%; }   /* IVA (%) */
         .items-table th:nth-child(7),
-        .items-table td:nth-child(7) { width: 25%; }  /* Valor */
+        .items-table td:nth-child(7) { width: 21%; }  /* Valor */
 
         .items-table th {
             background-color: #f8f9fa;
             color: #2c3e50;
-            padding: 8px 6px;
+            padding: 4px 3px;
             font-weight: 600;
             font-size: 11px;
             text-transform: uppercase;
@@ -291,11 +291,26 @@ class PrintFormatTemplate:
             text-align: right;
         }
 
+        /* Enhanced column alignment for better readability */
+        .items-table td.text-center {
+            text-align: center;
+        }
+
+        .items-table td.text-right {
+            text-align: right;
+        }
+
+        .items-table td.text-left {
+            text-align: left;
+        }
+
         .items-table td {
-            padding: 6px 6px;
+            padding: 3px 3px;
             border-bottom: 1px solid #f0f0f0;
             vertical-align: top;
             font-size: 12px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .items-table tbody tr:last-child td {
@@ -357,7 +372,7 @@ class PrintFormatTemplate:
             font-size: 12px;
             font-weight: 500;
             float: left;
-            width: 60%;
+            width: 52%;
         }
 
         .totals-value {
@@ -365,7 +380,7 @@ class PrintFormatTemplate:
             font-size: 12px;
             font-weight: 500;
             float: right;
-            width: 40%;
+            width: 48%;
             text-align: right;
         }
 
@@ -488,11 +503,26 @@ class PrintFormatTemplate:
         @media print {
             .print-format { font-size: 11px; }
             .document-title { font-size: 20px; }
-            .items-table th, .items-table td { padding: 6px 4px; }
+            .items-table th, .items-table td { padding: 3px 2px; }
+            .items-table th { font-size: 10px; }
+            .items-table td { font-size: 11px; }
             
-            /* Print column width adjustments */
+            /* Consistent column widths for print - same as screen for consistency */
+            .items-table th:nth-child(1),
+            .items-table td:nth-child(1) { width: 4% !important; }   /* Sr */
+            .items-table th:nth-child(2),
+            .items-table td:nth-child(2) { width: 31% !important; }  /* Descrição */
+            .items-table th:nth-child(3),
+            .items-table td:nth-child(3) { width: 8% !important; }  /* Qtd */
+            .items-table th:nth-child(4),
+            .items-table td:nth-child(4) { width: 10% !important; }   /* U.M. */
+            .items-table th:nth-child(5),
+            .items-table td:nth-child(5) { width: 17% !important; }  /* Preço */
             .items-table th:nth-child(6),
-            .items-table td:nth-child(6) { width: 8% !important; }   /* IVA (%) - slightly wider for print */
+            .items-table td:nth-child(6) { width: 9% !important; }   /* IVA (%) */
+            .items-table th:nth-child(7),
+            .items-table td:nth-child(7) { width: 21% !important; }  /* Valor */
+            
             .totals-row { padding: 2px 0; }
             .payment-info { padding: 6px; }
             
@@ -640,6 +670,12 @@ class PrintFormatTemplate:
                         {% if doc.tax_id %}
                             <div><strong>{{ _("NUIT") }}:</strong> {{ doc.tax_id }}</div>
                         {% endif %}
+                        {% if not doc.tax_id and doc.customer %}
+                            {% set __cust_nuit = frappe.db.get_value('Customer', doc.customer, 'tax_id') %}
+                            {% if __cust_nuit %}
+                                <div><strong>{{ _("NUIT") }}:</strong> {{ __cust_nuit }}</div>
+                            {% endif %}
+                        {% endif %}
                         {% if doc.address_display %}
                             <div>{{ doc.address_display }}</div>
                         {% endif %}
@@ -673,86 +709,65 @@ class PrintFormatTemplate:
                             <span class="value">{{ doc.currency }}</span>
                         </div>
                         {% endif %}
+                        {% if doc.currency and doc.company_currency and doc.currency != doc.company_currency and doc.conversion_rate %}
+                        <div class="info-row">
+                            <span class="label">{{ _("Taxa de câmbio") }}:</span>
+                            <span class="value">1 {{ doc.currency }} = {{ doc.conversion_rate }} {{ doc.company_currency }}</span>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         """
 
-    # def get_item_tax_rate_jinja(self):
-    #     """Return Jinja2 code that prints the item's VAT/IVA rate with a % suffix.
-    #     Priority: item.item_tax_rate -> item.item_tax_template -> doc.taxes
-    #     """
-    #     return r"""
-    #         {%- set rate = none -%}
-
-    #         {# 1) Prefer per-line item.item_tax_rate (JSON mapping: Account -> %) #}
-    #         {%- if item.item_tax_rate -%}
-    #         {%- set it = frappe.utils.parse_json(item.item_tax_rate) -%}
-    #         {%- if it -%}
-    #             {%- set sum_vat = 0.0 -%}
-    #             {%- set matched_vat = false -%}
-    #             {%- for k, v in it.items() -%}
-    #             {%- if 'iva' in (k or '')|lower or 'vat' in (k or '')|lower -%}
-    #                 {%- set sum_vat = sum_vat + (v|float) -%}
-    #                 {%- set matched_vat = true -%}
-    #             {%- endif -%}
-    #             {%- endfor -%}
-    #             {%- if matched_vat -%}
-    #             {%- set rate = sum_vat -%}
-    #             {%- else -%}
-    #             {# No explicit VAT/IVA key; sum all entries #}
-    #             {%- set rate = 0.0 -%}
-    #             {%- for k, v in it.items() -%}
-    #                 {%- set rate = rate + (v|float) -%}
-    #             {%- endfor -%}
-    #             {%- endif -%}
-    #         {%- endif -%}
-    #         {%- endif -%}
-
-    #         {# 2) Fallback: Item Tax Template #}
-    #         {%- if (rate is none or rate == 0) and item.item_tax_template -%}
-    #         {%- set tpl = frappe.get_doc('Item Tax Template', item.item_tax_template) -%}
-    #         {%- set sum_vat = 0.0 -%}
-    #         {%- set matched_vat = false -%}
-    #         {%- for t in tpl.taxes -%}
-    #             {%- set acc = (t.tax_type or '') -%}
-    #             {%- if 'iva' in acc|lower or 'vat' in acc|lower -%}
-    #             {%- set sum_vat = sum_vat + (t.tax_rate or 0)|float -%}
-    #             {%- set matched_vat = true -%}
-    #             {%- endif -%}
-    #         {%- endfor -%}
-    #         {%- if matched_vat -%}
-    #             {%- set rate = sum_vat -%}
-    #         {%- else -%}
-    #             {# No explicit VAT/IVA entry; sum all #}
-    #             {%- set rate = 0.0 -%}
-    #             {%- for t in tpl.taxes -%}
-    #             {%- set rate = rate + (t.tax_rate or 0)|float -%}
-    #             {%- endfor -%}
-    #         {%- endif -%}
-    #         {%- endif -%}
-
-    #         {# 3) Final fallback: scan doc.taxes for a VAT/IVA row, else first non-zero #}
-    #         {%- if rate is none or rate == 0 -%}
-    #         {%- set candidate = none -%}
-    #         {%- for tx in doc.taxes -%}
-    #             {%- if tx.rate and ('iva' in (tx.account_head or '')|lower or 'vat' in (tx.account_head or '')|lower) and (candidate is none) -%}
-    #             {%- set candidate = tx.rate|float -%}
-    #             {%- endif -%}
-    #         {%- endfor -%}
-    #         {%- if candidate is none -%}
-    #             {%- for tx in doc.taxes -%}
-    #             {%- if tx.rate and (candidate is none) -%}
-    #                 {%- set candidate = tx.rate|float -%}
-    #             {%- endif -%}
-    #             {%- endfor -%}
-    #         {%- endif -%}
-    #         {%- set rate = candidate or 0 -%}
-    #         {%- endif -%}
-
-    #         {{ (rate or 0)|float }}%
-    #         """
-
+    def get_item_tax_rate_jinja(self):
+        """Return Jinja template code to calculate item tax rate
+        Priority: item.item_tax_template -> doc.taxes
+        """
+        return """
+            {% if item.item_tax_template %}
+                {% set tax_template = frappe.get_doc('Item Tax Template', item.item_tax_template) %}
+                {% if tax_template.taxes and tax_template.taxes|first %}
+                    {% set first_tax_detail = tax_template.taxes|first %}
+                    {% if first_tax_detail.tax_rate and first_tax_detail.tax_rate > 0 %}
+                        {{ first_tax_detail.tax_rate|int }}%
+                    {% else %}
+                        {% if doc.taxes and doc.taxes|first %}
+                            {% set first_tax = doc.taxes|first %}
+                            {% if first_tax.rate %}
+                                {{ first_tax.rate|int }}%
+                            {% else %}
+                                0%
+                            {% endif %}
+                        {% else %}
+                            0%
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    {% if doc.taxes and doc.taxes|first %}
+                        {% set first_tax = doc.taxes|first %}
+                        {% if first_tax.rate %}
+                            {{ first_tax.rate|int }}%
+                        {% else %}
+                            0%
+                        {% endif %}
+                    {% else %}
+                        0%
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {% if doc.taxes and doc.taxes|first %}
+                    {% set first_tax = doc.taxes|first %}
+                    {% if first_tax.rate %}
+                        {{ first_tax.rate|int }}%
+                    {% else %}
+                        0%
+                    {% endif %}
+                {% else %}
+                    0%
+                {% endif %}
+            {% endif %}
+        """
 
     def get_items_table_section(self, items_field="items", custom_columns=None):
         """Common items table section"""
@@ -772,7 +787,7 @@ class PrintFormatTemplate:
                 ("Qtd", "text-center", "{{ item.get_formatted('qty', doc) }}"),
                 ("U.M.", "text-center", "{{ item.get_formatted('uom', doc) }}"),
                 ("Preço", "text-right", "{{ item.get_formatted('net_rate', doc) }}"),
-                ("IVA %", "text-center", "16%"),
+                ("IVA %", "text-center", self.get_item_tax_rate_jinja()),
                 ("Total Ilíquido", "text-right", "{{ item.get_formatted('net_amount', doc) }}")
             ]
         

@@ -41,31 +41,7 @@ class SalesInvoicePrintFormat(PrintFormatTemplate):
                 </div>
 
             """ + customer_section + """
-
-            <!-- Compliance Enrichment: NUIT fallback and FX info -->
-            <div class="row customer-invoice-section">
-                <div class="col-xs-6 customer-details">
-                    <div class="customer-info">
-                        {% if not doc.tax_id and doc.customer %}
-                            {% set __cust_nuit = frappe.db.get_value('Customer', doc.customer, 'tax_id') %}
-                            {% if __cust_nuit %}
-                                <div><strong>{{ _("NUIT") }}:</strong> {{ __cust_nuit }}</div>
-                            {% endif %}
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="col-xs-6 invoice-details">
-                    <div class="invoice-info">
-                        {% if doc.currency and doc.company_currency and doc.currency != doc.company_currency and doc.conversion_rate %}
-                        <div class="info-row">
-                            <span class="label">{{ _("Taxa de câmbio") }}:</span>
-                            <span class="value">1 {{ doc.currency }} = {{ doc.conversion_rate }} {{ doc.company_currency }}</span>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-
+            
             """ + items_section + """
 
             """ + totals_section + """
@@ -109,31 +85,6 @@ class SalesOrderPrintFormat(PrintFormatTemplate):
                 </div>
 
             """ + customer_section + """
-
-
-            <!-- Compliance Enrichment: NUIT fallback and FX info -->
-            <div class="row customer-invoice-section">
-                <div class="col-xs-6 customer-details">
-                    <div class="customer-info">
-                        {% if not doc.tax_id and doc.customer %}
-                            {% set __cust_nuit = frappe.db.get_value('Customer', doc.customer, 'tax_id') %}
-                            {% if __cust_nuit %}
-                                <div><strong>{{ _("NUIT") }}:</strong> {{ __cust_nuit }}</div>
-                            {% endif %}
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="col-xs-6 invoice-details">
-                    <div class="invoice-info">
-                        {% if doc.currency and doc.company_currency and doc.currency != doc.company_currency and doc.conversion_rate %}
-                        <div class="info-row">
-                            <span class="label">{{ _("Taxa de câmbio") }}:</span>
-                            <span class="value">1 {{ doc.currency }} = {{ doc.conversion_rate }} {{ doc.company_currency }}</span>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
 
             """ + items_section + """
 
@@ -270,30 +221,6 @@ class QuotationPrintFormat(PrintFormatTemplate):
                 </div>
 
             """ + customer_section + """
-
-            <!-- Compliance Enrichment: NUIT fallback and FX info -->
-            <div class="row customer-invoice-section">
-                <div class="col-xs-6 customer-details">
-                    <div class="customer-info">
-                        {% if not doc.tax_id and doc.customer %}
-                            {% set __cust_nuit = frappe.db.get_value('Customer', doc.customer, 'tax_id') %}
-                            {% if __cust_nuit %}
-                                <div><strong>{{ _("NUIT") }}:</strong> {{ __cust_nuit }}</div>
-                            {% endif %}
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="col-xs-6 invoice-details">
-                    <div class="invoice-info">
-                        {% if doc.currency and doc.company_currency and doc.currency != doc.company_currency and doc.conversion_rate %}
-                        <div class="info-row">
-                            <span class="label">{{ _("Taxa de câmbio") }}:</span>
-                            <span class="value">1 {{ doc.currency }} = {{ doc.conversion_rate }} {{ doc.company_currency }}</span>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
 
             """ + items_section + """
 

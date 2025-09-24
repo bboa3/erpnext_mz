@@ -274,22 +274,22 @@ def _apply_branding(company_name: str, profile):
 
         # Build header HTML with three sections: Logo (left), Company Info (center), Address (right)
         header_html = [
-            "<table style=\"width:100%; border-collapse:collapse; margin-bottom:20px;\">",
+            "<table style=\"width:100%; font-family: 'Arial', 'Helvetica', sans-serif; border-collapse:collapse; margin-bottom:20px;\">",
             "<tr>",
         ]
         
         # Left section: Logo and NUIT
-        header_html.append("<td style=\"width:150px; vertical-align:top; text-align:left;\">")
+        header_html.append("<td style=\"width:182px; vertical-align:top; text-align:left;\">")
         if logo_url:
-            header_html.append(f"<img src=\"{logo_url}\" style=\"max-height:88px; max-width:150px; object-fit:contain; margin-bottom:5px;\"/>")
+            header_html.append(f"<img src=\"{logo_url}\" style=\"max-height:88px; max-width:170px; object-fit:contain; margin-bottom:5px;\"/>")
         if tax_id:
-            header_html.append(f"<div style=\"font-size:10pt; font-weight:bold; background-color:#f0f0f0; padding:3px; border:1px solid #ccc; text-align:center; margin-top:5px;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
+            header_html.append(f"<div style=\"font-size:10pt; font-weight:bold; background-color:#f0f0f0; padding:2px; border:1px solid #ccc; text-align:center; margin-top:5px;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
         header_html.append("</td>")
         
         # Center section: Company name and contact details
-        header_html.append("<td style=\"vertical-align:top; text-align:center; padding:0 20px;\">")
-        header_html.append(f"<div style=\"font-weight:bold; font-size:14pt; margin-bottom:8px;\">{frappe.utils.escape_html(company_name)}</div>")
-        
+        header_html.append("<td style=\"vertical-align:top; text-align:center; padding:0 10px;\">")
+        header_html.append(f"<div style=\"font-weight:bold; font-size:13pt; margin-bottom:4px; text-transform: uppercase;\">{frappe.utils.escape_html(company_name)}</div>")
+
         # Contact details in center
         contact_details = []
         if email:

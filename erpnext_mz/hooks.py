@@ -47,6 +47,12 @@ fixtures = [
   "Custom Field",
   #"MZ Company Setup",
   #"QR Code"
+	{
+    "doctype": "Currency",
+    "filters": [
+      ["name", "in", ["MZN", "USD"]] 
+    ]
+  }
 ]
 
 website_context = {
