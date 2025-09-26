@@ -1895,7 +1895,7 @@
   "doctype_or_field": "DocField",
   "field_name": "provisional_expense_account",
   "is_system_generated": 1,
-  "modified": "2025-09-24 09:45:18.403779",
+  "modified": "2025-09-24 18:00:13.104352",
   "module": null,
   "name": "Purchase Receipt-provisional_expense_account-hidden",
   "property": "hidden",
