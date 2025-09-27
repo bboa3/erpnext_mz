@@ -2,6 +2,7 @@ import frappe
 from frappe import _
 from frappe.utils.data import cint
 from erpnext_mz.utils.account_utils import get_cost_center, require_account_by_number
+from erpnext_mz.setup.terms_loader import ensure_terms_from_json
 
 
 def _get_profile(create_if_missing: bool = True):
@@ -59,7 +60,7 @@ def save_step(step: int | str, values=None):
             "payment_method_first_capital",
             "payment_method_nedbank",
         ],
-        3: ["logo", "terms_and_conditions_of_sale"],
+        3: ["logo"],
     }
 
     fields = allowed_fields_by_step.get(step_index, [])
@@ -122,6 +123,9 @@ def apply_all():
     _ensure_address(company_name, profile)
     _apply_branding(company_name, profile)
 
+    # Ensure Terms & Conditions
+    _ensure_terms_and_conditions(company_name)
+    
     # B. Taxes: copy from erp.local if present, else ensure minimal defaults
     _ensure_tax_infrastructure(company_name, profile)
 
@@ -319,9 +323,6 @@ def _apply_branding(company_name: str, profile):
         header_html.append("</table>")
         header_html = "".join(header_html)
 
-        # Get terms and conditions text
-        terms_text = getattr(profile, "terms_and_conditions_of_sale", None) or ""
-
         # Build footer HTML (without terms and conditions)
         footer_html = []
         
@@ -379,41 +380,16 @@ def _apply_branding(company_name: str, profile):
         except Exception:
             pass
 
-        # Create Terms and Conditions for Sales if provided
-        if terms_text:
-            _create_terms_and_conditions(company_name, terms_text)
-
     except Exception:
         frappe.log_error(frappe.get_traceback(), "Apply branding failed")
 
 
-def _create_terms_and_conditions(company_name: str, terms_text: str):
-    """Create Terms and Conditions for Sales transactions."""
+def _ensure_terms_and_conditions(company_name: str):
     try:
-        tc_name = f"{company_name} - Terms and Conditions"
-        
-        # Check if Terms and Conditions already exists
-        if frappe.db.exists("Terms and Conditions", tc_name):
-            return
-
-        # Create new Terms and Conditions
-        tc = frappe.new_doc("Terms and Conditions")
-        tc.title = tc_name
-        tc.terms = terms_text
-        tc.insert(ignore_permissions=True)
-        
-        # Set as default for the company
-        try:
-            company_doc = frappe.get_doc("Company", company_name)
-            if getattr(company_doc, "default_selling_terms", None) != tc_name:
-                company_doc.db_set("default_selling_terms", tc_name, commit=True)
-        except Exception:
-            # Company might not have this field, that's okay
-            pass
-            
+        ensure_terms_from_json(company_name)
     except Exception:
-        frappe.log_error(frappe.get_traceback(), "Create Terms and Conditions failed")
-
+        frappe.log_error(frappe.get_traceback(), "Ensure Terms from JSON failed during apply_all")
+    return
 
 def _ensure_tax_infrastructure(company_name: str, profile):
     """
@@ -895,7 +871,6 @@ def get_profile_values():
         "email",
         "website",
         "logo",
-        "terms_and_conditions_of_sale",
         "payment_method_cash",
         "payment_method_bci",
         "payment_method_millenium",
@@ -911,6 +886,16 @@ def get_profile_values():
     ]
     return {f: profile.get(f) for f in fields}
 
+@frappe.whitelist()
+def ensure_terms_and_conditions_manually():
+    company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
+    if not company_name:
+        return {"error": "No company found"}
+    try:
+        result = ensure_terms_from_json(company_name)
+        return {"success": True, "message": "Terms and conditions ensured successfully", "result": result}
+    except Exception as e:
+        return {"error": str(e)}
 
 @frappe.whitelist()
 def create_tax_masters_manually():

@@ -160,12 +160,6 @@ frappe.provide('erpnext_mz.onboarding');
             fieldtype: 'Attach Image',
             description: __('Logótipo da Empresa'),
           },
-          {
-            fieldname: 'terms_and_conditions_of_sale',
-            label: __('Termos de venda padrão'),
-            fieldtype: 'Small Text',
-            description: __('Termos e condições de venda padrão da Empresa'),
-          },
         ],
         primary_action_label: __('Salvar e Continuar'),
         primary_action(values) {

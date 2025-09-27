@@ -37,7 +37,6 @@
     "payment_method_nedbank",
     "sb_step3",
     "logo",
-    "terms_and_conditions_of_sale",
     "sb_status",
     "step1_complete",
     "step2_complete",
@@ -210,11 +209,6 @@
       "fieldname": "logo",
       "fieldtype": "Attach Image",
       "label": "Logótipo da Empresa"
-    },
-    {
-      "fieldname": "terms_and_conditions_of_sale",
-      "fieldtype": "Small Text",
-      "label": "Terms and Conditions of Sale"
     },
     {
       "fieldname": "sb_status",

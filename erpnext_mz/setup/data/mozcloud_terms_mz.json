@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Cotação",
+    "category": "SELLING",
+    "terms": "Fornecimento sujeito à aprovação deste orçamento e à emissão da respectiva factura.\n\nEste documento não serve como factura."
+  },
+  {
+    "name": "Proforma",
+    "category": "SELLING",
+    "terms": "Emitida apenas para apoio comercial. Válida por 15 dias.\n\nEste documento não serve como factura."
+  },
+  {
+    "name": "Encomenda",
+    "category": "SELLING",
+    "terms": "Registo de pedido; execução sujeita à emissão da factura.\n\nEste documento não serve como factura."
+  },
+  {
+    "name": "Guia de Remessa/Transporte",
+    "category": "SELLING",
+    "terms": "Documento de entrega. Conferir mercadoria no acto da recepção. Reclamações por defeitos visíveis devem ser comunicadas por escrito em 24 horas."
+  },
+  {
+    "name": "Factura",
+    "category": "SELLING",
+    "terms": "Pagamento vence em 7 (sete) dias úteis a contar da data desta factura."
+  },
+  {
+    "name": "Nota de Crédito",
+    "category": "SELLING",
+    "terms": "O valor creditado pode ser compensado em facturas ou reembolsado em numerário, mediante pedido escrito, no prazo máximo de 15 dias úteis."
+  },
+  {
+    "name": "Nota de Débito",
+    "category": "SELLING",
+    "terms": "O valor debitado constitui obrigação imediata e deve ser pago em 15 (quinze) dias úteis."
+  },
+  {
+    "name": "Recibo de Pagamento",
+    "category": "SELLING",
+    "terms": "Recibo válido apenas com referência à Factura indicada. Não substitui a Factura para efeitos fiscais."
+  },
+  {
+    "name": "Extrato de Conta",
+    "category": "SELLING",
+    "terms": "Documento informativo. Qualquer divergência deve ser comunicada por escrito no prazo de 10 dias úteis. Saldo sujeito a confirmação por factura e recibos válidos."
+  },
+  {
+    "name": "Pedido de Compra (Interno)",
+    "category": "BUYING",
+    "terms": "Documento interno de solicitação. Não vincula a empresa perante fornecedores ou terceiros.\n\nESTE DOCUMENTO É DE USO INTERNO."
+  }
+]
