@@ -230,6 +230,109 @@ class QuotationPrintFormat(PrintFormatTemplate):
         """
 
 
+class SalesInvoiceReturnPrintFormat(PrintFormatTemplate):
+    """Sales Invoice Return"""
+
+    def __init__(self):
+        super().__init__("Sales Invoice", "Nota de Crédito (MZ)")
+    
+    def get_html_template(self):
+        header_macro = self.get_common_header_macro("NOTA DE CRÉDITO")
+        footer_macro = self.get_common_footer_macro()
+        items_section = self.get_items_table_section()
+        totals_section = self.get_totals_section([
+            ("net_total", "Sub Total", True),
+            ("tax_amount", "Imposto", False),
+            ("discount_amount", "Desconto", False),
+            ("grand_total", "Total do Crédito", True),
+            ("rounded_total", "Total Arredondado", False)
+        ])
+        qr_section = self.get_qr_code_section()
+
+        return header_macro + footer_macro + """
+            {% for page in layout %}
+            <div class="page-break">
+                <div {% if print_settings and print_settings.repeat_header_footer %} id="header-html" class="hidden-pdf" {% endif %}>
+                    {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+                </div>
+
+                <!-- Customer Details Section for Credit Note -->
+                <div class="row customer-invoice-section">
+                    <div class="col-xs-6 customer-details">
+                        <h4 class="section-title">{{ _("Beneficiário do Crédito") }}</h4>
+                        <div class="customer-info">
+                            <div class="customer-name">{{ doc.customer_name or doc.customer }}</div>
+                            {% if doc.tax_id %}
+                                <div><strong>{{ _("NUIT") }}:</strong> {{ doc.tax_id }}</div>
+                            {% endif %}
+                            {% if not doc.tax_id and doc.customer %}
+                                {% set __cust_nuit = frappe.db.get_value('Customer', doc.customer, 'tax_id') %}
+                                {% if __cust_nuit %}
+                                    <div><strong>{{ _("NUIT") }}:</strong> {{ __cust_nuit }}</div>
+                                {% endif %}
+                            {% endif %}
+                            {% if doc.address_display %}
+                                <div>{{ doc.address_display }}</div>
+                            {% endif %}
+                            {% if doc.contact_display %}
+                                <div><strong>{{ _("Contacto") }}:</strong> {{ doc.contact_display }}</div>
+                            {% endif %}
+                            {% if doc.contact_mobile %}
+                                <div><strong>{{ _("Telemóvel") }}:</strong> {{ doc.contact_mobile }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-6 invoice-details">
+                        <h4 class="section-title">{{ _("Detalhes do Documento") }}</h4>
+                        <div class="invoice-info">
+                            {% if doc.return_against %}
+                            <div class="info-row">
+                                <span class="label">{{ _("Referência à Factura Original") }}:</span>
+                                <span class="value">{{ doc.return_against }}</span>
+                            </div>
+                            {% endif %}
+                            <div class="info-row">
+                                <span class="label">{{ _("Tipo de Crédito") }}:</span>
+                                <span class="value">{% if doc.is_return %}Devolução de Bens/Serviços{% else %}Ajuste de Facturação{% endif %}</span>
+                            </div>
+                            {% if doc.due_date %}
+                            <div class="info-row">
+                                <span class="label">{{ _("Data Limite") }}:</span>
+                                <span class="value">{{ frappe.utils.format_date(doc.due_date) }}</span>
+                            </div>
+                            {% endif %}
+                            {% if doc.po_no %}
+                            <div class="info-row">
+                                <span class="label">{{ _("Nº Encomenda") }}:</span>
+                                <span class="value">{{ doc.po_no }}</span>
+                            </div>
+                            {% endif %}
+                            {% if doc.currency and doc.company_currency and doc.currency != doc.company_currency and doc.conversion_rate %}
+                            <div class="info-row">
+                                <span class="label">{{ _("Taxa de câmbio") }}:</span>
+                                <span class="value">1 {{ doc.currency }} = {{ doc.conversion_rate }} {{ doc.company_currency }}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+            """ + items_section + """
+
+            """ + totals_section + """
+
+            """ + qr_section + """
+
+            {% if print_settings and print_settings.repeat_header_footer %}
+                {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+            {% endif %}
+
+            </div>
+            {% endfor %}
+        """
+    
+
 # Purchase Document Print Formats
 class PurchaseInvoicePrintFormat(PrintFormatTemplate):
     """Purchase Invoice Print Format"""
@@ -1102,6 +1205,9 @@ def create_all_mozambique_print_formats():
         # Sales Documents
         sales_invoice = SalesInvoicePrintFormat()
         formats_created.append(sales_invoice.create_print_format())
+        
+        sales_invoice_return = SalesInvoiceReturnPrintFormat()
+        formats_created.append(sales_invoice_return.create_print_format())
         
         sales_order = SalesOrderPrintFormat()
         formats_created.append(sales_order.create_print_format())

@@ -176,7 +176,7 @@ def set_mozambique_print_formats_as_default():
     try:
         # Map of DocTypes to their Mozambique print format names
         mozambique_format_mapping = {
-            "Sales Invoice": "Fatura (MZ)",
+            "Sales Invoice": ["Fatura (MZ)", "Nota de Crédito (MZ)"],
             "Sales Order": "Encomenda de Venda (MZ)",
             "Delivery Note": "Guia de Remessa (MZ)",
             "Quotation": "Orçamento (MZ)",
@@ -195,22 +195,29 @@ def set_mozambique_print_formats_as_default():
         set_count = 0
         errors = []
         
-        for doctype, format_name in mozambique_format_mapping.items():
-            try:
-                # Check if the Mozambique print format exists
-                if frappe.db.exists("Print Format", format_name):
-                    # Ensure this format is enabled
-                    frappe.db.set_value("Print Format", format_name, "disabled", 0)
+        for doctype, format_names in mozambique_format_mapping.items():
+            # Handle both single format names and lists of format names
+            if isinstance(format_names, list):
+                format_list = format_names
+            else:
+                format_list = [format_names]
+            
+            for format_name in format_list:
+                try:
+                    # Check if the Mozambique print format exists
+                    if frappe.db.exists("Print Format", format_name):
+                        # Ensure this format is enabled
+                        frappe.db.set_value("Print Format", format_name, "disabled", 0)
                     
-                    set_count += 1
-                    frappe.log_error(
-                        f"Enabled {format_name} for {doctype}",
-                        "Mozambique Format Enabled"
-                    )
-                else:
-                    errors.append(f"Print format {format_name} not found for {doctype}")
-            except Exception as e:
-                errors.append(f"Error enabling {format_name} for {doctype}: {str(e)}")
+                        set_count += 1
+                        frappe.log_error(
+                            f"Enabled {format_name} for {doctype}",
+                            "Mozambique Format Enabled"
+                        )
+                    else:
+                        errors.append(f"Print format {format_name} not found for {doctype}")
+                except Exception as e:
+                    errors.append(f"Error enabling {format_name} for {doctype}: {str(e)}")
         
         # Commit changes
         frappe.db.commit()
@@ -239,7 +246,7 @@ def ensure_mozambique_formats_are_first_choice():
         # by keeping them enabled and all others disabled
         
         mozambique_formats = [
-            "Fatura (MZ)", "Encomenda de Venda (MZ)", "Guia de Remessa (MZ)", "Orçamento (MZ)",
+            "Fatura (MZ)", "Nota de Crédito (MZ)", "Encomenda de Venda (MZ)", "Guia de Remessa (MZ)", "Orçamento (MZ)",
             "Factura de Compra (MZ)", "Encomenda de Compra (MZ)", "Recibo de Compra (MZ)",
             "Entrada de Stock (MZ)", "Pedido de Material (MZ)",
             "Entrada de Pagamento (MZ)", "Lançamento Contabilístico (MZ)",
@@ -291,7 +298,7 @@ def ensure_only_mozambique_formats_enabled():
         )
         
         mozambique_formats = [
-            "Fatura (MZ)", "Encomenda de Venda (MZ)", "Guia de Remessa (MZ)", "Orçamento (MZ)",
+            "Fatura (MZ)", "Nota de Crédito (MZ)", "Encomenda de Venda (MZ)", "Guia de Remessa (MZ)", "Orçamento (MZ)",
             "Factura de Compra (MZ)", "Encomenda de Compra (MZ)", "Recibo de Compra (MZ)",
             "Entrada de Stock (MZ)", "Pedido de Material (MZ)",
             "Entrada de Pagamento (MZ)", "Lançamento Contabilístico (MZ)",
