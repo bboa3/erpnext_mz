@@ -189,6 +189,23 @@ class PrintFormatTemplate:
         /* Customer and Invoice Details */
         .customer-invoice-section {
             margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .customer-invoice-section .col-xs-6 {
+            width: 48%;
+            float: left;
+            box-sizing: border-box;
+        }
+
+        .customer-invoice-section .col-xs-6:first-child {
+            padding-right: 15px;
+            padding-left: 0;
+        }
+
+        .customer-invoice-section .col-xs-6:last-child {
+            padding-left: 15px;
+            padding-right: 0;
         }
 
         .customer-details, .invoice-details {
@@ -391,6 +408,23 @@ class PrintFormatTemplate:
         /* Totals Section */
         .totals-section {
             margin-bottom: 4px;
+            overflow: hidden;
+        }
+
+        .totals-section .col-xs-6 {
+            width: 48%;
+            float: left;
+            box-sizing: border-box;
+        }
+
+        .totals-section .col-xs-6:first-child {
+            padding-right: 15px;
+            padding-left: 0;
+        }
+
+        .totals-section .col-xs-6:last-child {
+            padding-left: 15px;
+            padding-right: 0;
         }
 
         .amount-in-words, .terms-section {
@@ -531,6 +565,26 @@ class PrintFormatTemplate:
         .row {
             overflow: hidden;
             margin: 0;
+            display: block;
+        }
+
+        /* Bootstrap Grid System - Web Display */
+        .col-xs-6 {
+            width: 48%;
+            float: left;
+            box-sizing: border-box;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+        
+        .col-xs-6:first-child {
+            padding-left: 0;
+            padding-right: 15px;
+        }
+        
+        .col-xs-6:last-child {
+            padding-right: 0;
+            padding-left: 15px;
         }
 
         /* Ensure consistent spacing */
@@ -704,10 +758,35 @@ class PrintFormatTemplate:
             /* Ensure proper spacing */
             .customer-invoice-section {
                 margin-bottom: 15px;
+                overflow: hidden;
+            }
+
+            .totals-section {
+                overflow: hidden;
             }
             
             .section-title {
                 margin-bottom: 8px;
+            }
+
+            /* Ensure proper grid layout in print */
+            .customer-invoice-section .col-xs-6,
+            .totals-section .col-xs-6 {
+                width: 48% !important;
+                float: left !important;
+                box-sizing: border-box !important;
+            }
+
+            .customer-invoice-section .col-xs-6:first-child,
+            .totals-section .col-xs-6:first-child {
+                padding-right: 15px !important;
+                padding-left: 0 !important;
+            }
+
+            .customer-invoice-section .col-xs-6:last-child,
+            .totals-section .col-xs-6:last-child {
+                padding-left: 15px !important;
+                padding-right: 0 !important;
             }
         }
     """
