@@ -412,7 +412,7 @@ class StockEntryPrintFormat(PrintFormatTemplate):
                 <!-- Items Table Section -->
                 <div class="items-section">
                     <h4 class="section-title">{{ _("Artigos") }}</h4>
-                    <table class="items-table">
+                    <table class="items-table cols-5">
                         <thead>
                             <tr>
                                 <th class="text-center">{{ _("Sr") }}</th>
@@ -420,7 +420,6 @@ class StockEntryPrintFormat(PrintFormatTemplate):
                                 <th class="text-center">{{ _("Qtd") }}</th>
                                 <th class="text-center">{{ _("U.M.") }}</th>
                                 <th class="text-center">{{ _("Armazém") }}</th>
-                                <th class="text-right">{{ _("Valor") }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -434,7 +433,6 @@ class StockEntryPrintFormat(PrintFormatTemplate):
                                 <td class="text-center">{{ item.get_formatted("qty", doc) }}</td>
                                 <td class="text-center">{{ item.get_formatted("uom", doc) }}</td>
                                 <td class="text-center">{{ item.warehouse }}</td>
-                                <td class="text-right">{{ item.get_formatted("basic_rate", doc) }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -497,14 +495,13 @@ class MaterialRequestPrintFormat(PrintFormatTemplate):
                 <!-- Items Table Section -->
                 <div class="items-section">
                     <h4 class="section-title">{{ _("Artigos") }}</h4>
-                    <table class="items-table">
+                    <table class="items-table cols-4">
                         <thead>
                             <tr>
                                 <th class="text-center">{{ _("Sr") }}</th>
                                 <th class="text-left">{{ _("Item") }}</th>
                                 <th class="text-center">{{ _("Qtd") }}</th>
                                 <th class="text-center">{{ _("U.M.") }}</th>
-                                <th class="text-center">{{ _("Data Prevista") }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -514,10 +511,12 @@ class MaterialRequestPrintFormat(PrintFormatTemplate):
                                 <td class="text-left">
                                     <strong>{{ item.item_code }}</strong><br>
                                     {{ item.item_name }}
+                                    {% if item.schedule_date %}
+                                        <br><small><strong>{{ _("Data Prevista") }}:</strong> {{ frappe.utils.format_date(item.schedule_date) }}</small>
+                                    {% endif %}
                                 </td>
                                 <td class="text-center">{{ item.get_formatted("qty", doc) }}</td>
                                 <td class="text-center">{{ item.get_formatted("uom", doc) }}</td>
-                                <td class="text-center">{% if item.schedule_date %}{{ frappe.utils.format_date(item.schedule_date) }}{% endif %}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -616,13 +615,14 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                 {% if doc.references %}
                 <div class="items-section">
                     <h4 class="section-title">{{ _("Referências") }}</h4>
-                    <table class="items-table">
+                    <table class="items-table cols-6">
                         <thead>
                             <tr>
                                 <th class="text-left">{{ _("Tipo") }}</th>
                                 <th class="text-left">{{ _("Documento") }}</th>
                                 <th class="text-center">{{ _("Data") }}</th>
-                                <th class="text-right">{{ _("Valor") }}</th>
+                                <th class="text-right">{{ _("Total da Fatura") }}</th>
+                                <th class="text-right">{{ _("Saldo Antes") }}</th>
                                 <th class="text-right">{{ _("Saldo Após Pagamento") }}</th>
                             </tr>
                         </thead>
@@ -633,7 +633,10 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                                 <td class="text-left">{{ ref.reference_name }}</td>
                                 {% set __ref_date = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'posting_date') or frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'transaction_date') or frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'bill_date') %}
                                 <td class="text-center">{% if __ref_date %}{{ frappe.utils.format_date(__ref_date) }}{% endif %}</td>
-                                <td class="text-right">{{ ref.get_formatted("allocated_amount", doc) }}</td>
+                                {% set __grand_total = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'grand_total') %}
+                                <td class="text-right">{% if __grand_total is not none %}{{ frappe.utils.fmt_money(__grand_total, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
+                                {% set __outstanding_before = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'outstanding_amount') + ref.allocated_amount %}
+                                <td class="text-right">{% if __outstanding_before is not none %}{{ frappe.utils.fmt_money(__outstanding_before, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
                                 {% set __remaining = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'outstanding_amount') %}
                                 <td class="text-right">{% if __remaining is not none %}{{ frappe.utils.fmt_money(__remaining, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
                             </tr>
@@ -647,7 +650,7 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                 {% if doc.deductions or doc.get('difference_amount') %}
                 <div class="items-section">
                     <h4 class="section-title">{{ _("Retenções e Outras Deduções") }}</h4>
-                    <table class="items-table">
+                    <table class="items-table cols-3">
                         <thead>
                             <tr>
                                 <th class="text-left">{{ _("Conta") }}</th>
@@ -743,7 +746,7 @@ class JournalEntryPrintFormat(PrintFormatTemplate):
                 <!-- Accounts Section -->
                 <div class="items-section">
                     <h4 class="section-title">{{ _("Contas") }}</h4>
-                    <table class="items-table">
+                    <table class="items-table cols-4">
                         <thead>
                             <tr>
                                 <th class="text-left">{{ _("Conta") }}</th>

@@ -255,21 +255,83 @@ class PrintFormatTemplate:
             table-layout: fixed;
         }
 
-        /* Column widths for 7-column layout - Optimized for better readability */
+        /* Adaptive Column Width System - Supports 3-7 columns */
+        
+        /* 3-Column Layout (e.g., Deductions, Simple Lists) */
+        .items-table.cols-3 th:nth-child(1),
+        .items-table.cols-3 td:nth-child(1) { width: 25%; }  /* Conta/Label */
+        .items-table.cols-3 th:nth-child(2),
+        .items-table.cols-3 td:nth-child(2) { width: 50%; }  /* Descrição */
+        .items-table.cols-3 th:nth-child(3),
+        .items-table.cols-3 td:nth-child(3) { width: 25%; }  /* Valor */
+        
+        /* 4-Column Layout (e.g., Material Request, Simple Stock Entry) */
+        .items-table.cols-4 th:nth-child(1),
+        .items-table.cols-4 td:nth-child(1) { width: 6%; }   /* Sr */
+        .items-table.cols-4 th:nth-child(2),
+        .items-table.cols-4 td:nth-child(2) { width: 45%; }  /* Item/Descrição */
+        .items-table.cols-4 th:nth-child(3),
+        .items-table.cols-4 td:nth-child(3) { width: 15%; }  /* Qtd */
+        .items-table.cols-4 th:nth-child(4),
+        .items-table.cols-4 td:nth-child(4) { width: 34%; }  /* U.M./Data/Valor */
+        
+        /* 5-Column Layout (e.g., Stock Entry with Warehouse) */
+        .items-table.cols-5 th:nth-child(1),
+        .items-table.cols-5 td:nth-child(1) { width: 5%; }   /* Sr */
+        .items-table.cols-5 th:nth-child(2),
+        .items-table.cols-5 td:nth-child(2) { width: 35%; }  /* Item/Descrição */
+        .items-table.cols-5 th:nth-child(3),
+        .items-table.cols-5 td:nth-child(3) { width: 12%; }  /* Qtd */
+        .items-table.cols-5 th:nth-child(4),
+        .items-table.cols-5 td:nth-child(4) { width: 15%; }  /* U.M./Armazém */
+        .items-table.cols-5 th:nth-child(5),
+        .items-table.cols-5 td:nth-child(5) { width: 33%; }  /* Valor */
+        
+        /* 6-Column Layout (e.g., Payment Entry References) */
+        .items-table.cols-6 th:nth-child(1),
+        .items-table.cols-6 td:nth-child(1) { width: 12%; }  /* Tipo */
+        .items-table.cols-6 th:nth-child(2),
+        .items-table.cols-6 td:nth-child(2) { width: 17%; }  /* Documento */
+        .items-table.cols-6 th:nth-child(3),
+        .items-table.cols-6 td:nth-child(3) { width: 12%; }  /* Data */
+        .items-table.cols-6 th:nth-child(4),
+        .items-table.cols-6 td:nth-child(4) { width: 19%; }  /* Total da Fatura */
+        .items-table.cols-6 th:nth-child(5),
+        .items-table.cols-6 td:nth-child(5) { width: 19%; }  /* Saldo Antes */
+        .items-table.cols-6 th:nth-child(6),
+        .items-table.cols-6 td:nth-child(6) { width: 22%; }  /* Saldo Após */
+        
+        /* 7-Column Layout (e.g., Sales Invoice with IVA) */
+        .items-table.cols-7 th:nth-child(1),
+        .items-table.cols-7 td:nth-child(1) { width: 4%; }   /* Sr */
+        .items-table.cols-7 th:nth-child(2),
+        .items-table.cols-7 td:nth-child(2) { width: 31%; }  /* Descrição */
+        .items-table.cols-7 th:nth-child(3),
+        .items-table.cols-7 td:nth-child(3) { width: 8%; }  /* Qtd */
+        .items-table.cols-7 th:nth-child(4),
+        .items-table.cols-7 td:nth-child(4) { width: 10%; }   /* U.M. */
+        .items-table.cols-7 th:nth-child(5),
+        .items-table.cols-7 td:nth-child(5) { width: 17%; }  /* Preço */
+        .items-table.cols-7 th:nth-child(6),
+        .items-table.cols-7 td:nth-child(6) { width: 9%; }   /* IVA (%) */
+        .items-table.cols-7 th:nth-child(7),
+        .items-table.cols-7 td:nth-child(7) { width: 21%; }  /* Valor */
+        
+        /* Default fallback for tables without explicit column count */
         .items-table th:nth-child(1),
-        .items-table td:nth-child(1) { width: 4%; }   /* Sr */
+        .items-table td:nth-child(1) { width: 4%; }
         .items-table th:nth-child(2),
-        .items-table td:nth-child(2) { width: 31%; }  /* Descrição */
+        .items-table td:nth-child(2) { width: 31%; }
         .items-table th:nth-child(3),
-        .items-table td:nth-child(3) { width: 8%; }  /* Qtd */
+        .items-table td:nth-child(3) { width: 8%; }
         .items-table th:nth-child(4),
-        .items-table td:nth-child(4) { width: 10%; }   /* U.M. */
+        .items-table td:nth-child(4) { width: 10%; }
         .items-table th:nth-child(5),
-        .items-table td:nth-child(5) { width: 17%; }  /* Preço */
+        .items-table td:nth-child(5) { width: 17%; }
         .items-table th:nth-child(6),
-        .items-table td:nth-child(6) { width: 9%; }   /* IVA (%) */
+        .items-table td:nth-child(6) { width: 9%; }
         .items-table th:nth-child(7),
-        .items-table td:nth-child(7) { width: 21%; }  /* Valor */
+        .items-table td:nth-child(7) { width: 21%; }
 
         .items-table th {
             background-color: #f8f9fa;
@@ -507,21 +569,83 @@ class PrintFormatTemplate:
             .items-table th { font-size: 10px; }
             .items-table td { font-size: 11px; }
             
-            /* Consistent column widths for print - same as screen for consistency */
+            /* Adaptive Column Width System for Print - Supports 3-7 columns */
+            
+            /* 3-Column Layout for Print */
+            .items-table.cols-3 th:nth-child(1),
+            .items-table.cols-3 td:nth-child(1) { width: 25% !important; }
+            .items-table.cols-3 th:nth-child(2),
+            .items-table.cols-3 td:nth-child(2) { width: 50% !important; }
+            .items-table.cols-3 th:nth-child(3),
+            .items-table.cols-3 td:nth-child(3) { width: 25% !important; }
+            
+            /* 4-Column Layout for Print */
+            .items-table.cols-4 th:nth-child(1),
+            .items-table.cols-4 td:nth-child(1) { width: 6% !important; }
+            .items-table.cols-4 th:nth-child(2),
+            .items-table.cols-4 td:nth-child(2) { width: 45% !important; }
+            .items-table.cols-4 th:nth-child(3),
+            .items-table.cols-4 td:nth-child(3) { width: 15% !important; }
+            .items-table.cols-4 th:nth-child(4),
+            .items-table.cols-4 td:nth-child(4) { width: 34% !important; }
+            
+            /* 5-Column Layout for Print */
+            .items-table.cols-5 th:nth-child(1),
+            .items-table.cols-5 td:nth-child(1) { width: 5% !important; }
+            .items-table.cols-5 th:nth-child(2),
+            .items-table.cols-5 td:nth-child(2) { width: 35% !important; }
+            .items-table.cols-5 th:nth-child(3),
+            .items-table.cols-5 td:nth-child(3) { width: 12% !important; }
+            .items-table.cols-5 th:nth-child(4),
+            .items-table.cols-5 td:nth-child(4) { width: 15% !important; }
+            .items-table.cols-5 th:nth-child(5),
+            .items-table.cols-5 td:nth-child(5) { width: 33% !important; }
+            
+            /* 6-Column Layout for Print */
+            .items-table.cols-6 th:nth-child(1),
+            .items-table.cols-6 td:nth-child(1) { width: 12% !important; }
+            .items-table.cols-6 th:nth-child(2),
+            .items-table.cols-6 td:nth-child(2) { width: 15% !important; }
+            .items-table.cols-6 th:nth-child(3),
+            .items-table.cols-6 td:nth-child(3) { width: 12% !important; }
+            .items-table.cols-6 th:nth-child(4),
+            .items-table.cols-6 td:nth-child(4) { width: 19% !important; }
+            .items-table.cols-6 th:nth-child(5),
+            .items-table.cols-6 td:nth-child(5) { width: 19% !important; }
+            .items-table.cols-6 th:nth-child(6),
+            .items-table.cols-6 td:nth-child(6) { width: 24% !important; }
+            
+            /* 7-Column Layout for Print */
+            .items-table.cols-7 th:nth-child(1),
+            .items-table.cols-7 td:nth-child(1) { width: 4% !important; }
+            .items-table.cols-7 th:nth-child(2),
+            .items-table.cols-7 td:nth-child(2) { width: 31% !important; }
+            .items-table.cols-7 th:nth-child(3),
+            .items-table.cols-7 td:nth-child(3) { width: 8% !important; }
+            .items-table.cols-7 th:nth-child(4),
+            .items-table.cols-7 td:nth-child(4) { width: 10% !important; }
+            .items-table.cols-7 th:nth-child(5),
+            .items-table.cols-7 td:nth-child(5) { width: 17% !important; }
+            .items-table.cols-7 th:nth-child(6),
+            .items-table.cols-7 td:nth-child(6) { width: 9% !important; }
+            .items-table.cols-7 th:nth-child(7),
+            .items-table.cols-7 td:nth-child(7) { width: 21% !important; }
+            
+            /* Default fallback for print */
             .items-table th:nth-child(1),
-            .items-table td:nth-child(1) { width: 4% !important; }   /* Sr */
+            .items-table td:nth-child(1) { width: 4% !important; }
             .items-table th:nth-child(2),
-            .items-table td:nth-child(2) { width: 31% !important; }  /* Descrição */
+            .items-table td:nth-child(2) { width: 31% !important; }
             .items-table th:nth-child(3),
-            .items-table td:nth-child(3) { width: 8% !important; }  /* Qtd */
+            .items-table td:nth-child(3) { width: 8% !important; }
             .items-table th:nth-child(4),
-            .items-table td:nth-child(4) { width: 10% !important; }   /* U.M. */
+            .items-table td:nth-child(4) { width: 10% !important; }
             .items-table th:nth-child(5),
-            .items-table td:nth-child(5) { width: 17% !important; }  /* Preço */
+            .items-table td:nth-child(5) { width: 17% !important; }
             .items-table th:nth-child(6),
-            .items-table td:nth-child(6) { width: 9% !important; }   /* IVA (%) */
+            .items-table td:nth-child(6) { width: 9% !important; }
             .items-table th:nth-child(7),
-            .items-table td:nth-child(7) { width: 21% !important; }  /* Valor */
+            .items-table td:nth-child(7) { width: 21% !important; }
             
             .totals-row { padding: 2px 0; }
             .payment-info { padding: 6px; }
@@ -770,7 +894,7 @@ class PrintFormatTemplate:
         """
 
     def get_items_table_section(self, items_field="items", custom_columns=None):
-        """Common items table section"""
+        """Common items table section with adaptive column width support"""
         if custom_columns is None:
             custom_columns = [
                 ("Sr", "text-center", "{{ loop.index }}"),
@@ -791,6 +915,23 @@ class PrintFormatTemplate:
                 ("Total Ilíquido", "text-right", "{{ item.get_formatted('net_amount', doc) }}")
             ]
         
+        # Determine column count and CSS class
+        column_count = len(custom_columns)
+        table_class = ""
+        if column_count == 3:
+            table_class = "items-table cols-3"
+        elif column_count == 4:
+            table_class = "items-table cols-4"
+        elif column_count == 5:
+            table_class = "items-table cols-5"
+        elif column_count == 6:
+            table_class = "items-table cols-6"
+        elif column_count == 7:
+            table_class = "items-table cols-7"
+        else:
+            # Fallback for other column counts
+            table_class = "items-table"
+        
         header_html = ""
         for col_name, col_class, _ in custom_columns:
             header_html += '<th class="' + col_class + '">{{ _("' + col_name + '") }}</th>\n                    '
@@ -803,7 +944,7 @@ class PrintFormatTemplate:
             <!-- Items Table Section -->
             <div class="items-section">
                 <h4 class="section-title">{{ _("Artigos") }}</h4>
-                <table class="items-table">
+                <table class=\"""" + table_class + """\">
                     <thead>
                         <tr>
                             """ + header_html + """
