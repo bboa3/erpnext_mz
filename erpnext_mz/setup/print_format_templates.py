@@ -138,7 +138,7 @@ class PrintFormatTemplate:
 
         .document-date {
             font-size: 12px;
-            color: #7f8c8d;
+            color: #2c3e50;
         }
 
         /* Document Status */
