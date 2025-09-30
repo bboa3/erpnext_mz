@@ -17,7 +17,7 @@
     "document_type": "Sales Invoice",
     "modified": "2025-08-27 15:43:32.296936",
     "name": "q4vjn7poc7",
-    "prefix": "NC-YYYY.-",
+    "prefix": "NC-.YYYY.-",
     "prefix_digits": 4,
     "priority": 10
   },
