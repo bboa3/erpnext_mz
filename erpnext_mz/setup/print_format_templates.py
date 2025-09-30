@@ -109,7 +109,7 @@ class PrintFormatTemplate:
 
         /* Document Header */
         .document-header {
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 1px solid #7f8c8d;
             padding-bottom: 8px;
             margin-bottom: 12px;
         }
@@ -144,7 +144,7 @@ class PrintFormatTemplate:
         /* Document Status */
         .document-status-cancelled {
             background-color: #fdf2f2;
-            border: 1px solid #fecaca;
+            border: 1px solid #cc0000;
             padding: 8px;
             margin: 10px 0;
             border-radius: 4px;
@@ -181,7 +181,7 @@ class PrintFormatTemplate:
             font-weight: 600;
             margin: 0 0 6px 0;
             padding-bottom: 4px;
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 1px solid #7f8c8d;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -237,7 +237,7 @@ class PrintFormatTemplate:
         }
 
         .info-row .label {
-            color: #7f8c8d;
+            color: #2c3e50;
             font-weight: 500;
             float: left;
             width: 40%;
@@ -268,7 +268,7 @@ class PrintFormatTemplate:
             width: 100%;
             border-collapse: collapse;
             margin-top: 4px;
-            border: 1px solid #e5e5e5;
+            border: 1px solid #7f8c8d;
             table-layout: fixed;
         }
 
@@ -358,7 +358,7 @@ class PrintFormatTemplate:
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 1px solid #7f8c8d;
             text-align: left;
         }
 
@@ -385,7 +385,7 @@ class PrintFormatTemplate:
 
         .items-table td {
             padding: 3px 3px;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid #999999;
             vertical-align: top;
             font-size: 12px;
             word-wrap: break-word;
@@ -412,17 +412,18 @@ class PrintFormatTemplate:
         }
 
         .totals-section .col-xs-6 {
-            width: 48%;
             float: left;
             box-sizing: border-box;
         }
 
         .totals-section .col-xs-6:first-child {
+            width: 45%;
             padding-right: 15px;
             padding-left: 0;
         }
 
         .totals-section .col-xs-6:last-child {
+            width: 55%;
             padding-left: 15px;
             padding-right: 0;
         }
@@ -455,7 +456,7 @@ class PrintFormatTemplate:
         .totals-row {
             margin-bottom: 3px;
             padding: 3px 0;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid #999999;
             overflow: hidden;
         }
 
@@ -507,7 +508,7 @@ class PrintFormatTemplate:
 
         .payment-info {
             background-color: #fef3c7;
-            border: 1px solid #f59e0b;
+            border: 1px solid #cc6600;
             padding: 8px;
             border-radius: 4px;
         }
@@ -543,7 +544,7 @@ class PrintFormatTemplate:
             max-height: 80px;
             width: auto;
             height: auto;
-            border: 1px solid #e5e5e5;
+            border: 1px solid #7f8c8d;
             border-radius: 4px;
         }
 
@@ -770,21 +771,31 @@ class PrintFormatTemplate:
             }
 
             /* Ensure proper grid layout in print */
-            .customer-invoice-section .col-xs-6,
-            .totals-section .col-xs-6 {
+            .customer-invoice-section .col-xs-6 {
                 width: 48% !important;
                 float: left !important;
                 box-sizing: border-box !important;
             }
 
-            .customer-invoice-section .col-xs-6:first-child,
-            .totals-section .col-xs-6:first-child {
+            .customer-invoice-section .col-xs-6:first-child {
                 padding-right: 15px !important;
                 padding-left: 0 !important;
             }
 
-            .customer-invoice-section .col-xs-6:last-child,
+            .customer-invoice-section .col-xs-6:last-child {
+                padding-left: 15px !important;
+                padding-right: 0 !important;
+            }
+
+            /* Totals section specific layout for print */
+            .totals-section .col-xs-6:first-child {
+                width: 45% !important;
+                padding-right: 15px !important;
+                padding-left: 0 !important;
+            }
+
             .totals-section .col-xs-6:last-child {
+                width: 55% !important;
                 padding-left: 15px !important;
                 padding-right: 0 !important;
             }
@@ -1119,7 +1130,7 @@ class PrintFormatTemplate:
             <!-- Signatures Section -->
             <div class="row" style="margin-top: 8px;">
                 <div class="col-xs-6 text-left">
-                    <div style="border-top: 1px solid #e5e5e5; padding-top: 6px;">
+                    <div style="border-top: 1px solid #7f8c8d; padding-top: 6px;">
                         {{ _("Emitido por") }}:
                         {% if doc.owner %}
                             {{ doc.owner }}
@@ -1127,7 +1138,7 @@ class PrintFormatTemplate:
                     </div>
                 </div>
                 <div class="col-xs-6 text-right">
-                    <div style="border-top: 1px solid #e5e5e5; padding-top: 6px;">{{ _("Recebido por") }}: ____________________</div>
+                    <div style="border-top: 1px solid #7f8c8d; padding-top: 6px;">{{ _("Recebido por") }}: ____________________</div>
                 </div>
             </div>
         """
