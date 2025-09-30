@@ -693,12 +693,12 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                         <div class="invoice-info">
                             <div class="info-row">
                                 <span class="label">{{ _("Valor pago (origem)") }} [{{ doc.paid_from_account_currency or doc.company_currency }}]:</span>
-                                <span class="value">{{ doc.get_formatted("paid_amount", doc) }}</span>
+                                <span class="value">{{ frappe.utils.fmt_money(doc.total_allocated_amount, currency=(doc.paid_from_account_currency or doc.company_currency)) }}</span>
                             </div>
                             {% if doc.received_amount %}
                             <div class="info-row">
                                 <span class="label">{{ _("Valor recebido (destino)") }} [{{ doc.paid_to_account_currency or doc.company_currency }}]:</span>
-                                <span class="value">{{ doc.get_formatted("received_amount", doc) }}</span>
+                                <span class="value">{{ frappe.utils.fmt_money(doc.total_allocated_amount, currency=(doc.paid_to_account_currency or doc.company_currency)) }}</span>
                             </div>
                             {% endif %}
                             {% if doc.paid_from_account_currency and doc.paid_to_account_currency and doc.paid_from_account_currency != doc.paid_to_account_currency %}
