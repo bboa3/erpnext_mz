@@ -276,49 +276,34 @@ def _apply_branding(company_name: str, profile):
         elif getattr(company_doc, "company_logo", None):
             logo_url = company_doc.company_logo
 
-        # Build header HTML with three sections: Logo (left), Company Info (center), Address (right)
-        header_html = [
-            "<table style=\"width:100%; font-family: 'Arial', 'Helvetica', sans-serif; border-collapse:collapse;\">",
-            "<tr>",
-        ]
-        
-        # Left section: Logo and NUIT
-        header_html.append("<td style=\"width:182px; vertical-align:top; text-align:left;\">")
+        # Build header HTML to match mockup structure
+        header_html = []
+        header_html.append("<table class=\"hdr\" style=\"width:100%; border-collapse:collapse; font-family: Montserrat, Arial, sans-serif;\">")
+        header_html.append("<tr>")
+        # Left brand
+        header_html.append("<td>")
+        header_html.append("<div class=\"brand\">")
+        # Logo (if any) else geometric mark
         if logo_url:
-            header_html.append(f"<img src=\"{logo_url}\" style=\"max-height:88px; max-width:170px; object-fit:contain; margin-bottom:5px;\"/>")
+            header_html.append(f"<img src=\"{logo_url}\" style=\"height:38px; object-fit:contain; vertical-align:middle; margin-right:6px; border-radius:3px;\" alt=\"logo\"/>")
+        header_html.append("</div>")
+        header_html.append("</td>")
+        # Right company meta
+        header_html.append("<td class=\"right\" style=\"text-align:right;\">")
+        header_html.append(f"<div class=\"company-name\" style=\"font-size:16pt; font-weight:700; letter-spacing:.08em; text-transform:uppercase; line-height:1.1; margin-bottom:1mm;\">{frappe.utils.escape_html(company_name)}</div>")
+        meta_line = []
+        if line1:
+            meta_line.append(frappe.utils.escape_html(line1))
+        if line2:
+            meta_line.append(frappe.utils.escape_html(line2))
+        loc = ", ".join([p for p in [city, province] if p])
+        if loc:
+            meta_line.append(frappe.utils.escape_html(loc))
+        if meta_line:
+            header_html.append(f"<div class=\"company-meta small\" style=\"font-size:9pt; letter-spacing:0.18em; padding-left:6em;\">{', '.join(meta_line)}</div>")
         if tax_id:
-            header_html.append(f"<div style=\"font-size:10pt; font-weight:bold; background-color:#f0f0f0; padding:3px; border:1px solid #ccc; text-align:center; margin-top:5px;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
+            header_html.append(f"<div class=\"nuit small\" style=\"margin-top:2mm; font-size:9pt; letter-spacing:0.18em;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
         header_html.append("</td>")
-        
-        # Center section: Company name and contact details
-        header_html.append("<td style=\"vertical-align:top; text-align:center; padding:0 10px;\">")
-        header_html.append(f"<div style=\"font-weight:bold; font-size:13pt; margin-bottom:4px; text-transform: uppercase;\">{frappe.utils.escape_html(company_name)}</div>")
-
-        # Contact details in center
-        contact_details = []
-        if email:
-            contact_details.append(frappe.utils.escape_html(email))
-        if phone:
-            contact_details.append(frappe.utils.escape_html(phone))
-        if website:
-            contact_details.append(frappe.utils.escape_html(website))
-        if tax_id:
-            contact_details.append(frappe.utils.escape_html(tax_id))
-
-        
-        if contact_details:
-            header_html.append(f"<div style=\"font-size:10pt; line-height:1.4;\">{'<br>'.join(contact_details)}</div>")
-        header_html.append("</td>")
-        
-        # Right section: Company address
-        header_html.append("<td style=\"width:200px; vertical-align:top; text-align:right;\">")
-        address_parts = [p for p in [line1, line2, f"{city} {province}".strip()] if p]
-        if address_parts:
-            for part in address_parts:
-                header_html.append(f"<div style=\"font-size:10pt; line-height:1.3;\">{frappe.utils.escape_html(part)}</div>")
-        header_html.append(f"<div style=\"font-size:10pt; line-height:1.3; font-weight:bold;\">Moçambique</div>")
-        header_html.append("</td>")
-        
         header_html.append("</tr>")
         header_html.append("</table>")
         header_html = "".join(header_html)
@@ -326,24 +311,21 @@ def _apply_branding(company_name: str, profile):
         # Build footer HTML (without terms and conditions)
         footer_html = []
         
-        # Add company address and contacts in line
+        # Mockup footer: line + centered contacts + subtext
         footer_contact_parts = []
         if line1:
             footer_contact_parts.append(frappe.utils.escape_html(line1))
-        if line2:
-            footer_contact_parts.append(frappe.utils.escape_html(line2))
-        if city and province:
-            footer_contact_parts.append(f"{frappe.utils.escape_html(city)}, {frappe.utils.escape_html(province)}")
+        if city or province:
+            footer_contact_parts.append(" ".join([p for p in [frappe.utils.escape_html(city or ""), frappe.utils.escape_html(province or "")] if p]).strip())
         if phone:
-            footer_contact_parts.append(f"Tel: {frappe.utils.escape_html(phone)}")
+            footer_contact_parts.append(frappe.utils.escape_html(phone))
         if email:
-            footer_contact_parts.append(f"Email: {frappe.utils.escape_html(email)}")
-        
+            footer_contact_parts.append(frappe.utils.escape_html(email))
+
+        footer_html.append("<div class=\"footline\" style=\"height:0.6mm; background:#111; margin:6mm 0 3mm;\"></div>")
         if footer_contact_parts:
-            footer_html.append(f"<div style=\"font-size:9pt; color:#666;\">{' | '.join(footer_contact_parts)}</div>")
-        
-        # Add "Processado pelo programa MozEconomia Cloud" (almost invisible)
-        footer_html.append("<div style=\"color:#999; font-size:8pt; margin-top:2px;\">Processado pelo programa MozEconomia Cloud</div>")
+            footer_html.append(f"<div class=\"foot\" style=\"text-align:center; font-size:10pt; color:#111;\">{' | '.join([p for p in footer_contact_parts if p])}</div>")
+        footer_html.append("<div class=\"sub\" style=\"text-align:center; font-size:9pt; color:#444; margin-top:1mm;\">Processado pelo programa MozEconomia Cloud</div>")
 
         footer_content = "".join(footer_html)
 

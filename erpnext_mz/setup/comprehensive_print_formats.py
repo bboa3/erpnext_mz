@@ -21,14 +21,13 @@ class SalesInvoicePrintFormat(PrintFormatTemplate):
     def get_html_template(self):
         header_macro = self.get_common_header_macro("FACTURA")
         footer_macro = self.get_common_footer_macro()
-        customer_section = self.get_customer_details_section()
+        meta_cards_section = self.get_meta_cards_section()
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total", True),
+            ("net_total", "Sub-Total", True),
             ("tax_amount", "Imposto", False),
             ("discount_amount", "Desconto", False),
-            ("grand_total", "Total Geral", True),
-            ("rounded_total", "Total Arredondado", False)
+            ("grand_total", "TOTAL", True),
 #            ("base_grand_total", "Total em {{ doc.company_currency }}", False)
         ])
         qr_section = self.get_qr_code_section()
@@ -40,7 +39,7 @@ class SalesInvoicePrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-            """ + customer_section + """
+            """ + meta_cards_section + """
             
             """ + items_section + """
 
@@ -66,14 +65,13 @@ class SalesOrderPrintFormat(PrintFormatTemplate):
     def get_html_template(self):
         header_macro = self.get_common_header_macro("ENCOMENDA DE VENDA")
         footer_macro = self.get_common_footer_macro()
-        customer_section = self.get_customer_details_section()
+        meta_cards_section = self.get_meta_cards_section()
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total", True),
+            ("net_total", "Sub-Total", True),
             ("tax_amount", "Imposto", False),
             ("discount_amount", "Desconto", False),
-            ("grand_total", "Total Geral", True),
-            ("rounded_total", "Total Arredondado", False)
+            ("grand_total", "TOTAL", True),
         ])
         qr_section = self.get_qr_code_section()
         
@@ -84,7 +82,7 @@ class SalesOrderPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-            """ + customer_section + """
+            """ + meta_cards_section + """
 
             """ + items_section + """
 
@@ -110,15 +108,14 @@ class DeliveryNotePrintFormat(PrintFormatTemplate):
     def get_html_template(self):
         header_macro = self.get_common_header_macro("GUIA DE REMESSA")
         footer_macro = self.get_common_footer_macro()
-        customer_section = self.get_customer_details_section()
+        meta_cards_section = self.get_meta_cards_delivery_note_section()
         signatures_section = self.get_signatures_section()
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total", True),
+            ("net_total", "Sub-Total", True),
             ("tax_amount", "Imposto", False),
             ("discount_amount", "Desconto", False),
-            ("grand_total", "Total Geral", True),
-            ("rounded_total", "Total Arredondado", False)
+            ("grand_total", "TOTAL", True)
         ])
         qr_section = self.get_qr_code_section()
         
@@ -129,45 +126,7 @@ class DeliveryNotePrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-            """ + customer_section + """
-
-            <!-- Transporte e Destino -->
-            <div class="row customer-invoice-section">
-                <div class="col-xs-6 customer-details">
-                    <h4 class="section-title">{{ _("Transporte") }}</h4>
-                    <div class="customer-info">
-                        {% if doc.transporter_name or doc.transporter %}
-                        <div><strong>{{ _("Transportadora") }}:</strong> {{ doc.transporter_name or doc.transporter }}</div>
-                        {% endif %}
-                        {% if doc.vehicle_no %}
-                        <div><strong>{{ _("Matrícula") }}:</strong> {{ doc.vehicle_no }}</div>
-                        {% endif %}
-                        {% if doc.driver_name or doc.driver %}
-                        <div><strong>{{ _("Motorista") }}:</strong> {{ doc.driver_name or doc.driver }}</div>
-                        {% endif %}
-                        {% if doc.lr_no %}
-                        <div><strong>{{ _("Documento Transporte") }}:</strong> {{ doc.lr_no }}</div>
-                        {% endif %}
-                        {% if doc.lr_date %}
-                        <div><strong>{{ _("Data Documento") }}:</strong> {{ frappe.utils.format_date(doc.lr_date) }}</div>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="col-xs-6 invoice-details">
-                    <h4 class="section-title">{{ _("Destino") }}</h4>
-                    <div class="invoice-info">
-                        {% if doc.customer %}
-                        <div class="info-row"><span class="label">{{ _("Cliente") }}:</span><span class="value">{{ doc.customer_name or doc.customer }}</span></div>
-                        {% endif %}
-                        {% if doc.shipping_address_display %}
-                        <div class="info-row"><span class="label">{{ _("Endereço de Entrega") }}:</span><span class="value">{{ doc.shipping_address_display }}</span></div>
-                        {% endif %}
-                        {% if doc.posting_date %}
-                        <div class="info-row"><span class="label">{{ _("Data de Saída") }}:</span><span class="value">{{ frappe.utils.format_date(doc.posting_date) }}</span></div>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+            """ + meta_cards_section + """
 
             """ + items_section + """
 
@@ -195,14 +154,13 @@ class QuotationPrintFormat(PrintFormatTemplate):
     def get_html_template(self):
         header_macro = self.get_common_header_macro("ORÇAMENTO")
         footer_macro = self.get_common_footer_macro()
-        customer_section = self.get_customer_details_section()
+        meta_cards_section = self.get_meta_cards_section()
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total", True),
+            ("net_total", "Sub-Total", True),
             ("tax_amount", "Imposto", False),
             ("discount_amount", "Desconto", False),
-            ("grand_total", "Total Geral", True),
-            ("rounded_total", "Total Arredondado", False)
+            ("grand_total", "TOTAL", True)
         ])
         qr_section = self.get_qr_code_section()
         
@@ -213,7 +171,7 @@ class QuotationPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-            """ + customer_section + """
+            """ + meta_cards_section + """
 
             """ + items_section + """
 
@@ -239,13 +197,13 @@ class SalesInvoiceReturnPrintFormat(PrintFormatTemplate):
     def get_html_template(self):
         header_macro = self.get_common_header_macro("NOTA DE CRÉDITO")
         footer_macro = self.get_common_footer_macro()
+        meta_cards_section = self.get_meta_cards_section("customer", "customer_name", "Beneficiário do Crédito")
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total", True),
+            ("net_total", "Sub-Total", True),
             ("tax_amount", "Imposto", False),
             ("discount_amount", "Desconto", False),
-            ("grand_total", "Total do Crédito", True),
-            ("rounded_total", "Total Arredondado", False)
+            ("grand_total", "TOTAL", True)
         ])
         qr_section = self.get_qr_code_section()
 
@@ -256,67 +214,7 @@ class SalesInvoiceReturnPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-                <!-- Customer Details Section for Credit Note -->
-                <div class="row customer-invoice-section">
-                    <div class="col-xs-6 customer-details">
-                        <h4 class="section-title">{{ _("Beneficiário do Crédito") }}</h4>
-                        <div class="customer-info">
-                            <div class="customer-name">{{ doc.customer_name or doc.customer }}</div>
-                            {% if doc.tax_id %}
-                                <div><strong>{{ _("NUIT") }}:</strong> {{ doc.tax_id }}</div>
-                            {% endif %}
-                            {% if not doc.tax_id and doc.customer %}
-                                {% set __cust_nuit = frappe.db.get_value('Customer', doc.customer, 'tax_id') %}
-                                {% if __cust_nuit %}
-                                    <div><strong>{{ _("NUIT") }}:</strong> {{ __cust_nuit }}</div>
-                                {% endif %}
-                            {% endif %}
-                            {% if doc.address_display %}
-                                <div>{{ doc.address_display }}</div>
-                            {% endif %}
-                            {% if doc.contact_display %}
-                                <div><strong>{{ _("Contacto") }}:</strong> {{ doc.contact_display }}</div>
-                            {% endif %}
-                            {% if doc.contact_mobile %}
-                                <div><strong>{{ _("Telemóvel") }}:</strong> {{ doc.contact_mobile }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    
-                    <div class="col-xs-6 invoice-details">
-                        <h4 class="section-title">{{ _("Detalhes do Documento") }}</h4>
-                        <div class="invoice-info">
-                            {% if doc.return_against %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Referência à Factura Original") }}:</span>
-                                <span class="value">{{ doc.return_against }}</span>
-                            </div>
-                            {% endif %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Tipo de Crédito") }}:</span>
-                                <span class="value">{% if doc.is_return %}Devolução de Bens/Serviços{% else %}Ajuste de Facturação{% endif %}</span>
-                            </div>
-                            {% if doc.due_date %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Data Limite") }}:</span>
-                                <span class="value">{{ frappe.utils.format_date(doc.due_date) }}</span>
-                            </div>
-                            {% endif %}
-                            {% if doc.po_no %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Nº Encomenda") }}:</span>
-                                <span class="value">{{ doc.po_no }}</span>
-                            </div>
-                            {% endif %}
-                            {% if doc.currency and doc.company_currency and doc.currency != doc.company_currency and doc.conversion_rate %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Taxa de câmbio") }}:</span>
-                                <span class="value">1 {{ doc.currency }} = {{ doc.conversion_rate }} {{ doc.company_currency }}</span>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+            """ + meta_cards_section + """
 
             """ + items_section + """
 
@@ -343,14 +241,13 @@ class PurchaseInvoicePrintFormat(PrintFormatTemplate):
     def get_html_template(self):
         header_macro = self.get_common_header_macro("FACTURA DE COMPRA")
         footer_macro = self.get_common_footer_macro()
-        customer_section = self.get_customer_details_section("supplier", "supplier_name")
+        meta_cards_section = self.get_meta_cards_section("supplier", "supplier_name")
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total", True),
+            ("net_total", "Sub-Total", True),
             ("tax_amount", "Imposto", False),
             ("discount_amount", "Desconto", False),
-            ("grand_total", "Total Geral", True),
-            ("rounded_total", "Total Arredondado", False)
+            ("grand_total", "TOTAL", True)
         ])
         qr_section = self.get_qr_code_section()
         
@@ -361,7 +258,7 @@ class PurchaseInvoicePrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-            """ + customer_section + """
+            """ + meta_cards_section + """
 
             """ + items_section + """
 
@@ -387,14 +284,13 @@ class PurchaseOrderPrintFormat(PrintFormatTemplate):
     def get_html_template(self):
         header_macro = self.get_common_header_macro("ENCOMENDA DE COMPRA")
         footer_macro = self.get_common_footer_macro()
-        customer_section = self.get_customer_details_section("supplier", "supplier_name")
+        meta_cards_section = self.get_meta_cards_section("supplier", "supplier_name")
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total", True),
+            ("net_total", "Sub-Total", True),
             ("tax_amount", "Imposto", False),
             ("discount_amount", "Desconto", False),
-            ("grand_total", "Total Geral", True),
-            ("rounded_total", "Total Arredondado", False)
+            ("grand_total", "TOTAL", True)
         ])
         qr_section = self.get_qr_code_section()
         
@@ -405,7 +301,7 @@ class PurchaseOrderPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-            """ + customer_section + """
+            """ + meta_cards_section + """
 
             """ + items_section + """
 
@@ -431,14 +327,13 @@ class PurchaseReceiptPrintFormat(PrintFormatTemplate):
     def get_html_template(self):
         header_macro = self.get_common_header_macro("RECIBO DE COMPRA")
         footer_macro = self.get_common_footer_macro()
-        customer_section = self.get_customer_details_section("supplier", "supplier_name")
+        meta_cards_section = self.get_meta_cards_section("supplier", "supplier_name")
         items_section = self.get_items_table_section()
         totals_section = self.get_totals_section([
-            ("net_total", "Sub Total", True),
+            ("net_total", "Sub-Total", True),
             ("tax_amount", "Imposto", False),
             ("discount_amount", "Desconto", False),
-            ("grand_total", "Total Geral", True),
-            ("rounded_total", "Total Arredondado", False)
+            ("grand_total", "TOTAL", True)
         ])
         qr_section = self.get_qr_code_section()
         
@@ -449,7 +344,7 @@ class PurchaseReceiptPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-            """ + customer_section + """
+            """ + meta_cards_section + """
 
             """ + items_section + """
 
@@ -646,6 +541,7 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
     
     def get_html_template(self):
         header_macro = self.get_common_header_macro("RECIBO DE PAGAMENTO")
+        meta_cards_section = self.get_meta_cards_payment_entry_section()
         footer_macro = self.get_common_footer_macro()
         qr_section = self.get_qr_code_section()
         
@@ -656,137 +552,83 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-                <!-- Payment Details -->
-                <div class="row customer-invoice-section">
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Detalhes do Pagamento") }}</h4>
-                        <div class="customer-info">
-                            <div><strong>{{ _("Tipo") }}:</strong> {{ doc.payment_type  }}</div>
-                            <div><strong>{{ _("Modo") }}:</strong> {{ doc.mode_of_payment }}</div>
-                            {% if doc.party %}
-                            {% set __party_label = (doc.party_type=="Customer" and _("Cliente")) or (doc.party_type=="Supplier" and _("Fornecedor")) or _("Parte") %}
-                            <div><strong>{{ __party_label }}:</strong> {{ doc.party_name or doc.party }}</div>
-                            {% set __party_nuit = frappe.db.get_value(doc.party_type, doc.party, 'tax_id') %}
-                            {% if __party_nuit %}
-                                <div><strong>{{ _("NUIT") }}:</strong> {{ __party_nuit }}</div>
-                            {% endif %}
-                            {% endif %}
-                            {% if doc.paid_from %}
-                            <div><strong>{{ _("Conta Origem") }}:</strong> {{ doc.paid_from }}</div>
-                            {% endif %}
-                            {% if doc.paid_to %}
-                            <div><strong>{{ _("Conta Destino") }}:</strong> {{ doc.paid_to }}</div>
-                            {% endif %}
-                            {% if doc.reference_no %}
-                            <div><strong>{{ _("Ref. Nº") }}:</strong> {{ doc.reference_no }}</div>
-                            {% endif %}
-                            {% if doc.reference_date %}
-                            <div><strong>{{ _("Data da Referência") }}:</strong> {{ frappe.utils.format_date(doc.reference_date) }}</div>
-                            {% endif %}
-                            {% if doc.clearance_date %}
-                            <div><strong>{{ _("Data de Compensação") }}:</strong> {{ frappe.utils.format_date(doc.clearance_date) }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Valores") }}</h4>
-                        <div class="invoice-info">
-                            <div class="info-row">
-                                <span class="label">{{ _("Valor pago (origem)") }} [{{ doc.paid_from_account_currency or doc.company_currency }}]:</span>
-                                <span class="value">{{ frappe.utils.fmt_money(doc.total_allocated_amount, currency=(doc.paid_from_account_currency or doc.company_currency)) }}</span>
-                            </div>
-                            {% if doc.received_amount %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Valor recebido (destino)") }} [{{ doc.paid_to_account_currency or doc.company_currency }}]:</span>
-                                <span class="value">{{ frappe.utils.fmt_money(doc.total_allocated_amount, currency=(doc.paid_to_account_currency or doc.company_currency)) }}</span>
-                            </div>
-                            {% endif %}
-                            {% if doc.paid_from_account_currency and doc.paid_to_account_currency and doc.paid_from_account_currency != doc.paid_to_account_currency %}
-                            {% set __fx = doc.get('target_exchange_rate') or 0 %}
-                            {% if __fx %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Taxa de câmbio") }}:</span>
-                                <span class="value">1 {{ doc.paid_from_account_currency }} = {{ __fx }} {{ doc.paid_to_account_currency }}</span>
-                            </div>
-                            {% endif %}
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+                """ + meta_cards_section + """
 
                 <!-- References Section -->
                 {% if doc.references %}
-                <div class="items-section">
-                    <h4 class="section-title">{{ _("Referências") }}</h4>
-                    <table class="items-table cols-6">
-                        <thead>
-                            <tr>
-                                <th class="text-left">{{ _("Tipo") }}</th>
-                                <th class="text-left">{{ _("Documento") }}</th>
-                                <th class="text-center">{{ _("Data") }}</th>
-                                <th class="text-right">{{ _("Total da Fatura") }}</th>
-                                <th class="text-right">{{ _("Saldo Antes") }}</th>
-                                <th class="text-right">{{ _("Saldo Após Pagamento") }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for ref in doc.references %}
-                            <tr>
-                                <td class="text-left">{{ ref.reference_doctype }}</td>
-                                <td class="text-left">{{ ref.reference_name }}</td>
-                                {% set __ref_date = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'posting_date') or frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'transaction_date') or frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'bill_date') %}
-                                <td class="text-center">{% if __ref_date %}{{ frappe.utils.format_date(__ref_date) }}{% endif %}</td>
-                                {% set __grand_total = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'grand_total') %}
-                                <td class="text-right">{% if __grand_total is not none %}{{ frappe.utils.fmt_money(__grand_total, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
-                                {% set __outstanding_before = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'outstanding_amount') + ref.allocated_amount %}
-                                <td class="text-right">{% if __outstanding_before is not none %}{{ frappe.utils.fmt_money(__outstanding_before, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
-                                {% set __remaining = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'outstanding_amount') %}
-                                <td class="text-right">{% if __remaining is not none %}{{ frappe.utils.fmt_money(__remaining, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                    <section>
+                        <h4 class="muted">{{ _("Referências") }}</h4>
+                        <div class="hr" aria-hidden="true"></div>
+                        <table class="items" role="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="left">{{ _("Tipo") }}</th>
+                                    <th scope="col" class="right">{{ _("Documento") }}</th>
+                                    <th scope="col" class="right">{{ _("Data") }}</th>
+                                    <th scope="col" class="right">{{ _("Total da Fatura") }}</th>
+                                    <th scope="col" class="right">{{ _("Saldo Antes") }}</th>
+                                    <th scope="col" class="right">{{ _("Saldo Após Pagamento") }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ref in doc.references %}
+                                    <tr>
+                                        <td class="left">{{ ref.reference_doctype }}</td>
+                                        <td class="right">{{ ref.reference_name }}</td>
+                                        {% set __ref_date = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'posting_date') or frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'transaction_date') or frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'bill_date') %}
+                                        <td class="right">{% if __ref_date %}{{ frappe.utils.format_date(__ref_date) }}{% endif %}</td>
+                                        {% set __grand_total = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'grand_total') %}
+                                        <td class="right">{% if __grand_total is not none %}{{ frappe.utils.fmt_money(__grand_total, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
+                                        {% set __outstanding_before = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'outstanding_amount') + ref.allocated_amount %}
+                                        <td class="right">{% if __outstanding_before is not none %}{{ frappe.utils.fmt_money(__outstanding_before, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
+                                        {% set __remaining = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'outstanding_amount') %}
+                                        <td class="right">{% if __remaining is not none %}{{ frappe.utils.fmt_money(__remaining, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </section>
                 {% endif %}
 
                 <!-- Deduções / Retenções -->
                 {% if doc.deductions or doc.get('difference_amount') %}
-                <div class="items-section">
-                    <h4 class="section-title">{{ _("Retenções e Outras Deduções") }}</h4>
-                    <table class="items-table cols-3">
+                <section>
+                    <h4 class="muted">{{ _("Retenções e Outras Deduções") }}</h4>
+                    <div class="hr" aria-hidden="true"></div>
+                    <table class="items" role="table">
                         <thead>
                             <tr>
-                                <th class="text-left">{{ _("Conta") }}</th>
-                                <th class="text-left">{{ _("Descrição") }}</th>
-                                <th class="text-right">{{ _("Valor") }}</th>
+                                <th class="left">{{ _("Conta") }}</th>
+                                <th class="right">{{ _("Descrição") }}</th>
+                                <th class="right">{{ _("Valor") }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for d in doc.deductions %}
                             <tr>
-                                <td class="text-left">{{ d.account }}</td>
-                                <td class="text-left">{{ d.description or '' }}</td>
-                                <td class="text-right">{{ d.get_formatted('amount', doc) }}</td>
+                                <td class="left">{{ d.account }}</td>
+                                <td class="right">{{ d.description or '' }}</td>
+                                <td class="right">{{ d.get_formatted('amount', doc) }}</td>
                             </tr>
                             {% endfor %}
                             {% if doc.get('difference_amount') %}
                             <tr>
-                                <td class="text-left">—</td>
-                                <td class="text-left">{{ _("Diferença") }}</td>
-                                <td class="text-right">{{ doc.get_formatted('difference_amount', doc) }}</td>
+                                <td class="left">—</td>
+                                <td class="right">{{ _("Diferença") }}</td>
+                                <td class="right">{{ doc.get_formatted('difference_amount', doc) }}</td>
                             </tr>
                             {% endif %}
                         </tbody>
                     </table>
-                </div>
+                </section>
                 {% endif %}
 
                 <!-- Disclaimer -->
-                <div class="row">
-                    <div class="col-xs-12 text-left">
-                        <div class="qr-label">{{ _("Comprovativo de pagamento. Não substitui a factura para efeitos fiscais (CIVA).") }}</div>
+                <section>
+                    <div class="text-left">
+                        <div class="disclaimer">{{ _("Comprovativo de pagamento. Não substitui a factura para efeitos fiscais (CIVA).") }}</div>
                     </div>
-                </div>
+                </section>
 
             """ + qr_section + """
 
