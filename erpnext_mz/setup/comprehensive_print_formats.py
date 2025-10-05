@@ -214,17 +214,17 @@ class SalesInvoiceReturnPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-            """ + meta_cards_section + """
+                """ + meta_cards_section + """
 
-            """ + items_section + """
+                """ + items_section + """
 
-            """ + totals_section + """
+                """ + totals_section + """
 
-            """ + qr_section + """
+                """ + qr_section + """
 
-            {% if print_settings and print_settings.repeat_header_footer %}
-                {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
-            {% endif %}
+                {% if print_settings and print_settings.repeat_header_footer %}
+                    {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+                {% endif %}
 
             </div>
             {% endfor %}
@@ -380,68 +380,61 @@ class StockEntryPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-                <!-- Stock Entry Details -->
-                <div class="row customer-invoice-section">
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Tipo de Entrada") }}</h4>
-                        <div class="customer-info">
-                            <strong>{{ doc.stock_entry_type }}</strong>
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Detalhes") }}</h4>
-                        <div class="invoice-info">
-                            {% if doc.from_warehouse %}
-                            <div class="info-row">
-                                <span class="label">{{ _("De Armazém") }}:</span>
-                                <span class="value">{{ doc.from_warehouse }}</span>
-                            </div>
-                            {% endif %}
-                            {% if doc.to_warehouse %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Para Armazém") }}:</span>
-                                <span class="value">{{ doc.to_warehouse }}</span>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+                <!-- Meta cards -->
+                <table class="meta avoid-break" aria-label="Detalhes">
+                  <tr>
+                    <td>
+                      <section class="card">
+                        <h3 class="card-title">DETALHES</h3>
+                        <p>{{ _("Tipo de Entrada") }}: <span>{{ doc.stock_entry_type }}</span></p>
+                      </section>
+                    </td>
+                    <td>
+                      <section class="card">
+                        <h3 class="card-title">DETALHES DO DOCUMENTO</h3>
+                        {% set __dt = (doc.posting_date and (doc.posting_date ~ " " ~ (doc.posting_time or "00:00:00")))
+                            or (doc.transaction_date and (doc.transaction_date ~ " 00:00:00"))
+                            or doc.creation %}
+                        <p>{{ _("Data") }}: <span>{{ frappe.utils.format_datetime(__dt) }}</span></p>
+                        {% if doc.from_warehouse %}<p>{{ _("De Armazém") }}: <span>{{ doc.from_warehouse }}</span></p>{% endif %}
+                        {% if doc.to_warehouse %}<p>{{ _("Para Armazém") }}: <span>{{ doc.to_warehouse }}</span></p>{% endif %}
+                      </section>
+                    </td>
+                  </tr>
+                </table>
 
-                <!-- Items Table Section -->
-                <div class="items-section">
-                    <h4 class="section-title">{{ _("Artigos") }}</h4>
-                    <table class="items-table cols-5">
-                        <thead>
-                            <tr>
-                                <th class="text-center">{{ _("Sr") }}</th>
-                                <th class="text-left">{{ _("Item") }}</th>
-                                <th class="text-center">{{ _("Qtd") }}</th>
-                                <th class="text-center">{{ _("U.M.") }}</th>
-                                <th class="text-center">{{ _("Armazém") }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in doc.items %}
-                            <tr>
-                                <td class="text-center">{{ loop.index }}</td>
-                                <td class="text-left">
-                                    <strong>{{ item.item_code }}</strong><br>
-                                    {{ item.item_name }}
-                                </td>
-                                <td class="text-center">{{ item.get_formatted("qty", doc) }}</td>
-                                <td class="text-center">{{ item.get_formatted("uom", doc) }}</td>
-                                <td class="text-center">{{ item.warehouse }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                <!-- Soft divider -->
+                <div class="hr" aria-hidden="true"></div>
 
-            """ + qr_section + """
+                <!-- Items table -->
+                <section aria-label="Artigos">
+                  <table class="items" role="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">{{ _("Descrição") }}</th>
+                        <th scope="col" class="right">{{ _("Qtd") }}</th>
+                        <th scope="col" class="right">{{ _("U.M.") }}</th>
+                        <th scope="col" class="right">{{ _("Armazém") }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for item in doc.items %}
+                      <tr>
+                        <td>{{ item.item_name or item.item_code }}</td>
+                        <td class="right">{{ item.get_formatted('qty', doc) }}</td>
+                        <td class="right">{{ item.get_formatted('uom', doc) }}</td>
+                        <td class="right">{{ item.warehouse }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </section>
 
-            {% if print_settings and print_settings.repeat_header_footer %}
-                {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
-            {% endif %}
+                """ + qr_section + """
+
+                {% if print_settings and print_settings.repeat_header_footer %}
+                    {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+                {% endif %}
 
             </div>
             {% endfor %}
@@ -466,66 +459,62 @@ class MaterialRequestPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-                <!-- Material Request Details -->
-                <div class="row customer-invoice-section">
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Detalhes do Pedido") }}</h4>
-                        <div class="customer-info">
-                            <strong>{{ _("Tipo") }}:</strong> {{ doc.material_request_type }}<br>
-                            {% if doc.schedule_date %}
-                            <strong>{{ _("Data Prevista") }}:</strong> {{ frappe.utils.format_date(doc.schedule_date) }}
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Destino") }}</h4>
-                        <div class="invoice-info">
-                            {% if doc.warehouse %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Armazém") }}:</span>
-                                <span class="value">{{ doc.warehouse }}</span>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+                <!-- Meta cards -->
+                <table class="meta avoid-break" aria-label="Detalhes e Destino">
+                  <tr>
+                    <td>
+                      <section class="card">
+                        <h3 class="card-title">DETALHES DO PEDIDO</h3>
+                        <p>{{ _("Tipo") }}: <span>{{ doc.material_request_type }}</span></p>
+                        {% if doc.schedule_date %}
+                        <p>{{ _("Data Prevista") }}: <span>{{ frappe.utils.format_date(doc.schedule_date) }}</span></p>
+                        {% endif %}
+                      </section>
+                    </td>
+                    <td>
+                      <section class="card">
+                        <h3 class="card-title">DESTINO</h3>
+                        {% set __dt = (doc.posting_date and (doc.posting_date ~ " " ~ (doc.posting_time or "00:00:00")))
+                            or (doc.transaction_date and (doc.transaction_date ~ " 00:00:00"))
+                            or doc.creation %}
+                        <p>{{ _("Data") }}: <span>{{ frappe.utils.format_datetime(__dt) }}</span></p>
+                        {% if doc.warehouse %}<p>{{ _("Armazém") }}: <span>{{ doc.warehouse }}</span></p>{% endif %}
+                      </section>
+                    </td>
+                  </tr>
+                </table>
 
-                <!-- Items Table Section -->
-                <div class="items-section">
-                    <h4 class="section-title">{{ _("Artigos") }}</h4>
-                    <table class="items-table cols-4">
-                        <thead>
-                            <tr>
-                                <th class="text-center">{{ _("Sr") }}</th>
-                                <th class="text-left">{{ _("Item") }}</th>
-                                <th class="text-center">{{ _("Qtd") }}</th>
-                                <th class="text-center">{{ _("U.M.") }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in doc.items %}
-                            <tr>
-                                <td class="text-center">{{ loop.index }}</td>
-                                <td class="text-left">
-                                    <strong>{{ item.item_code }}</strong><br>
-                                    {{ item.item_name }}
-                                    {% if item.schedule_date %}
-                                        <br><small><strong>{{ _("Data Prevista") }}:</strong> {{ frappe.utils.format_date(item.schedule_date) }}</small>
-                                    {% endif %}
-                                </td>
-                                <td class="text-center">{{ item.get_formatted("qty", doc) }}</td>
-                                <td class="text-center">{{ item.get_formatted("uom", doc) }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                <div class="hr" aria-hidden="true"></div>
 
-            """ + qr_section + """
+                <!-- Items table -->
+                <section aria-label="Artigos">
+                  <table class="items" role="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">{{ _("Descrição") }}</th>
+                        <th scope="col" class="right">{{ _("Qtd") }}</th>
+                        <th scope="col" class="right">{{ _("U.M.") }}</th>
+                        <th scope="col" class="right">{{ _("Data Prevista") }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for item in doc.items %}
+                      <tr>
+                        <td>{{ item.item_name or item.item_code }}</td>
+                        <td class="right">{{ item.get_formatted('qty', doc) }}</td>
+                        <td class="right">{{ item.get_formatted('uom', doc) }}</td>
+                        <td class="right">{% if item.schedule_date %}{{ frappe.utils.format_date(item.schedule_date) }}{% endif %}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </section>
 
-            {% if print_settings and print_settings.repeat_header_footer %}
-                {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
-            {% endif %}
+                """ + qr_section + """
+
+                {% if print_settings and print_settings.repeat_header_footer %}
+                    {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+                {% endif %}
 
             </div>
             {% endfor %}
@@ -659,70 +648,62 @@ class JournalEntryPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-                <!-- Journal Entry Details -->
-                <div class="row customer-invoice-section">
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Detalhes do Lançamento") }}</h4>
-                        <div class="customer-info">
-                            <strong>{{ _("Tipo") }}:</strong> {{ doc.voucher_type }}<br>
-                            {% if doc.cheque_no %}
-                            <strong>{{ _("Nº Cheque") }}:</strong> {{ doc.cheque_no }}<br>
-                            {% endif %}
-                            {% if doc.cheque_date %}
-                            <strong>{{ _("Data Cheque") }}:</strong> {{ frappe.utils.format_date(doc.cheque_date) }}
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Valores") }}</h4>
-                        <div class="invoice-info">
-                            <div class="info-row">
-                                <span class="label">{{ _("Total Débito") }}:</span>
-                                <span class="value">{{ doc.get_formatted("total_debit", doc) }}</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">{{ _("Total Crédito") }}:</span>
-                                <span class="value">{{ doc.get_formatted("total_credit", doc) }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Meta cards -->
+                <table class="meta avoid-break" aria-label="Detalhes do Lançamento">
+                  <tr>
+                    <td>
+                      <section class="card">
+                        <h3 class="card-title">DETALHES DO LANÇAMENTO</h3>
+                        <p>{{ _("Tipo") }}: <span>{{ doc.voucher_type }}</span></p>
+                        {% if doc.cheque_no %}<p>{{ _("Nº Cheque") }}: <span>{{ doc.cheque_no }}</span></p>{% endif %}
+                        {% if doc.cheque_date %}<p>{{ _("Data Cheque") }}: <span>{{ frappe.utils.format_date(doc.cheque_date) }}</span></p>{% endif %}
+                      </section>
+                    </td>
+                    <td>
+                      <section class="card">
+                        <h3 class="card-title">DETALHES DO DOCUMENTO</h3>
+                        {% set __dt = (doc.posting_date and (doc.posting_date ~ " " ~ (doc.posting_time or "00:00:00")))
+                            or (doc.transaction_date and (doc.transaction_date ~ " 00:00:00"))
+                            or doc.creation %}
+                        <p>{{ _("Data") }}: <span>{{ frappe.utils.format_datetime(__dt) }}</span></p>
+                        <p>{{ _("Total Débito") }}: <span>{{ doc.get_formatted('total_debit', doc) }}</span></p>
+                        <p>{{ _("Total Crédito") }}: <span>{{ doc.get_formatted('total_credit', doc) }}</span></p>
+                      </section>
+                    </td>
+                  </tr>
+                </table>
 
-                <!-- Accounts Section -->
-                <div class="items-section">
-                    <h4 class="section-title">{{ _("Contas") }}</h4>
-                    <table class="items-table cols-4">
-                        <thead>
-                            <tr>
-                                <th class="text-left">{{ _("Conta") }}</th>
-                                <th class="text-left">{{ _("Centro de Custo") }}</th>
-                                <th class="text-right">{{ _("Débito") }}</th>
-                                <th class="text-right">{{ _("Crédito") }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for account in doc.accounts %}
-                            <tr>
-                                <td class="text-left">
-                                    <strong>{{ account.account }}</strong><br>
-                                    {% if account.party_type and account.party %}
-                                    <small>{{ account.party_type }}: {{ account.party }}</small>
-                                    {% endif %}
-                                </td>
-                                <td class="text-left">{{ account.cost_center or '' }}</td>
-                                <td class="text-right">{% if account.debit %}{{ account.get_formatted("debit", doc) }}{% endif %}</td>
-                                <td class="text-right">{% if account.credit %}{{ account.get_formatted("credit", doc) }}{% endif %}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                <div class="hr" aria-hidden="true"></div>
 
-            """ + qr_section + """
+                <!-- Accounts table -->
+                <section aria-label="Contas">
+                  <table class="items" role="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">{{ _("Conta") }}</th>
+                        <th scope="col" class="right">{{ _("Centro de Custo") }}</th>
+                        <th scope="col" class="right">{{ _("Débito") }}</th>
+                        <th scope="col" class="right">{{ _("Crédito") }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for account in doc.accounts %}
+                      <tr>
+                        <td>{{ account.account }}</td>
+                        <td class="right">{{ account.cost_center or '' }}</td>
+                        <td class="right">{% if account.debit %}{{ account.get_formatted('debit', doc) }}{% endif %}</td>
+                        <td class="right">{% if account.credit %}{{ account.get_formatted('credit', doc) }}{% endif %}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </section>
 
-            {% if print_settings and print_settings.repeat_header_footer %}
-                {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
-            {% endif %}
+                """ + qr_section + """
+
+                {% if print_settings and print_settings.repeat_header_footer %}
+                    {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+                {% endif %}
 
             </div>
             {% endfor %}
@@ -748,115 +729,96 @@ class PayslipPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-                <!-- Employee Details -->
-                <div class="row customer-invoice-section">
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Dados do Funcionário") }}</h4>
-                        <div class="customer-info">
-                            <strong>{{ doc.employee_name }}</strong><br>
-                            <strong>{{ _("Nº Funcionário") }}:</strong> {{ doc.employee }}<br>
-                            {% if doc.designation %}
-                            <strong>{{ _("Cargo") }}:</strong> {{ doc.designation }}<br>
-                            {% endif %}
-                            {% if doc.department %}
-                            <strong>{{ _("Departamento") }}:</strong> {{ doc.department }}
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Período") }}</h4>
-                        <div class="invoice-info">
-                            <div class="info-row">
-                                <span class="label">{{ _("De") }}:</span>
-                                <span class="value">{{ frappe.utils.format_date(doc.start_date) }}</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">{{ _("Até") }}:</span>
-                                <span class="value">{{ frappe.utils.format_date(doc.end_date) }}</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="label">{{ _("Dias Trabalhados") }}:</span>
-                                <span class="value">{{ doc.payment_days }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Meta cards -->
+                <table class="meta avoid-break" aria-label="Funcionário e Período">
+                  <tr>
+                    <td>
+                      <section class="card">
+                        <h3 class="card-title">DADOS DO FUNCIONÁRIO</h3>
+                        <p><strong>{{ doc.employee_name }}</strong></p>
+                        <p>{{ _("Nº Funcionário") }}: <span>{{ doc.employee }}</span></p>
+                        {% if doc.designation %}<p>{{ _("Cargo") }}: <span>{{ doc.designation }}</span></p>{% endif %}
+                        {% if doc.department %}<p>{{ _("Departamento") }}: <span>{{ doc.department }}</span></p>{% endif %}
+                      </section>
+                    </td>
+                    <td>
+                      <section class="card">
+                        <h3 class="card-title">PERÍODO</h3>
+                        <p>{{ _("De") }}: <span>{{ frappe.utils.format_date(doc.start_date) }}</span></p>
+                        <p>{{ _("Até") }}: <span>{{ frappe.utils.format_date(doc.end_date) }}</span></p>
+                        <p>{{ _("Dias Trabalhados") }}: <span>{{ doc.payment_days }}</span></p>
+                      </section>
+                    </td>
+                  </tr>
+                </table>
 
-                <!-- Earnings Section -->
+                <div class="hr" aria-hidden="true"></div>
+
                 {% if doc.earnings %}
-                <div class="items-section">
-                    <h4 class="section-title">{{ _("Vencimentos") }}</h4>
-                    <table class="items-table">
-                        <thead>
-                            <tr>
-                                <th class="text-left">{{ _("Descrição") }}</th>
-                                <th class="text-center">{{ _("Dias/Horas") }}</th>
-                                <th class="text-right">{{ _("Taxa") }}</th>
-                                <th class="text-right">{{ _("Valor") }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for earning in doc.earnings %}
-                            <tr>
-                                <td class="text-left">{{ earning.salary_component }}</td>
-                                <td class="text-center">{% if earning.amount %}{{ earning.get_formatted("amount", doc) }}{% endif %}</td>
-                                <td class="text-right">{% if earning.default_amount %}{{ earning.get_formatted("default_amount", doc) }}{% endif %}</td>
-                                <td class="text-right">{{ earning.get_formatted("amount", doc) }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                <section aria-label="Vencimentos">
+                  <table class="items" role="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">{{ _("Descrição") }}</th>
+                        <th scope="col" class="right">{{ _("Dias/Horas") }}</th>
+                        <th scope="col" class="right">{{ _("Taxa") }}</th>
+                        <th scope="col" class="right">{{ _("Valor") }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for earning in doc.earnings %}
+                      <tr>
+                        <td>{{ earning.salary_component }}</td>
+                        <td class="right">{% if earning.amount %}{{ earning.get_formatted('amount', doc) }}{% endif %}</td>
+                        <td class="right">{% if earning.default_amount %}{{ earning.get_formatted('default_amount', doc) }}{% endif %}</td>
+                        <td class="right">{{ earning.get_formatted('amount', doc) }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </section>
                 {% endif %}
 
-                <!-- Deductions Section -->
                 {% if doc.deductions %}
-                <div class="items-section">
-                    <h4 class="section-title">{{ _("Descontos") }}</h4>
-                    <table class="items-table">
-                        <thead>
-                            <tr>
-                                <th class="text-left">{{ _("Descrição") }}</th>
-                                <th class="text-right">{{ _("Valor") }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for deduction in doc.deductions %}
-                            <tr>
-                                <td class="text-left">{{ deduction.salary_component }}</td>
-                                <td class="text-right">{{ deduction.get_formatted("amount", doc) }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                <section aria-label="Descontos">
+                  <table class="items" role="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">{{ _("Descrição") }}</th>
+                        <th scope="col" class="right">{{ _("Valor") }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for deduction in doc.deductions %}
+                      <tr>
+                        <td>{{ deduction.salary_component }}</td>
+                        <td class="right">{{ deduction.get_formatted('amount', doc) }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </section>
                 {% endif %}
 
-                <!-- Totals Section -->
-                <div class="row totals-section">
-                    <div class="col-xs-12">
-                        <div class="totals-table">
-                            <div class="totals-row">
-                                <span class="totals-label">{{ _("Total Vencimentos") }}:</span>
-                                <span class="totals-value">{{ doc.get_formatted("gross_pay", doc) }}</span>
-                            </div>
-                            <div class="totals-row">
-                                <span class="totals-label">{{ _("Total Descontos") }}:</span>
-                                <span class="totals-value">{{ doc.get_formatted("total_deduction", doc) }}</span>
-                            </div>
-                            <div class="totals-row grand-total">
-                                <span class="totals-label">{{ _("Líquido a Receber") }}:</span>
-                                <span class="totals-value">{{ doc.get_formatted("net_pay", doc) }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Totals as mockup totals-terms -->
+                <table class="totals-terms avoid-break" aria-label="Totais">
+                  <tr>
+                    <td></td>
+                    <td class="right" style="width:62mm;">
+                      <aside class="totals" aria-label="Resumo de valores">
+                        <div class="row"><span>{{ _("Total Vencimentos") }}</span><span>{{ doc.get_formatted('gross_pay', doc) }}</span></div>
+                        <div class="row"><span>{{ _("Total Descontos") }}</span><span>{{ doc.get_formatted('total_deduction', doc) }}</span></div>
+                        <div class="row total"><span>{{ _("TOTAL") }}</span><span>{{ doc.get_formatted('net_pay', doc) }}</span></div>
+                      </aside>
+                    </td>
+                  </tr>
+                </table>
 
-            """ + qr_section + """
+                """ + qr_section + """
 
-            {% if print_settings and print_settings.repeat_header_footer %}
-                {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
-            {% endif %}
+                {% if print_settings and print_settings.repeat_header_footer %}
+                    {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+                {% endif %}
 
             </div>
             {% endfor %}
@@ -882,63 +844,52 @@ class CustomerPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-                <!-- Customer Details -->
-                <div class="row customer-invoice-section">
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Informações Gerais") }}</h4>
-                        <div class="customer-info">
-                            <strong>{{ doc.customer_name }}</strong><br>
-                            {% if doc.tax_id %}
-                            <strong>{{ _("NUIT") }}:</strong> {{ doc.tax_id }}<br>
-                            {% endif %}
-                            {% if doc.customer_type %}
-                            <strong>{{ _("Tipo") }}:</strong> {{ doc.customer_type }}<br>
-                            {% endif %}
-                            {% if doc.territory %}
-                            <strong>{{ _("Território") }}:</strong> {{ doc.territory }}
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Contactos") }}</h4>
-                        <div class="invoice-info">
-                            {% if doc.mobile_no %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Telemóvel") }}:</span>
-                                <span class="value">{{ doc.mobile_no }}</span>
-                            </div>
-                            {% endif %}
-                            {% if doc.email_id %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Email") }}:</span>
-                                <span class="value">{{ doc.email_id }}</span>
-                            </div>
-                            {% endif %}
-                            {% if doc.website %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Website") }}:</span>
-                                <span class="value">{{ doc.website }}</span>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+                <table class="meta avoid-break" aria-label="Cliente">
+                  <tr>
+                    <td>
+                      <section class="card">
+                        <h3 class="card-title">INFORMAÇÕES GERAIS</h3>
+                        <p><strong>{{ doc.customer_name }}</strong></p>
+                        {% if doc.tax_id %}<p>NUIT: <span>{{ doc.tax_id }}</span></p>{% endif %}
+                        {% if doc.customer_type %}<p>{{ _("Tipo") }}: <span>{{ doc.customer_type }}</span></p>{% endif %}
+                        {% if doc.territory %}<p>{{ _("Território") }}: <span>{{ doc.territory }}</span></p>{% endif %}
+                      </section>
+                    </td>
+                    <td>
+                      <section class="card">
+                        <h3 class="card-title">CONTACTOS</h3>
+                        {% if doc.mobile_no %}<p>{{ _("Telemóvel") }}: <span>{{ doc.mobile_no }}</span></p>{% endif %}
+                        {% if doc.email_id %}<p>{{ _("Email") }}: <span>{{ doc.email_id }}</span></p>{% endif %}
+                        {% if doc.website %}<p>{{ _("Website") }}: <span>{{ doc.website }}</span></p>{% endif %}
+                      </section>
+                    </td>
+                  </tr>
+                </table>
 
-                <!-- Address Section -->
+                <div class="hr" aria-hidden="true"></div>
+
                 {% if doc.customer_primary_address %}
-                <div class="items-section">
-                    <h4 class="section-title">{{ _("Endereço Principal") }}</h4>
-                    <div class="customer-info">
-                        {{ doc.customer_primary_address }}
-                    </div>
-                </div>
+                <section aria-label="Endereço">
+                  <table class="items" role="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">{{ _("Endereço Principal") }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{ doc.customer_primary_address }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
                 {% endif %}
 
-            """ + qr_section + """
+                """ + qr_section + """
 
-            {% if print_settings and print_settings.repeat_header_footer %}
-                {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
-            {% endif %}
+                {% if print_settings and print_settings.repeat_header_footer %}
+                    {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+                {% endif %}
 
             </div>
             {% endfor %}
@@ -963,63 +914,52 @@ class SupplierPrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-                <!-- Supplier Details -->
-                <div class="row customer-invoice-section">
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Informações Gerais") }}</h4>
-                        <div class="customer-info">
-                            <strong>{{ doc.supplier_name }}</strong><br>
-                            {% if doc.tax_id %}
-                            <strong>{{ _("NUIT") }}:</strong> {{ doc.tax_id }}<br>
-                            {% endif %}
-                            {% if doc.supplier_type %}
-                            <strong>{{ _("Tipo") }}:</strong> {{ doc.supplier_type }}<br>
-                            {% endif %}
-                            {% if doc.country %}
-                            <strong>{{ _("País") }}:</strong> {{ doc.country }}
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <h4 class="section-title">{{ _("Contactos") }}</h4>
-                        <div class="invoice-info">
-                            {% if doc.mobile_no %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Telemóvel") }}:</span>
-                                <span class="value">{{ doc.mobile_no }}</span>
-                            </div>
-                            {% endif %}
-                            {% if doc.email_id %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Email") }}:</span>
-                                <span class="value">{{ doc.email_id }}</span>
-                            </div>
-                            {% endif %}
-                            {% if doc.website %}
-                            <div class="info-row">
-                                <span class="label">{{ _("Website") }}:</span>
-                                <span class="value">{{ doc.website }}</span>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+                <table class="meta avoid-break" aria-label="Fornecedor">
+                  <tr>
+                    <td>
+                      <section class="card">
+                        <h3 class="card-title">INFORMAÇÕES GERAIS</h3>
+                        <p><strong>{{ doc.supplier_name }}</strong></p>
+                        {% if doc.tax_id %}<p>NUIT: <span>{{ doc.tax_id }}</span></p>{% endif %}
+                        {% if doc.supplier_type %}<p>{{ _("Tipo") }}: <span>{{ doc.supplier_type }}</span></p>{% endif %}
+                        {% if doc.country %}<p>{{ _("País") }}: <span>{{ doc.country }}</span></p>{% endif %}
+                      </section>
+                    </td>
+                    <td>
+                      <section class="card">
+                        <h3 class="card-title">CONTACTOS</h3>
+                        {% if doc.mobile_no %}<p>{{ _("Telemóvel") }}: <span>{{ doc.mobile_no }}</span></p>{% endif %}
+                        {% if doc.email_id %}<p>{{ _("Email") }}: <span>{{ doc.email_id }}</span></p>{% endif %}
+                        {% if doc.website %}<p>{{ _("Website") }}: <span>{{ doc.website }}</span></p>{% endif %}
+                      </section>
+                    </td>
+                  </tr>
+                </table>
 
-                <!-- Address Section -->
+                <div class="hr" aria-hidden="true"></div>
+
                 {% if doc.supplier_primary_address %}
-                <div class="items-section">
-                    <h4 class="section-title">{{ _("Endereço Principal") }}</h4>
-                    <div class="customer-info">
-                        {{ doc.supplier_primary_address }}
-                    </div>
-                </div>
+                <section aria-label="Endereço">
+                  <table class="items" role="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">{{ _("Endereço Principal") }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{ doc.supplier_primary_address }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
                 {% endif %}
 
-            """ + qr_section + """
+                """ + qr_section + """
 
-            {% if print_settings and print_settings.repeat_header_footer %}
-                {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
-            {% endif %}
+                {% if print_settings and print_settings.repeat_header_footer %}
+                    {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+                {% endif %}
 
             </div>
             {% endfor %}

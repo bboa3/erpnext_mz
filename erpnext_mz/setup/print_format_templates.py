@@ -103,78 +103,74 @@ class PrintFormatTemplate:
         Root tokens & basic reset
         ========================== */
         :root {
-        --ink: #111;
-        --muted: #444;
-        --line: #111;
-        --paper: #fff;
-        --gutter: 18mm;
-        --lh-tight: 1.1;
-        --lh-base: 1.35;
-        --fs-09: 9pt;
-        --fs-10: 10pt;
-        --fs-12: 12pt;
-        --fs-14: 14pt;
-        --fs-16: 16pt;
-        --fs-20: 20pt;
+            --ink: #111;
+            --muted: #444;
+            --line: #111;
+            --paper: #fff;
+            --gutter: 18mm;
+            --lh-tight: 1.1;
+            --lh-base: 1.35;
+            --fs-09: 9pt;
+            --fs-10: 10pt;
+            --fs-11: 11pt;
+            --fs-12: 12pt;
+            --fs-14: 14pt;
+            --fs-16: 16pt;
+            --fs-20: 20pt;
         }
 
         *,
         *::before,
         *::after {
-        box-sizing: border-box;
-        }
-
-        html,
-        body {
-        height: 100%;
+            box-sizing: border-box;
         }
 
         body {
-        margin: 0;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        color: var(--ink);
-        background: #f7f7f7;
-        font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Cantarell, Noto Sans, sans-serif;
-        line-height: var(--lh-base);
+            margin: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            color: var(--ink);
+            background: #f7f7f7;
+            font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Cantarell, Noto Sans, sans-serif;
+            line-height: var(--lh-base);
         }
 
         /* ==========================
         Page box (A4)
         ========================== */
         .page {
-        width: 210mm;
-        min-height: 297mm;
-        margin: 10mm auto;
-        background: var(--paper);
-        color: var(--ink);
-        padding: var(--gutter);
-        position: relative;
-        display: block;
-        border: 0.2mm solid rgba(0, 0, 0, .08);
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            background: var(--paper);
+            color: var(--ink);
+            padding: var(--gutter);
+            position: relative;
+            display: block;
+            border: 0.2mm solid rgba(0, 0, 0, .08);
         }
 
         /* Print rules */
         @media print {
-        @page {
-            size: A4;
-            margin: 12mm;
-        }
+            @page {
+                size: A4;
+                margin: 12mm;
+            }
 
-        body {
-            background: var(--paper);
-        }
+            body {
+                background: var(--paper);
+            }
 
-        .page {
-            margin: 0;
-            border: none;
-        }
+            .page {
+                margin: 0;
+                border: none;
+            }
 
-        a[href^="mailto:"],
-        a[href^="http"] {
-            text-decoration: none;
-            color: inherit;
-        }
+            a[href^="mailto:"],
+            a[href^="http"] {
+                text-decoration: none;
+                color: inherit;
+            }
         }
 
         /* ==========================
@@ -196,8 +192,8 @@ class PrintFormatTemplate:
         .hdr td { vertical-align: top; }
         .brand { display: inline-block; }
         .logo-mark {
-        width: 10mm; height: 10mm; border-radius: 1.8mm; background: #0bbf84;
-        display: inline-block; vertical-align: middle; margin-right: 3mm;
+            width: 10mm; height: 10mm; border-radius: 1.8mm; background: #0bbf84;
+            display: inline-block; vertical-align: middle; margin-right: 3mm;
         }
         .brand h1 { display: inline-block; vertical-align: middle; margin: 0; font-weight: 700; font-size: var(--fs-14); letter-spacing: .02em; line-height: var(--lh-tight); }
         .brand h1 span { font-weight: 300; margin-left: 1mm; }
@@ -243,16 +239,16 @@ class PrintFormatTemplate:
         .terms p { margin: 0; font-size: var(--fs-10); }
         .disclaimer { font-size: var(--fs-09); margin-top: 3mm; color: var(--ink); }
         .totals { width: 60mm; margin-left: auto; }
-        .totals .row { display: table; width: 100%; border-collapse: collapse; font-size: var(--fs-12); padding: 0; margin: 1.5mm 0; }
+        .totals .row { display: table; width: 100%; border-collapse: collapse; font-size: var(--fs-11); padding: 0; margin: 1.5mm 0; }
         .totals .row>span { display: table-cell; }
         .totals .row>span:last-child { text-align: right; }
-        .totals .row.total { font-weight: 700; font-size: var(--fs-12); border-top: 0.6mm solid var(--line); padding-top: 2mm; margin-top: 2mm; }
+        .totals .row.total { font-weight: 700; font-size: var(--fs-11); border-top: 0.6mm solid var(--ink); border-top: 0.6mm solid var(--line); padding-top: 2mm; margin-top: 2mm; }
 
         /* ==========================
         QR / Payment area
         ========================== */
         .qr-wrap { margin: 7mm auto 0; text-align: center; }
-        .qr { width: 20mm; height: 20mm; background: #000; display: inline-block; }
+        .qr { width: 20mm; height: 20mm; display: inline-block; }
         .qr-caption { font-size: var(--fs-09); font-style: italic; margin-top: 1mm; color: var(--muted); }
 
         /* ==========================
@@ -265,7 +261,7 @@ class PrintFormatTemplate:
 
         /* Screen responsiveness (non‑print preview only) */
         @media screen and (max-width: 900px) {
-        .page { width: 100%; min-height: auto; padding: 10mm; }
+            .page { width: 100%; min-height: auto; padding: 10mm; }
         }
     """
 
@@ -629,7 +625,7 @@ class PrintFormatTemplate:
                     {% for tax in doc.taxes %}
                         {% if tax.tax_amount or """ + str(always_show).lower() + """ %}
                         <div class="row">
-                            <span>{{ _(tax.description) }}:</span><span>{{ tax.get_formatted("tax_amount", doc) }}</span>
+                            <span>{{ _(tax.description) }}</span><span>{{ tax.get_formatted("tax_amount", doc) }}</span>
                         </div>
                         {% endif %}
                     {% endfor %}
