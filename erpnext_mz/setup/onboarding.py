@@ -285,7 +285,7 @@ def _apply_branding(company_name: str, profile):
         header_html.append("<div class=\"brand\">")
         # Logo (if any) else geometric mark
         if logo_url:
-            header_html.append(f"<img src=\"{logo_url}\" style=\"height:38px; object-fit:contain; vertical-align:middle; margin-right:6px; border-radius:3px;\" alt=\"logo\"/>")
+            header_html.append(f"<img src=\"{logo_url}\" style=\"height:38px; object-fit:contain; vertical-align:middle; margin-right:6px;\" alt=\"logo\"/>")
         header_html.append("</div>")
         header_html.append("</td>")
         # Right company meta
@@ -300,9 +300,9 @@ def _apply_branding(company_name: str, profile):
         if loc:
             meta_line.append(frappe.utils.escape_html(loc))
         if meta_line:
-            header_html.append(f"<div class=\"company-meta small\" style=\"font-size:9pt; letter-spacing:0.18em; padding-left:6em;\">{', '.join(meta_line)}</div>")
+            header_html.append(f"<div class=\"company-meta small\" style=\"font-size:9pt; letter-spacing:0.16em; padding-left:6em;\">{', '.join(meta_line)}</div>")
         if tax_id:
-            header_html.append(f"<div class=\"nuit small\" style=\"margin-top:2mm; font-size:9pt; letter-spacing:0.18em;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
+            header_html.append(f"<div class=\"nuit small\" style=\"margin-top:2mm; font-size:9pt; letter-spacing:0.16em;\">NUIT: {frappe.utils.escape_html(tax_id)}</div>")
         header_html.append("</td>")
         header_html.append("</tr>")
         header_html.append("</table>")
@@ -321,6 +321,8 @@ def _apply_branding(company_name: str, profile):
             footer_contact_parts.append(frappe.utils.escape_html(phone))
         if email:
             footer_contact_parts.append(frappe.utils.escape_html(email))
+        if website:
+            footer_contact_parts.append(frappe.utils.escape_html(website))
 
         footer_html.append("<div class=\"footline\" style=\"height:0.6mm; background:#111; margin:6mm 0 3mm;\"></div>")
         if footer_contact_parts:

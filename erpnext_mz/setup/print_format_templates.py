@@ -102,23 +102,6 @@ class PrintFormatTemplate:
         /* ==========================
         Root tokens & basic reset
         ========================== */
-        :root {
-            --ink: #111;
-            --muted: #444;
-            --line: #111;
-            --paper: #fff;
-            --gutter: 18mm;
-            --lh-tight: 1.1;
-            --lh-base: 1.35;
-            --fs-09: 9pt;
-            --fs-10: 10pt;
-            --fs-11: 11pt;
-            --fs-12: 12pt;
-            --fs-14: 14pt;
-            --fs-16: 16pt;
-            --fs-20: 20pt;
-        }
-
         *,
         *::before,
         *::after {
@@ -129,10 +112,10 @@ class PrintFormatTemplate:
             margin: 0;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
-            color: var(--ink);
+            color: #111;
             background: #f7f7f7;
             font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Cantarell, Noto Sans, sans-serif;
-            line-height: var(--lh-base);
+            line-height: 1.35;
         }
 
         /* ==========================
@@ -142,13 +125,98 @@ class PrintFormatTemplate:
             width: 210mm;
             min-height: 297mm;
             margin: 10mm auto;
-            background: var(--paper);
-            color: var(--ink);
-            padding: var(--gutter);
+            background: #fff;
+            color: #111;
+            padding: 15mm;
             position: relative;
             display: block;
             border: 0.2mm solid rgba(0, 0, 0, .08);
         }
+
+        .letter-head {
+            margin-bottom: 4mm!important;
+        }
+
+        /* ==========================
+        Utilities
+        ========================== */
+        .small { font-size: 9pt; letter-spacing: .08em; }
+        .tight { margin: 0; }
+        .right { text-align: right; }
+        .center { text-align: center; }
+        .caps { text-transform: uppercase; letter-spacing: .14em; }
+        .muted { color: #444; }
+        .hr { height: 0.5mm; background: #111; margin: 3mm 0; }
+        .avoid-break { page-break-inside: avoid; break-inside: avoid; }
+
+        /* ==========================
+        Header (two columns via table)
+        ========================== */
+        .hdr { width: 100%; border-collapse: collapse; }
+        .hdr td { vertical-align: top; }
+        .brand { display: inline-block; }
+        .brand h1 { display: inline-block; vertical-align: middle; font-weight: 700; font-size: 14pt; letter-spacing: .02em; line-height: 1.1; }
+        .brand h1 span { font-weight: 300; }
+        .company-name { font-size: 16pt; font-weight: 700; letter-spacing: .08em; margin-bottom:1mm; text-transform: uppercase; line-height: 1.1; }
+        .company-meta { font-size: 9pt; letter-spacing: .16em; }
+        .nuit { margin-top: 2mm; font-size: 9pt; letter-spacing: .16em; }
+
+        /* ==========================
+        Title / Doc number
+        ========================== */
+        .title-block { text-align: right; margin-right: 1mm; }
+        .title { font-size: 20pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 0.5mm; }}
+        .doc-no { font-size: 10pt; font-weight: 600; letter-spacing: .10em; }
+
+        /* ==========================
+        Meta cards (two columns via table)
+        ========================== */
+        .meta { width: 100%; border-collapse: separate; margin-top: 1mm; }
+        .meta td { width: 50%; vertical-align: top; }
+        .card-title { font-size: 10pt; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; margin: 0 0 2mm; }
+        .card p { margin: 0 0 1.2mm; font-size: 9pt; }
+
+        /* ==========================
+        Items table
+        ========================== */
+        table.items { width: 100%; border-collapse: collapse; }
+        table.items thead th { font-size: 10pt; color: #111; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3.2mm 2.5mm; text-align: left; border-bottom: 0.6mm solid #111; }
+        table.items thead th.right { text-align: right; }
+        table.items tbody td { font-size: 9pt; padding: 3.2mm 2.5mm; border-bottom: 0.5mm solid rgba(0, 0, 0, .25); vertical-align: top; word-wrap: break-word; word-break: break-word; }
+        table.items tbody td.right { text-align: right; }
+        table.items thead { display: table-header-group; }
+        table.items tfoot { display: table-footer-group; }
+        table.items tr { page-break-inside: avoid; }
+
+        /* ==========================
+        Totals & terms
+        ========================== */
+        .totals-terms { width: 100%; margin-top: 0.5mm; border-collapse: collapse; }
+        .totals-terms td { vertical-align: top; }
+        .terms { margin-top: 1.5mm; }
+        .terms .lead { font-size: 10pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 2mm; }
+        .terms p { margin: 0; font-size: 9pt; }
+        .disclaimer { font-size: 8pt; margin-top: 3mm; color: #111; }
+        .totals { width: 60mm; margin-left: auto; }
+        .totals .row { display: table; width: 100%; border-collapse: collapse; font-size: 10pt; padding: 0; margin: 1.5mm 0; }
+        .totals .row>span { display: table-cell; }
+        .totals .row>span:last-child { text-align: right; }
+        .totals .row.total { font-weight: 700; font-size: 10pt; border-top: 0.6mm solid #111; border-top: 0.6mm solid #111; padding-top: 2mm; margin-top: 2mm; }
+
+        /* ==========================
+        QR / Payment area
+        ========================== */
+        .qr-wrap { margin: 7mm auto 0; text-align: center; }
+        .qr { width: 20mm; height: 20mm; padding: 0.5mm; display: inline-block; border: 0.5mm solid #444; border-radius: 5px; }
+        .qr-caption { font-size: 8pt; font-style: italic; margin-top: 2mm; color: #444; }
+
+        /* ==========================
+        Footer
+        ========================== */
+        footer { margin-top: auto; }
+        .footline { height: 0.6mm; background: #111; margin: 6mm 0 3mm; }
+        .foot { text-align: center; font-size: 9pt; color: #111; }
+        .foot .sub { font-size: 8pt; color: #444; margin-top: 1mm; }
 
         /* Print rules */
         @media print {
@@ -158,7 +226,7 @@ class PrintFormatTemplate:
             }
 
             body {
-                background: var(--paper);
+                background: #fff;
             }
 
             .page {
@@ -171,97 +239,10 @@ class PrintFormatTemplate:
                 text-decoration: none;
                 color: inherit;
             }
-        }
 
-        /* ==========================
-        Utilities
-        ========================== */
-        .small { font-size: var(--fs-09); letter-spacing: .08em; }
-        .tight { margin: 0; }
-        .right { text-align: right; }
-        .center { text-align: center; }
-        .caps { text-transform: uppercase; letter-spacing: .14em; }
-        .muted { color: var(--muted); }
-        .hr { height: 0.25mm; background: #000; margin: 3mm 0; }
-        .avoid-break { page-break-inside: avoid; break-inside: avoid; }
+            .hdr {  margin-top:10mm; }
 
-        /* ==========================
-        Header (two columns via table)
-        ========================== */
-        .hdr { width: 100%; border-collapse: collapse; }
-        .hdr td { vertical-align: top; }
-        .brand { display: inline-block; }
-        .logo-mark {
-            width: 10mm; height: 10mm; border-radius: 1.8mm; background: #0bbf84;
-            display: inline-block; vertical-align: middle; margin-right: 3mm;
-        }
-        .brand h1 { display: inline-block; vertical-align: middle; margin: 0; font-weight: 700; font-size: var(--fs-14); letter-spacing: .02em; line-height: var(--lh-tight); }
-        .brand h1 span { font-weight: 300; margin-left: 1mm; }
-        .company-name { font-size: var(--fs-16); font-weight: 700; letter-spacing: .08em; margin-bottom:1mm; text-transform: uppercase; line-height: var(--lh-tight); }
-        .company-meta { font-size: var(--fs-09); letter-spacing: .18em; }
-        .nuit { margin-top: 2mm; font-size: var(--fs-09); letter-spacing: .18em; }
-
-        /* ==========================
-        Title / Doc number
-        ========================== */
-        .title-block { text-align: right; }
-        .title { font-size: var(--fs-20); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 0.5mm; }
-        .doc-no { font-size: var(--fs-12); font-weight: 600; letter-spacing: .10em; }
-
-        /* ==========================
-        Meta cards (two columns via table)
-        ========================== */
-        .meta { width: 100%; border-collapse: separate; border-spacing: 0 0; margin-top: 3mm; }
-        .meta td { width: 50%; vertical-align: top; padding: 0; }
-        .card-title { font-size: var(--fs-09); font-weight: 700; text-transform: uppercase; letter-spacing: .14em; margin: 0 0 2mm; }
-        .card p { margin: 0 0 1.2mm; font-size: var(--fs-10); }
-        .card address { font-style: normal; font-size: var(--fs-10); line-height: 1.5; }
-
-        /* ==========================
-        Items table
-        ========================== */
-        table.items { width: 100%; border-collapse: collapse; }
-        table.items thead th { font-size: var(--fs-10); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 3.2mm 2.5mm; text-align: left; border-bottom: 0.6mm solid var(--line); }
-        table.items thead th.right { text-align: right; }
-        table.items tbody td { font-size: var(--fs-10); padding: 3.2mm 2.5mm; border-bottom: 0.25mm solid rgba(0, 0, 0, .25); vertical-align: top; word-wrap: break-word; word-break: break-word; }
-        table.items tbody td.right { text-align: right; }
-        table.items thead { display: table-header-group; }
-        table.items tfoot { display: table-footer-group; }
-        table.items tr { page-break-inside: avoid; }
-
-        /* ==========================
-        Totals & terms
-        ========================== */
-        .totals-terms { width: 100%; margin-top: 1.5mm; border-collapse: collapse; }
-        .totals-terms td { vertical-align: top; }
-        .terms { margin-top: 1.5mm; }
-        .terms .lead { font-size: var(--fs-10); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 2mm; }
-        .terms p { margin: 0; font-size: var(--fs-10); }
-        .disclaimer { font-size: var(--fs-09); margin-top: 3mm; color: var(--ink); }
-        .totals { width: 60mm; margin-left: auto; }
-        .totals .row { display: table; width: 100%; border-collapse: collapse; font-size: var(--fs-11); padding: 0; margin: 1.5mm 0; }
-        .totals .row>span { display: table-cell; }
-        .totals .row>span:last-child { text-align: right; }
-        .totals .row.total { font-weight: 700; font-size: var(--fs-11); border-top: 0.6mm solid var(--ink); border-top: 0.6mm solid var(--line); padding-top: 2mm; margin-top: 2mm; }
-
-        /* ==========================
-        QR / Payment area
-        ========================== */
-        .qr-wrap { margin: 7mm auto 0; text-align: center; }
-        .qr { width: 20mm; height: 20mm; display: inline-block; }
-        .qr-caption { font-size: var(--fs-09); font-style: italic; margin-top: 1mm; color: var(--muted); }
-
-        /* ==========================
-        Footer
-        ========================== */
-        footer { margin-top: auto; }
-        .footline { height: 0.6mm; background: var(--line); margin: 6mm 0 3mm; }
-        .foot { text-align: center; font-size: var(--fs-10); color: var(--ink); }
-        .foot .sub { font-size: var(--fs-09); color: var(--muted); margin-top: 1mm; }
-
-        /* Screen responsiveness (non‑print preview only) */
-        @media screen and (max-width: 900px) {
-            .page { width: 100%; min-height: auto; padding: 10mm; }
+            .qr { width: 18mm; height: 18mm; }
         }
     """
 
@@ -314,31 +295,43 @@ class PrintFormatTemplate:
             <table class=\"meta avoid-break\">
               <tr>
                 <td>
-                  <section class=\"card\">
+                    <section class=\"card\">
                     <h3 id=\"billto\" class=\"card-title\">""" + left_title + """</h3>
                     <p><strong>{{ doc.""" + customer_name_field + """ or doc.""" + customer_field + """ }}</strong></p>
-                    <address>
-                      {% if doc.address_display %}
-                      {% set __address_display = doc.address_display 
-                            | replace("<br>", ", ")
-                            | replace("<br/>", ", ")
-                            | replace("\n", "")
-                        %}
-                        {{ __address_display }} <br/>
-                      {% endif %}
-                      {% if doc.tax_id %}
-                        {{ _("NUIT") }}: {{ doc.tax_id }}
-                      {% else %}
-                        {% if doc.""" + customer_field + """ %}
-                          {% set __party_doctype = doc.meta.get_field('""" + customer_field + """').options or 'Customer' %}
-                          {% set __party_nuit = frappe.db.get_value(__party_doctype, doc.""" + customer_field + """, 'tax_id') %}
-                          {% if __party_nuit %}
-                            {{ _("NUIT") }}: {{ __party_nuit }}
-                          {% endif %}
+                    <p>
+                        {% if doc.address_display %}
+                            {% set addr = doc.address_display
+                                | replace("<br/>", ", ")
+                                | replace("<br>", ", ")
+                                | replace("\n", ", ")
+                                | replace(",,", ",")
+                                | replace(",,", ",")
+                                | replace(", ,", ",")
+                                | replace(" ,", ",")
+                                | replace(", ", ",")
+                            %}
+                            {% set addr = addr
+                                | replace(",", ", ")
+                                | replace("  ", " ")
+                                | trim
+                            %}
+                            {% if addr and addr != "," %}
+                                <span>{{ addr.rstrip(",") | trim }}</span>
+                            {% endif %}
                         {% endif %}
-                      {% endif %}
-                    </address>
-                  </section>
+                    </p>
+                    {% if doc.tax_id %}
+                            {{ _("NUIT") }}: <span>{{ doc.tax_id }}</span>
+                        {% else %}
+                        {% if doc.""" + customer_field + """ %}
+                            {% set __party_doctype = doc.meta.get_field('""" + customer_field + """').options or 'Customer' %}
+                            {% set __party_nuit = frappe.db.get_value(__party_doctype, doc.""" + customer_field + """, 'tax_id') %}
+                            {% if __party_nuit %}
+                                {{ _("NUIT") }}: <span>{{ __party_nuit }}</span>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                    </section>
                 </td>
                 <td>
                   <section class=\"card\">
@@ -380,29 +373,41 @@ class PrintFormatTemplate:
                         <section class=\"card\">
                             <h3 id=\"billto\" class=\"card-title\">""" + left_title + """</h3>
                             <p><strong>{{ doc.""" + customer_name_field + """ or doc.""" + customer_field + """ }}</strong></p>
-                            {% if doc.tax_id %}
-                                {{ _("NUIT") }}: {{ doc.tax_id }}
-                            {% else %}
-                                {% if doc.""" + customer_field + """ %}
-                                    {% set __party_doctype = doc.meta.get_field('""" + customer_field + """').options or 'Customer' %}
-                                    {% set __party_nuit = frappe.db.get_value(__party_doctype, doc.""" + customer_field + """, 'tax_id') %}
-                                    {% if __party_nuit %}
-                                        {{ _("NUIT") }}: {{ __party_nuit }}
+                            <p>
+                                {% if doc.tax_id %}
+                                    {{ _("NUIT") }}: <span>{{ doc.tax_id }}</span>
+                                {% else %}
+                                    {% if doc.""" + customer_field + """ %}
+                                        {% set __party_doctype = doc.meta.get_field('""" + customer_field + """').options or 'Customer' %}
+                                        {% set __party_nuit = frappe.db.get_value(__party_doctype, doc.""" + customer_field + """, 'tax_id') %}
+                                        {% if __party_nuit %}
+                                            {{ _("NUIT") }}: <span>{{ __party_nuit }}</span>
+                                        {% endif %}
                                     {% endif %}
                                 {% endif %}
-                            {% endif %}
-                            {% if doc.shipping_address_display %}
-                                <address>
-                                {{ _("Endereço de Entrega") }}: <span>
-                                {% set __address_display = doc.shipping_address_display 
-                                    | replace("<br>", ", ")
-                                    | replace("<br/>", ", ")
-                                    | replace("\n", " ")
-                                %}
-                                {{ __address_display }} <br/>
-                                </span>
-                                </address>
-                            {% endif %}
+                            </p>
+                            <p>
+                                {% if doc.shipping_address_display %}
+                                    {% set addr = doc.shipping_address_display
+                                        | replace("<br/>", ", ")
+                                        | replace("<br>", ", ")
+                                        | replace("\n", ", ")
+                                        | replace(",,", ",")
+                                        | replace(",,", ",")
+                                        | replace(", ,", ",")
+                                        | replace(" ,", ",")
+                                        | replace(", ", ",")
+                                    %}
+                                    {% set addr = addr
+                                        | replace(",", ", ")
+                                        | replace("  ", " ")
+                                        | trim
+                                    %}
+                                    {% if addr and addr != "," %}
+                                        {{ _("Endereço de Entrega") }}: <span>{{ addr.rstrip(",") | trim }}</span>
+                                    {% endif %}
+                                {% endif %}
+                            </p>
                         </section>
                     </td>
                     <td>
@@ -551,7 +556,7 @@ class PrintFormatTemplate:
         """Common items table section with adaptive column width support"""
         if custom_columns is None:
             custom_columns = [
-                ("DESCRIÇÃO", "left", """
+                ("DESCRIÇÃO", "", """
                     <strong>{{ item.item_code }}</strong><br>
                     {% if item.item_name != item.item_code %}
                         <br><em>{{ item.item_name }}</em>
@@ -572,7 +577,7 @@ class PrintFormatTemplate:
         
         header_html = ""
         for col_name, col_class, _ in custom_columns:
-            header_html += '<th scope="col" class="' + col_class + '">{{ _("' + col_name + '") }}</th>\n                    '
+            header_html += '<th class="' + col_class + '">{{ _("' + col_name + '") }}</th>\n                    '
         
         body_html = ""
         for col_name, col_class, col_template in custom_columns:
@@ -580,7 +585,7 @@ class PrintFormatTemplate:
         
         return """
             <!-- Items Table Section -->
-            <div class="hr" aria-hidden="true"></div>
+            <div class="hr"></div>
             <section>
                 <table class="items" role="table">
                     <thead>
