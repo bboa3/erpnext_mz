@@ -555,7 +555,7 @@ class PrintFormatTemplate:
         if custom_columns is None:
             custom_columns = [
                 ("DESCRIÇÃO", "", """
-                    <strong>{{ item.item_code }}</strong><br>
+                    <strong>{{ item.item_code }}</strong>
                     {% if item.item_name != item.item_code %}
                         <br><em>{{ item.item_name }}</em>
                     {% endif %}
