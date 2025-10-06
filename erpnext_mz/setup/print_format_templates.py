@@ -185,6 +185,18 @@ class PrintFormatTemplate:
         table.items thead { display: table-header-group; }
         table.items tfoot { display: table-footer-group; }
         table.items tr { page-break-inside: avoid; }
+        table.items tbody th:nth-child(1),
+        table.items tbody td:nth-child(1) {max-width: 230px }
+        table.items tbody th:nth-child(2),
+        table.items tbody td:nth-child(2) { max-width: 230px; }
+        table.items tbody th:nth-child(3),
+        table.items tbody td:nth-child(3) { max-width: 230px; }
+        table.items tbody td:nth-child(4),
+        table.items tbody th:nth-child(4) { max-width: 230px; }
+        table.items tbody th:nth-child(5),
+        table.items tbody td:nth-child(5) { max-width: 230px; }
+        table.items tbody th:nth-child(6),
+        table.items tbody td:nth-child(6) { max-width: 230px; }
 
         /* ==========================
         Totals & terms
@@ -215,6 +227,29 @@ class PrintFormatTemplate:
         .footline { height: 0.6mm; background: #111; margin: 6mm 0 3mm; }
         .foot { text-align: center; font-size: 9pt; color: #111; }
         .foot .sub { font-size: 8pt; color: rgba(0, 0, 0, .60); margin-top: 1mm; }
+
+
+        /* Document Status */
+        .doc-status {
+            margin: 6mm 0;
+            font-size: 10pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .doc-status-draft {
+            background-color: #fef3c7;
+            color: #f59e0b;
+        }
+
+        .doc-status-cancelled {
+            background-color: #fdf2f2;
+            color: #dc2626;
+        }
 
         /* Print rules */
         @media print {
@@ -250,6 +285,17 @@ class PrintFormatTemplate:
             {% if letter_head and not no_letterhead %}
                 <div class="letter-head">{{ letter_head }}</div>
             {% endif %}
+            {%- if doc.meta.is_submittable -%}
+                {%- if doc.docstatus==0 -%}
+                <div class="doc-status doc-status-draft">
+                    <h3>{{ _("RASCUNHO") }}</h3>
+                </div>
+                {%- elif doc.docstatus==2 -%}
+                <div class="doc-status doc-status-cancelled">
+                    <h3>{{ _("CANCELADA") }}</h3>
+                </div>
+                {%- endif -%}
+            {%- endif -%}
             <section class="title-block avoid-break" >
                 <h2 class="title">""" + document_title + """</h2>
                 <div class="doc-no">{{ doc.name }}</div>
