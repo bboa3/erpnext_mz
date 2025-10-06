@@ -33,11 +33,13 @@ def disable_all_existing_print_formats():
             module = format_doc.module or ""
             
             # Skip if already disabled
-
+            # if is_disabled:
+            #     skipped_count += 1
+            #     continue
             
             # Disable the print format
-            frappe.db.set_value("Print Format", format_name, "disabled", 1)
             frappe.db.set_value("Print Format", format_name, "standard", "No")
+            frappe.db.set_value("Print Format", format_name, "disabled", 1)
             disabled_count += 1
             
             frappe.log_error(
