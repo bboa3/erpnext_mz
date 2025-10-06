@@ -48,7 +48,7 @@ class PrintFormatTemplate:
                 "name": self.format_name,
                 "doc_type": self.doc_type,
                 "module": self.module,
-                "standard": "Yes",
+                "standard": "No",
                 "custom_format": 1,
                 "print_format_type": "Jinja",
                 "raw_printing": 0,
