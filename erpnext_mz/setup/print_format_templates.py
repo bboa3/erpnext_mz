@@ -21,7 +21,7 @@ from frappe import _
 class PrintFormatTemplate:
     """Base class for all print format templates"""
     
-    def __init__(self, doc_type, format_name, module="Accounts"):
+    def __init__(self, doc_type, format_name, module="ERPNext MZ"):
         self.doc_type = doc_type
         self.format_name = format_name
         self.module = module
@@ -48,7 +48,7 @@ class PrintFormatTemplate:
                 "name": self.format_name,
                 "doc_type": self.doc_type,
                 "module": self.module,
-                "standard": "No",
+                "standard": "Yes",
                 "custom_format": 1,
                 "print_format_type": "Jinja",
                 "raw_printing": 0,
