@@ -285,7 +285,7 @@ def _apply_branding(company_name: str, profile):
         header_html.append("<div class=\"brand\">")
         # Logo (if any) else geometric mark
         if logo_url:
-            header_html.append(f"<img src=\"{logo_url}\" style=\"height:38px; object-fit:contain; vertical-align:middle; margin-right:6px;\" alt=\"logo\"/>")
+            header_html.append(f"<img src=\"{logo_url}\" style=\"max-height:88px; max-width:130px; object-fit:contain; margin-right:6px;\" alt=\"logo\"/>")
         header_html.append("</div>")
         header_html.append("</td>")
         # Right company meta
@@ -327,7 +327,7 @@ def _apply_branding(company_name: str, profile):
         footer_html.append("<div class=\"footline\" style=\"height:0.6mm; background:#111; margin:6mm 0 3mm;\"></div>")
         if footer_contact_parts:
             footer_html.append(f"<div class=\"foot\" style=\"text-align:center; font-size:10pt; color:#111;\">{' | '.join([p for p in footer_contact_parts if p])}</div>")
-        footer_html.append("<div class=\"sub\" style=\"text-align:center; font-size:9pt; color:#444; margin-top:1mm;\">Processado pelo programa MozEconomia Cloud</div>")
+        footer_html.append("<div class=\"sub\" style=\"text-align:center; font-size:9pt; color:rgba(0, 0, 0, .50); margin-top:1mm;\">Processado pelo programa MozEconomia Cloud</div>")
 
         footer_content = "".join(footer_html)
 

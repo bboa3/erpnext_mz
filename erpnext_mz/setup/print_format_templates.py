@@ -155,8 +155,6 @@ class PrintFormatTemplate:
         .hdr { width: 100%; border-collapse: collapse; }
         .hdr td { vertical-align: top; }
         .brand { display: inline-block; }
-        .brand h1 { display: inline-block; vertical-align: middle; font-weight: 700; font-size: 14pt; letter-spacing: .02em; line-height: 1.1; }
-        .brand h1 span { font-weight: 300; }
         .company-name { font-size: 16pt; font-weight: 700; letter-spacing: .08em; margin-bottom:1mm; text-transform: uppercase; line-height: 1.1; }
         .company-meta { font-size: 9pt; letter-spacing: .16em; }
         .nuit { margin-top: 2mm; font-size: 9pt; letter-spacing: .16em; }
@@ -180,7 +178,7 @@ class PrintFormatTemplate:
         Items table
         ========================== */
         table.items { width: 100%; border-collapse: collapse; }
-        table.items thead th { font-size: 10pt; color: #111; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3.2mm 2.5mm; text-align: left; border-bottom: 0.6mm solid #111; }
+        table.items thead th { font-size: 10pt; color: #111; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3.2mm 2.5mm; text-align: left; border-bottom: 0.6mm solid #111 !important; }
         table.items thead th.right { text-align: right; }
         table.items tbody td { font-size: 9pt; padding: 3.2mm 2.5mm; border-bottom: 0.5mm solid rgba(0, 0, 0, .25); vertical-align: top; word-wrap: break-word; word-break: break-word; }
         table.items tbody td.right { text-align: right; }
@@ -201,7 +199,7 @@ class PrintFormatTemplate:
         .totals .row { display: table; width: 100%; border-collapse: collapse; font-size: 10pt; padding: 0; margin: 1.5mm 0; }
         .totals .row>span { display: table-cell; }
         .totals .row>span:last-child { text-align: right; }
-        .totals .row.total { font-weight: 700; font-size: 10pt; border-top: 0.6mm solid #111; border-top: 0.6mm solid #111; padding-top: 2mm; margin-top: 2mm; }
+        .totals .row.total { font-weight: 700; font-size: 10pt; border-top: 0.6mm solid #111; border-top: 0.6mm solid #111; padding-top: 2mm!important; margin-top: 2mm!important; }
 
         /* ==========================
         QR / Payment area
@@ -216,7 +214,7 @@ class PrintFormatTemplate:
         footer { margin-top: auto; }
         .footline { height: 0.6mm; background: #111; margin: 6mm 0 3mm; }
         .foot { text-align: center; font-size: 9pt; color: #111; }
-        .foot .sub { font-size: 8pt; color: #444; margin-top: 1mm; }
+        .foot .sub { font-size: 8pt; color: rgba(0, 0, 0, .60); margin-top: 1mm; }
 
         /* Print rules */
         @media print {
