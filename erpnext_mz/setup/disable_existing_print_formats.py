@@ -38,7 +38,7 @@ def disable_all_existing_print_formats():
                 continue
             
             # Disable the print format
-            # frappe.db.set_value("Print Format", format_name, "standard", "No")
+            frappe.db.set_value("Print Format", format_name, "standard", "No")
             frappe.db.set_value("Print Format", format_name, "disabled", 1)
             disabled_count += 1
             

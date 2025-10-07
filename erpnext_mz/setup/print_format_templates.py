@@ -216,9 +216,34 @@ class PrintFormatTemplate:
         /* ==========================
         QR / Payment area
         ========================== */
-        .qr-wrap { margin: 7mm auto 0; text-align: center; }
-        .qr { width: 20mm; height: 20mm; padding: 0.5mm; display: inline-block; border: 0.5mm solid #444; border-radius: 5px; }
-        .qr-caption { font-size: 8pt; font-style: italic; margin-top: 2mm; color: #444; }
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            min-height: 24mm;
+            justify-content: flex-start;
+            margin-top: 2mm;
+        }
+
+        .qr-bottom {
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .qr {
+            width: 20mm;
+            height: 20mm;
+            padding: 0.5mm;
+            display: inline-block;
+            border: 0.5mm solid #444;
+            border-radius: 3px;
+        }
+
+        .qr-caption {
+            font-size: 8pt;
+            font-style: italic;
+            margin-top: 2mm;
+            color: #444;
+        }
 
         /* ==========================
         Footer
@@ -321,16 +346,18 @@ class PrintFormatTemplate:
     """
 
     def get_qr_code_section(self):
-        """Common QR code section for all documents"""
+        """Common QR code section that fills remaining space and pins QR to bottom"""
         return """
-        <section class=\"qr-wrap center avoid-break\">
-          {% set qr_code_img = get_qr_image(doc.doctype, doc.name) %}
-          {% if qr_code_img and qr_code_img.strip() %}
-            <img class=\"qr\" src=\"data:image/png;base64,{{ qr_code_img }}\" alt=\"QR\"/>
-            <div class=\"qr-caption\">{{ _("Escaneie o QR para verificar a autenticidade") }}</div>
-          {% endif %}
+        <section class="qr-section avoid-break">
+            <div class="qr-bottom">
+                {% set qr_code_img = get_qr_image(doc.doctype, doc.name) %}
+                {% if qr_code_img and qr_code_img.strip() %}
+                    <img class="qr" src="data:image/png;base64,{{ qr_code_img }}" alt="QR"/>
+                    <div class="qr-caption">{{ _("Escaneie o QR para verificar a autenticidade") }}</div>
+                {% endif %}
+            </div>
         </section>
-    """
+        """
 
     def get_meta_cards_section(self, customer_field="customer", customer_name_field="customer_name", left_label: str | None = None):
         """Meta cards (mockup) for party and document details"""
