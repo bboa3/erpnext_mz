@@ -39,18 +39,17 @@ class SalesInvoicePrintFormat(PrintFormatTemplate):
                     {{ add_header(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
                 </div>
 
-            """ + meta_cards_section + """
-            
-            """ + items_section + """
+                """ + meta_cards_section + """
+                
+                """ + items_section + """
 
-            """ + totals_section + """
+                """ + totals_section + """
 
-            """ + qr_section + """
+                """ + qr_section + """
 
-            {% if print_settings and print_settings.repeat_header_footer %}
-                {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
-            {% endif %}
-            
+                {% if print_settings and print_settings.repeat_header_footer %}
+                    {{ add_footer(loop.index, layout|len, doc, letter_head, no_letterhead, footer, print_settings) }}
+                {% endif %}
             </div>
             {% endfor %}
         """

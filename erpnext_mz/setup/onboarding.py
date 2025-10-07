@@ -324,7 +324,7 @@ def _apply_branding(company_name: str, profile):
         if website:
             footer_contact_parts.append(frappe.utils.escape_html(website))
 
-        footer_html.append("<div class=\"footline\" style=\"height:0.6mm; background:#111; margin:6mm 0 3mm;\"></div>")
+        footer_html.append("<div class=\"footline\" style=\"height:0.6mm; background:#111; margin-bottom:3mm;\"></div>")
         if footer_contact_parts:
             footer_html.append(f"<div class=\"foot\" style=\"text-align:center; font-size:10pt; color:#111;\">{' | '.join([p for p in footer_contact_parts if p])}</div>")
         footer_html.append("<div class=\"sub\" style=\"text-align:center; font-size:9pt; color:rgba(0, 0, 0, .50); margin-top:1mm;\">Processado pelo programa MozEconomia Cloud</div>")

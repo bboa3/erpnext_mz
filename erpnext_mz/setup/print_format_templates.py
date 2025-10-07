@@ -146,7 +146,7 @@ class PrintFormatTemplate:
         .center { text-align: center; }
         .caps { text-transform: uppercase; letter-spacing: .14em; }
         .muted { color: #444; }
-        .hr { height: 0.5mm; background: #111; margin: 3mm 0; }
+        .hr { height: 0.5mm; background: #111; margin: 2mm 0; }
         .avoid-break { page-break-inside: avoid; break-inside: avoid; }
 
         /* ==========================
@@ -180,7 +180,7 @@ class PrintFormatTemplate:
         table.items { width: 100%; border-collapse: collapse; }
         table.items thead th { font-size: 10pt; color: #111; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3.2mm 2.5mm; text-align: left; border-bottom: 0.6mm solid #111 !important; }
         table.items thead th.right { text-align: right; }
-        table.items tbody td { font-size: 9pt; padding: 3.2mm 2.5mm; border-bottom: 0.5mm solid rgba(0, 0, 0, .25); vertical-align: top; word-wrap: break-word; word-break: break-word; }
+        table.items tbody td { font-size: 9pt; padding: 2.5mm 2mm; border-bottom: 0.5mm solid rgba(0, 0, 0, .25); vertical-align: top; word-wrap: break-word; word-break: break-word; }
         table.items tbody td.right { text-align: right; }
         table.items thead { display: table-header-group; }
         table.items tfoot { display: table-footer-group; }
@@ -235,7 +235,7 @@ class PrintFormatTemplate:
             padding: 0.5mm;
             display: inline-block;
             border: 0.5mm solid #444;
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
         .qr-caption {
@@ -248,8 +248,7 @@ class PrintFormatTemplate:
         /* ==========================
         Footer
         ========================== */
-        footer { margin-top: auto; }
-        .footline { height: 0.6mm; background: #111; margin: 6mm 0 3mm; }
+        .footline { height: 0.6mm; background: #111; margin-bottom: 3mm; }
         .foot { text-align: center; font-size: 9pt; color: #111; }
         .foot .sub { font-size: 8pt; color: rgba(0, 0, 0, .60); margin-top: 1mm; }
 
@@ -274,6 +273,10 @@ class PrintFormatTemplate:
         .doc-status-cancelled {
             background-color: #fdf2f2;
             color: #dc2626;
+        }
+
+        #footer-html {
+            padding-top: 0 !important;
         }
 
         /* Print rules */
@@ -630,7 +633,7 @@ class PrintFormatTemplate:
                 ("DESCRIÇÃO", "", """
                     <strong>{{ item.item_code }}</strong>
                     {% if item.item_name != item.item_code %}
-                        <br><em>{{ item.item_name }}</em>
+                        <br>{{ item.item_name }}
                     {% endif %}
                     {% if item.description and item.description != item.item_name %}
                         <br><em>{{ item.description }}</em>
