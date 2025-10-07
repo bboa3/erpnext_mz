@@ -39,7 +39,6 @@ add_to_apps_screen = [
 fixtures = [
   "Workspace",
   "Number Card",
-  "Property Setter",
   "Print Format",
   #"Document Naming Settings",
   #"Document Naming Rule",

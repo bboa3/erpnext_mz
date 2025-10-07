@@ -28,7 +28,7 @@
     "docstatus": 0,
     "doctype": "Document Naming Rule",
     "document_type": "Sales Invoice",
-    "modified": "2025-09-02 10:27:57.555554",
+    "modified": "2025-10-06 20:59:24.310993",
     "name": "tju0jk8iic",
     "prefix": "FT-.YYYY.-",
     "prefix_digits": 4,
@@ -176,5 +176,18 @@
     "prefix": "ND-.YYYY.-",
     "prefix_digits": 4,
     "priority": 10
+  },
+  {
+    "conditions": [],
+    "counter": 0,
+    "disabled": 0,
+    "docstatus": 0,
+    "doctype": "Document Naming Rule",
+    "document_type": "Subscription",
+    "modified": "2025-10-07 17:02:53.142222",
+    "name": "d135e842mr",
+    "prefix": "SUB-.YYYY.-",
+    "prefix_digits": 4,
+    "priority": 0
   }
 ]
