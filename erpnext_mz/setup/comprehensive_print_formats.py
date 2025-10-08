@@ -391,8 +391,8 @@ class StockEntryPrintFormat(PrintFormatTemplate):
                     <td>
                       <section class="card">
                         <h3 class="card-title">DETALHES DO DOCUMENTO</h3>
-                        {% set __dt = (doc.posting_date and (doc.posting_date ~ " " ~ (doc.posting_time or "00:00:00")))
-                            or (doc.transaction_date and (doc.transaction_date ~ " 00:00:00"))
+                        {% set __dt = (doc.get('posting_date') and (doc.posting_date ~ " " ~ (doc.get('posting_time') or "00:00:00")))
+                            or (doc.get('transaction_date') and (doc.transaction_date ~ " 00:00:00"))
                             or doc.creation %}
                         <p>{{ _("Data") }}: <span>{{ frappe.utils.format_datetime(__dt) }}</span></p>
                         {% if doc.from_warehouse %}<p>{{ _("De Armazém") }}: <span>{{ doc.from_warehouse }}</span></p>{% endif %}
@@ -473,8 +473,8 @@ class MaterialRequestPrintFormat(PrintFormatTemplate):
                     <td>
                       <section class="card">
                         <h3 class="card-title">DESTINO</h3>
-                        {% set __dt = (doc.posting_date and (doc.posting_date ~ " " ~ (doc.posting_time or "00:00:00")))
-                            or (doc.transaction_date and (doc.transaction_date ~ " 00:00:00"))
+                        {% set __dt = (doc.get('posting_date') and (doc.posting_date ~ " " ~ (doc.get('posting_time') or "00:00:00")))
+                            or (doc.get('transaction_date') and (doc.transaction_date ~ " 00:00:00"))
                             or doc.creation %}
                         <p>{{ _("Data") }}: <span>{{ frappe.utils.format_datetime(__dt) }}</span></p>
                         {% if doc.warehouse %}<p>{{ _("Armazém") }}: <span>{{ doc.warehouse }}</span></p>{% endif %}
@@ -671,8 +671,8 @@ class JournalEntryPrintFormat(PrintFormatTemplate):
                     <td>
                       <section class="card">
                         <h3 class="card-title">DETALHES DO DOCUMENTO</h3>
-                        {% set __dt = (doc.posting_date and (doc.posting_date ~ " " ~ (doc.posting_time or "00:00:00")))
-                            or (doc.transaction_date and (doc.transaction_date ~ " 00:00:00"))
+                        {% set __dt = (doc.get('posting_date') and (doc.posting_date ~ " " ~ (doc.get('posting_time') or "00:00:00")))
+                            or (doc.get('transaction_date') and (doc.transaction_date ~ " 00:00:00"))
                             or doc.creation %}
                         <p>{{ _("Data") }}: <span>{{ frappe.utils.format_datetime(__dt) }}</span></p>
                         <p>{{ _("Total Débito") }}: <span>{{ doc.get_formatted('total_debit', doc) }}</span></p>
