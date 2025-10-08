@@ -262,6 +262,10 @@
         "Dividendos a Pagar": {
           "account_number": "21.06",
           "account_type": "Payable"
+        },
+        "Adiantamentos de Clientes": {
+          "account_number": "21.07",
+          "account_type": "Receivable"
         }
       },
       "Passivos Não Correntes": {

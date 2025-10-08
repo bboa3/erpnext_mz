@@ -236,8 +236,13 @@ def _ensure_email_account(company_name: str, settings: Dict[str, object], domain
 
     account_name = str(settings.get("account_name") or email_id.split("@", 1)[0]).strip()
 
-    # Find existing by email_id
+    # Find existing by email_id OR by account_name (to avoid PRIMARY KEY conflicts)
     existing_name = frappe.db.get_value("Email Account", {"email_id": email_id})
+    
+    # Also check if an Email Account with this name already exists
+    if not existing_name and frappe.db.exists("Email Account", account_name):
+        existing_name = account_name
+    
     created = False
     try:
         if existing_name:

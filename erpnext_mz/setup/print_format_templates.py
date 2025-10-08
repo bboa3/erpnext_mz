@@ -410,8 +410,8 @@ class PrintFormatTemplate:
                 <td>
                   <section class=\"card\">
                     <h3 id=\"detalhes\" class=\"card-title\">{{ _("Detalhes do Documento") }}</h3>
-                    {% set __dt = (doc.posting_date and (doc.posting_date ~ " " ~ (doc.posting_time or "00:00:00")))
-                        or (doc.transaction_date and (doc.transaction_date ~ " 00:00:00"))
+                    {% set __dt = (doc.get('posting_date') and (doc.posting_date ~ " " ~ (doc.get('posting_time') or "00:00:00")))
+                        or (doc.get('transaction_date') and (doc.transaction_date ~ " 00:00:00"))
                         or doc.creation %}
                     <p>{{ _("Data de Emissão") }}: <span>{{ frappe.utils.format_datetime(__dt) }}</span></p>
                     {% if doc.due_date %}
@@ -487,8 +487,8 @@ class PrintFormatTemplate:
                     <td>
                         <section class=\"card\">
                             <h3 id=\"detalhes\" class=\"card-title\">{{ _("Detalhes do Documento") }}</h3>
-                            {% set __dt = (doc.posting_date and (doc.posting_date ~ " " ~ (doc.posting_time or "00:00:00")))
-                                or (doc.transaction_date and (doc.transaction_date ~ " 00:00:00"))
+                            {% set __dt = (doc.get('posting_date') and (doc.posting_date ~ " " ~ (doc.get('posting_time') or "00:00:00")))
+                                or (doc.get('transaction_date') and (doc.transaction_date ~ " 00:00:00"))
                                 or doc.creation %}
                             <p>{{ _("Data de Saída") }}: <span>{{ frappe.utils.format_datetime(__dt) }}</span></p>
                             {% if doc.po_no %}
@@ -546,8 +546,8 @@ class PrintFormatTemplate:
                             {% if doc.reference_date %}
                                 <p><strong>{{ _("Data da Referência") }}:</strong> {{ frappe.utils.format_date(doc.reference_date) }}</p>
                             {% endif %}
-                            {% set __dt = (doc.posting_date and (doc.posting_date ~ " " ~ (doc.posting_time or "00:00:00")))
-                                or (doc.transaction_date and (doc.transaction_date ~ " 00:00:00"))
+                            {% set __dt = (doc.get('posting_date') and (doc.posting_date ~ " " ~ (doc.get('posting_time') or "00:00:00")))
+                                or (doc.get('transaction_date') and (doc.transaction_date ~ " 00:00:00"))
                                 or doc.creation %}
                             <p><strong>{{ _("Data do Pagamento") }}:</strong> {{ frappe.utils.format_datetime(__dt) }}</p>
                             {% if doc.clearance_date %}
