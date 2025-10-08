@@ -563,14 +563,15 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                                     <tr>
                                         <td class="left">{{ ref.reference_doctype }}</td>
                                         <td class="right">{{ ref.reference_name }}</td>
-                                        {% set __ref_date = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'posting_date') or frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'transaction_date') or frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'bill_date') %}
+                                        {% set __ref_doc = frappe.get_doc(ref.reference_doctype, ref.reference_name) %}
+                                        {% set __ref_date = __ref_doc.get('posting_date') or __ref_doc.get('transaction_date') or __ref_doc.get('bill_date') %}
                                         <td class="right">{% if __ref_date %}{{ frappe.utils.format_date(__ref_date) }}{% endif %}</td>
-                                        {% set __grand_total = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'grand_total') %}
+                                        {% set __grand_total = __ref_doc.get('grand_total') %}
                                         <td class="right">{% if __grand_total is not none %}{{ frappe.utils.fmt_money(__grand_total, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
-                                        {% set __outstanding_before = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'outstanding_amount') + ref.allocated_amount %}
+                                        {% set __outstanding_amount = __ref_doc.get('outstanding_amount') %}
+                                        {% set __outstanding_before = (__outstanding_amount + ref.allocated_amount) if __outstanding_amount is not none else none %}
                                         <td class="right">{% if __outstanding_before is not none %}{{ frappe.utils.fmt_money(__outstanding_before, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
-                                        {% set __remaining = frappe.db.get_value(ref.reference_doctype, ref.reference_name, 'outstanding_amount') %}
-                                        <td class="right">{% if __remaining is not none %}{{ frappe.utils.fmt_money(__remaining, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
+                                        <td class="right">{% if __outstanding_amount is not none %}{{ frappe.utils.fmt_money(__outstanding_amount, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
