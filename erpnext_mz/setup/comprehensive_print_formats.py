@@ -568,8 +568,6 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                                         <td class="right">{% if __ref_date %}{{ frappe.utils.format_date(__ref_date) }}{% endif %}</td>
                                         {% set __grand_total = __ref_doc.get('grand_total') %}
                                         <td class="right">{% if __grand_total is not none %}{{ frappe.utils.fmt_money(__grand_total, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
-                                        
-                                        {# Handle different document types - Orders use advance_paid, Invoices use outstanding_amount #}
                                         {% if ref.reference_doctype in ['Sales Order', 'Purchase Order'] %}
                                             {% set __advance_paid_before = __ref_doc.get('advance_paid') or 0 %}
                                             {% set __advance_paid_after = __advance_paid_before + ref.allocated_amount %}
