@@ -380,7 +380,7 @@ def _ensure_terms_and_conditions(company_name: str):
             company_name,
             json_path=None,  # Use default packaged file
             commit=True,
-            update_existing=True,  # Idempotent: don't update existing terms
+            update_existing=False,  # Idempotent: don't update existing terms
             set_factura_as_default=True  # Set Factura as default
         )
 

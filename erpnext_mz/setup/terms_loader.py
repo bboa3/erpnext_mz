@@ -432,6 +432,6 @@ def create_terms_from_json_manually(json_path: Optional[str] = None) -> Dict[str
     company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
     if not company_name:
         return {"ok": False, "error": _("No Company found")}
-    return set_default_selling_terms(company_name)
+    return ensure_terms_from_json(company_name, json_path=json_path, commit=True, update_existing=True)
 
 
