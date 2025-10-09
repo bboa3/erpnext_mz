@@ -60,6 +60,7 @@ def apply_system_settings(override: bool = True):
             "time_zone": "Africa/Maputo",
             "disable_system_update_notification": 1,
             "disable_change_log_notification": 1,
+            "disable_standard_email_footer": 1,
         }
 
         # Fields specific to Global Defaults
@@ -67,6 +68,7 @@ def apply_system_settings(override: bool = True):
             "country": "Mozambique",
             "currency": "MZN",
             "lang": "pt-MZ",  # Note: 'lang' for Global Defaults, not 'language'
+            "disable_standard_email_footer": 1,
         }
 
         applied = {"system_settings": {}, "global_defaults": {}}
