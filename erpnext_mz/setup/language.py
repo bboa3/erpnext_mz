@@ -68,7 +68,6 @@ def apply_system_settings(override: bool = True):
             "country": "Mozambique",
             "currency": "MZN",
             "lang": "pt-MZ",  # Note: 'lang' for Global Defaults, not 'language'
-            "disable_standard_email_footer": 1,
         }
 
         applied = {"system_settings": {}, "global_defaults": {}}
