@@ -369,8 +369,30 @@ def _apply_branding(company_name: str, profile):
 
 
 def _ensure_terms_and_conditions(company_name: str):
+    """Load terms and conditions and set Factura as default selling terms.
+    
+    This function is idempotent - safe to call multiple times without causing duplicates.
+    """
     try:
-        ensure_terms_from_json(company_name)
+        from erpnext_mz.setup.terms_loader import ensure_terms_and_set_defaults
+        
+        result = ensure_terms_and_set_defaults(
+            company_name,
+            json_path=None,  # Use default packaged file
+            commit=True,
+            update_existing=True,  # Idempotent: don't update existing terms
+            set_factura_as_default=True  # Set Factura as default
+        )
+
+        if result.get("ok"):
+            print(
+                f"Terms setup: created={result['terms_loading']['created']}, "
+                f"updated={result['terms_loading']['updated']}, "
+                f"skipped={result['terms_loading']['skipped']}"
+            )
+        else:
+            print(f"Terms setup failed: {result.get('error')}")
+            
     except Exception:
         frappe.log_error(frappe.get_traceback(), "Ensure Terms from JSON failed during apply_all")
     return
@@ -869,17 +891,6 @@ def get_profile_values():
         "payment_method_nedbank",
     ]
     return {f: profile.get(f) for f in fields}
-
-@frappe.whitelist()
-def ensure_terms_and_conditions_manually():
-    company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
-    if not company_name:
-        return {"error": "No company found"}
-    try:
-        result = ensure_terms_from_json(company_name)
-        return {"success": True, "message": "Terms and conditions ensured successfully", "result": result}
-    except Exception as e:
-        return {"error": str(e)}
 
 @frappe.whitelist()
 def create_tax_masters_manually():

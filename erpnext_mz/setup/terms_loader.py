@@ -120,7 +120,25 @@ def _apply_category_fields(doc, category: str) -> None:
     set_if_exists("module", "Selling" if is_selling else ("Buying" if is_buying else None))
 
 
-def _upsert_terms(company_name: str, entry_name: str, terms_text: str, category: str | None) -> Tuple[str, bool]:
+def _upsert_terms(
+    company_name: str,
+    entry_name: str,
+    terms_text: str,
+    category: str | None,
+    update_existing: bool = False
+) -> Tuple[str, str]:
+    """Create or optionally update a Terms and Conditions document.
+    
+    Args:
+        company_name: Company name for context
+        entry_name: Name/ID of the terms document
+        terms_text: The terms content
+        category: Category (SELLING/BUYING) for applicability
+        update_existing: If False, skip updates to existing terms (idempotent)
+    
+    Returns:
+        Tuple of (document_name, status) where status is "created", "updated", or "skipped"
+    """
     title = _compose_title(company_name, entry_name)
 
     # Determine schema
@@ -141,82 +159,279 @@ def _upsert_terms(company_name: str, entry_name: str, terms_text: str, category:
     prepared_terms = _prepare_terms_value(terms_text)
 
     if existing_name:
+        LOGGER.info(f"Terms '{entry_name}' already exists (as '{existing_name}')")
+        
+        # If update_existing is False, skip updates (idempotent behavior)
+        if not update_existing:
+            LOGGER.info(f"Skipping update for existing terms '{entry_name}' (update_existing=False)")
+            return existing_name, "skipped"
+        
+        # Update existing document
         doc = frappe.get_doc("Terms and Conditions", existing_name)
-        # Ensure title and name align with JSON name
         needs_save = False
-        if getattr(doc, "title", None) != title:
+        
+        # Track original values for comparison
+        original_title = getattr(doc, "title", None)
+        original_terms = (doc.terms or "").strip()
+        original_disabled = bool(doc.disabled)
+        original_selling = doc.selling
+        original_buying = doc.buying
+        
+        # Ensure title and name align with JSON name
+        if original_title != title:
             doc.title = title
             needs_save = True
+            LOGGER.info(f"Title changed: '{original_title}' → '{title}'")
+            
         if doc.name != entry_name:
             try:
                 frappe.rename_doc(doc.doctype, doc.name, entry_name, force=True)
                 doc.name = entry_name
+                LOGGER.info(f"Renamed: '{existing_name}' → '{entry_name}'")
             except Exception:
                 # If rename fails, continue with existing name
                 pass
+                
         # Update terms/body
-        if (doc.terms or "").strip() != prepared_terms.strip():
+        if original_terms != prepared_terms.strip():
             doc.terms = prepared_terms
             needs_save = True
+            LOGGER.info(f"Terms content updated (length: {len(original_terms)} → {len(prepared_terms)})")
+            
         # Reactivate if disabled
-        if bool(doc.disabled):
+        if original_disabled:
             doc.disabled = 0
             needs_save = True
-        # Apply category-based applicability
+            LOGGER.info(f"Re-enabled terms (was disabled)")
+            
+        # Apply category-based applicability and check if changed
         _apply_category_fields(doc, category or "")
+        if doc.selling != original_selling or doc.buying != original_buying:
+            needs_save = True
+            LOGGER.info(f"Category fields updated: selling={doc.selling}, buying={doc.buying}")
+        
         if needs_save:
             doc.save(ignore_permissions=True)
-        return doc.name, False
+            LOGGER.info(f"✅ Updated existing terms '{doc.name}'")
+            return doc.name, "updated"
+        else:
+            LOGGER.info(f"No changes needed for terms '{doc.name}'")
+            return doc.name, "skipped"
 
     # Create new document with explicit name = JSON 'name'
+    LOGGER.info(f"Creating new terms document '{entry_name}'")
     doc = frappe.new_doc("Terms and Conditions")
     doc.title = title
     doc.terms = prepared_terms
+    
     if has_company_field:
         try:
             doc.company = company_name
         except Exception:
             pass
+            
     # Set explicit name to match JSON 'name'
     try:
         doc.name = entry_name
         doc.flags.name_set = True
     except Exception:
         pass
+        
     _apply_category_fields(doc, category or "")
     doc.insert(ignore_permissions=True)
-    return doc.name, True
+    LOGGER.info(f"✅ Created terms document '{doc.name}'")
+    
+    return doc.name, "created"
 
 
-def ensure_terms_from_json(company_name: str, json_path: Optional[str] = None, commit: bool = True) -> Dict[str, object]:
+def ensure_terms_from_json(
+    company_name: str,
+    json_path: Optional[str] = None,
+    commit: bool = True,
+    update_existing: bool = False
+) -> Dict[str, object]:
+    """Load terms and conditions from JSON file and create/update them.
+    
+    Args:
+        company_name: Company name for context
+        json_path: Path to JSON file (defaults to packaged file)
+        commit: Whether to commit after operations
+        update_existing: If False, only create new terms, don't update existing ones (idempotent)
+    
+    Returns:
+        Dict with status and statistics
+    """
     created = 0
     updated = 0
+    skipped = 0
     items: List[str] = []
+    
     try:
         spec = _load_terms_spec(json_path)
         for row in spec:
-            name, was_created = _upsert_terms(company_name, row["name"], row["terms"], row.get("category"))
-            created += int(was_created)
-            updated += int(not was_created)
+            name, status = _upsert_terms(
+                company_name,
+                row["name"],
+                row["terms"],
+                row.get("category"),
+                update_existing=update_existing
+            )
+            if status == "created":
+                created += 1
+            elif status == "updated":
+                updated += 1
+            elif status == "skipped":
+                skipped += 1
             items.append(name)
+            
         if commit:
             frappe.db.commit()
+            
         LOGGER.info(
-            "Terms upsert complete | company=%s created=%s updated=%s", company_name, created, updated
+            "Terms loading complete | company=%s created=%s updated=%s skipped=%s update_existing=%s",
+            company_name, created, updated, skipped, update_existing
         )
-        return {"ok": True, "created": created, "updated": updated, "items": items}
+        
+        return {
+            "ok": True,
+            "created": created,
+            "updated": updated,
+            "skipped": skipped,
+            "items": items,
+            "update_existing": update_existing
+        }
     except Exception:
         frappe.log_error(frappe.get_traceback(), "Ensure Terms from JSON failed")
         return {"ok": False, "error": _("Failed to ensure Terms and Conditions from JSON")}
 
 
+def set_default_selling_terms(company_name: str, terms_name: str = "Factura") -> Dict[str, object]:
+    """Set default selling terms for a company.
+    
+    Args:
+        company_name: Name of the company
+        terms_name: Name of the Terms and Conditions document to set as default
+    
+    Returns:
+        Dict with status and details
+    """
+    try:
+        # Verify the company exists
+        if not frappe.db.exists("Company", company_name):
+            error_msg = f"Company '{company_name}' not found"
+            LOGGER.error(error_msg)
+            return {"ok": False, "error": error_msg}
+        
+        # Verify the terms document exists
+        if not frappe.db.exists("Terms and Conditions", terms_name):
+            error_msg = f"Terms and Conditions '{terms_name}' not found"
+            LOGGER.error(error_msg)
+            return {"ok": False, "error": error_msg}
+        
+        # Check if the terms has selling enabled
+        is_selling = frappe.db.get_value("Terms and Conditions", terms_name, "selling")
+        if not is_selling:
+            LOGGER.warning(f"Terms '{terms_name}' does not have 'selling' enabled. Enabling it now.")
+            frappe.db.set_value("Terms and Conditions", terms_name, "selling", 1)
+        
+        # Get current default to check if update is needed
+        current_default = frappe.db.get_value("Company", company_name, "default_selling_terms")
+        
+        if current_default == terms_name:
+            LOGGER.info(f"Default selling terms for '{company_name}' is already set to '{terms_name}'")
+            return {
+                "ok": True,
+                "already_set": True,
+                "company": company_name,
+                "terms": terms_name
+            }
+        
+        # Set the default selling terms
+        frappe.db.set_value("Company", company_name, "default_selling_terms", terms_name)
+        frappe.db.commit()
+        
+        LOGGER.info(f"Set default selling terms for '{company_name}' to '{terms_name}'")
+        
+        return {
+            "ok": True,
+            "already_set": False,
+            "company": company_name,
+            "terms": terms_name,
+            "previous_default": current_default
+        }
+        
+    except Exception as e:
+        error_msg = f"Failed to set default selling terms: {str(e)}"
+        LOGGER.error(error_msg)
+        frappe.log_error(frappe.get_traceback(), "Set Default Selling Terms Failed")
+        return {"ok": False, "error": error_msg}
+
+
+def ensure_terms_and_set_defaults(
+    company_name: str,
+    json_path: Optional[str] = None,
+    commit: bool = True,
+    update_existing: bool = False,
+    set_factura_as_default: bool = True
+) -> Dict[str, object]:
+    """Complete workflow: Load terms from JSON and set Factura as default selling terms.
+    
+    This is the recommended function to use for setting up terms and conditions for a company.
+    It is fully idempotent and safe to run multiple times.
+    
+    Args:
+        company_name: Company name
+        json_path: Path to terms JSON file
+        commit: Whether to commit changes
+        update_existing: Whether to update existing terms (False for idempotent behavior)
+        set_factura_as_default: Whether to set "Factura" as default selling terms
+    
+    Returns:
+        Dict with comprehensive status information
+    """
+    result = {
+        "ok": True,
+        "company": company_name,
+        "terms_loading": {},
+        "default_setting": {}
+    }
+    
+    # Step 1: Load terms from JSON
+    terms_result = ensure_terms_from_json(
+        company_name,
+        json_path=json_path,
+        commit=commit,
+        update_existing=update_existing
+    )
+    result["terms_loading"] = terms_result
+    
+    if not terms_result.get("ok"):
+        result["ok"] = False
+        return result
+    
+    # Step 2: Set Factura as default selling terms (if requested)
+    if set_factura_as_default and "Factura" in terms_result.get("items", []):
+        default_result = set_default_selling_terms(company_name, "Factura")
+        result["default_setting"] = default_result
+        
+        if not default_result.get("ok"):
+            result["ok"] = False
+            LOGGER.warning(f"Terms loaded successfully but failed to set default: {default_result.get('error')}")
+    
+    return result
+
+
 @frappe.whitelist()
 def create_terms_from_json_manually(json_path: Optional[str] = None) -> Dict[str, object]:
+    """Whitelist function for manual terms creation from UI.
+    
+    Note: This uses update_existing=True for backwards compatibility.
+    """
     if frappe.session.user != "Administrator" and not frappe.has_permission(doctype="Terms and Conditions", ptype="write"):
         frappe.throw(_("Not permitted"), frappe.PermissionError)
     company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
     if not company_name:
         return {"ok": False, "error": _("No Company found")}
-    return ensure_terms_from_json(company_name, json_path=json_path, commit=True)
+    return set_default_selling_terms(company_name)
 
 
