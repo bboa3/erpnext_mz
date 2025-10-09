@@ -100,7 +100,3 @@ def hide_unwanted_erpnext_workspaces():
     
     frappe.db.commit()
     frappe.logger().info("ERPNext MZ: Completed hiding unwanted workspaces")
-
-def apply_system_settings_manually():
-    """Apply system settings manually"""
-    apply_system_settings(override=True)
