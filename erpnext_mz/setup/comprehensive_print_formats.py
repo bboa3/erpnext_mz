@@ -569,16 +569,29 @@ class PaymentEntryPrintFormat(PrintFormatTemplate):
                                         {% set __grand_total = __ref_doc.get('grand_total') %}
                                         <td class="right">{% if __grand_total is not none %}{{ frappe.utils.fmt_money(__grand_total, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
                                         {% if ref.reference_doctype in ['Sales Order', 'Purchase Order'] %}
-                                            {# For Orders: advance_paid includes THIS payment if doc is saved, so subtract to get "before" #}
-                                            {% set __advance_paid_after = __ref_doc.get('advance_paid') or 0 %}
-                                            {% set __advance_paid_before = __advance_paid_after - ref.allocated_amount %}
+                                            {# For Orders: Check if Payment Entry is submitted to determine if advance_paid was updated #}
+                                            {% if doc.docstatus == 1 %}
+                                                {# Submitted: advance_paid already includes THIS payment, subtract to get "before" #}
+                                                {% set __advance_paid_after = __ref_doc.get('advance_paid') or 0 %}
+                                                {% set __advance_paid_before = __advance_paid_after - ref.allocated_amount %}
+                                            {% else %}
+                                                {# Draft: advance_paid doesn't include THIS payment yet, add to get "after" #}
+                                                {% set __advance_paid_before = __ref_doc.get('advance_paid') or 0 %}
+                                                {% set __advance_paid_after = __advance_paid_before + ref.allocated_amount %}
+                                            {% endif %}
                                             {% set __outstanding_before = (__grand_total - __advance_paid_before) if __grand_total is not none else none %}
                                             {% set __outstanding_after = (__grand_total - __advance_paid_after) if __grand_total is not none else none %}
                                         {% else %}
-                                            {# For Invoices: outstanding_amount is already updated, so add back to get "before" #}
-                                            {% set __outstanding_amount = __ref_doc.get('outstanding_amount') %}
-                                            {% set __outstanding_before = (__outstanding_amount + ref.allocated_amount) if __outstanding_amount is not none else none %}
-                                            {% set __outstanding_after = __outstanding_amount %}
+                                            {# For Invoices: Check if Payment Entry is submitted to determine if outstanding_amount was updated #}
+                                            {% if doc.docstatus == 1 %}
+                                                {# Submitted: outstanding_amount already reflects THIS payment, add back to get "before" #}
+                                                {% set __outstanding_after = __ref_doc.get('outstanding_amount') %}
+                                                {% set __outstanding_before = (__outstanding_after + ref.allocated_amount) if __outstanding_after is not none else none %}
+                                            {% else %}
+                                                {# Draft: outstanding_amount doesn't reflect THIS payment yet, subtract to get "after" #}
+                                                {% set __outstanding_before = __ref_doc.get('outstanding_amount') %}
+                                                {% set __outstanding_after = (__outstanding_before - ref.allocated_amount) if __outstanding_before is not none else none %}
+                                            {% endif %}
                                         {% endif %}
                                         
                                         <td class="right">{% if __outstanding_before is not none %}{{ frappe.utils.fmt_money(__outstanding_before, currency=(doc.paid_to_account_currency or doc.company_currency)) }}{% else %}—{% endif %}</td>
