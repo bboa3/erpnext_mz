@@ -360,7 +360,7 @@ class PrintFormatTemplate:
                 {% endif %}
             </div>
         </section>
-        """
+    """
 
     def get_meta_cards_section(self, customer_field="customer", customer_name_field="customer_name", left_label: str | None = None):
         """Meta cards (mockup) for party and document details"""
@@ -391,8 +391,8 @@ class PrintFormatTemplate:
                             %}
                             {% if addr and addr != "," %}
                                 <span>{{ addr.rstrip(",") | trim }}</span>
-                            {% endif %}
                         {% endif %}
+                            {% endif %}
                     </p>
                     {% if doc.tax_id %}
                             {{ _("NUIT") }}: <span>{{ doc.tax_id }}</span>
@@ -402,9 +402,9 @@ class PrintFormatTemplate:
                             {% set __party_nuit = frappe.db.get_value(__party_doctype, doc.""" + customer_field + """, 'tax_id') %}
                             {% if __party_nuit %}
                                 {{ _("NUIT") }}: <span>{{ __party_nuit }}</span>
-                            {% endif %}
                         {% endif %}
-                    {% endif %}
+                        {% endif %}
+                        {% endif %}
                     </section>
                 </td>
                 <td>
@@ -414,18 +414,18 @@ class PrintFormatTemplate:
                         or (doc.get('transaction_date') and (doc.transaction_date ~ " 00:00:00"))
                         or doc.creation %}
                     <p>{{ _("Data de Emissão") }}: <span>{{ frappe.utils.format_datetime(__dt) }}</span></p>
-                    {% if doc.due_date %}
+                        {% if doc.due_date %}
                     <p>{{ _("Vencimento") }}: <span>{{ frappe.utils.format_date(doc.due_date) }}</span></p>
-                    {% endif %}
-                    {% if doc.po_no %}
+                        {% endif %}
+                        {% if doc.po_no %}
                     <p>{{ _("Nº Encomenda") }}: <span>{{ doc.po_no }}</span></p>
-                    {% endif %}
-                    {% if doc.currency %}
+                        {% endif %}
+                        {% if doc.currency %}
                     <p>{{ _("Moeda") }}: <span>{{ doc.currency }}</span></p>
-                    {% endif %}
-                    {% if doc.currency and doc.company_currency and doc.currency != doc.company_currency and doc.conversion_rate %}
+                        {% endif %}
+                        {% if doc.currency and doc.company_currency and doc.currency != doc.company_currency and doc.conversion_rate %}
                     <p>{{ _("Taxa de câmbio") }}: <span>1 {{ doc.currency }} = {{ doc.conversion_rate }} {{ doc.company_currency }}</span></p>
-                    {% endif %}
+                        {% endif %}
                     {% if doc.return_against %}
                     <p>{{ _("Referência à Factura Original") }}: <span>{{ doc.return_against }}</span></p>
                     {% endif %}
@@ -669,9 +669,9 @@ class PrintFormatTemplate:
                     </thead>
                     <tbody>
                         {% for item in doc.""" + items_field + """ %}
-                            <tr>
-                                """ + body_html + """
-                            </tr>
+                        <tr>
+                            """ + body_html + """
+                        </tr>
                         {% endfor %}
                     </tbody>
                 </table>
@@ -718,9 +718,9 @@ class PrintFormatTemplate:
 
             row_class = "row total" if field == "grand_total" else "row"
             rows.append(f"""
-            {{% if {condition} %}}
+                    {{% if {condition} %}}
               <div class=\"{row_class}\"><span>{label}</span><span>{{{{ doc.get_formatted('{field}', doc) }}}}</span></div>
-            {{% endif %}}
+                    {{% endif %}}
             """)
 
         totals_html = "".join(rows)
@@ -732,8 +732,8 @@ class PrintFormatTemplate:
                     <aside class=\"terms\">
                         {{% if doc.get('terms') %}}
                             <div class=\"lead\">{{{{ _("TERMOS E CONDIÇÕES") }}}}</div>
-                            <p>{{{{ doc.terms }}}}</p>
-                        {{% endif %}}
+                        <p>{{{{ doc.terms }}}}</p>
+                    {{% endif %}}
                     </aside>
                 </td>
                 <td class=\"right\" style=\"width:62mm;\">
