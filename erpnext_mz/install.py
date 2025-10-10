@@ -20,6 +20,7 @@ def after_migrate():
     apply_system_settings(override=False)
     apply_website_branding(override=False)
     ensure_mz_company_setup_doctype_and_single()
+    hide_unwanted_erpnext_workspaces()
 
 
 # All setup functions have been moved to the setup/ modules for better organization
