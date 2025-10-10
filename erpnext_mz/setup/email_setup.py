@@ -235,6 +235,14 @@ def _ensure_email_account(company_name: str, settings: Dict[str, object], domain
         raise ValueError("MZ_SMTP_EMAIL is required")
 
     account_name = str(settings.get("account_name") or email_id.split("@", 1)[0]).strip()
+    
+    # IMPORTANT: Remove commas from account name as they break email validation
+    # Email format is: "Display Name" <email@example.com>
+    if "," in account_name:
+        account_name = account_name.replace(",", "").strip()
+        # Clean up double spaces
+        while "  " in account_name:
+            account_name = account_name.replace("  ", " ")
 
     # Find existing by email_id OR by account_name (to avoid PRIMARY KEY conflicts)
     existing_name = frappe.db.get_value("Email Account", {"email_id": email_id})
