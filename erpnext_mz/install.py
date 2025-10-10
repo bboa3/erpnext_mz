@@ -18,7 +18,7 @@ def after_migrate():
     # Re-apply defaults where fields are empty, without overriding admin choices
     ensure_language_pt_mz()
     apply_system_settings(override=False)
-    apply_website_branding(override=False)
+    apply_website_branding(override=True)
     ensure_mz_company_setup_doctype_and_single()
     hide_unwanted_erpnext_workspaces()
 
