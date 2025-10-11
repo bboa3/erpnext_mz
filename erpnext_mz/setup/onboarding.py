@@ -3,6 +3,8 @@ from frappe import _
 from frappe.utils.data import cint
 from erpnext_mz.utils.account_utils import get_cost_center, require_account_by_number
 from erpnext_mz.setup.terms_loader import ensure_terms_from_json
+import os
+import shutil
 
 
 def _get_profile(create_if_missing: bool = True):
@@ -176,6 +178,76 @@ def _ensure_fiscal_year():
         pass
 
 
+def _ensure_logo_is_public(file_url: str) -> str:
+    """
+    Ensure a logo file is public (not private) for wkhtmltopdf access.
+    
+    Args:
+        file_url: File URL (e.g., "/files/logo.png" or "/private/files/logo.png")
+    
+    Returns:
+        str: Public file URL
+    """
+    if not file_url:
+        return file_url
+    
+    # Already public
+    if not file_url.startswith('/private/'):
+        return file_url
+    
+    try:
+        from frappe.utils import get_site_path
+        
+        # Try to get the File document with the private URL
+        try:
+            file_doc = frappe.get_doc("File", {"file_url": file_url})
+        except frappe.DoesNotExistError:
+            # File document doesn't exist with this URL
+            # Maybe it was already converted - try to find with public URL
+            public_url = file_url.replace("/private/files/", "/files/")
+            try:
+                file_doc = frappe.get_doc("File", {"file_url": public_url})
+                # Found with public URL - it's already converted
+                return public_url
+            except frappe.DoesNotExistError:
+                # File doesn't exist at all
+                frappe.log_error(f"Logo file not found: {file_url}", "Logo Public Conversion")
+                return file_url
+        
+        if not file_doc.is_private:
+            # Already marked as public
+            return file_doc.file_url
+        
+        # Get file paths
+        private_path = get_site_path('private', 'files', file_doc.file_name)
+        public_path = get_site_path('public', 'files', file_doc.file_name)
+        
+        # Check if file exists in private folder
+        if not os.path.exists(private_path):
+            frappe.log_error(f"Logo file not found at: {private_path}", "Logo Public Conversion")
+            return file_url
+        
+        # Copy to public folder (don't delete from private in case it's referenced elsewhere)
+        shutil.copy2(private_path, public_path)
+        
+        # Update File document
+        file_doc.is_private = 0
+        file_doc.file_url = "/files/" + file_doc.file_name
+        file_doc.save(ignore_permissions=True)
+        
+        # Commit the change immediately to ensure it persists
+        frappe.db.commit()
+
+        return file_doc.file_url
+        
+    except Exception as e:
+        frappe.log_error(
+            f"Error making logo public: {str(e)}\n{frappe.get_traceback()}",
+            "Logo Public Conversion Error"
+        )
+        return file_url
+
+
 def _ensure_address(company_name: str, profile):
     # Update Company document with contact information
     try:
@@ -263,18 +335,41 @@ def _apply_branding(company_name: str, profile):
         line2 = profile.neighborhood_or_district or ""
         city = profile.city or ""
         province = profile.province or ""
-        logo_url = None
 
         # Update company website if provided in profile
         if getattr(profile, "website", None) and company_doc.website != profile.website:
             company_doc.website = profile.website
             company_doc.save(ignore_permissions=True)
 
-        # Prefer profile logo; fallback to company logo
+        # Handle logo: ensure it's public and set it on Company
+        # This is critical for wkhtmltopdf to access the logo in PDFs
+        logo_url = None
         if getattr(profile, "logo", None):
-            logo_url = profile.logo
+            # Profile has a logo - ensure it's public
+            public_logo_url = _ensure_logo_is_public(profile.logo)
+            logo_url = public_logo_url
+            
+            # Update profile with public URL if it changed
+            if profile.logo != public_logo_url:
+                profile.logo = public_logo_url
+                profile.save(ignore_permissions=True)
+                frappe.db.commit()
+            
+            # Set as company logo if not already set or different
+            if company_doc.company_logo != public_logo_url:
+                company_doc.company_logo = public_logo_url
+                company_doc.save(ignore_permissions=True)
+                frappe.db.commit()
         elif getattr(company_doc, "company_logo", None):
-            logo_url = company_doc.company_logo
+            # Use existing company logo, but ensure it's public
+            public_logo_url = _ensure_logo_is_public(company_doc.company_logo)
+            logo_url = public_logo_url
+            
+            # Update if it was converted from private to public
+            if company_doc.company_logo != public_logo_url:
+                company_doc.company_logo = public_logo_url
+                company_doc.save(ignore_permissions=True)
+                frappe.db.commit()
 
         # Build header HTML to match mockup structure
         header_html = []
