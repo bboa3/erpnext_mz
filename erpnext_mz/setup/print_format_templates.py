@@ -163,7 +163,7 @@ class PrintFormatTemplate:
         Title / Doc number
         ========================== */
         .title-block { text-align: right; margin-right: 1mm; }
-        .title { font-size: 20pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 0.5mm; }}
+        .title { font-size: 20pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 0.5mm; }
         .doc-no { font-size: 10pt; font-weight: 600; letter-spacing: .10em; }
 
         /* ==========================

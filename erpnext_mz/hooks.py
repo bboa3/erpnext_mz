@@ -40,6 +40,7 @@ fixtures = [
   "Workspace",
   "Number Card",
   "Print Format",
+  "Property Setter",
   #"Document Naming Settings",
   #"Document Naming Rule",
   "Client Script",
