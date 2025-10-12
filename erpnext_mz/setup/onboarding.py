@@ -347,6 +347,7 @@ def _apply_branding(company_name: str, profile):
                 company_doc.company_logo = public_logo_url
                 company_doc.save(ignore_permissions=True)
                 frappe.db.commit()
+                print(f"Logo set to {public_logo_url}")
         elif getattr(company_doc, "company_logo", None):
             # Use existing company logo, but ensure it's public
             public_logo_url = _ensure_logo_is_public(company_doc.company_logo)
@@ -357,7 +358,9 @@ def _apply_branding(company_name: str, profile):
                 company_doc.company_logo = public_logo_url
                 company_doc.save(ignore_permissions=True)
                 frappe.db.commit()
+                print(f"Logo set to {public_logo_url}")
 
+        print(f'logo_url {logo_url}')
         # Build header HTML to match mockup structure
         header_html = []
         header_html.append("<table class=\"hdr\" style=\"width:100%; border-collapse:collapse; font-family: Montserrat, Arial, sans-serif;\">")
