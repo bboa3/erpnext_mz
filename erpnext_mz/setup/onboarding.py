@@ -208,7 +208,7 @@ def _ensure_logo_is_public(file_url: str) -> str:
                 # Found with public URL - it's already converted
                 return public_url
             except frappe.DoesNotExistError:
-                # File doesn't exist at all
+                # File doesn't exist at all - log and return original
                 frappe.log_error(f"Logo file not found: {file_url}", "Logo Public Conversion")
                 return file_url
         
@@ -216,13 +216,15 @@ def _ensure_logo_is_public(file_url: str) -> str:
             # Already marked as public
             return file_doc.file_url
         
-        # Make file public - Frappe will handle file movement and URL update
+        # CRITICAL: Only change is_private, do NOT change file_url manually
+        # Frappe's save() will detect the change and handle everything
         file_doc.is_private = 0
         file_doc.flags.ignore_permissions = True
         file_doc.save()
         frappe.db.commit()
         
-        # Return the updated URL (Frappe changes it during save)
+        # Reload to get the updated file_url (Frappe changes it during save)
+        file_doc.reload()
         return file_doc.file_url
         
     except Exception as e:
