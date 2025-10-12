@@ -1058,6 +1058,22 @@ def ensure_smtp_infrastructure_manually():
     except Exception as e:
         return {"error": str(e)}
 
+
+@frappe.whitelist()
+def endure_branding_manually():
+    """Manual function to ensure branding exists for the company"""
+    company_name = frappe.defaults.get_user_default("company") or frappe.db.get_default("company")
+    if not company_name:
+        return {"error": "No company found"}
+    profile = _get_profile(create_if_missing=True)
+    if not profile:
+        return {"error": "MZ Company Setup not found"}
+    try:
+        _apply_branding(company_name, profile)
+        return {"success": True, "message": "Branding ensured successfully"}
+    except Exception as e:
+        return {"error": str(e)}
+
 @frappe.whitelist()
 def should_trigger_onboarding():
     """Check if onboarding should be triggered after setup wizard completion"""
