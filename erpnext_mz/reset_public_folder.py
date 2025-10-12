@@ -103,6 +103,17 @@ def reset_public_folder():
     else:
         print("  ℹ️  Folder doesn't exist")
     
+    # Step 4: Recreate clean public/files folder
+    print("\n🔄 Recreating clean public/files folder...")
+    try:
+        public_files_dir.mkdir(parents=True, exist_ok=True)
+        # Set proper permissions (755 - owner: rwx, group: rx, others: rx)
+        os.chmod(str(public_files_dir), 0o755)
+        print(f"  ✅ Created: {public_files_dir}")
+        print(f"  ✅ Permissions set to 755")
+    except Exception as e:
+        print(f"  ❌ Error creating folder: {e}")
+    
     print("\n" + "=" * 80)
     print("✅ PUBLIC FOLDER RESET COMPLETE")
     print("=" * 80)
