@@ -196,9 +196,7 @@ def _ensure_logo_is_public(file_url: str) -> str:
         return file_url
     
     try:
-        from frappe.utils import get_site_path
-        
-        # Try to get the File document with the private URL
+        # Try to get the File document with the given URL
         try:
             file_doc = frappe.get_doc("File", {"file_url": file_url})
         except frappe.DoesNotExistError:
@@ -218,41 +216,13 @@ def _ensure_logo_is_public(file_url: str) -> str:
             # Already marked as public
             return file_doc.file_url
         
-        # Get file paths
-        private_path = get_site_path('private', 'files', file_doc.file_name)
-        public_path = get_site_path('public', 'files', file_doc.file_name)
-        
-        # Check if file exists in private folder
-        if not os.path.exists(private_path):
-            frappe.log_error(f"Logo file not found at: {private_path}", "Logo Public Conversion")
-            return file_url
-        
-        # Ensure public/files directory exists
-        public_dir = os.path.dirname(public_path)
-        os.makedirs(public_dir, mode=0o755, exist_ok=True)
-        
-        # Copy to public folder
-        shutil.copy2(private_path, public_path)
-        
-        # Set readable permissions for production (nginx/apache needs to read it)
-        try:
-            os.chmod(public_path, 0o644)
-        except:
-            pass  # May fail on some systems, not critical
-        
-        # Verify copy succeeded
-        if not os.path.exists(public_path) or os.path.getsize(public_path) == 0:
-            frappe.log_error(f"Logo copy failed or is empty: {public_path}", "Logo Public Conversion")
-            return file_url
-        
-        # Update File document
+        # Make file public - Frappe will handle file movement and URL update
         file_doc.is_private = 0
-        file_doc.file_url = "/files/" + file_doc.file_name
-        file_doc.save(ignore_permissions=True)
-        
-        # Commit the change immediately to ensure it persists
+        file_doc.flags.ignore_permissions = True
+        file_doc.save()
         frappe.db.commit()
-
+        
+        # Return the updated URL (Frappe changes it during save)
         return file_doc.file_url
         
     except Exception as e:
