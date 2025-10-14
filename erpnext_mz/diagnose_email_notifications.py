@@ -60,10 +60,6 @@ def diagnose_email_notifications():
             except Exception as e:
                 print(f"   - Error loading account: {e}")
     
-    # Check default sender
-    default_sender = frappe.db.get_single_value("Email Account", "default_sender")
-    print(f"\n   System Default Sender: {default_sender or '❌ Not set'}")
-    
     # ============================================================================
     # 2. NOTIFICATION CONFIGURATION
     # ============================================================================
@@ -98,12 +94,14 @@ def diagnose_email_notifications():
                     recipients.append("All Assignees")
                 
                 for recipient in notif_doc.recipients:
-                    if recipient.email_by_document_field:
+                    if hasattr(recipient, 'email_by_document_field') and recipient.email_by_document_field:
                         recipients.append(f"Field: {recipient.email_by_document_field}")
-                    elif recipient.receiver_by_document_field:
+                    elif hasattr(recipient, 'receiver_by_document_field') and recipient.receiver_by_document_field:
                         recipients.append(f"Field: {recipient.receiver_by_document_field}")
-                    elif recipient.receiver_by_role:
+                    elif hasattr(recipient, 'receiver_by_role') and recipient.receiver_by_role:
                         recipients.append(f"Role: {recipient.receiver_by_role}")
+                    elif hasattr(recipient, 'email') and recipient.email:
+                        recipients.append(f"Email: {recipient.email}")
                 
                 if recipients:
                     print(f"   - Recipients: {', '.join(recipients)}")
@@ -153,38 +151,44 @@ def diagnose_email_notifications():
         print("   ℹ️  Email queue is empty")
     
     # Recent failed emails
-    failed_emails = frappe.get_all("Email Queue",
-        filters={"status": ["in", ["Error", "Expired"]]},
-        fields=["name", "status", "error", "sender", "recipients", "creation"],
-        order_by="creation desc",
-        limit=5
-    )
-    
-    if failed_emails:
-        print(f"\n   ❌ Recent Failed Emails ({len(failed_emails)}):")
-        for email in failed_emails:
-            print(f"\n   Email: {email.name}")
-            print(f"   - Status: {email.status}")
-            print(f"   - From: {email.sender}")
-            print(f"   - To: {email.recipients}")
-            print(f"   - Created: {email.creation}")
-            if email.error:
-                print(f"   - Error: {email.error[:200]}")
+    try:
+        failed_emails = frappe.db.sql("""
+            SELECT name, status, error, sender, creation
+            FROM `tabEmail Queue`
+            WHERE status IN ('Error', 'Expired')
+            ORDER BY creation DESC
+            LIMIT 5
+        """, as_dict=True)
+        
+        if failed_emails:
+            print(f"\n   ❌ Recent Failed Emails ({len(failed_emails)}):")
+            for email in failed_emails:
+                print(f"\n   Email: {email.name}")
+                print(f"   - Status: {email.status}")
+                print(f"   - From: {email.sender}")
+                print(f"   - Created: {email.creation}")
+                if email.error:
+                    print(f"   - Error: {email.error[:200]}")
+    except Exception as e:
+        print(f"\n   ⚠️  Could not check failed emails: {e}")
     
     # Stuck emails (Not Sent for > 1 hour)
-    stuck_emails = frappe.db.sql("""
-        SELECT name, sender, recipients, creation, modified
-        FROM `tabEmail Queue`
-        WHERE status = 'Not Sent'
-        AND creation < DATE_SUB(NOW(), INTERVAL 1 HOUR)
-        ORDER BY creation DESC
-        LIMIT 10
-    """, as_dict=True)
-    
-    if stuck_emails:
-        print(f"\n   ⚠️  Stuck Emails (Not Sent > 1 hour): {len(stuck_emails)}")
-        for email in stuck_emails:
-            print(f"   - {email.name}: {email.sender} → {email.recipients} (Created: {email.creation})")
+    try:
+        stuck_emails = frappe.db.sql("""
+            SELECT name, sender, creation, modified
+            FROM `tabEmail Queue`
+            WHERE status = 'Not Sent'
+            AND creation < DATE_SUB(NOW(), INTERVAL 1 HOUR)
+            ORDER BY creation DESC
+            LIMIT 10
+        """, as_dict=True)
+        
+        if stuck_emails:
+            print(f"\n   ⚠️  Stuck Emails (Not Sent > 1 hour): {len(stuck_emails)}")
+            for email in stuck_emails:
+                print(f"   - {email.name}: {email.sender} (Created: {email.creation})")
+    except Exception as e:
+        print(f"\n   ⚠️  Could not check stuck emails: {e}")
     
     # ============================================================================
     # 4. BACKGROUND WORKERS & SCHEDULER
@@ -194,11 +198,15 @@ def diagnose_email_notifications():
     print("=" * 100)
     
     # Check scheduler status
-    scheduler_enabled = frappe.utils.scheduler.is_scheduler_enabled()
-    print(f"   Scheduler Enabled: {'✅ Yes' if scheduler_enabled else '❌ NO - CRITICAL!'}")
-    
-    if not scheduler_enabled:
-        print("   Action: Enable scheduler with: bench --site SITE_NAME scheduler enable")
+    try:
+        scheduler_enabled = frappe.db.get_single_value("System Settings", "enable_scheduler")
+        print(f"   Scheduler Enabled: {'✅ Yes' if scheduler_enabled else '❌ NO - CRITICAL!'}")
+        
+        if not scheduler_enabled:
+            print("   Action: Enable scheduler with: bench --site SITE_NAME scheduler enable")
+    except Exception as e:
+        print(f"   ⚠️  Could not check scheduler status: {e}")
+        scheduler_enabled = None
     
     # Check if scheduler is actually running (last job execution)
     try:
