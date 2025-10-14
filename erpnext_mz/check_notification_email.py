@@ -34,7 +34,7 @@ def check_notification_email():
                 "reference_doctype": "Opportunity",
                 "reference_name": opp.name
             },
-            fields=["name", "status", "sender", "creation", "recipients", "error"],
+            fields=["name", "status", "sender", "creation", "error"],
             order_by="creation desc"
         )
         
@@ -43,7 +43,7 @@ def check_notification_email():
             for email in emails:
                 print(f"\n    {email.name}")
                 print(f"    - Status: {email.status}")
-                print(f"    - To: {email.recipients}")
+                print(f"    - From: {email.sender}")
                 print(f"    - Created: {email.creation}")
                 if email.error:
                     print(f"    - Error: {email.error[:150]}")
