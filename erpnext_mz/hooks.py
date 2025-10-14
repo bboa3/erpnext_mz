@@ -217,6 +217,15 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
+scheduler_events = {
+	# Send "Days After" and "Days Before" notifications at 8:00 AM every day
+	"cron": {
+		"0 8 * * *": [
+			"frappe.email.doctype.notification.notification.trigger_daily_alerts"
+		]
+	}
+}
+
 # scheduler_events = {
 # 	"all": [
 # 		"erpnext_mz.tasks.all"
