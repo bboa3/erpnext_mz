@@ -29,7 +29,7 @@ def manual_trigger_notification():
         print(f"  {i+1}. {notif.name} ({notif.event})")
 
     # Use first one by default
-    notif_name = notifs[0].name
+    notif_name = notifs[2].name
     print(f"\nUsing: {notif_name}")
 
     # Get the notification
