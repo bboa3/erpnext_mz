@@ -84,7 +84,7 @@ def manual_trigger_notification():
             filters={
                 "reference_doctype": "Opportunity",
                 "reference_name": doc.name,
-                "creation": [">", frappe.utils.add_minutes(frappe.utils.now(), -5)]
+                "creation": [">", frappe.utils.add_to_date(frappe.utils.now(), minutes=-5)]
             },
             fields=["name", "status", "sender", "error"],
             limit=5
