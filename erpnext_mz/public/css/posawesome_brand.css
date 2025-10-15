@@ -1,0 +1,167 @@
+/* MozEconomia → POS-Awesome Theme Bridge
+   - Scope: only POS-Awesome app container (.posapp)
+   - Purpose: map MozEconomia tokens (--mz-*) to POS/Vuetify tokens
+   - Dark mode: follows Vuetify .v-theme--dark and POS data-theme
+*/
+
+/* 1) Typography and base coloring in POS container */
+.posapp,
+.posapp .v-application {
+  font-family: var(--mz-font, "Gotham", "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", sans-serif) !important;
+  color: var(--mz-text);
+  background-color: var(--mz-bg);
+}
+
+/* 2) Map Moz tokens to POS variables within POS subtree (order-independent) */
+.posapp {
+  /* Light defaults */
+  --pos-bg-primary: var(--mz-bg);
+  --pos-bg-secondary: var(--mz-surface-2, #F7FAF9);
+  --pos-surface: var(--mz-surface);
+  --pos-surface-variant: var(--mz-surface-2, #F7FAF9);
+
+  --pos-text-primary: var(--mz-text);
+  --pos-text-secondary: var(--mz-text-muted);
+  --pos-text-disabled: var(--mz-gray-600, #8C9099);
+
+  --pos-primary: var(--mz-primary-500);
+  --pos-primary-variant: var(--mz-primary-600);
+  --pos-secondary: var(--mz-primary-300);
+  --pos-accent: var(--mz-primary-400);
+
+  --pos-success: var(--mz-success, #28A745);
+  --pos-warning: var(--mz-warning, #FFC107);
+  --pos-error: var(--mz-danger, #DC3545);
+  --pos-info: var(--mz-info, #17A2B8);
+
+  --pos-border: var(--mz-border);
+  --pos-border-light: color-mix(in srgb, var(--mz-border) 60%, transparent);
+  --pos-divider: color-mix(in srgb, var(--mz-border) 50%, transparent);
+  --pos-outline: color-mix(in srgb, var(--mz-border) 80%, transparent);
+
+  --pos-card-bg: var(--mz-surface);
+  --pos-input-bg: var(--mz-surface);
+  --pos-button-bg: var(--mz-surface);
+  --pos-menu-bg: var(--mz-surface);
+  --pos-dialog-bg: var(--mz-surface);
+
+  --pos-table-header-bg: var(--mz-gray-100, #F5F6F7);
+  --pos-table-row-hover: color-mix(in srgb, var(--mz-primary-500) 6%, transparent);
+}
+
+/* 3) Dark-mode mapping bound to Vuetify theme class inside POS subtree */
+.posapp .v-theme--dark {
+  --pos-bg-primary: var(--mz-bg);
+  --pos-bg-secondary: var(--mz-surface-2);
+  --pos-surface: var(--mz-surface);
+  --pos-surface-variant: var(--mz-surface-2);
+
+  --pos-text-primary: var(--mz-text);
+  --pos-text-secondary: var(--mz-text-muted);
+  --pos-text-disabled: var(--mz-gray-600, #8C9099);
+
+  --pos-primary: var(--mz-primary-300);
+  --pos-primary-variant: var(--mz-primary-400);
+  --pos-secondary: var(--mz-primary-400);
+  --pos-accent: var(--mz-primary-300);
+
+  --pos-border: var(--mz-border);
+  --pos-divider: var(--mz-border);
+
+  --pos-card-bg: var(--mz-surface);
+  --pos-input-bg: color-mix(in srgb, var(--mz-surface) 85%, #000);
+  --pos-button-bg: var(--mz-surface);
+  --pos-menu-bg: var(--mz-surface);
+  --pos-dialog-bg: var(--mz-surface);
+
+  --pos-table-header-bg: color-mix(in srgb, var(--mz-surface) 92%, #000);
+  --pos-table-row-hover: color-mix(in srgb, var(--mz-primary-300) 8%, transparent);
+}
+
+/* 4) Vuetify theme variables (RGB triplets) for brand alignment */
+/* Primary brand #02664D → 2,102,77; Secondary #2BA891 → 43,168,145 */
+.posapp .v-theme--light {
+  --v-theme-primary: 2, 102, 77;
+  --v-theme-on-primary: 255, 255, 255;
+  --v-theme-secondary: 43, 168, 145;
+  --v-theme-on-secondary: 0, 0, 0;
+  --v-theme-background: 255, 255, 255;
+  --v-theme-surface: 255, 255, 255;
+  --v-theme-on-surface: 30, 42, 56;
+  /* --mz-gray-900 */
+  --v-theme-outline: 224, 227, 230;
+  /* --mz-gray-300 */
+}
+
+.posapp .v-theme--dark {
+  --v-theme-primary: 86, 196, 179;
+  /* --mz-primary-300 */
+  --v-theme-on-primary: 0, 0, 0;
+  --v-theme-secondary: 43, 168, 145;
+  /* --mz-primary-400 */
+  --v-theme-on-secondary: 0, 0, 0;
+  --v-theme-background: 15, 20, 23;
+  /* --mz-bg dark */
+  --v-theme-surface: 19, 25, 29;
+  /* --mz-surface dark */
+  --v-theme-on-surface: 242, 245, 247;
+  /* --mz-text dark */
+  --v-theme-outline: 42, 51, 59;
+  /* --mz-border dark */
+}
+
+/* 5) Component polish with low specificity */
+/* Buttons */
+.posapp :where(.v-btn) {
+  border-radius: calc(var(--mz-radius-sm, 8px) - 2px);
+  font-weight: 600;
+}
+
+.posapp :where(.v-btn--variant-elevated, .v-btn--variant-flat).bg-primary {
+  background-color: var(--pos-primary) !important;
+  color: #fff !important;
+}
+
+.posapp :where(.v-btn--variant-elevated, .v-btn--variant-flat).bg-primary:hover {
+  filter: brightness(.95);
+}
+
+/* Inputs */
+.posapp :where(.v-field) {
+  border-radius: var(--mz-radius-sm, 8px);
+  background: var(--pos-input-bg);
+  box-shadow: none;
+}
+
+.posapp :where(.v-field--focused) {
+  box-shadow: var(--mz-focus);
+}
+
+.posapp :where(.v-label) {
+  color: var(--pos-text-secondary);
+  font-weight: 600;
+}
+
+/* Cards, menus, dialogs */
+.posapp :where(.v-card, .v-menu, .v-overlay__content) {
+  background: var(--pos-surface);
+  border: 1px solid var(--pos-border);
+  border-radius: var(--mz-radius-md, 12px);
+  box-shadow: var(--mz-shadow-sm, 0 1px 2px rgba(0, 0, 0, .06));
+}
+
+/* Tables */
+.posapp :where(.v-table .v-data-table__thead, .v-table thead) {
+  background: var(--pos-table-header-bg);
+}
+
+.posapp :where(.v-table tbody tr:hover) {
+  background: var(--pos-table-row-hover);
+}
+
+/* Title/Typography accents */
+.posapp :where(.v-app-bar, .v-card-title, .v-toolbar-title) {
+  font-family: var(--mz-font);
+  font-weight: 700;
+  color: var(--mz-primary-700);
+}
