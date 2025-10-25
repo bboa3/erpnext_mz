@@ -170,6 +170,10 @@
           "Garantias Bancárias / Cauções": {
             "account_number": "12.03.05",
             "account_type": "Current Asset"
+          },
+          "Ativos Recebidos e Não Faturados": {
+            "account_number": "12.03.06",
+            "account_type": "Asset Received But Not Billed"
           }
         },
         "Ativos por Impostos Diferidos": {
@@ -198,7 +202,7 @@
           },
           "Mercadorias Recebidas e Não Faturadas": {
             "account_number": "21.01.03",
-            "account_type": "Asset Received But Not Billed"
+            "account_type": "Stock Received But Not Billed"
           }
         },
         "Impostos a Pagar": {
