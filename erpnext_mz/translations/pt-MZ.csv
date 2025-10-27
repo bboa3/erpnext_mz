@@ -1,5 +1,7 @@
-{0} is mandatory,{0} é obrigatório
-{0} is required,{0} é necessário
+
+_report,_relatório
+A list of resources which the Client App will have access to after the user allows it.<br> e.g. project,"Uma lista de recursos que o aplicativo cliente terá acesso a depois que o usuário permita. <br> por exemplo, do projeto"
+A symbol for this currency. For e.g. $,Um símbolo para esta moeda. Por exemplo: MT
 Accepted,Aceito
 Account,Conta
 Accounting Report,Relatório de Contabilidade
@@ -10,8 +12,8 @@ Accounts User,Usuário de Contas
 Acknowledge the error to resume scanning.,Reconheça o erro para retomar o escaneamento.
 Action,Ação
 Action / Route,Ação / Rota
-Actions,Ações
 Action Timeout (Seconds),Tempo Limite de Ação (Segundos)
+Actions,Ações
 Active,Ativo
 Active Domains,Domínios ativos
 Activity,Atividade
@@ -19,19 +21,21 @@ add,adicionar
 Add,Adicionar
 Add Child,Adicionar Sub-item
 Add Container,Adicionar recipiente
-Added {0} ({1}),Adicionado {0} ({1})
+Add Discount,Adicionar Desconto
 Add Gray Background,Adicionar fundo cinza
-Additional Permissions,Permissões Adicionais
-Additional Salary,Salário Adicional
 Add Multiple,Adicionar Múltiplos
 Add New Address,Adicionar Novo Endereço
 Add Participants,Adicione Participantes
-Address,Endereço
-Address and other legal information you may want to put in the footer.,Endereço e outras informações legais que você pode querer colocar no rodapé.
-Address Title,Título do Endereço
+Add to Quote,Adicionar à Cotação
 Add Total Row,Adicionar Linha de Total
 Add Translate Data,Adicionar Dados Traduzidos
 Add Unsubscribe Link,Adicionar link para cancelar inscrição
+Added {0} ({1}),Adicionado {0} ({1})
+Additional Permissions,Permissões Adicionais
+Additional Salary,Salário Adicional
+Address,Endereço
+Address and other legal information you may want to put in the footer.,Endereço e outras informações legais que você pode querer colocar no rodapé.
+Address Title,Título do Endereço
 Adjust the quantity or enable negative stock to continue.,Ajuste a quantidade ou ative stock negativo para continuar.
 Administrator,Administrador
 Advanced Settings,Configurações avançadas
@@ -44,33 +48,33 @@ Aggregate Function Based On,Função agregada com base em
 Alert,Alerta
 Align Labels to the Right,Alinhar etiquetas à direita
 Align Right,Alinhar à direita
-A list of resources which the Client App will have access to after the user allows it.<br> e.g. project,"Uma lista de recursos que o aplicativo cliente terá acesso a depois que o usuário permita. <br> por exemplo, do projeto"
 All,Todos
 ALL,Tudo
 All Caught Up!,Tudo Em Dia!
 All Day,Dia Inteiro
 All invoices are synchronized,Todas as faturas estão sincronizadas
+All Items,Todos os Artigos
+All Synchronized,Tudo Sincronizado
 Allocated To,Atribuído a
 Allow approval for creator of the document,Permitir aprovação para o criador do documento
 Allow Auto Repeat,Permitir repetição automática
 Allow Bulk Edit,Permitir edição em massa
-Allowed,Permitido
-Allowed In Mentions,Permitido nas menções
 Allow events in timeline,Permitir eventos na linha do tempo
 Allow Guest,Permitir convidado
 Allow Guest to View,Permitir visualização de convidado
 Allow in Quick Entry,Permitir na entrada rápida
 Allow Login using User Name,Permitir Login usando o nome de usuário
 Allow Modules,Permitir Módulos
-Allow only one session per user,Permitir apenas uma sessão por usuário
 Allow on Submit,Permitir ao Enviar
+Allow only one session per user,Permitir apenas uma sessão por usuário
 Allow Print for Cancelled,Permitir impressão para cancelado
 Allow Read On All Link Options,Permitir leitura em todas as opções de link
 Allow Rename,Permitir Renomear
 Allow Roles,Permitir Funções
 Allow saving if mandatory fields are not filled,Permitir salvar se os campos obrigatórios não são preenchidas
 Allow Self Approval,Permitir auto-aprovação
-All Synchronized,Tudo Sincronizado
+Allowed,Permitido
+Allowed In Mentions,Permitido nas menções
 "Always add ""Draft"" Heading for printing draft documents","Sempre adicionar ""Rascunho"" no cabeçalho para impressão de documentos não enviados"
 Amend,Corrigir
 Amount,Valor
@@ -82,8 +86,8 @@ API Key,Chave da API
 API Method,Método API
 API Secret,Segredo da API
 App,Aplicativo
-Append To,Acrescente Para
 App information,Informações do aplicativo
+Append To,Acrescente Para
 Application Logo,Logo do aplicativo
 Application Name,Nome da Aplicação
 Application Version,Versão do aplicativo
@@ -103,55 +107,54 @@ Are you sure you want to close? All entered data will be lost.,Tem certeza de qu
 Asset Activity,Atividade do Ativo
 Asset Capitalization,Capitalização de Ativo
 Assign Condition,Atribuir condição
+Assign To Users,Atribuir aos usuários
 Assigned,Atribuído
 Assigned By Full Name,Atribuído por Nome completo
 Assigned To,Atribuído A
 Assignment Completed,Atribuição Concluída
 Assignment Days,Dias de atribuição
 Assignment Rules,Regras de Atribuição
-Assign To Users,Atribuir aos usuários
-A symbol for this currency. For e.g. $,Um símbolo para esta moeda. Por exemplo: MT
+Attach Image,Anexar Imagem
+Attach Print,Anexar cópia
 Attached File,Arquivo anexo
 Attached To Field,Relacionado ao campo
 Attached To Name,Anexado Para Nome
-Attach Image,Anexar Imagem
 Attachment,Anexo
 Attachment Limit (MB),Limite de Anexo (MB)
 Attachment Link,Link de Anexo
 Attachment Removed,Anexo Removido
 Attachments,Anexos
-Attach Print,Anexar cópia
 Attendance,Assiduidade
 Attendance Count,Contagem de Assiduidade
 Attendance Request,Pedido de Assiduidade
+Auth URL Data,Dados de URL de autenticação
 Author,Autor
 Authorization Code,Código de autorização
 Authorize API Indexing  Access,Autorizar acesso de indexação de API
-Authorized,Autorizado
 Authorize Google Calendar Access,Autorizar acesso ao Google Agenda
 Authorize Google Contacts Access,Autorizar o acesso dos Contatos do Google
 Authorize URL,Autorizar URL
-Auth URL Data,Dados de URL de autenticação
+Authorized,Autorizado
 Auto Name,Nome Automático
 Auto Reply Message,Resposta Automática
-Available:,Disponível:
 Available QTY,Quantidade Disponível
+Available:,Disponível:
 Awaiting password,Aguardando Senha
 Awaiting Password,Aguardando Senha
 Awesome,Incrível
 Back,Voltar
+Back to Login,Voltar ao início de sessão
 Background Color,Cor de Fundo
 Background Workers,Trabalhadores em Segundo Plano
-Back to Login,Voltar ao início de sessão
 Balance will be updated when connection is restored,O saldo será atualizado quando a conexão for restaurada
 Banner,Faixa
 Banner HTML,Faixa HTML
 Barcode,Código de Barras
 Base Distinguished Name (DN),Base de dados de nome distinto (DN)
+Base URL,URL Base
 Based On,Baseado Em
 Based on Field,Com base no campo
 Based on Permissions For User,Com base em permissões para o usuário
-Base URL,URL Base
 Basic,Básico
 Basic Information,Informações Básicas
 Batch,Lote
@@ -166,8 +169,8 @@ Before Submit,Antes de enviar
 Benefits,Benefícios
 Billing,Faturamento
 Birth Date,Data de nascimento
-Blocked,Bloqueado
 Block Modules,Bloquear Módulos
+Blocked,Bloqueado
 blue,azul
 Blue,Azul
 Bold,Negrito
@@ -194,19 +197,19 @@ Cache Usage,Uso de Cache
 cache used,cache utilizado
 Calculating...,Calculando...
 Calendar Name,Nome do calendário
-Callback Message,Mensagem de retorno
-Callback Title,Título de retorno
 Call To Action,Apelo à ação
 Call To Action URL,URL de apelo à ação
+Callback Message,Mensagem de retorno
+Callback Title,Título de retorno
 Camera Access Required,Acesso à Câmara Necessário
 Camera access was aborted. Please try again.,O acesso à câmara foi abortado. Por favor tente novamente.
 Campaign,Campanha
 Campaign Efficiency,Eficiência da Campanha
 Cancel,Cancelar
-Cancelled,Cancelado
 Cancel Payment,Cancelar Pagamento
 Cancel Sale,Cancelar Venda
 Cancel Sale ?,Cancelar Venda?
+Cancelled,Cancelado
 Cannot change language - same language selected,Não é possível alterar o idioma - mesmo idioma selecionado
 Cannot clear cache while offline,Não é possível limpar cache offline
 Card,Cartão
@@ -225,11 +228,12 @@ Chart,Gráfico
 Chart Configuration,Configuração de Gráfico
 Chart Name,Nome do gráfico
 Chart Options,Opções de gráfico
-Charts,Gráficos
 Chart Source,Fonte do gráfico
+Charts,Gráficos
 Check,Verifica
 Check cache and performance,Verificar cache e desempenho
 Check this if you want to force the user to select a series before saving. There will be no default if you check this.,Marque esta opção se você deseja forçar o usuário a selecionar uma série antes de salvar. Não haverá nenhum padrão se você marcar isso.
+Check-out,Finalizar Venda
 Choose authentication method to be used by all users,Escolha o método de autenticação a ser usado por todos os usuários
 Choose your preferred language for the POS interface,Escolha seu idioma preferido para a interface POS
 City,Cidade
@@ -237,9 +241,10 @@ City/Town,Cidade/Município
 Clear,Limpar
 Clear Cache,Limpar Cache
 Clearing local cache...,Limpando cache local...
-Clicked,Clicado
 Click on the button to log in to {0},Clique no botão para iniciar sessão no {0}
+Click to add email / phone,Clique para adicionar email / telefone
 Click to refresh,Clique para atualizar
+Clicked,Clicado
 Client,Cliente
 Client Code,Código do cliente
 Client CPU Lag:,Atraso do CPU do Cliente:
@@ -251,9 +256,9 @@ Client Metrics,Métricas do Cliente
 Client Secret,Segredo do cliente
 Close,Fechar
 Close Condition,Fechar Condição
-Closed,Fechado
 Close Dialog,Fechar Diálogo
 Close Shift,Fechar Turno
+Closed,Fechado
 Closing Amount,Valor de Fecho
 Closing POS Shift,Fechamento do Turno POS
 Code,Código
@@ -274,6 +279,7 @@ Company Introduction,Introdução da Empresa
 Company Name,Nome da Empresa
 Compensatory Leave Request,Pedido de Licença Compensatória
 Complete,Concluído
+Complete Order,Concluir Venda
 Completed,Concluído
 Confirm Close,Confirmar Fecho
 Confirm Mobile Number,Confirmar Número de Telemóvel
@@ -285,6 +291,7 @@ Contacts,Contatos
 Context,Contexto
 Continue,Continuar
 Continue Editing,Continuar Editando
+Continue Shopping,Continuar a Comprar
 Contract,Contrato
 Contributed,Contribuído
 Contribution Document Name,Nome do documento de contribuição
@@ -314,6 +321,12 @@ Current User,Utilizador Atual
 Custom Configuration,Configuração Personalizada
 Custom CSS,CSS Personalizado
 Custom Due Days,Dias de Vencimento Personalizados
+Custom Format,Formato Personalizado
+Custom HTML Help,Ajuda HTML Personalizado
+Custom Options,Opções Personalizadas
+Custom Overrides,Substituições personalizadas
+Custom Report,Relatório Personalizado
+Custom SCSS,SCSS personalizado
 Customer,Cliente
 Customer already selected,Cliente já selecionado
 Customer Balance,Saldo do Cliente
@@ -327,12 +340,6 @@ Customer Name is required,Nome do Cliente é obrigatório
 Customer saved offline,Cliente guardado offline
 Customer territory is required,Território do cliente é obrigatório
 Customer updated successfully.,Cliente atualizado com sucesso.
-Custom Format,Formato Personalizado
-Custom HTML Help,Ajuda HTML Personalizado
-Custom Options,Opções Personalizadas
-Custom Overrides,Substituições personalizadas
-Custom Report,Relatório Personalizado
-Custom SCSS,SCSS personalizado
 Daily,Diário
 Daily Long,Diário Longo
 Daily Work Summary,Resumo Diário de Trabalho
@@ -341,10 +348,10 @@ Daily Work Summary Replies,Respostas de Resumos Diários de Trabalho
 Danger,Perigo
 Dark Color,Cor Escura
 Dark Mode,Modo Escuro
+Data,Dados
 Database Health,Saúde da Base de Dados
 Database health affects overall system speed and reliability.,A saúde da base de dados afeta a velocidade e confiabilidade geral do sistema.
 Database Info,Informações da Base de Dados
-Data,Dados
 Date,Data
 Date and Number Format,Data e Formato de número
 Date Format,Formato de Data
@@ -358,21 +365,21 @@ Dear,Caro
 "Dear System Manager,","Caro Administrador de Sistema,"
 Debit Note,Nota de Débito
 Default,Padrão
-"Default: ""Contact Us""","Padrão: ""Fale Conosco"""
 Default Letter Head,Papel Timbrado Padrão
 Default Portal Home,Página inicial do portal padrão
 Default Print Format,Formato de impressão padrão
 Default Print Language,Idioma de impressão padrão
 Default Redirect URI,Padrão de redirecionamento URI
 Default Role at Time of Signup,Função padrão no momento da inscrição
-Defaults,Padrões
 Default Sort Field,Campo de classificação padrão
 Default Sort Order,Ordem de classificação padrão
 Default Value,Valor padrão
+"Default: ""Contact Us""","Padrão: ""Fale Conosco"""
+Defaults,Padrões
 Delayed Tasks Summary,Resumo de Tarefas Atrasadas
 Delete,Excluir
-Deleted Name,Nome Excluído
 Delete Invoice,Eliminar Fatura
+Deleted Name,Nome Excluído
 Delivery Information,Informações de Entrega
 Delivery Note,Guia de Remessa
 Department,Departamento
@@ -388,17 +395,15 @@ Difference:,Diferença:
 Digits,Dígitos
 Disable Auto Refresh,Desativar atualização automática
 Disable Count,Desativar Contagem
-Disabled,Desativado
 Disable offline mode,Desativar modo offline
 Disable Sidebar Stats,Desativar Estatísticas da Barra Lateral
 Disable SMTP server authentication,Desativar autenticação do servidor SMTP
+Disabled,Desativado
 Discount %,% Desconto
 Discount Amount,Valor de Desconto
 Display Depends On,Visualização depende
 Document,Documento
 Document Actions,Ações do Documento
-Documentation Link,Link da documentação
-Documentation URL,URL de documentação
 Document Link,Link do Documento
 Document Links,Links de documentos
 Document Name,Nome do Documento
@@ -406,9 +411,11 @@ Document Share,Partilha de Documentos
 Document States,Documento Unidos
 Document Tag,Etiqueta de Documento
 Document Title,Título do documento
+Documentation Link,Link da documentação
+Documentation URL,URL de documentação
 Domains HTML,Domínios HTML
-Done,Feito
 Don't have an account?,Não tem uma conta?
+Done,Feito
 Donut,Rosquinha
 Download,Baixar
 Download Template,Baixar Modelo
@@ -426,10 +433,10 @@ Dynamic Filters Section,Seção de Filtros Dinâmicos
 Dynamic Report Filters,Filtros dinâmicos de relatórios
 Dynamic Route,Rota Dinâmica
 Dynamic Template,Modelo dinâmico
-Edit,Editar
-Edited,Editado
 e.g. pop.gmail.com / imap.gmail.com,ex: pop.gmail.com / imap.gmail.com
 e.g. smtp.gmail.com,ex: smtp.gmail.com
+Edit,Editar
+Edited,Editado
 Email,E-mail
 Email Address,Endereço de e-mail
 Email Address (Will be your login ID),Endereço de Email (será o seu ID de acesso)About,Sobre
@@ -452,14 +459,14 @@ Employee Onboarding Template,Modelo de Integração de Trabalhador
 Employee Referral,Recomendação de Trabalhador
 Employee Separation,Desligamento de Trabalhador
 Employee Skill Map,Mapa de Competências do Trabalhador
-Employees working on a holiday,Trabalhadores a Trabalhar em Feriado
 Employee Tax Exemption Category,Categoria de Isenção Fiscal do Trabalhador
 Employee Tax Exemption Declaration,Declaração de Isenção Fiscal do Trabalhador
 Employee Tax Exemption Proof Submission,Submissão de Comprovativo de Isenção Fiscal do Trabalhador
 Employee Tax Exemption Sub Category,Subcategoria de Isenção Fiscal do Trabalhador
+Employees working on a holiday,Trabalhadores a Trabalhar em Feriado
 Enable,Permitir
-Enable Automatic Linking in Documents,Ativar Vinculação Automática em Documentos
 Enable Auto Reply,Ativar resposta automática
+Enable Automatic Linking in Documents,Ativar Vinculação Automática em Documentos
 Enable Comments,Ativação de comentários
 Enable Password Policy,Ativar política de senha
 Enable Print Server,Ativar servidor de impressão
@@ -491,8 +498,8 @@ Error updating item details,Erro ao atualizar detalhes do artigo
 Event Category,Categoria do Evento
 Event-loop lag measures how busy your browser is. Lower is better.,O atraso do event-loop mede o quão ocupado está o seu navegador. Menor é melhor.
 Example,Exemplo
-Example: 00001,Exemplo: 00001
 Example: #Tree/Account,Exemplo: # árvore / conta
+Example: 00001,Exemplo: 00001
 Exception,Exceção
 Exemption,Isenção
 Exits (This Month),Desligamentos (Este Mês)
@@ -526,12 +533,12 @@ File Size,Tamanho do arquivo
 File URL,URL do arquivo
 Filter Data,Filtrar dados
 Filter Meta,Filtrar Meta
+Filter Values,Valores de filtro
 Filters,Filtros
 Filters Configuration,Configuração de Filtros
 Filters Display,Exibição dos Filtros
 Filters JSON,Filtros JSON
 Filters Section,Seção de Filtros
-Filter Values,Valores de filtro
 Financial Reports,Relatórios Financeiros
 Financial Year Begins On,Início do Ano Fiscal
 Finished,Acabado
@@ -544,8 +551,8 @@ Float Precision,Precisão de Casas Decimais
 Fold,Dobrar
 Folder,Pasta
 Font Properties,Propriedades da fonte
-Fonts,Fontes
 Font Size,Tamanho da Fonte
+Fonts,Fontes
 Footer,Rodapé
 Footer HTML,HTML de rodapé
 Footer Items,Itens do Rodapé
@@ -553,17 +560,17 @@ Footer Logo,Logotipo do rodapé
 Footer Template,Modelo de rodapé
 Footer Template Values,Valores de modelo de rodapé
 Footer will display correctly only in PDF,Rodapé será exibido corretamente somente em PDF
+For example: {} Open,Por exemplo: {} Abra
+"For more information, <a class=""text-muted"" href=""https://docs.frappe.io/erpnext/user/manual/en/linking-emails-to-document"">click here</a>.","Para mais informações, <a class=""text-muted"" href=""https://docs.frappe.io/erpnext/user/manual/en/linking-emails-to-document"">clique aqui</a>."
+For Value,Por valor
 Force,Força
 Force Show,Forçar Exibição
 Force User to Reset Password,Forçar usuário a redefinir a senha
-For example: {} Open,Por exemplo: {} Abra
 Forgot Password,Esqueceu a palavra-passe
 Forgot Password?,Esqueceu a palavra-passe?
-Format Data,Formato de dados
-"For more information, <a class=""text-muted"" href=""https://docs.frappe.io/erpnext/user/manual/en/linking-emails-to-document"">click here</a>.","Para mais informações, <a class=""text-muted"" href=""https://docs.frappe.io/erpnext/user/manual/en/linking-emails-to-document"">clique aqui</a>."
 Form Settings,Configurações de formulário
 Form URL-Encoded,Codificado em URL do formulário
-For Value,Por valor
+Format Data,Formato de dados
 Fraction,Fração
 Fraction Units,Unidades Fracionadas
 From,De
@@ -583,11 +590,11 @@ Get your globally recognized avatar from Gravatar.com,Obtenha seu avatar globalm
 Global Unsubscribe,Cancelar Inscrição Global
 GMail,Gmail
 Go Offline,Desconectar
+Go Online,Conectar
+Go to Page,Vá para página
 Google Analytics ID,ID do Google Analytics
 Google Calendar Event ID,ID do evento do Google Agenda
 Google Calendar ID,ID da Agenda do Google
-Go Online,Conectar
-Go to Page,Vá para página
 green,verde
 Green,Verde
 Grievance,Reclamação
@@ -637,8 +644,8 @@ If non standard port (e.g. 587),"Se não for a porta padrão (por exemplo, 587)"
 "If not set, the currency precision will depend on number format","Se não for definido, a precisão da moeda dependerá do formato de número"
 If user is the owner,Se o usuário é o proprietário
 Ignore attachments over this size,Ignorar anexos maiores que este tamanho
-Ignored Apps,Aplicativos ignorados
 Ignore XSS Filter,Ignorar Filtro XSS
+Ignored Apps,Aplicativos ignorados
 Image,Imagem
 Image Field,Campo de Imagem
 Image Link,Link da Imagem
@@ -650,37 +657,37 @@ Import from Google Sheets,Importar do Planilhas Google
 Import Log Preview,Visualização do registro de importação
 Import Preview,Visualização de importação
 Import Warnings,Avisos de importação
+In Days,Em dias
+In Filter,No Filtro da Lista
+In Global Search,Na Busca Global
+In points. Default is 9.,Em pontos. O padrão é 9.
+In Preview,Na pré-visualização
+In Progress,Em Progresso
+In Reply To,Em resposta a
+In seconds,Em segundos
+In Standard Filter,Em Filtro Padrão
 Inactive Customers,Clientes Inativos
 Include Search in Top Bar,Incluem a busca no Top Bar
 Income Tax Computation,Cálculo do Imposto sobre o Rendimento (IRPS)
 Income Tax Deductions,Deduções do Imposto sobre o Rendimento (IRPS)
 Income Tax Slab,Tabela de IRPS
 Incoming,Entrada
-In Days,Em dias
 IndexedDB,IndexedDB
 Indicator,Indicador
-In Filter,No Filtro da Lista
 Info,Informações
-In Global Search,Na Busca Global
-Initialize your shift with opening balances,Inicialize o seu turno com saldos de abertura
 Initial Sync Count,Contagem de sincronização inicial
-In points. Default is 9.,Em pontos. O padrão é 9.
-In Preview,Na pré-visualização
-In Progress,Em Progresso
-In Reply To,Em resposta a
-In seconds,Em segundos
+Initialize your shift with opening balances,Inicialize o seu turno com saldos de abertura
 Insert New Records,Inserir novos registros
 Insert Style,Inserir Estilo
 Installed Applications,Aplicativos Instalados
-In Standard Filter,Em Filtro Padrão
 Instructions Emailed,Instruções enviadas por e‑mail
 Int,Inteiro
 Interview,Entrevista
 Interview Feedback,Feedback da Entrevista
 Interview Round,Ronda de Entrevista
+Interview Type,Tipo de Entrevista
 Interviews,Entrevistas
 Interviews (This Week),Entrevistas (Esta Semana)
-Interview Type,Tipo de Entrevista
 Introduce your company to the website visitor.,Apresente sua empresa para o visitante do site.
 Introductory information for the Contact Us Page,Informação introdutória para a página Fale Conosco
 Invalid closing amount,Valor de fecho inválido
@@ -689,8 +696,8 @@ Invalid Login. Try again.,Início de sessão inválido. Tente novamente.
 Invalid URL,URL inválida
 Inverse,Inverso
 Invoice,Fatura
-Invoices,Faturas
 Invoice saved offline,Fatura guardada offline
+Invoices,Faturas
 Invoices saved as POS Invoices,Faturas guardadas como Faturas POS
 IP Address,Endereço de IP
 Is Active,É Ativo
@@ -708,14 +715,15 @@ Is Primary Phone,É o telefone principal
 Is Private,É privada
 Is Public,É público
 Is Published Field,É Publicado campo
+Is Rejected Warehouse,É Armazém de Rejeitados
 Is Return,É Devolução
 Is Skipped,É pulado
 Is Standard,É Padrão
 Is Table,É Tabela
 Is Tree,É árvore
 Is Unique,É único
-Is Rejected Warehouse,É Armazém de Rejeitados
 Item,Artigo
+Item Cart,Carrinho de Artigos
 Item Category,Categoria de Artigos
 Item Code,Código do Artigo
 Item Group,Grupo de Artigos
@@ -725,10 +733,10 @@ Item order updated,Ordem do artigo atualizada
 Item Price,Preço do Artigo
 Item Price List,Lista de Preços de Artigos
 Item price updated,Preço do artigo atualizado
-Items,Artigos
-Items added to invoice,Artigos adicionados à fatura
 Item Selector Settings,Configurações do Seletor de Artigos
 Item Tax Template,Modelo de Imposto do Artigo
+Items,Artigos
+Items added to invoice,Artigos adicionados à fatura
 Javascript is disabled on your browser,O JavaScript está desativado no seu navegador
 Job Applicant,Candidato a Emprego
 Job Offer,Oferta de Emprego
@@ -755,8 +763,8 @@ Last Login,Último Login
 Last Month,Mês passado
 Last Password Reset Date,Data da última redefinição de senha
 Last Quarter,Ultimo quarto
-Last Synced On,Última sincronização em
 Last Sync On,Última sincronização em
+Last Synced On,Última sincronização em
 Last User,Último usuário
 Last Week,Semana passada
 Last Year,Ano passado
@@ -785,8 +793,8 @@ Leave Encashment,Conversão de Licença em Dinheiro
 Leave Period,Período de Licença
 Leave Policy,Política de Licenças
 Leave Policy Assignment,Atribuição de Política de Licenças
-Leaves,Licenças / Férias
 Leave Type,Tipo de Licença
+Leaves,Licenças / Férias
 Ledger,Livro Razão
 Let's set up your account,Vamos preparar a sua conta
 Letter,Carta
@@ -800,35 +808,35 @@ Likes,Gostos
 Limit,Limite
 Line,Linha
 Link Cards,Cartões de ligação
-Linked,Relacionado
 Link Fieldname,Nome do campo do link
 Link Name,Nome do Link
 Link Title,Título do Link
 Link To,Link para
 Link to the page you want to open. Leave blank if you want to make it a group parent.,Link para a página que você deseja abrir. Deixe em branco se você quiser torná-lo um pai grupo.
+Linked,Relacionado
 List,Lista
 Load Balancing,Balanceamento de carga
 Load Drafts,Carregar Rascunhos
-Loading...,Carregando...
+Load More Invoices,Carregar Mais Faturas
+Load previously saved invoices,Carregar faturas previamente guardadas
+Load Sales Invoice,Carregar Fatura de Venda
 Loading cache...,Carregando cache...
 Loading database stats...,Carregando estatísticas da base de dados...
 Loading details...,Carregando detalhes...
 Loading server CPU/memory usage...,Carregando uso de CPU/memória do servidor...
-Load More Invoices,Carregar Mais Faturas
-Load previously saved invoices,Carregar faturas previamente guardadas
-Load Sales Invoice,Carregar Fatura de Venda
+Loading...,Carregando...
 localStorage,Armazenamento Local
 Location,Localização
 Log,Registo
+Log In To {0},Iniciar sessão no {0}
 Login,Iniciar sessão
 Login link sent to your email,Ligação de acesso enviada para o seu e‑mail
 Login to {0},Iniciar sessão no {0}
 Login To {0},Iniciar sessão no {0}
-Log In To {0},Iniciar sessão no {0}
-Login with {0},Iniciar sessão com {0}
 Login with Email Link,Iniciar sessão com ligação por e-mail
 Login with Frappe Cloud,Iniciar sessão com Frappe Cloud
 Login with LDAP,Iniciar sessão com LDAP
+Login with {0},Iniciar sessão com {0}
 Logout,Sair
 Logout All Sessions on Password Reset,Sair de todas as sessões ao redefinir a senha
 Logout From All Devices After Changing Password,Saia de todos os dispositivos após alterar a senha
@@ -855,10 +863,10 @@ Master,Cadastro
 Masters,Tabelas
 Masters & Reports,Tabelas & Relatórios
 Max Attachments,Máx. de Anexos
-Maximum,Máximo
-Maximum Number of Fields,Número Máximo de Campos
 Max Length,Comprimento máximo
 Max Value,Max Valor
+Maximum,Máximo
+Maximum Number of Fields,Número Máximo de Campos
 Medium,Médio
 Mention,Menção
 Mentions,Menções
@@ -894,39 +902,41 @@ Mute Sounds,Desativar Sons
 Name,Nome
 Naming,Nomeação
 Naming Series,Séries de Numeração
+Net Total ({0} Items),Total Líquido ({0} Itens)
 New,Novo
 New Hires (This Month),Novas Contratações (Este Mês)
 New Offer Available,Nova Oferta Disponível
 New Price List Rate,Novo Preço da Lista
-Newsletter,Boletim Informativo
 New value to be set,Novo valor a ser definido
 New version ready,Nova versão pronta
+Newsletter,Boletim Informativo
 Next,Próximo
 Next Schedule Date,Próxima data programada
 No,Não
-No.,Nº
-Nobile Number,Número de Telemóvel
 No Copy,Nenhuma Cópia
 No Data,Sem Dados
 No data to export,Nenhum dado para exportar
 no failed attempts,tentativas não falharam
 No invoices found,Nenhuma fatura encontrada
 No invoices found. Try different search criteria.,Nenhuma fatura encontrada. Tente diferentes critérios de pesquisa.
+No items in cart,Nenhum artigo no carrinho
+No offline invoices pending synchronization,Nenhuma fatura offline pendente de sincronização
+No.,Nº
+Nobile Number,Número de Telemóvel
+Non Negative,Não Negativo
 Non-Conforming,Não conforme
 None,Nenhum
-Non Negative,Não Negativo
-No offline invoices pending synchronization,Nenhuma fatura offline pendente de sincronização
+Not a valid user,Utilizador inválido
 Not active,Inativo
 Not Allowed,Não Desejados
 Not Allowed: Disabled User,Não permitido: Utilizador desativado
-Not a valid user,Utilizador inválido
+Not permitted,Não Permitido
+Not Permitted,Não Permitido
 Note,Nota
 "Note: For best results,  images must be of the same size and width must be greater than height.","Nota: Para obter melhores resultados, as imagens devem ter o mesmo tamanho e a largura deve ser maior que a altura."
 Note: Multiple sessions will be allowed in case of mobile device,Observação: Serão permitidas múltiplas sessões no caso de dispositivo móvel
 Notify if unreplied,Informar se não for respondido
 Notify if unreplied for (in mins),Informar se não for respondido em (minutos)
-Not permitted,Não Permitido
-Not Permitted,Não Permitido
 Number,Número
 Number Format,Formato de número
 Number of Backups,Número de Backups
@@ -939,20 +949,20 @@ Offers applied and invoice refreshed,Ofertas aplicadas e fatura atualizada
 Office,Escritório
 Offline Invoices,Faturas Offline
 OK,OK
-on_change,em mudança
 On Hold,Em Espera
+on_change,em mudança
 Only Allow Edit For,Somente permite edição para
 Only Send Records Updated in Last X Hours,Somente Enviar Registros Atualizados em Últimas X Horas
 Oops! Something went wrong.,Ups! Algo correu mal.
 Open,Aberto
+Open Documents,Documentos abertos
+Open Reference Document,Documento de Referência Aberto
+Open URL in a New Tab,Abrir URL em uma nova guia
 OpenCV image processing enabled - Enhanced barcode detection,Processamento de imagem OpenCV ativado - Deteção de código de barras melhorada
 OpenCV Off,OpenCV Desligado
 OpenCV processing disabled,Processamento OpenCV desativado
-Open Documents,Documentos abertos
 Opened,Inaugurado
 Opening Amount,Valor de Abertura
-Open Reference Document,Documento de Referência Aberto
-Open URL in a New Tab,Abrir URL em uma nova guia
 Operation,Operação
 Opportunity,Oportunidade
 Opportunity Summary by Sales Stage,Resumo de Oportunidades por Etapa de Vendas
@@ -967,6 +977,7 @@ Other,Outro
 OTP App,Aplicação OTP
 OTP Issuer Name,Nome da Emissora OTP
 OTP setup using OTP App was not completed. Please contact Administrator.,A configuração via App OTP não foi concluída. Contacte o Administrador.
+Out of stock,Esgotado
 Outgoing,Saída
 Outgoing Salary,Pagamento de Salário
 Output,Saída
@@ -977,11 +988,11 @@ Overtime Type,Tipo de Horas Extra
 Owner,Proprietário
 Packing List,Lista de Empacotamento
 page,página
-Page {0} of {1},Página {0} de {1}
 Page Building Blocks,Blocos de construção de página
 Page HTML,Página HTML
 Page Name,Nome da Página
 Page Settings,Configurações da página
+Page {0} of {1},Página {0} de {1}
 Paid,Pago
 Parent Item,Artigo Principal
 Parent Label,Etiqueta Pai
@@ -989,6 +1000,7 @@ Passive,Passivo
 Password,Palavra-passe
 Password for Base DN,Senha para DN de base
 Password Reset Link Generation Limit,Limite de geração de link de redefinição de senha
+Past Quotes,Cotações Anteriores
 Patch,Remendo
 Path to private Key File,Caminho para o arquivo de chaves privado
 Path to Server Certificate,Caminho para o certificado do servidor
@@ -998,26 +1010,27 @@ Payment ID,ID do Pagamento
 Payment Methods,Métodos de Pagamento
 Payment name not found. Cannot open print view.,Nome do pagamento não encontrado. Não é possível abrir visualização de impressão.
 Payment Reconciliation,Reconciliação de Pagamento
-Payments,Pagamentos
 Payment saved offline,Pagamento guardado offline
+Payment Summary,Resumo do Pagamento
+Payments,Pagamentos
 Payroll,Folha de Pagamento
 Payroll Entry,Entrada de Folha de Pagamento
 Payroll Period,Período de Folha de Pagamento
 PDF Page Size,Tamanho da página PDF
 PDF Settings,Configurações do PDF
-Peak:,Pico:
 Peak Memory:,Memória de Pico:
 Peak Server:,Servidor de Pico:
+Peak:,Pico:
 Pending,Pendente
 Pending Approval,Aprovação pendente
 Pending Invoices,Faturas Pendentes
 Pending Sync,Sincronização Pendente
 Percentage,Percentagem
 Period,Período
+Perm Level,Nível Permanente
 Permanent,Permanente
 Permission Manager,Gestor de Permissões
 Permission Rules,Regras de Permissão
-Perm Level,Nível Permanente
 Personal,Pessoal
 Phone,Telefone
 Pie,Torta
@@ -1053,7 +1066,6 @@ Primary Color,Cor primária
 print,imprimir
 Print,Impressão
 Print Draft,Imprimir Rascunho
-Printer Name,Nome da impressora
 Print Format,Formato de Impressão
 Print Format Help,Ajuda sobre Formatos de Impressão
 Print Format Type,Tipo do Formato de Impressão
@@ -1067,6 +1079,7 @@ Print Style Preview,Estilo de visualização de impressão
 Print Width,Largura de impressão
 "Print Width of the field, if the field is a column in a table","Largura de impressão do campo, se o campo é uma coluna na tabela"
 Print with letterhead,Imprimir com o timbre
+Printer Name,Nome da impressora
 Priority,Prioridade
 Processing Payment,Processando Pagamento
 Professional Tax Deductions,Deduções de Imposto Profissional
@@ -1078,9 +1091,9 @@ Prospects Engaged But Not Converted,Prospects Contactados mas Não Convertidos
 Provident Fund Deductions,Deduções do INSS
 Provider,Fornecedor
 Provider Name,Nome do provedor
+Pull from Google Calendar,Puxe do Google Agenda
 Pulled from Google Calendar,Extraído do Google Agenda
 Pulled from Google Contacts,Extraído dos Contatos do Google
-Pull from Google Calendar,Puxe do Google Agenda
 Purchase Invoice,Fatura de Compra
 Purchase Manager,Gerente de Compras
 Purchase Master Manager,Gerente de Cadastros de Compras
@@ -1112,8 +1125,8 @@ Receiver By Document Field,Receptor por campo de documento
 Receiver By Role,Receptor por função
 Receiver Parameter,Parâmetro do recebedor
 Recipient,Destinatário
-Recipients,Destinatários
 Recipient Unsubscribed,Destinatário com inscrição cancelada
+Recipients,Destinatários
 Reconcile payment methods and close shift,Reconcilie os métodos de pagamento e feche o turno
 Recruitment Analytics,Análise de Recrutamento
 red,vermelho
@@ -1144,7 +1157,6 @@ Repeat on Last Day of the Month,Repetir no último dia do mês
 Repeat this Event,Repita este evento
 Repeat Till,Repita até que
 Replied,Respondido
-_report,_relatório
 Report,Relatório
 Report Description,Descrição do relatório
 Report Filters,Filtros de relatório
@@ -1154,10 +1166,11 @@ Reports,Relatórios
 Reprint previous transaction,Reimprimir transação anterior
 Request,Pedido
 Request Data,Solicitar Dados
+Request for Quote,Pedido de Cotação
 Request Structure,Estrutura da solicitação
 Request URL,URL do pedido
-Required columns cannot be hidden,Colunas obrigatórias não podem ser ocultadas
 Require Trusted Certificate,Exigir certificado confiável
+Required columns cannot be hidden,Colunas obrigatórias não podem ser ocultadas
 Reset,Redefinir
 Reset Password,Redefinir palavra-passe
 Reset Password Key,Redefinição de senha chave
@@ -1214,13 +1227,14 @@ Sample,Amostra
 Save,Salvar
 Save & Clear,Guardar e Limpar
 Scan Error,Erro de Escaneamento
+Scan QR Code/Barcode,Escanear Código QR/Código de Barras
 Scanned Code:,Código Escaneado:
 Scanning items,Escaneando artigos
-Scan QR Code/Barcode,Escanear Código QR/Código de Barras
 Scheduled Job,Trabalho agendado
 Scheduler Inactive,Agendador Inativo
 Scheduler is inactive. Cannot import data.,O agendador está inativo. Não é possível importar dados.
 Search,Pesquisar
+"Search by item code, serial number or barcode","Pesquisar por código, número de série ou código de barras"
 Search Fields,Campos de Pesquisa
 Search Mpesa Payments,Procurar Pagamentos M-Pesa
 Search Priorities,Prioridades de pesquisa
@@ -1237,8 +1251,8 @@ Select items to apply offers,Selecione artigos para aplicar ofertas
 Select Language,Selecionar Idioma
 Select Payment,Selecionar Pagamento
 Select Return Invoice,Selecionar Fatura de Devolução
-Select Sales Orders,Selecionar Pedidos de Venda
 Select S.O,Selecionar P.V
+Select Sales Orders,Selecionar Pedidos de Venda
 Select the label after which you want to insert new field.,Selecione a etiqueta após a qual você deseja inserir um novo campo.
 Select Transaction,Selecione a Transação
 Send,Enviar
@@ -1247,15 +1261,15 @@ Send alert if date matches this field's value,Enviar alerta se a data correspond
 Send alert if this field's value changes,Enviar alerta se muda o valor desse campo
 Send Alert On,Enviar Alerta
 Send days before or after the reference date,Enviar dias antes ou depois da data de referência
-Sending,Enviando
 Send login link,Enviar ligação de acesso
-Send Notifications For Documents Followed By Me,Enviar notificações para documentos seguidos por mim
 Send Notification to,Enviar Notificação para
+Send Notifications For Documents Followed By Me,Enviar notificações para documentos seguidos por mim
 Send Now,Enviar Agora
 Send only if there is any data,Envie somente se houver quaisquer dados
 Send Print as PDF,Enviar impressão como PDF
 Send System Notification,Enviar Notificação do Sistema
 Send To All Assignees,Enviar para todos os cessionários
+Sending,Enviando
 Sent or Received,Enviados ou recebidos
 Sent Read Receipt-MZ,Enviar Confirmação de Leitura
 Separator,Separador
@@ -1274,29 +1288,29 @@ Service,Serviço
 Set New Password,Definir nova senha
 Set Property After Alert,Definir propriedade após o alerta
 Set Role For,Definir papel para
+Set Value,Definir valor
 Settings,Configurações
 Settings Dropdown,Lista suspensa de configurações
 Setup your organization,Configure a sua organização
-Set Value,Definir valor
 share,ação
 Shared,Compartilhado
+Shift & Attendance,Turnos & Assiduidade
 Shift Assignment,Atribuição de Turno
 Shift Assignment Tool,Ferramenta de Atribuição de Turnos
-Shift & Attendance,Turnos & Assiduidade
 Shift Attendance,Assiduidade por Turno
 Shift Location,Local de Turno
 Shift Request,Pedido de Turno
-Shifts,Turnos
 Shift Schedule,Horário de Turno
 Shift Schedule Assignment,Atribuição de Horário de Turno
 Shift Type,Tipo de Turno
+Shifts,Turnos
 Shipping,Expedição
 Shipping Address,Endereço Para Entrega
 Shop,Loja
 Show,Mostrar
 Show Full Error and Allow Reporting of Issues to the Developer,Mostrar erro completo e permitir relatórios de problemas para o desenvolvedor
-Show Full Form?,Mostrar formulário completo?
 Show full form instead of a quick entry modal,Mostrar o formulário completo em vez de um modal de entrada rápida
+Show Full Form?,Mostrar formulário completo?
 Show in filter,Mostrar no filtro
 Show in Module Section,Mostrar na Seção Módulo
 Show Line Breaks after Sections,Mostrar quebras de linha após seções
@@ -1306,9 +1320,9 @@ Show Section Headings,Mostrar Seção Títulos
 Show Title,Mostrar Título
 Sidebar Items,Itens da barra lateral
 Sidebar Settings,Configurações da barra lateral
-Signature,Assinatura
 Sign out of session,Sair da sessão
 Sign up,Registar
+Signature,Assinatura
 Simultaneous Sessions,Sessões simultâneas
 Size,Tamanho
 Size:,Tamanho:
@@ -1316,8 +1330,8 @@ Skip Authorization,Ignorar autorização
 Slack,Folga
 Slack Channel,Canal de folga
 Slow Queries:,Consultas Lentas:
-Smallest Currency Fraction Value,Menor valor fracionado de moeda
 Small Text,Texto Pequeno
+Smallest Currency Fraction Value,Menor valor fracionado de moeda
 SMS Center,Centro de SMS
 SMS Log,Registo de SMS
 SMS Settings,Configurações de SMS
@@ -1349,24 +1363,24 @@ Stores the JSON of last known versions of various installed apps. It is used to 
 Style,Estilo
 Style Settings,Configurações de Estilo
 Stylesheet,Folha de estilo
-Subdomain,Subdomínio
 Sub-domain provided by erpnext.com,Sub-domínio fornecido pelo erpnext.com
+Subdomain,Subdomínio
 Subject,Assunto
 Submit,Enviar
-Submit After Import,Enviar após importação
 Submit & Print,Submeter e Imprimir
+Submit After Import,Enviar após importação
 Submitted,Enviado
 Subsidiary,Subsidiário
 Subtitle,Subtítulo
 Success,Sucesso
-Successfully scanned:,Escaneado com sucesso:
 Success Message,Mensagem de sucesso
 Success URL,URL de Confirmação
+Successfully scanned:,Escaneado com sucesso:
 Supplier,Fornecedor
 Supplier Ledger Summary,Resumo do Razão de Fornecedores
 Switch Camera,Alternar Câmara
-Switched to: ,Alternado para: 
 Switch theme appearance,Alternar aparência do tema
+Switched to: ,Alternado para: 
 Symbol,Símbolo
 Sync,Sincronizar
 Sync All Invoices,Sincronizar Todas as Faturas
@@ -1401,13 +1415,13 @@ Text Color,Cor do texto
 Text Editor,Editor de Texto
 The app stores data locally for offline use. This is called cache.,O aplicativo armazena dados localmente para uso offline. Isto chama-se cache.
 The link will expire in {0} minutes,A ligação expira em {0} minutos
+The name that will appear in Google Calendar,O nome que aparecerá no Google Agenda
+The system could not retrieve the item details. Please try again.,O sistema não conseguiu obter os detalhes do artigo. Por favor tente novamente.
 Theme,Tema
 Theme Configuration,Configuração do Tema
 Theme URL,URL do tema
-The name that will appear in Google Calendar,O nome que aparecerá no Google Agenda
 These invoices will be synced when connection is restored,Estas faturas serão sincronizadas quando a conexão for restaurada
 These values will be automatically updated in transactions and also will be useful to restrict permissions for this user on transactions containing these values.,Esses valores serão atualizados automaticamente em transações e também serão úteis para restringir as permissões para este usuário em operações que contenham esses valores.
-The system could not retrieve the item details. Please try again.,O sistema não conseguiu obter os detalhes do artigo. Por favor tente novamente.
 Third Party Authentication,Autenticação de Terceiros
 This barcode could not be matched to any item.,Este código de barras não pôde ser associado a nenhum artigo.
 This card will be available to all Users if this is set,Este cartão estará disponível para todos os usuários se estiver definido
@@ -1422,10 +1436,10 @@ Time,Hora
 Time format,Formato da hora
 Time Format,Formato da hora
 Time in seconds to retain QR code image on server. Min:<strong>240</strong>,Tempo em segundos para manter a imagem do código QR no servidor. Min: <strong>240</strong>
-Timeline Links,Links da linha do tempo
 Time Series,Séries Temporais
 Time Series Based On,Séries Temporais Baseadas em
 Time Zones,Fusos horários
+Timeline Links,Links da linha do tempo
 Tip: Clear cache regularly to free up space and keep the app fast.,Dica: Limpe o cache regularmente para liberar espaço e manter o aplicativo rápido.
 Tip: Close unused tabs or apps to reduce lag.,Dica: Feche abas ou aplicativos não utilizados para reduzir atraso.
 Tip: Monitor slow queries and table size for optimal performance.,Dica: Monitore consultas lentas e tamanho da tabela para desempenho ideal.
@@ -1440,10 +1454,9 @@ Token,Símbolo
 Tools,Ferramentas
 Top,Topo
 Top Bar Items,Itens da barra superior
-Topic,Tópico
 Top Tables,Principais Tabelas
+Topic,Tópico
 Total,Total
-Total:,Total:
 Total Active Items,Total de Artigos Ativos
 Total Amount,Valor Total
 Total Incoming Bills,Total de Faturas Recebidas
@@ -1452,15 +1465,16 @@ Total Invoices:,Total de Faturas:
 Total Mpesa:,Total M-Pesa:
 Total Outgoing Bills,Total de Faturas Emitidas
 Total Outgoing Payment,Total de Pagamentos Efetuados
-- Total Outstanding,- Total Pendente
 Total Payments:,Total de Pagamentos:
-Totals,Totais
 Total Selected :,Total Selecionado:
 Total Size,Tamanho Total
 Total Stock Value,Valor Total do Stock
 Total Subscribers,Total de Assinantes
-- Total Unallocated,- Total Não Alocado
 Total Warehouses,Total de Armazéns
+Total,Total
+Totals,Totais
+Total Outstanding,Total Pendente
+Total Unallocated,Total Não Alocado
 Track Changes,Rastrear Alterações
 Track Field,Trilha de corrida
 Track Seen,Marcar como visto
@@ -1508,29 +1522,31 @@ Update,Atualizar
 Update Customer,Atualizar Cliente
 Update Existing Records,Atualizar registros existentes
 Update Field,Atualizar Campo
-Updates automatically,Atualiza automaticamente
 Update Series Number,Atualizar Números de Séries
 Update Settings,Atualizar configurações
 Update Value,Atualizar Valor
+Updates automatically,Atualiza automaticamente
 Upload Attendance,Carregar Assiduidade
+Upload pending transactions,Carregar transações pendentes
 Uploaded To Dropbox,Enviado para o Dropbox
 Uploaded To Google Drive,Carregado no Google Drive
-Upload pending transactions,Carregar transações pendentes
 URL for documentation or help,URL para documentação ou ajuda
 Usage,Uso
 Usage Stats,Estatísticas de Uso
 Use ASCII encoding for password,Use codificação ASCII para senha
-Used:,Usado:
 Use date range to search for older invoices,Use intervalo de datas para procurar faturas antigas
 Use IMAP,Usar IMAP
+Use Report Chart,Usar gráfico de relatório
+Use SSL,Usar SSL
+Use this fieldname to generate title,Utilize este campo para gerar o título
+Use TLS,Usar TLS
+Used:,Usado:
 User,Usuário
-User {0} is disabled,Usuário {0} está desativado
 User Agent,Agente de usuário
 User Cannot Create,O Usuário não pode criar
 User Cannot Search,O Usuário não pode pesquisar
 User Defaults,Padrões de Perfil
 User does not exist.,O utilizador não existe.
-Use Report Chart,Usar gráfico de relatório
 User ID,ID de Usuário
 User ID Property,Propriedade de ID do usuário
 User Image,Imagem do Usuário
@@ -1538,22 +1554,20 @@ User must always select,O Usuário deve sempre selecionar
 User Name,Nome de usuário
 User Permissions,Permissões do Utilizador
 User Tags,Etiquetas de Usuários
-Use SSL,Usar SSL
-Use this fieldname to generate title,Utilize este campo para gerar o título
-Use TLS,Usar TLS
+User {0} is disabled,Usuário {0} está desativado
 Using basic camera settings due to device limitations,Usando configurações básicas da câmara devido a limitações do dispositivo
 Using cached customer balance,Usando saldo do cliente em cache
 Valid,Válido
-Validate Field,Validar Campo
 Valid email and name required,É necessário e-mail e nome válidos
-Validity,Validade
 Valid Login id required.,É necessário um identificador de início de sessão válido.
+Validate Field,Validar Campo
+Validity,Validade
 Value,Valor
 Value Based On,Valor Baseado em
 Value Changed,Valor Alterado
-Values Changed,Valores Alterados
 Value To Be Set,Valor a ser definido
 Value to Validate,Valor para Validar
+Values Changed,Valores Alterados
 Vehicle Log,Registo de Viatura
 Vehicle Service Item,Serviço de Viatura
 Verification,Verificação
@@ -1565,11 +1579,11 @@ Verify closing amounts for each payment method,Verifique os valores de fecho par
 Verifying...,A verificar...
 Video URL,URL do vídeo
 View,Visão
-Viewed By,Visto por
 View Properties (via Customize Form),Exibir Propriedades (via Personalizar Formulário)
 View Report,Ver relatório
-Views,Visualizações
 View Settings,Ver Definições
+Viewed By,Visto por
+Views,Visualizações
 Visit,Visita
 Waiting for payment...,Aguardando pagamento...
 Warehouse,Armazém
@@ -1580,19 +1594,19 @@ Warning: High lag may indicate heavy processing or browser slowness.,Aviso: Atra
 Warranty Claim,Reclamação de Garantia
 Web Form Fields,Campos de formulário Web
 Website,Site
+Website Item,Artigo do Site
 Website Manager,Administrador do Site
 Website Theme Image,Imagem do Tema do Site
-Website Item,Artigo do Site
 Weekdays,Dias da Semana
 Weekly,Semanalmente
 Weekly Long,Semanalmente Longo
 Welcome to {0},Bem-vindo Ao {0}
+Work Schedule,Horário de Trabalho
+Work without server connection,Trabalhar sem conexão com servidor
 Workflow,Fluxo de Trabalho
 Workflow Action is not created for optional states,A ação do fluxo de trabalho não é criada para estados opcionais
 Workflow Action Name,Nome da Ação do Fluxo de Trabalho
 Workflow Name,Nome do Fluxo de Trabalho
-Work Schedule,Horário de Trabalho
-Work without server connection,Trabalhar sem conexão com servidor
 Wrapping up,Empacotando
 Write,Escrever
 X Field,Campo X
@@ -1604,10 +1618,5 @@ Yes, Cancel sale,Sim, Cancelar venda
 You need to enable JavaScript for your app to work.,Precisa ativar o JavaScript para a sua aplicação funcionar.
 yyyy-mm-dd,dd/mm/yyyy
 Zero means send records updated at anytime,Zero significa enviar registros atualizados a qualquer momento
-Request for Quote,Pedido de Cotação
-Past Quotes,Cotações Anteriores
-Continue Shopping,Continuar a Comprar
-Payment Summary,Resumo do Pagamento
-Net Total ({0} Items),Total Líquido ({0} Itens)
-Out of stock,Esgotado
-Add to Quote,Adicionar à Cotação
+{0} is mandatory,{0} é obrigatório
+{0} is required,{0} é necessário
