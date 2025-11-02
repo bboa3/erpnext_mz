@@ -1,7 +1,4 @@
-
-_report,_relatório
-A list of resources which the Client App will have access to after the user allows it.<br> e.g. project,"Uma lista de recursos que o aplicativo cliente terá acesso a depois que o usuário permita. <br> por exemplo, do projeto"
-A symbol for this currency. For e.g. $,Um símbolo para esta moeda. Por exemplo: MT
+About,Sobre
 Accepted,Aceito
 Account,Conta
 Accounting Report,Relatório de Contabilidade
@@ -436,10 +433,11 @@ Dynamic Template,Modelo dinâmico
 e.g. pop.gmail.com / imap.gmail.com,ex: pop.gmail.com / imap.gmail.com
 e.g. smtp.gmail.com,ex: smtp.gmail.com
 Edit,Editar
+Edit Cart,Editar Carrinho
 Edited,Editado
 Email,E-mail
 Email Address,Endereço de e-mail
-Email Address (Will be your login ID),Endereço de Email (será o seu ID de acesso)About,Sobre
+Email Address (Will be your login ID),Endereço de Email (será o seu ID de acesso)
 Email Campaign,Campanha de Email
 Email Group,Grupo de Emails
 Email Inbox,Caixa de Entrada
