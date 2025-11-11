@@ -376,7 +376,7 @@ Defaults,Padrões
 Delayed Tasks Summary,Resumo de Tarefas Atrasadas
 Delete,Excluir
 Delete Invoice,Eliminar Fatura
-Delete Order,Eliminar Venda
+Delete Order,Eliminar Pedido
 Deleted Name,Nome Excluído
 Delivery Information,Informações de Entrega
 Delivery Note,Guia de Remessa
@@ -436,7 +436,8 @@ e.g. smtp.gmail.com,ex: smtp.gmail.com
 Edit,Editar
 Edit Cart,Editar Carrinho
 Edit Full Form,Editar Formulário Completo
-Edit Order,Editar Venda
+Exit Full Screen,Sair do Ecrã Inteiro
+Edit Order,Editar Pedido
 Edited,Editado
 Email,E-mail
 Email Address,Endereço de e-mail
@@ -445,7 +446,7 @@ Email Campaign,Campanha de Email
 Email Group,Grupo de Emails
 Email Inbox,Caixa de Entrada
 Email Sent At,E-mail enviado em
-Email Receipt,Recibo Por Email
+Email Receipt,Enviar Recibo
 Employee,Funcionário
 Employee Advance Summary,Resumo de Adiantamentos de Trabalhador
 Employee Attendance Tool,Ferramenta de Assiduidade do Trabalhador
@@ -1241,7 +1242,7 @@ Search,Pesquisar
 Search Fields,Campos de Pesquisa
 Search Mpesa Payments,Procurar Pagamentos M-Pesa
 Search Priorities,Prioridades de pesquisa
-Search or type a command (Ctrl + G),Pesquisar ou digitar um comando (Ctrl + G)
+"Search or type a command (Ctrl + G)","Pesquisar ou digitar um comando (Ctrl + G)"
 Section,Seção
 Section Break,Quebra de seção
 Security Settings,Configurações de Segurança
