@@ -376,6 +376,7 @@ Defaults,Padrões
 Delayed Tasks Summary,Resumo de Tarefas Atrasadas
 Delete,Excluir
 Delete Invoice,Eliminar Fatura
+Delete Order,Eliminar Venda
 Deleted Name,Nome Excluído
 Delivery Information,Informações de Entrega
 Delivery Note,Guia de Remessa
@@ -434,6 +435,8 @@ e.g. pop.gmail.com / imap.gmail.com,ex: pop.gmail.com / imap.gmail.com
 e.g. smtp.gmail.com,ex: smtp.gmail.com
 Edit,Editar
 Edit Cart,Editar Carrinho
+Edit Full Form,Editar Formulário Completo
+Edit Order,Editar Venda
 Edited,Editado
 Email,E-mail
 Email Address,Endereço de e-mail
@@ -442,6 +445,7 @@ Email Campaign,Campanha de Email
 Email Group,Grupo de Emails
 Email Inbox,Caixa de Entrada
 Email Sent At,E-mail enviado em
+Email Receipt,Recibo Por Email
 Employee,Funcionário
 Employee Advance Summary,Resumo de Adiantamentos de Trabalhador
 Employee Attendance Tool,Ferramenta de Assiduidade do Trabalhador
@@ -559,7 +563,6 @@ Footer Template,Modelo de rodapé
 Footer Template Values,Valores de modelo de rodapé
 Footer will display correctly only in PDF,Rodapé será exibido corretamente somente em PDF
 For example: {} Open,Por exemplo: {} Abra
-"For more information, <a class=""text-muted"" href=""https://docs.frappe.io/erpnext/user/manual/en/linking-emails-to-document"">click here</a>.","Para mais informações, <a class=""text-muted"" href=""https://docs.frappe.io/erpnext/user/manual/en/linking-emails-to-document"">clique aqui</a>."
 For Value,Por valor
 Force,Força
 Force Show,Forçar Exibição
@@ -576,6 +579,7 @@ From Date,Data De
 From Date Field,Do campo de data
 From Full Name,De nome completo
 Full,Cheio
+Full Screen,Ecrã Inteiro
 Full Name,Nome Completo
 Full Width,Largura completa
 General Ledger,Razão Geral
@@ -1237,6 +1241,7 @@ Search,Pesquisar
 Search Fields,Campos de Pesquisa
 Search Mpesa Payments,Procurar Pagamentos M-Pesa
 Search Priorities,Prioridades de pesquisa
+Search or type a command (Ctrl + G),Pesquisar ou digitar um comando (Ctrl + G)
 Section,Seção
 Section Break,Quebra de seção
 Security Settings,Configurações de Segurança
@@ -1613,7 +1618,7 @@ Y Axis,Eixo Y
 Year,Ano
 Yearly,Anualmente
 yellow,amarelo
-Yes, Cancel sale,Sim, Cancelar venda
+"Yes, Cancel sale", "Sim, Cancelar venda"
 You need to enable JavaScript for your app to work.,Precisa ativar o JavaScript para a sua aplicação funcionar.
 yyyy-mm-dd,dd/mm/yyyy
 Zero means send records updated at anytime,Zero significa enviar registros atualizados a qualquer momento
