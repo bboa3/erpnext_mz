@@ -1109,6 +1109,7 @@ Push to Google Calendar,Enviar para o Google Agenda
 Push to Google Contacts,Enviar para os Contatos do Google
 Qty,Qtd
 QTY,QUANT
+Quarter {0},Trimestre {0}
 Quarterly,Trimestralmente
 Query,Consulta
 Query Options,Opções de Consulta
@@ -1313,6 +1314,7 @@ Shipping,Expedição
 Shipping Address,Endereço Para Entrega
 Shop,Loja
 Show,Mostrar
+Show Aggregate Value from Subsidiary Companies,Mostrar Valor Agregado das Empresas Subsidiárias
 Show Full Error and Allow Reporting of Issues to the Developer,Mostrar erro completo e permitir relatórios de problemas para o desenvolvedor
 Show full form instead of a quick entry modal,Mostrar o formulário completo em vez de um modal de entrada rápida
 Show Full Form?,Mostrar formulário completo?
@@ -1602,6 +1604,7 @@ Website,Site
 Website Item,Artigo do Site
 Website Manager,Administrador do Site
 Website Theme Image,Imagem do Tema do Site
+Week {0},Semana {0}
 Weekdays,Dias da Semana
 Weekly,Semanalmente
 Weekly Long,Semanalmente Longo
