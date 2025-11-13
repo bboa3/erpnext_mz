@@ -1109,6 +1109,7 @@ Push to Google Calendar,Enviar para o Google Agenda
 Push to Google Contacts,Enviar para os Contatos do Google
 Qty,Qtd
 QTY,QUANT
+Quarter,Trimestre
 Quarter {0},Trimestre {0}
 Quarterly,Trimestralmente
 Query,Consulta
@@ -1604,6 +1605,7 @@ Website,Site
 Website Item,Artigo do Site
 Website Manager,Administrador do Site
 Website Theme Image,Imagem do Tema do Site
+Week,Semana
 Week {0},Semana {0}
 Weekdays,Dias da Semana
 Weekly,Semanalmente
